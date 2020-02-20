@@ -10,6 +10,7 @@ namespace Game
         [SerializeField] private Rigidbody2D body = null;
         [SerializeField] private InputManager input = null;
 
+        [SerializeField] Vector2 _CharacterDirection = Vector2.zero;
         public float _maxSpeed = 4f;
         [SerializeField] private float _activeSpeed = 0f;
 
@@ -17,8 +18,7 @@ namespace Game
         public float _deccelerationTime = 0.2f;
 
         [SerializeField]
-        private float _accTimer = 0f;
-        private float _decTimer = 0f;
+        private float _accTimer = 0f, _decTimer = 0f;
         private float _RunDeadZone = 0.5f;
 
         /*[SerializeField]*/ AnimationCurve _accelerationCurve = null;
@@ -34,6 +34,23 @@ namespace Game
         }
         
         void Update()
+        {
+            if(input._stickDirectionNorm != Vector2.zero)
+            {
+                _CharacterDirection = input._stickDirectionNorm;
+            }
+
+            Run();
+        }
+
+        void RefreshRunCurve(float accelTime, float maxSpeed, float deccelTime)
+        {
+            _accelerationCurve = AnimationCurve.EaseInOut(0, 0, accelTime, maxSpeed);
+            _topSpeedCurve = AnimationCurve.Constant(0, 1, maxSpeed);
+            _deccelerationCurve = AnimationCurve.EaseInOut(0, maxSpeed, deccelTime, 0);
+        }
+
+        void Run()
         {
             if (input._stickMagnitude > _RunDeadZone)
             {
@@ -52,10 +69,10 @@ namespace Game
                 }
 
                 //applique la vitesse
-                body.velocity = input._stickDirectionNorm * _activeSpeed;
+                body.velocity = _CharacterDirection * _activeSpeed;
 
                 //Reset decceleration timer
-                if(_decTimer != 0)
+                if (_decTimer != 0)
                 {
                     _decTimer = 0f;
                 }
@@ -65,10 +82,11 @@ namespace Game
                 //incrémentation du timer en fonction du temps
                 _decTimer += Time.deltaTime;
 
+                //determine la vitesse
                 _activeSpeed = _deccelerationCurve.Evaluate(_decTimer);
 
                 //applique la vitesse
-                body.velocity = input._stickDirectionNorm * _activeSpeed;
+                body.velocity = _CharacterDirection * _activeSpeed;
 
                 //Reset decceleration timer
                 if (_accTimer != 0)
@@ -76,17 +94,6 @@ namespace Game
                     _accTimer = 0f;
                 }
             }
-
-
         }
-
-        void RefreshRunCurve(float accelTime, float maxSpeed, float deccelTime)
-        {
-            _accelerationCurve = AnimationCurve.EaseInOut(0, 0, accelTime, maxSpeed);
-            _topSpeedCurve = AnimationCurve.Constant(0, 1, maxSpeed);
-            _deccelerationCurve = AnimationCurve.EaseInOut(0, maxSpeed, deccelTime, 0);
-
-        }
-
     }
 }
