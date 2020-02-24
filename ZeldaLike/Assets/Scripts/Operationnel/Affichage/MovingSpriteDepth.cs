@@ -11,7 +11,10 @@ namespace Graphique
 
         void Start()
         {
-            _pos = this.transform;
+            if(_pos == null)
+            {
+                Debug.Log(this.gameObject.name + " n'a pas eut sa position référencée"); 
+            }
             _sprRender = this.GetComponent<SpriteRenderer>();
         }
 
