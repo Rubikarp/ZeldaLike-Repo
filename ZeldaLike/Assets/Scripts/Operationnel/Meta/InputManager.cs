@@ -24,6 +24,8 @@ namespace Management
         public Vector2 _stickDirectionNorm;
         public float _stickMagnitude;
 
+        //Dernière direction
+        public Vector2 _CharacterDirection = Vector2.zero;
 
         #endregion LeftStick
 
@@ -62,6 +64,12 @@ namespace Management
             _attackExit = Input.GetButtonUp("Attack");
 
             #endregion PrendsLesInputs
+
+            //Remain last character direction
+            if (_stickDirectionNorm != Vector2.zero)
+            {
+                _CharacterDirection = _stickDirectionNorm;
+            }
         }
     }
 }
