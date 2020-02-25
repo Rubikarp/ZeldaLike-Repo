@@ -1631,6 +1631,8 @@ GameObject:
   - component: {fileID: 1225340313}
   - component: {fileID: 1225340311}
   - component: {fileID: 1225340310}
+  - component: {fileID: 1225340315}
+  - component: {fileID: 1225340314}
   m_Layer: 0
   m_Name: HumaineForm
   m_TagString: Untagged
@@ -1650,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d4277528cc894e853835a80d6db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pos: {fileID: 1225340312}
+  _pos: {fileID: 1181765978}
 --- !u!212 &1225340311
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1735,6 +1737,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1225340314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225340309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17caea79a59aae44eb963878a486dc33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knife: {fileID: 6980779766148977113, guid: c1ef55d1029078643a39055034a4ffd5, type: 3}
+  _throwRecup: 0.4
+--- !u!114 &1225340315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225340309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21529341e4a12914eb13a1256734655c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mark: {fileID: 5795848866136646902, guid: 3cb8403910c464344b26ba011375e67e, type: 3}
 --- !u!1 &1234330440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,7 +1788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234330440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1225340312}
@@ -1967,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d4277528cc894e853835a80d6db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pos: {fileID: 1265112171}
+  _pos: {fileID: 1181765978}
 --- !u!212 &1265112173
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2309,7 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d4277528cc894e853835a80d6db04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pos: {fileID: 1500159582}
+  _pos: {fileID: 1181765978}
 --- !u!212 &1500159584
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3134,7 +3163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758696866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 242298236}

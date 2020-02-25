@@ -19,7 +19,7 @@ public class KnifeBehaviour : MonoBehaviour
         _knifeBody = GetComponent<Rigidbody2D>();
         _ephemerate = true;
         _player = GameObject.FindGameObjectWithTag("Player");
-        _playerOrientation = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>()._stickDirectionNorm;
+        _playerOrientation = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>()._CharacterDirection;
     }
 
     // Update is called once per frame
