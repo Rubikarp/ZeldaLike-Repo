@@ -17,7 +17,7 @@ public class KnifeThrowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.C) && _goodToShoot == true)
+        if (Input.GetButtonDown("Attack") && _goodToShoot == true)
         {
             Instantiate(_knife, transform.position, Quaternion.identity);
             _goodToShoot = false;

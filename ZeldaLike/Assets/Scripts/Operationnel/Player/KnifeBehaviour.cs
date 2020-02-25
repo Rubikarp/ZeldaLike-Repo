@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Management;
 
 public class KnifeBehaviour : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class KnifeBehaviour : MonoBehaviour
         _knifeBody = GetComponent<Rigidbody2D>();
         _ephemerate = true;
         _player = GameObject.FindGameObjectWithTag("Player");
-        _playerOrientation = _player.GetComponent<CharacterOrientationDetection>()._lastOrientation.normalized;
-
+        _playerOrientation = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>()._stickDirectionNorm;
     }
 
     // Update is called once per frame

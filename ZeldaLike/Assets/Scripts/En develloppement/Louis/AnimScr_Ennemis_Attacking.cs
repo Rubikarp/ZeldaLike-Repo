@@ -11,7 +11,6 @@ public class AnimScr_Ennemis_Attacking : StateMachineBehaviour
     public float Timer = 6f;
     private Animator animator;
     private float attackSpeed;
-    private bool isDashing;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,7 +19,6 @@ public class AnimScr_Ennemis_Attacking : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         attackSpeed = mySelf._dashSpeed;
         Timer = 6f;
-        isDashing = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -30,7 +28,6 @@ public class AnimScr_Ennemis_Attacking : StateMachineBehaviour
 
         if (Timer <= 0)
         {
-            isDashing = false;
             Timer = 6f;
             animator.SetBool("isAttacking", false);
         }
@@ -38,7 +35,6 @@ public class AnimScr_Ennemis_Attacking : StateMachineBehaviour
         if (Timer <= 1 && Timer > 0)
         {
             mySelf.transform.position = Vector2.MoveTowards(mySelf.transform.position, player.position, attackSpeed * Time.deltaTime);
-            isDashing = true;
             animator.SetBool("isAttacking", true);
         }
     }
