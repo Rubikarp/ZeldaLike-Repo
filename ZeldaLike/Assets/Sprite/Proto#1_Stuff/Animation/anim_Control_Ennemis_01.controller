@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1101 &-6433133501557354246
+--- !u!1101 &-8427853571350757298
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isAttacking
+  - m_ConditionMode: 2
+    m_ConditionEvent: PlayerFound
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -5931570407437481226}
+  m_DstState: {fileID: -1926163634702317891}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -25,34 +25,22 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &-5931570407437481226
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 3
+--- !u!114 &-5788769772530075198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -5746355806078136738}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!114 &-5901751201721686575
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddf6210671b56a45bb3a9175995a0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _my: {fileID: 0}
+  _targetDirection: {x: 0, y: 0}
+  _targetDistance: 0
+--- !u!114 &-4071713439378275917
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,63 +49,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef6afabac502ec4299a089fbef1bb35, type: 3}
+  m_Script: {fileID: 11500000, guid: c08499d65494e4c488d79f9df7437cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySelf: {fileID: 0}
-  player: {fileID: 0}
-  Timer: 6
---- !u!1101 &-5746355806078136738
-AnimatorStateTransition:
+  _my: {fileID: 0}
+  _noBrain: {fileID: 0}
+  _moveToward: {fileID: 0}
+  _isDashing: 0
+  _targetDirection: {x: 0, y: 0}
+  _targetDistance: 0
+  _timer: 0
+--- !u!114 &-3420649795266883772
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87541e4808c5b564289f976fddfd0507, type: 3}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isAttacking
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 5986396351063808217}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1102 &-5660651122909325307
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Patrol
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_EditorClassIdentifier: 
+  _my: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!1102 &-1926163634702317891
 AnimatorState:
   serializedVersion: 5
@@ -129,9 +84,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 3104520725989077319}
+  - {fileID: 6122590923631147545}
   m_StateMachineBehaviours:
-  - {fileID: -760097420418190903}
+  - {fileID: 2360053114702987783}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -169,18 +124,12 @@ AnimatorController:
   m_Name: anim_Control_Ennemis_01
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isFollowing
+  - m_Name: PlayerFound
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: isAttacking
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -194,7 +143,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &3098526742324111859
+--- !u!114 &2360053114702987783
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,37 +152,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b790025f35f0c74e93f99cc6909d627, type: 3}
+  m_Script: {fileID: 11500000, guid: 87541e4808c5b564289f976fddfd0507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySelf: {fileID: 0}
-  player: {fileID: 0}
-  speed: 10
---- !u!1101 &3104520725989077319
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isFollowing
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 5986396351063808217}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  _my: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!1107 &4527825524230354639
 AnimatorStateMachine:
   serializedVersion: 5
@@ -248,18 +171,13 @@ AnimatorStateMachine:
     m_Position: {x: 200, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5986396351063808217}
-    m_Position: {x: 400, y: 0, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -5660651122909325307}
-    m_Position: {x: 400, y: 200, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -5931570407437481226}
-    m_Position: {x: 600, y: 100, z: 0}
+    m_Position: {x: 480, y: 100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -3420649795266883772}
   m_AnyStatePosition: {x: 0, y: 200, z: 0}
   m_EntryPosition: {x: 0, y: 100, z: 0}
   m_ExitPosition: {x: 0, y: 0, z: 0}
@@ -276,11 +194,10 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 9094306254692801425}
-  - {fileID: -6433133501557354246}
+  - {fileID: -8427853571350757298}
   m_StateMachineBehaviours:
-  - {fileID: 3098526742324111859}
-  - {fileID: -5901751201721686575}
+  - {fileID: -5788769772530075198}
+  - {fileID: -4071713439378275917}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -295,7 +212,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &9094306254692801425
+--- !u!1101 &6122590923631147545
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,11 +220,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: isFollowing
+  - m_ConditionMode: 1
+    m_ConditionEvent: PlayerFound
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -1926163634702317891}
+  m_DstState: {fileID: 5986396351063808217}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0

@@ -3,24 +3,29 @@ using System.Collections;
 
 namespace Ennemis
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Ennemis_Fondation : MonoBehaviour
     {
-        private Animator animator;
-        [Header("HP")]
+        [HideInInspector]
+        public Rigidbody2D body;
+
+        [Header("Stat")]
         public int life = 3;
+        public float _movementSpeed = 5f;
+
         [Space(10)]
+
         [Header("Target")]
         public Transform target = null;
-        public float _detectionRange = 10f;
-        public float _attackRange = 3f;
-        public float _movementSpeed = 5f;
-        public float _dashSpeed = 10f;
+        public float _detectionRange = 20f;
+        public float _farRange = 10f;
+        public float _attackRange = 8f;
+        public float _nearRange = 5f;
 
         private void Start()
         {
-            animator = this.gameObject.GetComponent<Animator>();
+            body = this.gameObject.GetComponent<Rigidbody2D>();
         }
-
         void Update()
         {
             Living(life);
