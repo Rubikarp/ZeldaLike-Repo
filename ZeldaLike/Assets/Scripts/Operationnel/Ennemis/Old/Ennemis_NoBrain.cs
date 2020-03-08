@@ -19,7 +19,7 @@ namespace Ennemis
 
         IEnumerator Dash(float CoolDown)
         {
-            float time = 0f;
+            //float time = 0f;
 
             /*attackZone.SetActive(true);
             haveAttack = true;

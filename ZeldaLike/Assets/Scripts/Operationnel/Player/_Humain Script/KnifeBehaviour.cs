@@ -5,18 +5,18 @@ using Management;
 
 public class KnifeBehaviour : MonoBehaviour
 {
-    public float _knifeSpeed;
-    public float _knifeDamage;
-    private Rigidbody2D _knifeBody;
+    public float _Speed = 35f;
+    public float _Damage = 2f;
+    private Rigidbody2D _Body;
     private bool _ephemerate;
-    public float _knifeLifetime;
+    public float _Lifetime = 0.4f;
     GameObject _player;
     Vector2 _playerOrientation;
 
     // Start is called before the first frame update
     void Start()
     {
-        _knifeBody = GetComponent<Rigidbody2D>();
+        _Body = GetComponent<Rigidbody2D>();
         _ephemerate = true;
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerOrientation = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>()._CharacterDirection;
@@ -25,7 +25,7 @@ public class KnifeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _knifeBody.velocity = _playerOrientation * _knifeSpeed;
+        _Body.velocity = _playerOrientation * _Speed;
 
         if (_ephemerate == true)
         {
@@ -36,7 +36,7 @@ public class KnifeBehaviour : MonoBehaviour
 
     IEnumerator DestroyKnife()
     {
-        yield return new WaitForSeconds(_knifeLifetime);
+        yield return new WaitForSeconds(_Lifetime);
         Destroy(gameObject);
     }
 }

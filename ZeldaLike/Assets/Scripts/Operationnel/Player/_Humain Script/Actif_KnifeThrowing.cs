@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeThrowing : MonoBehaviour
+public class Actif_KnifeThrowing : MonoBehaviour
 {
     public GameObject _knife;
-    private bool _goodToShoot;
+    public Transform _attackContainer;
+
+    [SerializeField] private bool _goodToShoot;
     public float _throwRecup;
 
     // Start is called before the first frame update
@@ -19,7 +21,7 @@ public class KnifeThrowing : MonoBehaviour
     {
         if (Input.GetButtonDown("Attack") && _goodToShoot == true)
         {
-            Instantiate(_knife, transform.position, Quaternion.identity);
+            Instantiate(_knife, transform.position, Quaternion.identity, _attackContainer);
             _goodToShoot = false;
             StartCoroutine(ThrowDelay());
         }

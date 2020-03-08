@@ -20,7 +20,9 @@ namespace Game
         private float _accTimer = 0f;
         private float _decTimer = 0f;
         private float _RunDeadZone = 0.5f;
-        
+
+        public bool _isBoosted = false;
+
         void Update()
         {
             Run();
@@ -70,6 +72,22 @@ namespace Game
                     _accTimer = 0f;
                 }
             }
+        }
+
+        public IEnumerator SpeedBoostCoroutine(float boostPourcentage, float boostDuration, Data_PlayerForme _boostedForm)
+        {
+            float basedSpeed = _boostedForm._maxSpeed;
+            float boostedSpeed = basedSpeed + ((basedSpeed / 100) * boostPourcentage);
+
+            _isBoosted = true;
+            _boostedForm._maxSpeed = boostedSpeed;
+
+            yield return new WaitForSeconds(boostDuration);
+
+            _boostedForm._maxSpeed = basedSpeed;
+            _isBoosted = false;
+
+            yield return null;
         }
     }
 }

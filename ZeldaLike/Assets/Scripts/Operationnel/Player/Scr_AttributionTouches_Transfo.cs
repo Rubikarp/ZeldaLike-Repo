@@ -34,11 +34,7 @@ namespace Game
 
         void Start()
         {
-            _actualForm = _human;
-            _humanSprite.SetActive(true);
-            _agileSprite.SetActive(false);
-            _heavySprite.SetActive(false);
-            TransformCommandSwitch();
+            InitialisationHumanForm();
         }
 
         // Update is called once per frame
@@ -50,7 +46,7 @@ namespace Game
                 TransformCommandSwitch();
                 RefreshActual();
 
-                Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+                //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
             }
             else if (Input.GetButtonDown("RightTransform"))
             {
@@ -58,12 +54,13 @@ namespace Game
                 TransformCommandSwitch();
                 RefreshActual();
 
-                Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+                //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
             }
         }
 
         private void TransformCommandSwitch()
         {
+
             if (_actualForm == _human)
             {
                 actualForm = Forme.Humain;
@@ -119,5 +116,14 @@ namespace Game
                     break;
             }
         } 
+    
+        void InitialisationHumanForm()
+        {
+            _actualForm = _human;
+            _humanSprite.SetActive(true);
+            _agileSprite.SetActive(false);
+            _heavySprite.SetActive(false);
+            TransformCommandSwitch();
+        }
     }
 }
