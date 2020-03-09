@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Ennemis
 {
@@ -11,12 +11,13 @@ namespace Ennemis
 
         [Header("Stat")]
         public int life = 3;
+
         public float _movementSpeed = 5f;
 
         [Space(10)]
-
         [Header("Target")]
         public Transform target = null;
+
         public float _detectionRange = 20f;
         public float _farRange = 10f;
         public float _attackRange = 8f;
@@ -26,21 +27,21 @@ namespace Ennemis
         {
             body = this.gameObject.GetComponent<Rigidbody2D>();
         }
-        void Update()
+
+        private void Update()
         {
             Living(life);
         }
 
-        void Living(int life)
+        private void Living(int life)
         {
-            if(life <= 0)
+            if (life <= 0)
             {
                 StartCoroutine(Dying());
             }
         }
 
-
-        IEnumerator Dying()
+        private IEnumerator Dying()
         {
             //Death anim
 
@@ -51,5 +52,4 @@ namespace Ennemis
             yield return 0;
         }
     }
-
 }

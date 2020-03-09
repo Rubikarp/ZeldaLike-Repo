@@ -11,7 +11,7 @@ namespace Game
         public Movement_2D_TopDown Movement = null;
 
         [Header("Variable")]
-        [Range(0, 100)]
+        [Range(0, 200)]
         public float _boostPourcentage = 40;
         public float _boostDuration = 3;
 
