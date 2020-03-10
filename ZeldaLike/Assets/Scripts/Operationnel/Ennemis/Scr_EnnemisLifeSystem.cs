@@ -14,7 +14,7 @@ namespace Ennemis
         [Header("Statistiques")]
         public int _life = 5;
 
-        public float knockbackSensibility;
+        public float knockbackSensibility = 1f;
 
         private void Update()
         {
@@ -30,7 +30,7 @@ namespace Ennemis
             {
                 Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;
 
-                Int_Damage attackData = collision.GetComponent<Int_Damage>();
+                Int_Damage attackData = collision.gameObject.GetComponent<Int_Damage>();
 
                 float knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
 

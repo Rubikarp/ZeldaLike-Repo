@@ -5,12 +5,13 @@ namespace Management
     /// <summary>
     /// Fait par Arthur Deleye
     /// 
-    /// private InputManager input;        
-    /// input = GameObject.FindGameObjectWithTag("GameController");
+    /// private InputManager _input;        
     /// 
+    /// _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
     /// </summary>
     public class InputManager : Singleton<InputManager>
     {
+        private bool _canInput;
         #region Input
 
         [Header("Inputs")]

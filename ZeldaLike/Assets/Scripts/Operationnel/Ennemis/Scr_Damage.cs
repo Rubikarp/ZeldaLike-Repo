@@ -20,7 +20,6 @@ namespace Game
                 _damage = value;
             }
         }
-
         public float StunDuration
         {
             get
@@ -32,7 +31,6 @@ namespace Game
                 _stunDuration = value;
             }
         }
-
         public float KnockbackPower
         {
             get
@@ -44,5 +42,6 @@ namespace Game
                 _knockbackPower = value;
             }
         }
+    
     }
 }

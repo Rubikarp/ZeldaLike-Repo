@@ -10,12 +10,10 @@ namespace Game
         private void OnEnable()
         {
             //Pour ne laisser qu'une marque active
-            /*
             if(_markContainer.childCount >=1)
             {
                 Destroy(_markContainer.GetChild(0).gameObject);
             }
-            */
             
             Instantiate(_markPrefab, this.transform.position, Quaternion.identity, _markContainer);
         }

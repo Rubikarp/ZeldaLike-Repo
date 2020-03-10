@@ -5,25 +5,34 @@ using UnityEngine;
 public class Actif_KnifeThrowing : MonoBehaviour
 {
     public GameObject _knife;
-    public Transform _attackContainer;
+    public Transform _Container;
+    public Transform _attackPos;
 
     [SerializeField] private bool _goodToShoot;
-    public float _throwRecup;
+    public float _throwRecup = 0.2f;
+    public float _recupTimer = 0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         _goodToShoot = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Attack") && _goodToShoot == true)
         {
-            Instantiate(_knife, transform.position, Quaternion.identity, _attackContainer);
+            Instantiate(_knife, _attackPos.position, _attackPos.rotation, _Container);
             _goodToShoot = false;
-            StartCoroutine(ThrowDelay());
+            _recupTimer = _throwRecup;
+        }
+        else
+        {
+            _recupTimer -= Time.deltaTime;
+
+            if(_recupTimer <= 0)
+            {
+                _goodToShoot = true;
+            }
         }
     }
 

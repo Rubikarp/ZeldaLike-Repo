@@ -8,9 +8,9 @@ namespace Game
     public class Movement_2D_TopDown : MonoBehaviour
     {
         [SerializeField] 
-        private Rigidbody2D body = null;
+        private Rigidbody2D _body = null;
         [SerializeField] 
-        private InputManager input = null;
+        private InputManager _input = null;
         [Space(10)]
         public Data_PlayerForme _actualForme = null;
         [Space(10)]
@@ -21,16 +21,20 @@ namespace Game
         private float _decTimer = 0f;
         private float _RunDeadZone = 0.5f;
 
+        public bool _canMove = true;
         public bool _isBoosted = false;
 
         void Update()
         {
-            Run();
+            if (_canMove)
+            {
+                Run();
+            }
         }
 
         void Run()
         {
-            if (input._stickMagnitude > _RunDeadZone)
+            if (_input._stickMagnitude > _RunDeadZone && _canMove)
             {
                 //incrémentation du timer en fonction du temps
                 _accTimer += Time.deltaTime;
@@ -47,7 +51,7 @@ namespace Game
                 }
 
                 //applique la vitesse
-                body.velocity = input._CharacterDirection * _activeSpeed;
+                _body.velocity = _input._CharacterDirection * _activeSpeed;
 
                 //Reset decceleration timer
                 if (_decTimer != 0)
@@ -55,7 +59,7 @@ namespace Game
                     _decTimer = 0f;
                 }
             }
-            else
+            else if(_canMove)
             {
                 //incrémentation du timer en fonction du temps
                 _decTimer += Time.deltaTime;
@@ -64,7 +68,7 @@ namespace Game
                 _activeSpeed = _actualForme._maxSpeed * _actualForme._deccelerationCurve.Evaluate(_decTimer);
 
                 //applique la vitesse
-                body.velocity = input._CharacterDirection * _activeSpeed;
+                _body.velocity = _input._CharacterDirection * _activeSpeed;
 
                 //Reset decceleration timer
                 if (_accTimer != 0)
@@ -88,6 +92,11 @@ namespace Game
             _isBoosted = false;
 
             yield return null;
+        }
+    
+        public void Immobilize()
+        {
+            _body.velocity = Vector2.zero;
         }
     }
 }

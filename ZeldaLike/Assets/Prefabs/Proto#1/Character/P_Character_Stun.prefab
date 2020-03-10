@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1993359397713845182}
   m_Layer: 0
   m_Name: P_Character_Stun
-  m_TagString: Stun
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe20255e691f2e4c9138d066562f4c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Damage: 0
+  _damage: 0
+  _stunDuration: 1
+  _knockbackPower: 0
   _LifeTime: 0.3
-  _StunningTime: 0.5
+  _Stun: {fileID: 1993359397713845183}
