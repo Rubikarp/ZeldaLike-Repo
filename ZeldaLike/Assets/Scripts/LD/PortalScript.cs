@@ -1,26 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PortalScript : MonoBehaviour
 {
-    public GameObject _otherPortal;
-    public GameObject Player;
-    public bool _canTP;
-    public float _TPDelay;
+    public GameObject _otherPortal = null;
+    public GameObject Player = null;
+    public bool _canTP = true;
+    public float _TPDelay = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         _canTP = true;
         _TPDelay = _otherPortal.GetComponent<PortalScript>()._TPDelay;
         Player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D (Collider2D collision)

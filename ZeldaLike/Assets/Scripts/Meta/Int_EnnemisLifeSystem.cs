@@ -6,10 +6,6 @@ namespace Game
 {
     public interface Int_EnnemisLifeSystem : Int_LifeSystem
     {        
-
-        bool IsBleeding();
-       
-        IEnumerator GetBleeding(float StunDuration);
-
+        bool IsBleeding { get; set; }
     }
 }

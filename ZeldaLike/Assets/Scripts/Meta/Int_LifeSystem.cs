@@ -6,9 +6,6 @@ namespace Game
 {
     public interface Int_LifeSystem
     {
-        void TakingDamage(int damage);
-
-        IEnumerator GetKnockBack(float knockbackForce, Vector2 AttackPos, float StunDuration);
-
+        IEnumerator TakingDamage(int damage, Rigidbody2D body, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration);
     }
 }
