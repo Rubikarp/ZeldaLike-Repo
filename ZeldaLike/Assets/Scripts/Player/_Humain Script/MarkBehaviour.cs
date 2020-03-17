@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Management;
 
 public class MarkBehaviour : MonoBehaviour
@@ -26,6 +24,7 @@ public class MarkBehaviour : MonoBehaviour
         }
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Knife"))
@@ -35,4 +34,5 @@ public class MarkBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
 }

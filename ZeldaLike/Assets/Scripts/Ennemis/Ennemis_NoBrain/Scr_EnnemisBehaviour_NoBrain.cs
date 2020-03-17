@@ -28,6 +28,12 @@ namespace Ennemis
 
         [Header("Target")]
         [SerializeField] private Transform _target = null;
+        public Transform _position
+        {
+            get { return _mySelf; }
+            set { _mySelf = value; }
+        }
+
 
         private Vector2 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
