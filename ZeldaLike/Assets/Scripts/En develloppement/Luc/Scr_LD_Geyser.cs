@@ -6,7 +6,9 @@ public class Scr_LD_Geyser : MonoBehaviour
 {
     public float _repulseDelay;
     public float _repulseSpeed;
-    public float _repulseTime;
+    public float _repulseDuration;
+    public float _repulseRange;
+    public LayerMask _whatIsPlayer;
     private bool _startRepulse;
 
     private List<Transform> _enterGuys = new List<Transform>();
@@ -26,22 +28,14 @@ public class Scr_LD_Geyser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ennemis"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            _enterGuys.Add(collision.gameObject.transform.parent.parent);
-            _enterPositions.Add(collision.gameObject.transform.parent.parent.position);
-            Debug.Log(_enterGuys);
-            Debug.Log(_enterPositions[0]);
-
-            if (_startRepulse == false)
-            {
-                _startRepulse = true;
-                StartCoroutine(Boom());
-            }
+            StartCoroutine(Repulse(collision.gameObject.transform.parent.parent.position));
+            Debug.Log("Target");
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    /*void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ennemis"))
         {
@@ -55,9 +49,9 @@ public class Scr_LD_Geyser : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
-    IEnumerator Boom()
+    /*IEnumerator Boom()
     {
         yield return new WaitForSeconds(_repulseDelay);
         for (int i = 0; i < _enterGuys.Count; i++)
@@ -66,18 +60,30 @@ public class Scr_LD_Geyser : MonoBehaviour
         }
         Debug.Log("Repulse !" + _enterGuys[0]);
         _startRepulse = false;
+    }*/
+
+    IEnumerator Repulse (Vector2 position)
+    {
+        float duration = _repulseDuration;
+
+        Debug.Log("StartCoroutine");
+        yield return new WaitForSeconds(_repulseDelay);
+
+        Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange, _whatIsPlayer);
+        for (int i = 0; i < playerToRepulse.Length; i++)
+        {
+            while (duration > 0)
+            {
+                playerToRepulse[i].gameObject.transform.parent.parent.position = Vector2.MoveTowards(position, transform.position, _repulseSpeed);
+                duration -= Time.deltaTime;
+                Debug.Log("Repulse");
+            }
+        }
     }
 
-    IEnumerator Repulse (int i)
+    void OnDrawGizmosSelected()
     {
-        float duration = _repulseTime;
-
-        while (duration > 0)
-        {
-            _enterGuys[i].transform.position = Vector2.MoveTowards(_enterGuys[i].transform.position, _enterPositions[i], _repulseSpeed * Time.deltaTime);
-            duration -= Time.deltaTime;
-        }
-
-        yield return new WaitForSeconds(1);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _repulseRange);
     }
 }

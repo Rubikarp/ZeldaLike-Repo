@@ -146,6 +146,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2565960059354528542}
+  - component: {fileID: 6745890004991322561}
+  - component: {fileID: 3632383531980898128}
   m_Layer: 0
   m_Name: P_PortalPair
   m_TagString: Untagged
@@ -169,6 +171,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6745890004991322561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559082471105297509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3549e72510ce3ad4da7b0750cf7db0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActive: 0
+--- !u!114 &3632383531980898128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559082471105297509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2338f93ffee648b48adb47126d883ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _portal1: {fileID: 2054052858003425884}
+  _portal2: {fileID: 1343747552032835654}
 --- !u!1 &2054052858003425884
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,3 +335,19 @@ MonoBehaviour:
   Player: {fileID: 0}
   _canTP: 0
   _TPDelay: 5
+--- !u!58 &800529584600464683
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054052858003425884}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.000000230968}
+  serializedVersion: 2
+  m_Radius: 0.50000006
