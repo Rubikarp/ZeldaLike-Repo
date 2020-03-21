@@ -35,10 +35,4 @@ public class Actif_KnifeThrowing : MonoBehaviour
             }
         }
     }
-
-    IEnumerator ThrowDelay()
-    {
-        yield return new WaitForSeconds(_throwRecup);
-        _goodToShoot = true;
-    }
 }

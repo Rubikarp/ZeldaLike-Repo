@@ -5,9 +5,9 @@ namespace Game
     [RequireComponent(typeof(Collider2D))]
     public class Scr_Damage : MonoBehaviour, Int_Damage
     {
-        [SerializeField] private int _damage;
-        [SerializeField] private float _stunDuration;
-        [SerializeField] private float _knockbackPower;
+        [SerializeField] private int _damage = 1;
+        [SerializeField] private float _stunDuration = 0.25f;
+        [SerializeField] private float _knockbackPower = 10f;
 
         public int Damage
         {

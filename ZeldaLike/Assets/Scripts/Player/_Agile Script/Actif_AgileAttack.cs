@@ -8,24 +8,25 @@ namespace Game
 {
     public class Actif_AgileAttack : MonoBehaviour
     {
-        [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private InputManager _input = null;
         [SerializeField] private GameObject _Avatar = null;
+        [SerializeField] private GameObject _HurtBox = null;
+        private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
-        public float _jumpRange = 5f;
+        public float _jumpRange = 25f;
 
         [Header("Attaque data")]
+        public GameObject _attackObj;
         public Transform _attackContainer;
         public Transform _attackPos;
         [SerializeField] private bool _canAttack;
 
-        [Header("Attaque classique")]
-        public GameObject _attackObj;
-
         [Header("Bond")]
         public GameObject _bondObj;
         public GameObject _playerHurtbox;
-
+        public float _bondSpeed = 30;
+        public float _invulnerabiltyTimer = 1f;
+        public float _invulnerabiltyTime;
 
         public float _bondCooldown = 1;
         public float _attackCooldown = 1;
@@ -33,8 +34,8 @@ namespace Game
         void Start()
         {
             _canAttack = true;
-            _Avatar = this.gameObject;
-            _myTranfo = _Avatar.transform;
+            _myTranfo = this.transform;
+            _rgb = _Avatar.GetComponent<Rigidbody2D>();
         }
 
         void Update()
@@ -43,32 +44,35 @@ namespace Game
             {
                 _canAttack = false;
 
-                RaycastHit2D isBleedingEnnemis = Physics2D.Raycast(_myTranfo.position, _input._CharacterDirection, _jumpRange);
+                RaycastHit2D isBleedingEnnemis = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 3, _input._CharacterDirection, _jumpRange);
                 bool _isEnnemis = isBleedingEnnemis.collider.gameObject.CompareTag("Ennemis");
-                bool _isBleeding = false;
 
                 if (_isEnnemis)
                 {
+                    bool _isBleeding = false;
                     _isBleeding = isBleedingEnnemis.collider.gameObject.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
-                }
-                
-                
-                if (_isBleeding)
-                {
-                    //attaque classique
 
-                    Debug.Log("attaque bond");
-                    //Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
+                    if (_isBleeding)
+                    {
+                        StartCoroutine(Bond(_input._CharacterDirection, isBleedingEnnemis.collider.transform.position, _bondSpeed, 3));                     
 
-                    StartCoroutine(AttaqueDelay(_bondCooldown));
+                        StartCoroutine(AttaqueDelay(_bondCooldown));
+                    }
                 }
                 else
                 {
                     //attaque classique
-                    _PlMovement._canMove = false;
-                    _PlMovement.Immobilize();
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
                     StartCoroutine(AttaqueDelay(_attackCooldown));
+                }
+            }
+            else
+            {
+                //invulnerability timer
+                _invulnerabiltyTimer -= Time.deltaTime;
+                if (_invulnerabiltyTimer <= 0)
+                {
+                    _HurtBox.SetActive(true);
                 }
             }
         }
@@ -79,9 +83,53 @@ namespace Game
             _canAttack = true;
         }
 
+        IEnumerator Bond(Vector2 direction, Vector3 cible, float speed, float maxDuration)
+        {
+            float distance = Vector2.Distance(_rgb.position, cible);
+
+            GameObject bond = Instantiate(_bondObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+
+            _HurtBox.SetActive(false);
+            _invulnerabiltyTimer = _invulnerabiltyTime;
+
+            while ( 2 < distance) // boucle durant la durée du dash
+            {
+                _rgb.position += direction * speed * Time.deltaTime;
+
+                distance = Vector2.Distance(_rgb.position, cible);
+                maxDuration -= Time.deltaTime;
+                Debug.Log("distance = " + distance + "maxDuration = " + maxDuration);
+
+                if(0 > maxDuration)
+                {
+                    break;
+                }
+
+
+                // Retour à la prochaine frame
+                yield return new WaitForEndOfFrame();
+            }
+
+            yield return null;
+
+            Destroy(bond);
+            _canAttack = true;
+
+        }
+
         private void OnDrawGizmos()
         {
-            Debug.DrawRay(_myTranfo.position, _input._CharacterDirection.normalized * _jumpRange, Color.blue);
+            Debug.DrawRay(_myTranfo.position, _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
+        }
+
+        private void OnDisable()
+        {
+            _HurtBox.SetActive(true);
+        }
+
+        private void OnEnable()
+        {
+            _canAttack = true;
         }
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Game
 {
-    public class StunBehaviour : MonoBehaviour, Int_Damage
+    public class Scr_BondAttack_Behavior : MonoBehaviour, Int_Damage
     {
-        [SerializeField] private int _damage = 0;
-        [SerializeField] private float _stunDuration = 2f;
-        [SerializeField] private float _knockbackPower = 0.1f;
+        [SerializeField] private int _damage = 3;
+        [SerializeField] private float _stunDuration = 0.3f;
+        [SerializeField] private float _knockbackPower = 20f;
         public int Damage
         {
             get
@@ -39,21 +39,22 @@ namespace Game
             }
             set
             {
-                _stunDuration = value;
+                _knockbackPower = value;
             }
-
         }
 
-        [SerializeField] private float _LifeTime = 0.3f;
-        [SerializeField] private GameObject _Stun = null;
+        [SerializeField] private float _LifeTime = 4f;
+        [SerializeField] private GameObject _bondAttack = null;
+
 
         void Start()
         {
-            if(_Stun == null)
+            if (_bondAttack == null)
             {
                 Debug.Log(this.gameObject + "n'a pas été assigné en tant que stun");
             }
-            Destroy(_Stun, _LifeTime);
+
+            Destroy(_bondAttack, _LifeTime);
         }
     }
 }

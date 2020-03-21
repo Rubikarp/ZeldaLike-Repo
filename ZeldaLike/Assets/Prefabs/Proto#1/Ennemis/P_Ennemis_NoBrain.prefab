@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1603008124410424620}
   - component: {fileID: 1603008124410424621}
   - component: {fileID: 1603008124410424616}
+  - component: {fileID: 8014761792826214319}
   m_Layer: 0
   m_Name: P_Ennemis_NoBrain
   m_TagString: Ennemis
@@ -157,6 +158,21 @@ MonoBehaviour:
   _canDash: 1
   _isDashing: 1
   _target: {fileID: 0}
+--- !u!114 &8014761792826214319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603008124410424614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0746ae9c2eb929742ae96bb544d40bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
+  _stunDuration: 0.25
+  _knockbackPower: 10
 --- !u!1 &1603008124779557638
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _logoMarked: {fileID: 3722324166954444341}
   _isMarked: 0
-  _markedDuration: 2
+  _markedDuration: 20
   Ennemis: {fileID: 1603008124410424614}
   body: {fileID: 1603008124410424620}
   _life: 5
