@@ -4,79 +4,79 @@ using UnityEngine;
 
 public class Scr_LD_Geyser : MonoBehaviour
 {
-    public float _repulseDelay;
+    private float _repulseDelay;
+    public float _repulseDelayOrigin;
     public float _repulseSpeed;
     public float _repulseDuration;
     public float _repulseRange;
     public LayerMask _whatIsPlayer;
     private bool _startRepulse;
 
-    private List<Transform> _enterGuys = new List<Transform>();
-    private List<Vector3> _enterPositions = new List<Vector3>();
+    public Rigidbody2D _targetBody;
 
     // Start is called before the first frame update
     void Start()
     {
         _startRepulse = false;
+        _repulseDelay = _repulseDelayOrigin;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Sert de délai commun à l'explosion : lorsque le geyser est activé, son explosion affecte tous ceux qui sont dessus, même s'ils sont arrivés après l'activation.
+        if (_startRepulse == true)
+        {
+            if (_repulseDelay > 0)
+            {
+                _repulseDelay -= Time.deltaTime;
+            }
+            else if (_repulseDelay <= 0)
+            {
+                _startRepulse = false;
+                _repulseDelay = _repulseDelayOrigin;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Repulse(collision.gameObject.transform.parent.parent.position));
+            _targetBody = collision.gameObject.transform.parent.parent.GetComponent<Rigidbody2D>();
+
+            StartCoroutine(Repulse(collision.gameObject.transform.parent.parent.position, _targetBody, _repulseDelay, _repulseDuration));
+
+            //On lance le délai si celui-ci n'est pas déjà lancé;
+            if (_startRepulse == false)
+            {
+                _startRepulse = true;
+            }
+
             Debug.Log("Target");
         }
     }
 
-    /*void OnTriggerExit2D(Collider2D collision)
+    IEnumerator Repulse (Vector3 position, Rigidbody2D body, float delay, float duration)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ennemis"))
-        {
-            for (int j = 0; j < _enterGuys.Count; j++)
-            {
-                if (collision.gameObject == _enterGuys[j])
-                {
-                    _enterGuys.RemoveAt(j);
-                    _enterPositions.RemoveAt(j);
-                    Debug.Log(_enterGuys);
-                }
-            }
-        }
-    }*/
+        yield return new WaitForSeconds(delay);
 
-    /*IEnumerator Boom()
-    {
-        yield return new WaitForSeconds(_repulseDelay);
-        for (int i = 0; i < _enterGuys.Count; i++)
-        {
-            StartCoroutine(Repulse(i));
-        }
-        Debug.Log("Repulse !" + _enterGuys[0]);
-        _startRepulse = false;
-    }*/
+        Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
 
-    IEnumerator Repulse (Vector2 position)
-    {
-        float duration = _repulseDuration;
-
-        Debug.Log("StartCoroutine");
-        yield return new WaitForSeconds(_repulseDelay);
-
-        Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange, _whatIsPlayer);
         for (int i = 0; i < playerToRepulse.Length; i++)
         {
-            while (duration > 0)
+            if (playerToRepulse[i].gameObject.transform.parent.parent.CompareTag("Player"))
             {
-                playerToRepulse[i].gameObject.transform.parent.parent.position = Vector2.MoveTowards(position, transform.position, _repulseSpeed);
-                duration -= Time.deltaTime;
-                Debug.Log("Repulse");
+                Vector3 repulseDirection = position - playerToRepulse[i].gameObject.transform.parent.parent.position;
+
+                while (duration > 0)
+                {
+                    body.velocity = repulseDirection * _repulseSpeed;
+                    duration -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+
+                body.velocity = Vector2.zero;
             }
         }
     }
