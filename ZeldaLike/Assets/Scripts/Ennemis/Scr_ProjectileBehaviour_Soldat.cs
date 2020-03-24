@@ -8,7 +8,7 @@ namespace Ennemis
     {
         [Header("Data")]
         public Transform _projectile = null;
-        public Scr_EnnemisBehaviour_Soldat _behavSoldat = null;
+        [HideInInspector]public Scr_EnnemisBehaviour_Soldat _behavSoldat = null;
         public Rigidbody2D _rb2d = null;
 
         [Header("Statistiques")]
@@ -23,10 +23,12 @@ namespace Ennemis
 
         private void Update()
         {
-            /*if (_behavSoldat._isShooting)
+            while (0 < _timer)
             {
-                transform.position = 
-            }*/
+                _timer -= Time.deltaTime;
+
+                _projectile.position = _behavSoldat._targetDirection.normalized * _mySpeed;
+            }
         }
     }
 }
