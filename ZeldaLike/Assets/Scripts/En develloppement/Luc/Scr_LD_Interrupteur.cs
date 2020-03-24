@@ -29,15 +29,23 @@ public class Scr_LD_Interrupteur : MonoBehaviour
 
     void OnTriggerStay2D (Collider2D collision)
     {
-        if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Environment"))
         {
-            _isActive = true; 
+            _isActive = true;
+        }
+        else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+        {
+            _isActive = true;
         }
     }
 
     void OnTriggerExit2D (Collider2D collision)
     {
-        if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Environment"))
+        {
+            _isActive = false;
+        }
+        else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
         {
             _isActive = false;
         }
