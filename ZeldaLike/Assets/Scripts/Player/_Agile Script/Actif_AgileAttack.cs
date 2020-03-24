@@ -19,11 +19,18 @@ namespace Game
         public GameObject _attackObj;
         public Transform _attackContainer;
         public Transform _attackPos;
-        [SerializeField] private bool _canAttack;
+        [SerializeField] private bool _canAttack = true;
 
         [Header("Bond")]
         public GameObject _bondObj;
         public GameObject _playerHurtbox;
+        public GameObject lastTarget;
+        [SerializeField] RaycastHit2D isBleedingEnnemis;
+
+        [Space(10)]
+        [SerializeField] bool _isEnnemis = false;
+        [Space(10)]
+
         public float _bondSpeed = 30;
         public float _invulnerabiltyTimer = 1f;
         public float _invulnerabiltyTime;
@@ -33,22 +40,25 @@ namespace Game
 
         void Start()
         {
-            _canAttack = true;
             _myTranfo = this.transform;
             _rgb = _Avatar.GetComponent<Rigidbody2D>();
         }
 
         void Update()
         {
-            if (Input.GetButtonDown("Attack") && _canAttack == true)
+            isBleedingEnnemis = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange);
+
+            //Debug.Log(isBleedingEnnemis.transform.gameObject.name);
+
+            if (Input.GetButtonDown("Attack"))
             {
-                _canAttack = false;
+                lastTarget = isBleedingEnnemis.transform.gameObject;
+                _isEnnemis = lastTarget.CompareTag("Ennemis");
 
-                RaycastHit2D isBleedingEnnemis = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 3, _input._CharacterDirection, _jumpRange);
-                bool _isEnnemis = isBleedingEnnemis.collider.gameObject.CompareTag("Ennemis");
-
-                if (_isEnnemis)
+                if (_isEnnemis && _canAttack)
                 {
+                    _canAttack = false;
+
                     bool _isBleeding = false;
                     _isBleeding = isBleedingEnnemis.collider.gameObject.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
 
@@ -59,8 +69,10 @@ namespace Game
                         StartCoroutine(AttaqueDelay(_bondCooldown));
                     }
                 }
-                else
+                else if(_canAttack)
                 {
+                    _canAttack = false;
+
                     //attaque classique
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
                     StartCoroutine(AttaqueDelay(_attackCooldown));
@@ -98,7 +110,7 @@ namespace Game
 
                 distance = Vector2.Distance(_rgb.position, cible);
                 maxDuration -= Time.deltaTime;
-                Debug.Log("distance = " + distance + "maxDuration = " + maxDuration);
+                //Debug.Log("distance = " + distance + "maxDuration = " + maxDuration);
 
                 if(0 > maxDuration)
                 {
