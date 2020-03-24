@@ -11,30 +11,35 @@ namespace Ennemis
         public Scr_EnnemisLifeSystem _lifeSyst = null;
         public Rigidbody2D _myBody = null;
 
-        [Header("Statistique")]
-        public float _detectionShootingRange = 15f;
-        public float _detectionChargingRange = 6f;
-        public float _shootingRepos = 1f;
-        public float _shootingCooldown = 0.7f;
-        public float _chargeSpeed = 5f;
-        public float _chargeDuration = 2f;
-        public float _chargeRepos = 2f;
-        public float _chargeCooldown = 2f;
+        [Header("Shoot")]
+        public float _detectionShootingRange = 18f;
+        public float _shootingAllonge = 2f;
+        public float _shootingRepos = 0.3f;
+        public float _shootingCooldown = 0.9f;
 
-        [Header("Parameter")]
+        [Header("Charge")]
+        public float _detectionChargingRange = 8f;
+        public float _chargeSpeed = 35f;
+        public float _chargeDuration = 2f;
+        public float _chargeRepos = 0.3f;
+        public float _chargeCooldown = 1.9f;
+
+        [Header("Parameter detecting")]
         public bool _haveDetected = false;
         public bool _inDanger = false;
 
+        [Header("Parameter shooting")]
         public bool _canShoot = true;
         public bool _isShooting = false;
 
-        public bool _canCharge = false;
+        [Header("Parameter charging")]
+        public bool _canCharge = true;
         public bool _isCharging = false;
 
         [Header("Target")]
         [SerializeField] private Transform _target = null;
 
-        [HideInInspector] public Vector2 _targetDirection = Vector2.zero;
+        [HideInInspector] public Vector3 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
         private void Start()
@@ -54,44 +59,25 @@ namespace Ennemis
 
         private void FixedUpdate()
         {
-            if(_haveDetected /*&& !_lifeSyst._isTakingDamage*/)
+            if(_haveDetected && !_lifeSyst._isTakingDamage)
             {
-                if (_canShoot)
+                if (_canShoot && !_isCharging)
                 {
                     StartCoroutine(Shoot(_targetDirection, _shootingRepos, _shootingCooldown));
                 }
             }
 
-            if(_inDanger /*&& !_lifeSyst._isTakingDamage*/)
+            if(_inDanger && !_lifeSyst._isTakingDamage)
             {
                 if (_canCharge)
                 {
                     StartCoroutine(Charge(_targetDirection, _chargeSpeed, _chargeDuration, _chargeRepos, _chargeCooldown));
                 }
             }
-        }
 
-        protected bool PlayerInShootingRange(float playerDistance, float testedShootingRange, float testedChargingRange)
-        {
-            if(playerDistance <= testedShootingRange && playerDistance >= testedChargingRange)
+            if (!_isCharging)
             {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        protected bool PlayerInChargingRange(float playerDistance, float testedRealChargingRange)
-        {
-            if(playerDistance <= testedRealChargingRange)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                _myBody.velocity = Vector2.zero;
             }
         }
 
@@ -99,7 +85,7 @@ namespace Ennemis
         {
             _canShoot = false;
             _isShooting = true;
-            Instantiate(_projectile);
+            Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
 
             yield return new WaitForSeconds(_shootingRepos);
 
@@ -134,5 +120,32 @@ namespace Ennemis
 
             _canCharge = true;
         }
+
+        #region Tools
+
+        protected bool PlayerInShootingRange(float playerDistance, float testedShootingRange, float testedChargingRange)
+        {
+            if(playerDistance <= testedShootingRange && playerDistance >= testedChargingRange)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        protected bool PlayerInChargingRange(float playerDistance, float testedRealChargingRange)
+        {
+            if(playerDistance <= testedRealChargingRange)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
