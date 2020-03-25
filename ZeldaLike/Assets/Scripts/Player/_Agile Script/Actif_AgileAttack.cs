@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Management;
+using System.Collections;
 using UnityEngine;
-using Management;
-using Ennemis;
 
 namespace Game
 {
@@ -17,19 +15,16 @@ namespace Game
 
         [Header("Attaque data")]
         public GameObject _attackObj;
+
         public Transform _attackContainer;
         public Transform _attackPos;
         [SerializeField] private bool _canAttack = true;
 
         [Header("Bond")]
         public GameObject _bondObj;
-        public GameObject _playerHurtbox;
-        public GameObject lastTarget;
-        [SerializeField] RaycastHit2D isBleedingEnnemis;
 
-        [Space(10)]
-        [SerializeField] bool _isEnnemis = false;
-        [Space(10)]
+        public LayerMask _ennemiLayer;
+        private bool _isBleeding = false;
 
         public float _bondSpeed = 30;
         public float _invulnerabiltyTimer = 1f;
@@ -38,43 +33,50 @@ namespace Game
         public float _bondCooldown = 1;
         public float _attackCooldown = 1;
 
-        void Start()
+        private void Start()
         {
             _myTranfo = this.transform;
             _rgb = _Avatar.GetComponent<Rigidbody2D>();
         }
 
-        void Update()
+        private void Update()
         {
-            isBleedingEnnemis = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange);
-
-            //Debug.Log(isBleedingEnnemis.transform.gameObject.name);
-
-            if (Input.GetButtonDown("Attack"))
+            if (Input.GetButtonDown("Attack") && _canAttack)
             {
-                lastTarget = isBleedingEnnemis.transform.gameObject;
-                _isEnnemis = lastTarget.CompareTag("Ennemis");
-
-                if (_isEnnemis && _canAttack)
+                RaycastHit2D hit = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange, _ennemiLayer);
+                if (hit.collider != null)
                 {
-                    _canAttack = false;
-
-                    bool _isBleeding = false;
-                    _isBleeding = isBleedingEnnemis.collider.gameObject.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
-
-                    if (_isBleeding)
+                    //Est ce que je touche un ennemi ?
+                    if (hit.transform.CompareTag("Ennemis"))
                     {
-                        StartCoroutine(Bond(_input._CharacterDirection, isBleedingEnnemis.collider.transform.position, _bondSpeed, 3));                     
+                        _canAttack = false;
+                        _isBleeding = false;
 
-                        StartCoroutine(AttaqueDelay(_bondCooldown));
+                        GameObject _actualTarget = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange, _ennemiLayer).transform.gameObject;
+                        _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
+
+                        //saigne t'il?
+                        if (_isBleeding)
+                        {
+                            StartCoroutine(Bond(_input._CharacterDirection, _actualTarget.transform.position, _bondSpeed, 3));
+
+                            StartCoroutine(AttaqueDelay(_bondCooldown));
+                        }
+                        //attaque classique
+                        else
+                        {
+                            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+                            StartCoroutine(AttaqueDelay(_attackCooldown));
+                        }
                     }
                 }
-                else if(_canAttack)
+                //attaque classique dans le vide
+                else
                 {
                     _canAttack = false;
 
                     //attaque classique
-                    Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
+                    Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
                     StartCoroutine(AttaqueDelay(_attackCooldown));
                 }
             }
@@ -89,13 +91,13 @@ namespace Game
             }
         }
 
-        IEnumerator AttaqueDelay(float Cooldown)
+        private IEnumerator AttaqueDelay(float Cooldown)
         {
             yield return new WaitForSeconds(Cooldown);
             _canAttack = true;
         }
 
-        IEnumerator Bond(Vector2 direction, Vector3 cible, float speed, float maxDuration)
+        private IEnumerator Bond(Vector2 direction, Vector3 cible, float speed, float maxDuration)
         {
             float distance = Vector2.Distance(_rgb.position, cible);
 
@@ -104,7 +106,7 @@ namespace Game
             _HurtBox.SetActive(false);
             _invulnerabiltyTimer = _invulnerabiltyTime;
 
-            while ( 2 < distance) // boucle durant la durée du dash
+            while (2 < distance) // boucle durant la durée du dash
             {
                 _rgb.position += direction * speed * Time.deltaTime;
 
@@ -112,11 +114,10 @@ namespace Game
                 maxDuration -= Time.deltaTime;
                 //Debug.Log("distance = " + distance + "maxDuration = " + maxDuration);
 
-                if(0 > maxDuration)
+                if (0 > maxDuration)
                 {
                     break;
                 }
-
 
                 // Retour à la prochaine frame
                 yield return new WaitForEndOfFrame();
@@ -126,7 +127,6 @@ namespace Game
 
             Destroy(bond);
             _canAttack = true;
-
         }
 
         private void OnDrawGizmos()
