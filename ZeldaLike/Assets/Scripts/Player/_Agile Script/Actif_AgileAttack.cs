@@ -11,7 +11,6 @@ namespace Game
         [SerializeField] private GameObject _HurtBox = null;
         private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
-        public float _jumpRange = 25f;
 
         [Header("Attaque data")]
         public GameObject _attackObj;
@@ -22,8 +21,8 @@ namespace Game
 
         [Header("Bond")]
         public GameObject _bondObj;
-
-        public LayerMask _ennemiLayer;
+        public float _jumpRange = 25f;
+        public float _jumpLargeur = 5f;
         private bool _isBleeding = false;
 
         public float _bondSpeed = 30;
@@ -44,7 +43,10 @@ namespace Game
         {
             if (_input._attack && _canAttack)
             {
-                RaycastHit2D hit = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange, _ennemiLayer);
+                //calcul angle
+                float rotZ = Mathf.Atan2(_input._CharacterDirection.y, _input._CharacterDirection.x) * Mathf.Rad2Deg;
+                RaycastHit2D hit = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5,new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position);
+
                 if (hit.collider != null)
                 {
                     //Est ce que je touche un ennemi ?
@@ -53,7 +55,7 @@ namespace Game
                         _canAttack = false;
                         _isBleeding = false;
 
-                        GameObject _actualTarget = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange, _ennemiLayer).transform.gameObject;
+                        GameObject _actualTarget = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5, new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position).transform.gameObject;
                         _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
 
                         //saigne t'il?
