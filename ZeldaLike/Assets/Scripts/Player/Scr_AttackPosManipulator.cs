@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Management;
 
 namespace Game
@@ -20,17 +18,12 @@ namespace Game
         void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-            
         }
         
         void Update()
         {
             Vector3 _decalage = new Vector3(_input._CharacterDirection.x, _input._CharacterDirection.y, 0).normalized * _allonge;
             _attackPos.position = _avatar.transform.position + _correctionPos + _decalage;
-
         }
-        
-        
-        
     }
 }

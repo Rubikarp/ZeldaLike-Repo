@@ -1,12 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Management;
 
 namespace Game
 {
     public class Actif_HeavyAttack : MonoBehaviour
     {
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
+        [SerializeField] private InputManager _input = null;
 
         public GameObject _attackObj;
         public Transform _attackContainer;
@@ -19,11 +20,13 @@ namespace Game
         void Start()
         {
             _canAttack = true;
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+
         }
 
         void Update()
         {
-            if (Input.GetButtonDown("Attack") && _canAttack == true)
+            if (_input._attack && _canAttack == true)
             {
                 _canAttack = false;
                 _PlMovement._canMove = false;

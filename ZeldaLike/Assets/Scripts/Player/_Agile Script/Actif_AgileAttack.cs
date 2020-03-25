@@ -1,6 +1,6 @@
-﻿using Management;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Management;
 
 namespace Game
 {
@@ -37,11 +37,12 @@ namespace Game
         {
             _myTranfo = this.transform;
             _rgb = _Avatar.GetComponent<Rigidbody2D>();
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
         }
 
         private void Update()
         {
-            if (Input.GetButtonDown("Attack") && _canAttack)
+            if (_input._attack && _canAttack)
             {
                 RaycastHit2D hit = Physics2D.Raycast(_rgb.position + _input._CharacterDirection * 5, _input._CharacterDirection, _jumpRange, _ennemiLayer);
                 if (hit.collider != null)

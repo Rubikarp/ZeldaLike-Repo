@@ -16,6 +16,8 @@ namespace Game
         
         [Header("Variable")]
         public bool _canSwitch = true;
+        public float _switchTimer = 0f;
+
 
         [Header("Variable à Tweek")]
         public float _switchCooldown = 0.3f;
@@ -53,9 +55,10 @@ namespace Game
                     RefreshActual();
 
                     _canSwitch = false;
+                    _switchTimer = _switchCooldown;
 
-        //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
-    }
+                    //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+                }
                 else
                 if (_input._rightSwitch)
                 {
@@ -64,8 +67,20 @@ namespace Game
                     RefreshActual();
 
                     _canSwitch = false;
+                    _switchTimer = _switchCooldown;
 
                     //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+                }
+            }
+            else
+            {
+                if(_switchTimer <= 0)
+                {
+                    _canSwitch = true;
+                }
+                else
+                {
+                    _switchTimer -= Time.deltaTime;
                 }
             }
         }

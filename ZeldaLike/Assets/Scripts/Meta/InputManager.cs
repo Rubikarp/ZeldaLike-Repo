@@ -37,15 +37,23 @@ namespace Management
 
         private void Update()
         {
+            //changement de controller
+            if (Input.GetButtonDown("SwitchController"))
+            {
+                _360Controller = !_360Controller;
+            }
+
             if (_360Controller)
             {
                 //Je prends les valeurs du stick
-                _stickDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                _stickDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY"));
                 _stickMagnitude = _stickDirection.magnitude;
 
                 //Je prends les buttons
-                _interaction = Input.GetButton("Interaction");
-                _attack = Input.GetButton("Attack");
+                _interaction = Input.GetButton("A/Cross");
+                _attack = Input.GetButton("B/Circle");
+                _leftSwitch = Input.GetButton("LB/L1");
+                _rightSwitch = Input.GetButton("RB/R1");
 
                 //update de la direction du joueur
                 _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
@@ -53,12 +61,14 @@ namespace Management
             else
             {
                 //Je prends les valeurs du stick
-                _stickDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                _stickDirection = new Vector2(Input.GetAxis("Keyboard-AxisX"), Input.GetAxis("Keyboard-AxisY"));
                 _stickMagnitude = _stickDirection.magnitude;
 
                 //Je prends les buttons
-                _interaction = Input.GetButton("Interaction");
-                _attack = Input.GetButton("Attack");
+                _interaction = Input.GetButton("Keyboard-InteractionButton");
+                _attack = Input.GetButton("Keyboard-AttackButton");
+                _leftSwitch = Input.GetButton("Keyboard-LeftSwitch");
+                _rightSwitch = Input.GetButton("Keyboard-RightSwitch");
 
                 //update de la direction du joueur
                 _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
@@ -68,7 +78,7 @@ namespace Management
 
         Vector2 characterDirection(Vector2 directionBrut, Vector2 _CharacterDirection)
         {
-            if (directionBrut == Vector2.zero)
+            if (directionBrut != Vector2.zero)
             {
                 return directionBrut.normalized;
             }
