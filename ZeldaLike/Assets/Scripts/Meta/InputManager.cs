@@ -11,66 +11,72 @@ namespace Management
     /// </summary>
     public class InputManager : Singleton<InputManager>
     {
-        private bool _canInput;
-        #region Input
+        [Space(10)]
+        public bool _360Controller = true;
 
-        [Header("Inputs")]
-
-        #region LeftStick
-
-        [HeaderAttribute("Stick")]
-
+        [Header("Stick")]
         //Direction du stick
         public Vector2 _stickDirection;
-        public Vector2 _stickDirectionNorm;
         public float _stickMagnitude;
 
+        [Header("Interaction Button")]
+        public bool _interaction;
+
+        [Header("Attack Button")]
+        public bool _attack;
+
+        [Header("Left Switch Button")]
+        public bool _leftSwitch;
+
+        [Header("Right Switch Button")]
+        public bool _rightSwitch;
+
+        [Header("Avatar facing direction")]
         //Dernière direction
         public Vector2 _CharacterDirection = Vector2.zero;
 
-        #endregion LeftStick
-
-        #region Buttons
-
-        [HeaderAttribute("Interaction")]
-        public bool _interactionEnter;
-        public bool _interaction;
-        public bool _interactionExit;
-
-        [HeaderAttribute("Attack")]
-        public bool _attackEnter;
-        public bool _attack;
-        public bool _attackExit;
-
-        #endregion Buttons
-
-        #endregion Input
-
         private void Update()
         {
-            #region PrendsLesInputs
-
-            //Je prends les valeurs du stick
-            _stickDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            _stickDirectionNorm = _stickDirection.normalized;
-            _stickMagnitude = _stickDirection.magnitude;
-
-            //Je prends les buttons
-            _interaction = Input.GetButton("Interaction");
-            _interactionEnter = Input.GetButtonDown("Interaction");
-            _interactionExit = Input.GetButtonUp("Interaction");
-
-            _attack = Input.GetButton("Attack");
-            _attackEnter = Input.GetButtonDown("Attack");
-            _attackExit = Input.GetButtonUp("Attack");
-
-            #endregion PrendsLesInputs
-
-            //Remain last character direction
-            if (_stickDirectionNorm != Vector2.zero)
+            if (_360Controller)
             {
-                _CharacterDirection = _stickDirectionNorm;
+                //Je prends les valeurs du stick
+                _stickDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                _stickMagnitude = _stickDirection.magnitude;
+
+                //Je prends les buttons
+                _interaction = Input.GetButton("Interaction");
+                _attack = Input.GetButton("Attack");
+
+                //update de la direction du joueur
+                _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
+            }
+            else
+            {
+                //Je prends les valeurs du stick
+                _stickDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                _stickMagnitude = _stickDirection.magnitude;
+
+                //Je prends les buttons
+                _interaction = Input.GetButton("Interaction");
+                _attack = Input.GetButton("Attack");
+
+                //update de la direction du joueur
+                _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
+
             }
         }
+
+        Vector2 characterDirection(Vector2 directionBrut, Vector2 _CharacterDirection)
+        {
+            if (directionBrut == Vector2.zero)
+            {
+                return directionBrut.normalized;
+            }
+            else //Remain last character direction
+            {
+                return _CharacterDirection;
+            }
+        }
+    
     }
 }

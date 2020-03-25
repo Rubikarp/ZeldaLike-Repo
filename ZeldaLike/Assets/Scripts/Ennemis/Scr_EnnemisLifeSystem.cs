@@ -1,6 +1,6 @@
-﻿using Game;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Game;
 
 namespace Ennemis
 {

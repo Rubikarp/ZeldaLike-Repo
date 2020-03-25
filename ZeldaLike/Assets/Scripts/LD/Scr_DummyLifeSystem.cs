@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using Game;
 
 namespace Ennemis
 {
-    public class Scr_DummyLifeSystem : MonoBehaviour
+    public class Scr_DummyLifeSystem : MonoBehaviour, Int_EnnemisLifeSystem
     {
         [Header("Marked")]
         public GameObject _logoMarked = null;
@@ -31,5 +33,11 @@ namespace Ennemis
             _isMarked = true;
             _logoMarked.SetActive(true);
         }
+
+        public IEnumerator TakingDamage(int damage, Rigidbody2D body, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
+        {
+            return null;
+        }
+
     }
 }

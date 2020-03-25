@@ -1,18 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Management;
 
 namespace Game
 {
     public class Scr_AttributionTouches_Transfo : MonoBehaviour
     {
-        enum Forme { Humain, Agile, Lourd}
+        enum Forme { Humain, Agile, Lourd }
         Forme actualForm;
+
+        [Header("Components")]
+        public Movement_2D_TopDown PlayerMove;
+        private InputManager _input;
+
+        [Space(10f)]
+        
+        [Header("Variable")]
+        public bool _canSwitch = true;
+
+        [Header("Variable à Tweek")]
+        public float _switchCooldown = 0.3f;
 
         [Header("Formes Stockés")]
         public Data_PlayerForme _human = null;
         public Data_PlayerForme _agile = null;
         public Data_PlayerForme _heavy = null;
+
+        private Data_PlayerForme _leftForm = null;
+        private Data_PlayerForme _actualForm = null;
+        private Data_PlayerForme _rightForm = null;
 
         [Space(10)]
 
@@ -21,40 +36,37 @@ namespace Game
         public GameObject _agileSprite = null;
         public GameObject _heavySprite = null;
 
-        [Space(10)]
-
-        [Header("Switch")]
-        public Data_PlayerForme _leftForm;
-        public Data_PlayerForme _actualForm;
-        public Data_PlayerForme _rightForm;
-
-        [Space(10)]
-
-        public Movement_2D_TopDown PlayerMove;
-
         void Start()
         {
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             InitialisationHumanForm();
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (Input.GetButtonDown("LeftTransform"))
+            if (_canSwitch)
             {
-                _actualForm = _leftForm;
-                TransformCommandSwitch();
-                RefreshActual();
+                if (_input._leftSwitch)
+                {
+                    _actualForm = _leftForm;
+                    TransformCommandSwitch();
+                    RefreshActual();
 
-                //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
-            }
-            else if (Input.GetButtonDown("RightTransform"))
-            {
-                _actualForm = _rightForm;
-                TransformCommandSwitch();
-                RefreshActual();
+                    _canSwitch = false;
 
-                //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+        //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+    }
+                else
+                if (_input._rightSwitch)
+                {
+                    _actualForm = _rightForm;
+                    TransformCommandSwitch();
+                    RefreshActual();
+
+                    _canSwitch = false;
+
+                    //Debug.Log("Forme de gauche : " + _leftForm + "   Forme activée : " + _actualForm + "   Forme de droite : " + _rightForm);
+                }
             }
         }
 
@@ -120,9 +132,13 @@ namespace Game
         void InitialisationHumanForm()
         {
             _actualForm = _human;
+            _leftForm = _heavy;
+            _rightForm = _agile;
+
             _humanSprite.SetActive(true);
             _agileSprite.SetActive(false);
             _heavySprite.SetActive(false);
+
             TransformCommandSwitch();
         }
     }
