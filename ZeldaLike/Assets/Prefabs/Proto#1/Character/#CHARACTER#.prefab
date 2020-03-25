@@ -68,16 +68,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be05bcbc19a2a4a4cb5fe2f839c44778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerMove: {fileID: 6783160624789271403}
+  _canSwitch: 1
+  _switchTimer: 0
+  _switchCooldown: 0.3
   _human: {fileID: 11400000, guid: 0b70c8edc9b22af43855be93d16a58dd, type: 2}
   _agile: {fileID: 11400000, guid: b995c64f7de9a624e91900999869b3ef, type: 2}
   _heavy: {fileID: 11400000, guid: 1bcd263b63ecb3645a3ddc305b517b74, type: 2}
   _humanSprite: {fileID: 6783160624990897160}
   _agileSprite: {fileID: 6783160623866592712}
   _heavySprite: {fileID: 6783160625199375998}
-  _leftForm: {fileID: 11400000, guid: b995c64f7de9a624e91900999869b3ef, type: 2}
-  _actualForm: {fileID: 11400000, guid: 0b70c8edc9b22af43855be93d16a58dd, type: 2}
-  _rightForm: {fileID: 11400000, guid: 1bcd263b63ecb3645a3ddc305b517b74, type: 2}
-  PlayerMove: {fileID: 6783160624789271403}
 --- !u!114 &6783160623602813874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,9 +321,9 @@ MonoBehaviour:
   _canAttack: 1
   _bondObj: {fileID: 1395617834719462232, guid: d777e87337b41854499daa5c3c497386,
     type: 3}
-  _playerHurtbox: {fileID: 6783160623715740309}
-  lastTarget: {fileID: 0}
-  _isEnnemis: 0
+  _ennemiLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _bondSpeed: 30
   _invulnerabiltyTimer: 0
   _invulnerabiltyTime: 1
@@ -372,16 +372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428129640dd6a4a43b4c568ab094c4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _360Controller: 1
   _stickDirection: {x: 0, y: 0}
-  _stickDirectionNorm: {x: 0, y: 0}
   _stickMagnitude: 0
-  _CharacterDirection: {x: 0, y: 0}
-  _interactionEnter: 0
   _interaction: 0
-  _interactionExit: 0
-  _attackEnter: 0
   _attack: 0
-  _attackExit: 0
+  _leftSwitch: 0
+  _rightSwitch: 0
+  _CharacterDirection: {x: 0, y: 0}
 --- !u!1 &6783160624666449067
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17caea79a59aae44eb963878a486dc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 6783160623888833418}
   _knife: {fileID: 6980779766148977113, guid: c1ef55d1029078643a39055034a4ffd5, type: 3}
   _Container: {fileID: 6783160624666449066}
   _attackPos: {fileID: 6783160625281573683}
@@ -792,6 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PlMovement: {fileID: 6783160624789271403}
+  _input: {fileID: 6783160623888833418}
   _attackObj: {fileID: 8535114425437957988, guid: d2f78ac06e8b8654d8a2ec72164f1d65,
     type: 3}
   _attackContainer: {fileID: 6783160624994555169}
@@ -1067,4 +1067,4 @@ MonoBehaviour:
   - {x: -0.55, y: 0.2, z: 0}
   m_ShapePathHash: 1806942301
   m_Mesh: {fileID: 0}
-  m_InstanceId: 26830
+  m_InstanceId: 27006
