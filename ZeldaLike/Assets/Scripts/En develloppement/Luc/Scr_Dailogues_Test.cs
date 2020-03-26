@@ -1,49 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Management;
 
-public class Scr_Dailogues_Test : MonoBehaviour
+namespace Game
 {
-    public Dialog _dialogue;
-    private bool _isTalking;
-    private int _talkCount;
 
-    // Start is called before the first frame update
-    void Start()
+    public class Scr_Dailogues_Test : MonoBehaviour
     {
-        _isTalking = false;
-        _talkCount = 0;
-    }
+        private InputManager _input;
+        public Dialog _dialogue;
+        private bool _isTalking;
+        private int _talkCount;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Attack") && _isTalking == false)
+        void Start()
         {
-            TriggerDialogue();
-            _talkCount += 1;
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+            _isTalking = false;
+            _talkCount = 0;
         }
-        else if (Input.GetButtonDown("Attack") && _isTalking == true)
-        {
-            ContinueDialogue();
-            _talkCount += 1; 
 
-            if(_talkCount == _dialogue.sentences.Length)
+        void Update()
+        {
+            if (_input._attack && _isTalking == false)
             {
-                _isTalking = false;
-                _talkCount = 0;
+                TriggerDialogue();
+                _talkCount += 1;
+            }
+            else if (_input._attack && _isTalking == true)
+            {
+                ContinueDialogue();
+                _talkCount += 1;
+
+                if (_talkCount == _dialogue.sentences.Length)
+                {
+                    _isTalking = false;
+                    _talkCount = 0;
+                }
             }
         }
-    }
 
-    public void TriggerDialogue()
-    {
-        FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialogue);
-        _isTalking = true;
-    }
+        public void TriggerDialogue()
+        {
+            FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialogue);
+            _isTalking = true;
+        }
 
-    public void ContinueDialogue()
-    {
-        FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+        public void ContinueDialogue()
+        {
+            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+        }
     }
 }
