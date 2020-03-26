@@ -2,75 +2,80 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Management;
 
-public class Scr_DialogTrigger : MonoBehaviour
+namespace Game
 {
-    public Dialog dialogue;
-
-    public Transform talkPos;
-    public float talkRange;
-    public LayerMask whatIsThePlayer;
-
-    private bool isTalking;
-
-    Animator textBox;
-
-    public GameObject toucheA;
-
-    void Start()
+    public class Scr_DialogTrigger : MonoBehaviour
     {
-        isTalking = false;
-        toucheA.SetActive(false);
-        textBox = GameObject.Find("Boîte_de_Dialogues").GetComponent<Animator>();
-    }
+        public Dialog dialogue;
 
-    void Update()
-    {
-        if (isTalking == false)
-        {
-            Collider2D[] playerToTalk = Physics2D.OverlapCircleAll(talkPos.position, talkRange, whatIsThePlayer);
+        public Transform talkPos;
+        public float talkRange;
+        public LayerMask whatIsThePlayer;
 
-            if (playerToTalk.Length > 0)
-            {
-                toucheA.SetActive(true);
-            }
-            else
-            {
-                toucheA.SetActive(false);
-            }
+        private bool isTalking;
 
-            if (playerToTalk.Length > 0 && Input.GetButtonDown("Interract"))
-            {
-                TriggerDialogue();
-                isTalking = true;
-                toucheA.SetActive(false);
-            }
-        }
-        else if (isTalking == true && Input.GetButtonDown("Interract"))
-        {
-            ContinueDialogue();
-        }
+        Animator textBox;
 
-        if (!textBox.GetBool("IsOpen"))
+        public GameObject toucheA;
+
+        void Start()
         {
             isTalking = false;
+            toucheA.SetActive(false);
+            textBox = GameObject.Find("Boîte_de_Dialogues").GetComponent<Animator>();
         }
 
-    }
+        void Update()
+        {
+            if (isTalking == false)
+            {
+                Collider2D[] playerToTalk = Physics2D.OverlapCircleAll(talkPos.position, talkRange, whatIsThePlayer);
 
-    public void TriggerDialogue()
-    {
-        FindObjectOfType<Scr_DialogManager>().StartDialogue(dialogue);
-    }
+                if (playerToTalk.Length > 0)
+                {
+                    toucheA.SetActive(true);
+                }
+                else
+                {
+                    toucheA.SetActive(false);
+                }
 
-    public void ContinueDialogue()
-    {
-        FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-    }
+                if (playerToTalk.Length > 0 && Input.GetButtonDown("Interract"))
+                {
+                    TriggerDialogue();
+                    isTalking = true;
+                    toucheA.SetActive(false);
+                }
+            }
+            else if (isTalking == true && Input.GetButtonDown("Interract"))
+            {
+                ContinueDialogue();
+            }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, talkRange);
+            if (!textBox.GetBool("IsOpen"))
+            {
+                isTalking = false;
+            }
+
+        }
+
+        public void TriggerDialogue()
+        {
+            FindObjectOfType<Scr_DialogManager>().StartDialogue(dialogue);
+        }
+
+        public void ContinueDialogue()
+        {
+            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, talkRange);
+        }
     }
 }
+

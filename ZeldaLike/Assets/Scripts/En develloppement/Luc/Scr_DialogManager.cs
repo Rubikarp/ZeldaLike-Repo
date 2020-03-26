@@ -3,75 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scr_DialogManager : MonoBehaviour
+namespace Management
 {
-    Text _nameText;
-    Text _dialogueText;
-
-    GameObject _name;
-    GameObject _dialogues;
-    GameObject _textBox;
-
-    Animator _animator;
-
-    private Queue<string> _sentences;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Scr_DialogManager : MonoBehaviour
     {
-        _sentences = new Queue<string>();
-        _name = GameObject.Find("Nom_Du_PNJ");
-        _nameText = _name.GetComponent<Text>();
-        _dialogues = GameObject.Find("Paroles");
-        _dialogueText = _dialogues.GetComponent<Text>();
-        _textBox = GameObject.Find("Boîte_de_Dialogues");
-        _animator = _textBox.GetComponent<Animator>();
-    }
+        Text _nameText;
+        Text _dialogueText;
 
-    public void StartDialogue(Dialog dialogue)
-    {
+        GameObject _name;
+        GameObject _dialogues;
+        GameObject _textBox;
 
-        _animator.SetBool("speaking", true);
+        Animator _animator;
 
-        Debug.Log("Début de la conversation avec" + dialogue.name);
+        private Queue<string> _sentences;
 
-        _nameText.text = dialogue.name;
-
-        _sentences.Clear();
-
-        foreach (string sentence in dialogue.sentences)
+        // Start is called before the first frame update
+        void Start()
         {
-            _sentences.Enqueue(sentence);
+            _sentences = new Queue<string>();
+            _name = GameObject.Find("Nom_Du_PNJ");
+            _nameText = _name.GetComponent<Text>();
+            _dialogues = GameObject.Find("Paroles");
+            _dialogueText = _dialogues.GetComponent<Text>();
+            _textBox = GameObject.Find("Boîte_de_Dialogues");
+            _animator = _textBox.GetComponent<Animator>();
         }
 
-        DisplayNextSentence();
-    }
-
-    public void DisplayNextSentence()
-    {
-        if (_sentences.Count == 0)
+        public void StartDialogue(Dialog dialogue)
         {
-            EndDialogue();
-            return;
+
+            _animator.SetBool("speaking", true);
+
+            Debug.Log("Début de la conversation avec" + dialogue.name);
+
+            _nameText.text = dialogue.name;
+
+            _sentences.Clear();
+
+            foreach (string sentence in dialogue.sentences)
+            {
+                _sentences.Enqueue(sentence);
+            }
+
+            DisplayNextSentence();
         }
 
-        string sentence = _sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-    }
-
-    void EndDialogue()
-    {
-        _animator.SetBool("speaking", false);
-    }
-
-    IEnumerator TypeSentence(string sentence)
-    {
-        _dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        public void DisplayNextSentence()
         {
-            _dialogueText.text += letter;
-            yield return null;
+            if (_sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
+
+            string sentence = _sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
+
+        void EndDialogue()
+        {
+            _animator.SetBool("speaking", false);
+        }
+
+        IEnumerator TypeSentence(string sentence)
+        {
+            _dialogueText.text = "";
+            foreach (char letter in sentence.ToCharArray())
+            {
+                _dialogueText.text += letter;
+                yield return null;
+            }
         }
     }
 }
+

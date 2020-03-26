@@ -2,52 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scr_LD_Interrupteur : MonoBehaviour
+namespace Game
 {
-    public bool _isActive;
-    public GameObject _thingToActivate;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Scr_LD_Interrupteur : MonoBehaviour
     {
-        _isActive = false;
-    }
+        public bool _isActive;
+        public GameObject _thingToActivate;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_isActive == false)
-        {
-            _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = false;
-        }
-        else if (_isActive == true)
-        {
-            _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = true;
-        }
-    }
-
-
-    void OnTriggerStay2D (Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Environment"))
-        {
-            _isActive = true;
-        }
-        else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
-        {
-            _isActive = true;
-        }
-    }
-
-    void OnTriggerExit2D (Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Environment"))
+        // Start is called before the first frame update
+        void Start()
         {
             _isActive = false;
         }
-        else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+
+        // Update is called once per frame
+        void Update()
         {
-            _isActive = false;
+            if (_isActive == false)
+            {
+                _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = false;
+            }
+            else if (_isActive == true)
+            {
+                _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = true;
+            }
+        }
+
+
+        void OnTriggerStay2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Environment"))
+            {
+                _isActive = true;
+            }
+            else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+            {
+                _isActive = true;
+            }
+        }
+
+        void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Environment"))
+            {
+                _isActive = false;
+            }
+            else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+            {
+                _isActive = false;
+            }
         }
     }
 }
+
