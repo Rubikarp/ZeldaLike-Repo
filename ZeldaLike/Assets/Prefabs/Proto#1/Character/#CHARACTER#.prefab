@@ -313,7 +313,6 @@ MonoBehaviour:
   _input: {fileID: 6783160623888833418}
   _Avatar: {fileID: 6783160623602813873}
   _HurtBox: {fileID: 6783160623715740309}
-  _jumpRange: 25
   _attackObj: {fileID: 8535114425437957988, guid: d2f78ac06e8b8654d8a2ec72164f1d65,
     type: 3}
   _attackContainer: {fileID: 6783160624994555169}
@@ -321,13 +320,14 @@ MonoBehaviour:
   _canAttack: 1
   _bondObj: {fileID: 1395617834719462232, guid: d777e87337b41854499daa5c3c497386,
     type: 3}
-  _ennemiLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _bondSpeed: 30
+  _jumpRange: 25
+  _jumpLargeur: 5
+  _bondSpeed: 5
   _invulnerabiltyTimer: 0
   _invulnerabiltyTime: 1
   _bondCooldown: 0.3
+  _bondMaxDur: 1
+  _bondEndDist: 3
   _attackCooldown: 0.3
 --- !u!1 &6783160623888833419
 GameObject:
@@ -1067,4 +1067,4 @@ MonoBehaviour:
   - {x: -0.55, y: 0.2, z: 0}
   m_ShapePathHash: 1806942301
   m_Mesh: {fileID: 0}
-  m_InstanceId: 27006
+  m_InstanceId: 60390

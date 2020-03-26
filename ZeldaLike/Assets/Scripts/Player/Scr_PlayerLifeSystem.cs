@@ -30,8 +30,16 @@ namespace Game
                 Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;
 
                 Int_Damage attackData = collision.gameObject.GetComponent<Int_Damage>();
-
-                float knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
+                
+                float knockbackSpeed;
+                if (attackData == null)
+                {
+                    knockbackSpeed = knockbackSensibility;
+                }
+                else
+                {
+                    knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
+                }
 
                 if (!_isTakingDamage)
                 {

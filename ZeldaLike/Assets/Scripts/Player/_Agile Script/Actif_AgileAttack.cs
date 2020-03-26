@@ -29,7 +29,12 @@ namespace Game
         public float _invulnerabiltyTimer = 1f;
         public float _invulnerabiltyTime;
 
+        public float _canAttackTimer = 1f;
+        public float _canAttackTime;
+
         public float _bondCooldown = 1;
+        public float _bondMaxDur = 1;
+        public float _bondEndDist = 3;
         public float _attackCooldown = 1;
 
         private void Start()
@@ -45,7 +50,7 @@ namespace Game
             {
                 //calcul angle
                 float rotZ = Mathf.Atan2(_input._CharacterDirection.y, _input._CharacterDirection.x) * Mathf.Rad2Deg;
-                RaycastHit2D hit = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5,new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position);
+                RaycastHit2D hit = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5 - Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur/2), new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position);
 
                 if (hit.collider != null)
                 {
@@ -53,23 +58,29 @@ namespace Game
                     if (hit.transform.CompareTag("Ennemis"))
                     {
                         _canAttack = false;
-                        _isBleeding = false;
+                        _canAttackTime = _canAttackTimer;
 
                         GameObject _actualTarget = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5, new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position).transform.gameObject;
-                        _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
+                        
+                        if(_actualTarget.name == "HitBox")
+                        {
+                            _isBleeding = _actualTarget.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
+                        }
+                        else
+                        {
+                            _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
+                        }
 
                         //saigne t'il?
                         if (_isBleeding)
                         {
-                            StartCoroutine(Bond(_input._CharacterDirection, _actualTarget.transform.position, _bondSpeed, 3));
-
-                            StartCoroutine(AttaqueDelay(_bondCooldown));
+                            StartCoroutine(Bond(_Avatar.transform.position, _actualTarget.transform.position, _bondSpeed, _bondMaxDur));
+                            _isBleeding = false;
                         }
                         //attaque classique
                         else
                         {
                             Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
-                            StartCoroutine(AttaqueDelay(_attackCooldown));
                         }
                     }
                 }
@@ -80,7 +91,6 @@ namespace Game
 
                     //attaque classique
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
-                    StartCoroutine(AttaqueDelay(_attackCooldown));
                 }
             }
             else
@@ -91,25 +101,27 @@ namespace Game
                 {
                     _HurtBox.SetActive(true);
                 }
+
+                //invulnerability timer
+                _canAttackTimer -= Time.deltaTime;
+                if (_canAttackTimer <= 0)
+                {
+                    _canAttack = true;
+                }
             }
         }
 
-        private IEnumerator AttaqueDelay(float Cooldown)
-        {
-            yield return new WaitForSeconds(Cooldown);
-            _canAttack = true;
-        }
-
-        private IEnumerator Bond(Vector2 direction, Vector3 cible, float speed, float maxDuration)
+        private IEnumerator Bond(Vector3 me, Vector3 cible, float speed, float maxDuration)
         {
             float distance = Vector2.Distance(_rgb.position, cible);
+            Vector2 direction = cible - me;
 
             GameObject bond = Instantiate(_bondObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
 
             _HurtBox.SetActive(false);
             _invulnerabiltyTimer = _invulnerabiltyTime;
 
-            while (2 < distance) // boucle durant la durée du dash
+            while (_bondEndDist < distance) // boucle durant la durée du dash
             {
                 _rgb.position += direction * speed * Time.deltaTime;
 

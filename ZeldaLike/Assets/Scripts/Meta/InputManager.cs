@@ -56,7 +56,10 @@ namespace Management
                 _rightSwitch = Input.GetButton("RB/R1");
 
                 //update de la direction du joueur
-                _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
+                if (_stickDirection != Vector2.zero)
+                {
+                    _CharacterDirection = _stickDirection.normalized;
+                }
             }
             else
             {
@@ -71,22 +74,13 @@ namespace Management
                 _rightSwitch = Input.GetButton("Keyboard-RightSwitch");
 
                 //update de la direction du joueur
-                _CharacterDirection = characterDirection(_stickDirection.normalized, _CharacterDirection);
-
+                if (_stickDirection != Vector2.zero)
+                {
+                    _CharacterDirection = _stickDirection.normalized;
+                }
             }
         }
 
-        Vector2 characterDirection(Vector2 directionBrut, Vector2 _CharacterDirection)
-        {
-            if (directionBrut != Vector2.zero)
-            {
-                return directionBrut.normalized;
-            }
-            else //Remain last character direction
-            {
-                return _CharacterDirection;
-            }
-        }
     
     }
 }
