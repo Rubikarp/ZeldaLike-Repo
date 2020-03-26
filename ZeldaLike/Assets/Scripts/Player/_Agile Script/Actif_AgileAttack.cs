@@ -22,17 +22,16 @@ namespace Game
         [Header("Bond")]
         public GameObject _bondObj;
         public float _jumpRange = 25f;
-        public float _jumpLargeur = 5f;
+        public float _jumpLargeur = 2f;
         private bool _isBleeding = false;
 
         public float _bondSpeed = 30;
         public float _invulnerabiltyTimer = 1f;
         public float _invulnerabiltyTime;
 
-        public float _canAttackTimer = 1f;
+        public float _canAttackTimer = 0.2f;
         public float _canAttackTime;
 
-        public float _bondCooldown = 1;
         public float _bondMaxDur = 1;
         public float _bondEndDist = 3;
         public float _attackCooldown = 1;
@@ -96,15 +95,15 @@ namespace Game
             else
             {
                 //invulnerability timer
-                _invulnerabiltyTimer -= Time.deltaTime;
-                if (_invulnerabiltyTimer <= 0)
+                _invulnerabiltyTime -= Time.deltaTime;
+                if (_invulnerabiltyTime <= 0)
                 {
                     _HurtBox.SetActive(true);
                 }
 
                 //invulnerability timer
-                _canAttackTimer -= Time.deltaTime;
-                if (_canAttackTimer <= 0)
+                _canAttackTime -= Time.deltaTime;
+                if (_canAttackTime <= 0)
                 {
                     _canAttack = true;
                 }
@@ -119,7 +118,7 @@ namespace Game
             GameObject bond = Instantiate(_bondObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
 
             _HurtBox.SetActive(false);
-            _invulnerabiltyTimer = _invulnerabiltyTime;
+            _invulnerabiltyTime = _invulnerabiltyTimer;
 
             while (_bondEndDist < distance) // boucle durant la durée du dash
             {
@@ -146,7 +145,8 @@ namespace Game
 
         private void OnDrawGizmos()
         {
-            Debug.DrawRay(_myTranfo.position, _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
+            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 - Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
+            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 + Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
         }
 
         private void OnDisable()
