@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 using Management;
 
-public class Scr_Test_Cinematique : MonoBehaviour
+public class Scr_TestDeCinematique : MonoBehaviour
 {
-
     public Dialog _dialogue;
     private int _talkCount;
     private float _talkDelay;
