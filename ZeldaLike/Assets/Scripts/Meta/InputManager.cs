@@ -14,6 +14,9 @@ namespace Management
         [Space(10)]
         public bool _360Controller = true;
 
+        [Space(10)]
+        public bool _canInput = true;
+
         [Header("Stick")]
         //Direction du stick
         public Vector2 _stickDirection;
@@ -43,44 +46,64 @@ namespace Management
                 _360Controller = !_360Controller;
             }
 
-            if (_360Controller)
+            if (_canInput)
             {
-                //Je prends les valeurs du stick
-                _stickDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY"));
-                _stickMagnitude = _stickDirection.magnitude;
-
-                //Je prends les buttons
-                _interaction = Input.GetButton("A/Cross");
-                _attack = Input.GetButton("B/Circle");
-                _leftSwitch = Input.GetButton("LB/L1");
-                _rightSwitch = Input.GetButton("RB/R1");
-
-                //update de la direction du joueur
-                if (_stickDirection != Vector2.zero)
+                if (_360Controller)
                 {
-                    _CharacterDirection = _stickDirection.normalized;
+                    //Je prends les valeurs du stick
+                    _stickDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY"));
+                    _stickMagnitude = _stickDirection.magnitude;
+
+                    //Je prends les buttons
+                    _interaction = Input.GetButton("A/Cross");
+                    _attack = Input.GetButton("B/Circle");
+                    _leftSwitch = Input.GetButton("LB/L1");
+                    _rightSwitch = Input.GetButton("RB/R1");
+
+                    //update de la direction du joueur
+                    if (_stickDirection != Vector2.zero)
+                    {
+                        _CharacterDirection = _stickDirection.normalized;
+                    }
                 }
-            }
-            else
-            {
-                //Je prends les valeurs du stick
-                _stickDirection = new Vector2(Input.GetAxis("Keyboard-AxisX"), Input.GetAxis("Keyboard-AxisY"));
-                _stickMagnitude = _stickDirection.magnitude;
-
-                //Je prends les buttons
-                _interaction = Input.GetButton("Keyboard-InteractionButton");
-                _attack = Input.GetButton("Keyboard-AttackButton");
-                _leftSwitch = Input.GetButton("Keyboard-LeftSwitch");
-                _rightSwitch = Input.GetButton("Keyboard-RightSwitch");
-
-                //update de la direction du joueur
-                if (_stickDirection != Vector2.zero)
+                else
                 {
-                    _CharacterDirection = _stickDirection.normalized;
+                    //Je prends les valeurs du stick
+                    _stickDirection = new Vector2(Input.GetAxis("Keyboard-AxisX"), Input.GetAxis("Keyboard-AxisY"));
+                    _stickMagnitude = _stickDirection.magnitude;
+
+                    //Je prends les buttons
+                    _interaction = Input.GetButton("Keyboard-InteractionButton");
+                    _attack = Input.GetButton("Keyboard-AttackButton");
+                    _leftSwitch = Input.GetButton("Keyboard-LeftSwitch");
+                    _rightSwitch = Input.GetButton("Keyboard-RightSwitch");
+
+                    //update de la direction du joueur
+                    if (_stickDirection != Vector2.zero)
+                    {
+                        _CharacterDirection = _stickDirection.normalized;
+                    }
                 }
             }
         }
+        
+        public void DesactivateControl()
+        {
+            _canInput = false;
 
-    
+            _stickDirection = Vector2.zero;
+            _stickMagnitude = 0;
+
+            _interaction = false;
+            _attack = false;
+            _leftSwitch = false;
+            _rightSwitch = false;
+        }
+
+        public void ReActivateControl()
+        {
+            _canInput = true;
+        }
+
     }
 }

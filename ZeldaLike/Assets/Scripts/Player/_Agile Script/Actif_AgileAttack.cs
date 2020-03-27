@@ -61,13 +61,10 @@ namespace Game
 
                         GameObject _actualTarget = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5, new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position).transform.gameObject;
                         
-                        if(_actualTarget.name == "HitBox")
+                        _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
+                        if (!_isBleeding)
                         {
                             _isBleeding = _actualTarget.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
-                        }
-                        else
-                        {
-                            _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
                         }
 
                         //saigne t'il?
