@@ -85,6 +85,15 @@ Tilemap:
   m_GameObject: {fileID: 7927693709748109877}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -1, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 1
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   - first: {x: 0, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -96,35 +105,35 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 36bb1b2a3cc42f94ca3d102b4cd0cfb7, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7f4651df2d000ad4d949c989cb89c762, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 890990c21edb51648bc553798f050a4a, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: NaN
-      e01: 105866.5
+      e00: 349.5393
+      e01: NaN
       e02: 0
-      e03: NaN
-      e10: NaN
-      e11: 9.4e-43
-      e12: 0
-      e13: NaN
-      e20: -7.170981e-16
-      e21: 145999
-      e22: 5.569606e+11
-      e23: 3441.3125
-      e30: 3.24e-43
-      e31: 9.4e-43
-      e32: 4.5911e-41
-      e33: 9.4e-43
-  - m_RefCount: 1
+      e03: 349.53882
+      e10: 1.4e-44
+      e11: NaN
+      e12: 7.34684e-40
+      e13: 1.4e-44
+      e20: 0
+      e21: NaN
+      e22: 1.0404118e+12
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 4.5904e-41
+      e33: 0
+  - m_RefCount: 2
     m_Data:
       e00: 32
       e01: 0
@@ -143,8 +152,8 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: -8.578613, g: -8.578613, b: -8.578613, a: -8.578613}
+  - m_RefCount: 1
+    m_Data: {r: 0.054901965, g: 0.16862746, b: 0.24313727, a: 1}
   - m_RefCount: 1
     m_Data: {r: 0.7294118, g: 0.8745099, b: 0.3254902, a: 1}
   m_TileObjectToInstantiateArray: []
