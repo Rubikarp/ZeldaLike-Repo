@@ -3,8 +3,9 @@ using Management;
 
 public class Actif_KnifeThrowing : MonoBehaviour
 {
-    [SerializeField]
-    private InputManager _input = null;
+
+    [SerializeField] private InputManager _input = null;
+    [SerializeField] private AnimatorManager _animator = null;
 
     public GameObject _knife;
     public Transform _Container;
@@ -24,6 +25,8 @@ public class Actif_KnifeThrowing : MonoBehaviour
         if (_input._attack && _goodToShoot == true)
         {
             Instantiate(_knife, _attackPos.position, _attackPos.rotation, _Container);
+            _animator.TriggerAttack();
+
             _goodToShoot = false;
             _recupTimer = _throwRecup;
         }

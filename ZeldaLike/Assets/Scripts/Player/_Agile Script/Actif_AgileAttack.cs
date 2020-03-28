@@ -9,6 +9,9 @@ namespace Game
         [SerializeField] private InputManager _input = null;
         [SerializeField] private GameObject _Avatar = null;
         [SerializeField] private GameObject _HurtBox = null;
+        [SerializeField] private AnimatorManager _animator = null;
+
+
         private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
 
@@ -77,16 +80,27 @@ namespace Game
                         else
                         {
                             Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+                            _animator.TriggerAttack();
+
                         }
+                    }
+                    else
+                    {
+                        //attaque classique
+                        Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+                        _animator.TriggerAttack();
+                        _canAttack = false;
                     }
                 }
                 //attaque classique dans le vide
                 else
                 {
-                    _canAttack = false;
-
                     //attaque classique
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+                    _animator.TriggerAttack();
+                    _canAttack = false;
+
+
                 }
             }
             else

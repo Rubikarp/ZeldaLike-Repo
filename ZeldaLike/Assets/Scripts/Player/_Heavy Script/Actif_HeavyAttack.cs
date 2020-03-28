@@ -8,6 +8,8 @@ namespace Game
     {
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private InputManager _input = null;
+        [SerializeField] private AnimatorManager _animator = null;
+
 
         public GameObject _attackObj;
         public Transform _attackContainer;
@@ -34,6 +36,7 @@ namespace Game
                 _PlMovement.Immobilize();
 
                 Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
+                _animator.TriggerAttack();
 
                 StartCoroutine(AttaqueDelay());
             }

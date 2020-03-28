@@ -5,8 +5,8 @@ namespace Game
 {
     public class Scr_AttributionTouches_Transfo : MonoBehaviour
     {
-        enum Forme { Humain, Agile, Lourd }
-        Forme actualForm;
+        public enum Forme { Humain, Agile, Lourd }
+        public Forme actualForm;
 
         [Header("Components")]
         public Movement_2D_TopDown PlayerMove;
