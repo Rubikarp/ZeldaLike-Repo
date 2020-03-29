@@ -5,22 +5,22 @@ namespace Management
 {
     public class AnimatorManager : MonoBehaviour
     {
-
-        [Header("INPUT")]
+        [Header("Auto Components")]
         [SerializeField] SpriteRenderer _spritRend = null;
         [SerializeField] Animator _animator = null;
-
         [SerializeField] InputManager _input = null;
-        [SerializeField] Scr_PlayerLifeSystem _playerLife = null;
 
-        [SerializeField] Scr_AttributionTouches_Transfo _formeManager = null;
+        [Header("Components")]
+        [SerializeField] Scr_PlayerLifeSystem _playerLife = null;
+        [SerializeField] Scr_FormeManager _formeManager = null;
+
+        [Space(10)]
         //Humain
         [SerializeField] Actif_KnifeThrowing _humainAttack = null;
         public bool _isHumain = false;
         //lourd
         [SerializeField] Actif_AgileAttack _agileAttack = null;
         public bool _isAgile = false;
-
         //Agile
         [SerializeField] Actif_HeavyAttack _heavyAttack = null;
         public bool _isLourd = false;
@@ -30,6 +30,8 @@ namespace Management
 
         void Start()
         {
+            _spritRend = this.gameObject.GetComponent<SpriteRenderer>();
+            _animator = this.gameObject.GetComponent<Animator>();
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
         }
         
@@ -51,7 +53,7 @@ namespace Management
             _animator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
 
             //Bool pour la forme
-            if(_formeManager.actualForm == Scr_AttributionTouches_Transfo.Forme.Lourd && !_isLourd)
+            if(_formeManager.actualForm == Scr_FormeManager.Forme.Lourd && !_isLourd)
             {
                 _spritRend.color = Color.red;
 
@@ -66,7 +68,7 @@ namespace Management
                 _animator.SetTrigger("GoLourd");
             }
             else
-            if (_formeManager.actualForm == Scr_AttributionTouches_Transfo.Forme.Agile && !_isAgile)
+            if (_formeManager.actualForm == Scr_FormeManager.Forme.Agile && !_isAgile)
             {
                 _spritRend.color = Color.white;
 
@@ -82,7 +84,7 @@ namespace Management
 
             }
             else
-            if(_formeManager.actualForm == Scr_AttributionTouches_Transfo.Forme.Humain && !_isHumain)
+            if(_formeManager.actualForm == Scr_FormeManager.Forme.Humain && !_isHumain)
             {
                 _spritRend.color = Color.white;
 

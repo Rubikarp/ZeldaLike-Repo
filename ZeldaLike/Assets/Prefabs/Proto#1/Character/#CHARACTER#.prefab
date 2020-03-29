@@ -106,7 +106,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6783160623715740310}
   - component: {fileID: 6783160623715740311}
-  - component: {fileID: 218009421555015686}
   - component: {fileID: 6783160623715740308}
   m_Layer: 0
   m_Name: HurtBox
@@ -145,21 +144,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
   m_Radius: 0.8
---- !u!111 &218009421555015686
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6783160623715740309}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 545facaf27e02c44d93c49a4bea95007, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &6783160623715740308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Avatar: {fileID: 6783160623602813873}
   body: {fileID: 6783160623602813875}
-  _deathAnim: {fileID: 218009421555015686}
   _animator: {fileID: 6783160625727427113}
+  _input: {fileID: 6783160623888833418}
   _playerAttack:
   - P_Character_Stun
   - P_Character_HeavyAttack
@@ -245,7 +229,7 @@ MonoBehaviour:
   _input: {fileID: 6783160623888833418}
   _Avatar: {fileID: 6783160623602813873}
   _HurtBox: {fileID: 6783160623715740309}
-  _animator: {fileID: 0}
+  _animator: {fileID: 6783160625727427113}
   _attackObj: {fileID: 8535114425437957988, guid: d2f78ac06e8b8654d8a2ec72164f1d65,
     type: 3}
   _attackContainer: {fileID: 6783160624994555169}
@@ -306,8 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428129640dd6a4a43b4c568ab094c4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _360Controller: 1
   _canInput: 1
+  _360Controller: 1
   _stickDirection: {x: 0, y: 0}
   _stickMagnitude: 0
   _interaction: 0
@@ -457,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 6783160623888833418}
-  _animator: {fileID: 0}
+  _animator: {fileID: 6783160625727427113}
   _knife: {fileID: 6980779766148977113, guid: c1ef55d1029078643a39055034a4ffd5, type: 3}
   _Container: {fileID: 6783160624666449066}
   _attackPos: {fileID: 6783160625281573683}
@@ -556,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlMovement: {fileID: 6783160624789271403}
   _input: {fileID: 6783160623888833418}
-  _animator: {fileID: 0}
+  _animator: {fileID: 6783160625727427113}
   _attackObj: {fileID: 8535114425437957988, guid: d2f78ac06e8b8654d8a2ec72164f1d65,
     type: 3}
   _attackContainer: {fileID: 6783160624994555169}
@@ -710,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6783160625727427092}
   - component: {fileID: 6783160625727427094}
+  - component: {fileID: 8642496466726149382}
   - component: {fileID: 6783160625727427095}
   - component: {fileID: 7467358304093456034}
   - component: {fileID: 6783160625727427113}
@@ -788,6 +773,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8642496466726149382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783160625727427093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70d4277528cc894e853835a80d6db04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pos: {fileID: 0}
 --- !u!114 &6783160625727427095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +813,7 @@ MonoBehaviour:
   - {x: -0.55, y: 0.2, z: 0}
   m_ShapePathHash: 1806942301
   m_Mesh: {fileID: 0}
-  m_InstanceId: 31606
+  m_InstanceId: 24362
 --- !u!95 &7467358304093456034
 Animator:
   serializedVersion: 3
@@ -847,11 +845,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc78f8fed04a8143af383cc26d08ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spritRend: {fileID: 0}
-  _animator: {fileID: 0}
-  _input: {fileID: 0}
-  _playerLife: {fileID: 0}
-  _formeManager: {fileID: 0}
-  _humainAttack: {fileID: 0}
-  _agileAttack: {fileID: 0}
-  _heavyAttack: {fileID: 0}
+  _spritRend: {fileID: 6783160625727427094}
+  _animator: {fileID: 7467358304093456034}
+  _input: {fileID: 6783160623888833418}
+  _playerLife: {fileID: 6783160623715740308}
+  _formeManager: {fileID: 6783160623602813877}
+  _humainAttack: {fileID: 6783160624990897162}
+  _isHumain: 0
+  _agileAttack: {fileID: 6783160623866592714}
+  _isAgile: 0
+  _heavyAttack: {fileID: 6783160625199375984}
+  _isLourd: 0
