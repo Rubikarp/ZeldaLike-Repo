@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
 public class Scr_BossPhase1 : MonoBehaviour
 {
@@ -23,22 +24,44 @@ public class Scr_BossPhase1 : MonoBehaviour
     public float _couvertureDurationOrigin;
     public Transform _bulletContainer;
     public float _shootingAllonge;
+    private List<Vector3> _bulletFuryDirections;
+    public float _delayBetweenShotsOrigin;
+    private float _delayBetweenShots;
+    public Vector3 _currentTarget;
 
     [Header("Attaque au CaC")]
     public float _attackRange;
+    public float _attackCastOrigin;
+    private float _attackCast;
+    private Rigidbody2D _playerBody;
+    public float _knockBackSpeed;
+    public float _stunDuration;
 
     [Header("Grenade")]
     public GameObject _grenade;
+    public Vector3 _grenadeTarget;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player"); 
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerBody = _player.GetComponent<Rigidbody2D>();
         _actionActive = false;
         _delay = _delayBetweenActions;
         _canGoDelay = false;
         _couvertureDuration = _couvertureDurationOrigin;
+        _attackCast = _attackCastOrigin;
+        _delayBetweenShots = _delayBetweenShotsOrigin;
+
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x, _mySelf.position.y - 1));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x - 1, _mySelf.position.y - 1));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x - 1, _mySelf.position.y));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x - 1, _mySelf.position.y + 1));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x, _mySelf.position.y + 1));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x + 1, _mySelf.position.y + 1));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x + 1, _mySelf.position.y));
+        _bulletFuryDirections.Add(new Vector3(_mySelf.position.x + 1, _mySelf.position.y - 1));
     }
 
     // Update is called once per frame
@@ -114,20 +137,59 @@ public class Scr_BossPhase1 : MonoBehaviour
 
             new WaitForEndOfFrame();
         }
+
+        _canGoDelay = true;
     }
 
     private void Grenade()
     {
+        _grenadeTarget = _player.transform.position;
 
+        Instantiate(_grenade, _mySelf.position + _grenadeTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
+
+        _canGoDelay = true;
     }
 
     private void AttaqueCaC()
     {
+        while (_attackCast > 0)
+        {
+            _attackCast -= Time.deltaTime;
+        }
 
+        _attackCast = _attackCastOrigin;
+
+        Collider2D[] playerToHit = Physics2D.OverlapCircleAll(_mySelf.position, _attackRange);
+
+        for (int k = 0; k < playerToHit.Length; k++)
+        {
+            if (playerToHit[k].gameObject.transform.parent.parent.CompareTag("Player"))
+            {
+                Vector2 _knockBackDirection = _player.transform.position - _mySelf.position;
+                playerToHit[k].gameObject.transform.parent.GetComponentInChildren<Scr_PlayerLifeSystem>().TakingDamage(1, _playerBody, _knockBackDirection, _knockBackSpeed, _stunDuration);
+            }
+        }
+
+        _canGoDelay = true;
     }
 
     private void FouDeLaGachette()
     {
-        
+        for (int h = 0; h < _bulletFuryDirections.Count; h++)
+        {
+            _currentTarget = _bulletFuryDirections[h];
+
+            while (_delayBetweenShots > 0)
+            {
+                _delayBetweenShots -= Time.deltaTime;
+                new WaitForEndOfFrame();
+            }
+
+            _delayBetweenShots = _delayBetweenShotsOrigin;
+
+            Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
+        }
+
+        _canGoDelay = true;
     }
 }
