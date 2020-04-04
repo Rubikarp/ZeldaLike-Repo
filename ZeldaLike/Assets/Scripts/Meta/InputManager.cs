@@ -99,6 +99,5 @@ namespace Management
         {
             _canInput = true;
         }
-
     }
 }
