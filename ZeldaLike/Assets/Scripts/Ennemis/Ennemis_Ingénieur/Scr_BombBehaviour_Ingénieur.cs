@@ -5,7 +5,6 @@ using UnityEngine;
 public class Scr_BombBehaviour_Ingénieur : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private Scr_BombBehaviour_Ingénieur _behavIng = null;
     [SerializeField] private SpriteRenderer bombSprite = null;
     public Transform _bomb = null;
     public GameObject _explosionRange = null;
@@ -17,7 +16,6 @@ public class Scr_BombBehaviour_Ingénieur : MonoBehaviour
     private void Start()
     {
         _bomb = this.transform;
-        _behavIng = this.gameObject.GetComponent<Scr_BombBehaviour_Ingénieur>();
         bombSprite = this.gameObject.GetComponent<SpriteRenderer>();
         bombSprite.enabled = true;
     }
@@ -35,7 +33,7 @@ public class Scr_BombBehaviour_Ingénieur : MonoBehaviour
     public IEnumerator Explosion(float timer)
     {
         bombSprite.enabled = false;
-        Instantiate(_explosionRange);
+        Instantiate(_explosionRange, this.gameObject.transform);
         yield return new WaitForSeconds(timer);
         Destroy(this.gameObject);
     }

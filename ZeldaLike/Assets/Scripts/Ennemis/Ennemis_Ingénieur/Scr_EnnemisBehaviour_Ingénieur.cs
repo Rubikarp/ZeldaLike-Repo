@@ -89,7 +89,10 @@ namespace Ennemis
         {
             _canShoot = false;
             _isShooting = true;
-            Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
+
+            GameObject bullet = Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
+
+            bullet.GetComponent<Scr_ProjectileBehaviour_Ingénieur>().BulletSetDir(_targetDirection.normalized);
 
             yield return new WaitForSeconds(_shootingRepos);
 
@@ -104,7 +107,7 @@ namespace Ennemis
         {
             _canRun = false;
             _isRunning = true;
-            Instantiate(_bomb);
+            Instantiate(_bomb,transform.position, transform.rotation);
 
             while (0 < runDuration)
             {

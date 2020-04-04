@@ -5,7 +5,6 @@ namespace Ennemis
     public class Scr_ProjectileBehaviour_Ingénieur : MonoBehaviour
     {
         [Header("Data")]
-        [SerializeField] private Scr_EnnemisBehaviour_Ingénieur _behavIng = null;
         public Transform _projectile = null;
         public Rigidbody2D _rb2d = null;
 
@@ -18,9 +17,6 @@ namespace Ennemis
         {
             _projectile = this.transform;
             _rb2d = this.GetComponent<Rigidbody2D>();
-            _behavIng = this.gameObject.GetComponentInParent<Scr_EnnemisBehaviour_Ingénieur>();
-            _BulletDir = _behavIng._targetDirection.normalized;
-
             Destroy(this.gameObject, _timer);
         }
 
@@ -38,7 +34,13 @@ namespace Ennemis
             else
             {
                 Debug.Log(collision.gameObject.name);
+                Destroy(gameObject);
             }
+        }
+
+        public void BulletSetDir(Vector2 direction)
+        {
+            _BulletDir = direction;
         }
 
     }
