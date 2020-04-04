@@ -9,6 +9,14 @@ public class Scr_Dial_first_ciné : MonoBehaviour
     public List<float> _delai;
     public List<bool> _actifDialog;
 
+    public Transform _enemy1;
+    public Transform _enemy2;
+    public Transform _enemy3;
+    public Transform _enemy4;
+
+    public GameObject _shooter;
+    public GameObject _experience;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +100,11 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         {
             FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
             _actifDialog[4] = false;
+            FindObjectOfType<InputManager>().ReActivateControl();
+            Instantiate(_experience, _enemy1);
+            Instantiate(_experience, _enemy2);
+            Instantiate(_experience, _enemy3);
+            Instantiate(_shooter, _enemy4);
         }
     }
 }

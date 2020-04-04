@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Management;
 
 namespace Game
 {
@@ -7,9 +8,10 @@ namespace Game
     {
         [Header("Component")]
         public GameObject Avatar = null;
-
         public Rigidbody2D body = null;
-        public Animation _deathAnim = null;
+        public AnimatorManager _animator = null;
+        public InputManager _input = null;
+        private bool dead = false;
 
         [Header("Statistiques")]
         public string[] _playerAttack;
@@ -17,6 +19,11 @@ namespace Game
         public int _life = 5;
         public bool _isTakingDamage = false;
         public float knockbackSensibility = 1f;
+
+        private void Start()
+        {
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+        }
 
         private void Update()
         {
@@ -96,10 +103,13 @@ namespace Game
 
         private void Living()
         {
-            if (_life <= 0)
+            if (_life <= 0 && !dead)
             {
-                _deathAnim.Play();
-                Destroy(Avatar, _deathAnim.clip.length);
+                _animator.TriggerDeath();
+                _input.DesactivateControl();
+
+                dead = true;
+                //Destroy(Avatar, /*_deathAnim.clip.length*/ 10f);
             }
         }
     }

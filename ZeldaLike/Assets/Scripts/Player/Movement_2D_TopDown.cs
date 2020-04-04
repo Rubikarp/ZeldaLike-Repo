@@ -7,15 +7,12 @@ namespace Game
 {
     public class Movement_2D_TopDown : MonoBehaviour
     {
-        [SerializeField] 
-        private Rigidbody2D _body = null;
-        [SerializeField] 
-        private InputManager _input = null;
+        [SerializeField] private Rigidbody2D _body = null;
+        [SerializeField] private InputManager _input = null;
         [Space(10)]
         public Data_PlayerForme _actualForme = null;
         [Space(10)]
-        [SerializeField] 
-        private float _activeSpeed = 0f;
+        [SerializeField] private float _activeSpeed = 0f;
 
         private float _accTimer = 0f;
         private float _decTimer = 0f;

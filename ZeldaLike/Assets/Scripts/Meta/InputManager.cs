@@ -2,20 +2,15 @@
 
 namespace Management
 {
-    /// <summary>
     /// Fait par Arthur Deleye
     /// 
-    /// private InputManager _input;        
-    /// 
+    /// [SerializeField] private InputManager _input;        
     /// _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-    /// </summary>
+    
     public class InputManager : Singleton<InputManager>
     {
-        [Space(10)]
-        public bool _360Controller = true;
-
-        [Space(10)]
         public bool _canInput = true;
+        public bool _360Controller = true;
 
         [Header("Stick")]
         //Direction du stick
@@ -104,6 +99,5 @@ namespace Management
         {
             _canInput = true;
         }
-
     }
 }

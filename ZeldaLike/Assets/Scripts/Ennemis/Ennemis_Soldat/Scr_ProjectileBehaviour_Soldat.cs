@@ -37,7 +37,7 @@ namespace Ennemis
             }
             else
             {
-                Debug.Log(collision.gameObject.name);
+                //Debug.Log(collision.gameObject.name);
             }
         }
 
