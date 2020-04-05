@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5395202852239185846}
   - component: {fileID: 5395202852239185837}
   - component: {fileID: 5395202852239185842}
-  - component: {fileID: 5395202852239185843}
+  - component: {fileID: 9034629948764349508}
   m_Layer: 0
   m_Name: P_BossBullet
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,11 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4e2f3caa6f9bb4fa479602c84bc23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 0}
-  _rb2d: {fileID: 0}
-  _BulletDir: {x: 0, y: 0}
-  _mySpeed: 0.5
-  _timer: 5
+  _speed: 5
+  _lifeTime: 10
+  _destroyAnimation: 0
 --- !u!50 &5395202852239185837
 Rigidbody2D:
   serializedVersion: 4
@@ -139,7 +137,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5395202852239185843
+--- !u!114 &9034629948764349508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

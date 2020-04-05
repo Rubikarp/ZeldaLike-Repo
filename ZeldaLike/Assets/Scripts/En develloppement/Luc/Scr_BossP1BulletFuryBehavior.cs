@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace Ennemies
 {
-    public class Scr_BossP1BulletBehavior : MonoBehaviour
+    public class Scr_BossP1BulletFuryBehavior : MonoBehaviour
     {
-        private Vector3 _target;
+        public Vector3 _target;
         public float _speed;
-        public float _lifeTime;
         public float _destroyAnimation;
 
         private void Start()
@@ -18,16 +17,7 @@ namespace Ennemies
 
         private void Update()
         {
-            transform.position = Vector2.MoveTowards(transform.position, _target, _speed * Time.deltaTime);
-
-            if (_lifeTime > 0)
-            {
-                _lifeTime -= Time.deltaTime;
-            }
-            else if (_lifeTime <= 0)
-            {
-                Destroy(gameObject);
-            }
+            transform.position = transform.position + _target * _speed * Time.deltaTime;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

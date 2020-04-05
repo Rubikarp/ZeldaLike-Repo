@@ -11,15 +11,14 @@ namespace Ennemies
         public float _grenadeSpeed;
         public Transform _mySelf;
         private bool _targetAttained;
-        public float _explosionRange;
-        public float _knockBackSpeed;
-        public float _stunDuration;
         public float _explosionDelay;
+        public float _explosionLife;
+        public GameObject _Explosion;
 
         // Start is called before the first frame update
         void Start()
         {
-            _grenadeTarget = FindObjectOfType<Scr_BossPhase1>().gameObject.GetComponent<Scr_BossPhase1>()._grenadeTarget;
+            _grenadeTarget = GameObject.FindGameObjectWithTag("Player").transform.position;
             _targetAttained = false;
         }
 
@@ -28,7 +27,7 @@ namespace Ennemies
         {
             if (_targetAttained == false)
             {
-                _mySelf.position = _grenadeTarget * _grenadeSpeed * Time.deltaTime;
+                _mySelf.position = Vector2.MoveTowards(_mySelf.position, _grenadeTarget, _grenadeSpeed * Time.deltaTime);
 
                 if (_mySelf.position == _grenadeTarget)
                 {
@@ -37,32 +36,26 @@ namespace Ennemies
             }
             else if (_targetAttained == true)
             {
-                while(_explosionDelay > 0)
+                if (_explosionDelay > 0)
                 {
                     _explosionDelay -= Time.deltaTime;
-                    new WaitForEndOfFrame();
                 }
-
-                Collider2D[] playerToHit = Physics2D.OverlapCircleAll(_mySelf.position, _explosionRange);
-
-                for (int i = 0; i < playerToHit.Length; i++)
+                else if (_explosionDelay <= 0)
                 {
-                    if (playerToHit[i].gameObject.transform.parent.parent.CompareTag("Player"))
-                    {
-                        Vector2 _knockBackDirection = playerToHit[i].gameObject.transform.parent.parent.position - _mySelf.position;
-                        playerToHit[i].gameObject.transform.parent.GetComponentInChildren<Scr_PlayerLifeSystem>().TakingDamage(1, playerToHit[i].gameObject.transform.parent.parent.GetComponent<Rigidbody2D>(), _knockBackDirection, _knockBackSpeed, _stunDuration);
-                    }
+                    _Explosion.SetActive(true);
                 }
 
-                Destroy(gameObject);
+                if (_explosionLife > 0 && _explosionDelay <= 0)
+                {
+                    _explosionLife -= Time.deltaTime;
+                }
+                else if (_explosionLife <= 0 && _explosionDelay <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
 
 
-        }
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_mySelf.position, _explosionRange);
         }
 
     }

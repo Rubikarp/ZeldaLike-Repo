@@ -109,8 +109,6 @@ MonoBehaviour:
   _couvertureDurationOrigin: 1.5
   _bulletContainer: {fileID: 1088682752240457265}
   _shootingAllonge: 1
-  _delayBetweenShotsOrigin: 0.25
-  _currentTarget: {x: 0, y: 0, z: 0}
   _attackRange: 5
   _attackCastOrigin: 0.5
   _knockBackSpeed: 10
@@ -118,6 +116,10 @@ MonoBehaviour:
   _grenade: {fileID: 8110184703439340443, guid: c217b238a7453c843a1acad5b05206a6,
     type: 3}
   _grenadeTarget: {x: 0, y: 0, z: 0}
+  _bulletsFury: {fileID: 6704465286223731875, guid: 500488aa3eae70a4780172d0e1f823f5,
+    type: 3}
+  _delayBetweenShotsOrigin: 0.25
+  _currentTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &1088682750620354949
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 1088682750620354949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.15554047, y: 2.025879, z: 0}
-  m_LocalScale: {x: 2.0059, y: 2.85481, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
   m_RootOrder: 2
@@ -173,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 1088682750659093319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.4839935, y: 4.2240753, z: 0}
-  m_LocalScale: {x: 2.0059, y: 2.85481, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
   m_RootOrder: 1
@@ -203,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 1088682750905992791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.718796, y: 9.848053, z: 0}
-  m_LocalScale: {x: 2.0059, y: 2.85481, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
   m_RootOrder: 0
@@ -268,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 1088682752240457264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.77736664, y: 6.507927, z: 0}
-  m_LocalScale: {x: 2.0059, y: 2.85481, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
   m_RootOrder: 3

@@ -19,17 +19,14 @@ namespace Ennemies
         public List<GameObject> _renforts;
         public List<Transform> _renfortsSpawns;
 
-        [Header("Tirs")]
+        [Header("Tir de Couverture")]
         public GameObject _bullet;
         public float _couvertureSpeed;
         private float _couvertureDuration;
         public float _couvertureDurationOrigin;
         public Transform _bulletContainer;
         public float _shootingAllonge;
-        private Vector3[] _bulletFuryDirections;
-        public float _delayBetweenShotsOrigin;
-        private float _delayBetweenShots;
-        public Vector3 _currentTarget;
+
 
         [Header("Attaque au CaC")]
         public float _attackRange;
@@ -43,6 +40,12 @@ namespace Ennemies
         public GameObject _grenade;
         public Vector3 _grenadeTarget;
 
+        [Header("Fou de la Gachette")]
+        public GameObject _bulletsFury;
+        public float _delayBetweenShotsOrigin;
+        private float _delayBetweenShots;
+        public Vector3 _currentTarget;
+
 
         // Start is called before the first frame update
         void Start()
@@ -55,17 +58,6 @@ namespace Ennemies
             _couvertureDuration = _couvertureDurationOrigin;
             _attackCast = _attackCastOrigin;
             _delayBetweenShots = _delayBetweenShotsOrigin;
-
-            _bulletFuryDirections = new Vector3[8];
-
-            _bulletFuryDirections[0] = new Vector3(_mySelf.position.x, _mySelf.position.y - 1);
-            _bulletFuryDirections[1] = new Vector3(_mySelf.position.x - 1, _mySelf.position.y - 1);
-            _bulletFuryDirections[2] = new Vector3(_mySelf.position.x - 1, _mySelf.position.y);
-            _bulletFuryDirections[3] = new Vector3(_mySelf.position.x - 1, _mySelf.position.y + 1);
-            _bulletFuryDirections[4] = new Vector3(_mySelf.position.x, _mySelf.position.y + 1);
-            _bulletFuryDirections[5] = new Vector3(_mySelf.position.x + 1, _mySelf.position.y + 1);
-            _bulletFuryDirections[6] = new Vector3(_mySelf.position.x + 1, _mySelf.position.y);
-            _bulletFuryDirections[7] = new Vector3(_mySelf.position.x + 1, _mySelf.position.y - 1);
         }
 
         // Update is called once per frame
@@ -116,7 +108,7 @@ namespace Ennemies
                         break;
 
                     case 5:
-                        FouDeLaGachette();
+                       StartCoroutine(FouDeLaGachette());
                         _actionActive = true;
                         Debug.Log("FouDeLaGachette");
                         break;
@@ -142,10 +134,12 @@ namespace Ennemies
             {
                 _couvertureDuration -= Time.deltaTime;
 
-                _mySelf.position = Vector2.MoveTowards(_mySelf.position, -_player.transform.position, _couvertureSpeed * Time.deltaTime);
+                _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_couvertureSpeed * Time.deltaTime);
 
                 new WaitForEndOfFrame();
             }
+
+            _couvertureDuration = _couvertureDurationOrigin;
 
             _canGoDelay = true;
         }
@@ -182,22 +176,11 @@ namespace Ennemies
             _canGoDelay = true;
         }
 
-        private void FouDeLaGachette()
+        private IEnumerator FouDeLaGachette()
         {
-            for (int h = 0; h < _bulletFuryDirections.Length; h++)
-            {
-                _currentTarget = _bulletFuryDirections[h];
+            Instantiate(_bulletsFury, _mySelf.position, _mySelf.rotation, _bulletContainer);
 
-                while (_delayBetweenShots > 0)
-                {
-                    _delayBetweenShots -= Time.deltaTime;
-                    new WaitForEndOfFrame();
-                }
-
-                _delayBetweenShots = _delayBetweenShotsOrigin;
-
-                Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-            }
+            yield return new WaitForSeconds(2);
 
             _canGoDelay = true;
         }
