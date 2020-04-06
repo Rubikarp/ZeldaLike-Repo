@@ -26,25 +26,24 @@ namespace Ennemies
         public float _couvertureDurationOrigin;
         public Transform _bulletContainer;
         public float _shootingAllonge;
+        public float _delayBetweenShotsOrigin;
+        private float _delayBetweenShots;
+        public List<Vector3> _bulletFury;
+        [HideInInspector] public Vector3 _currentTarget = Vector2.zero;
 
 
         [Header("Attaque au CaC")]
         public float _attackRange;
-        public float _attackCastOrigin;
-        private float _attackCast;
+        public float _attackCast;
         private Rigidbody2D _playerBody;
         public float _knockBackSpeed;
         public float _stunDuration;
+        public GameObject _attackZone;
+
 
         [Header("Grenade")]
         public GameObject _grenade;
         public Vector3 _grenadeTarget;
-
-        [Header("Fou de la Gachette")]
-        public GameObject _bulletsFury;
-        public float _delayBetweenShotsOrigin;
-        private float _delayBetweenShots;
-        public Vector3 _currentTarget;
 
 
         // Start is called before the first frame update
@@ -56,8 +55,8 @@ namespace Ennemies
             _delay = _delayBetweenActions;
             _canGoDelay = false;
             _couvertureDuration = _couvertureDurationOrigin;
-            _attackCast = _attackCastOrigin;
             _delayBetweenShots = _delayBetweenShotsOrigin;
+
         }
 
         // Update is called once per frame
@@ -102,7 +101,7 @@ namespace Ennemies
                         break;
 
                     case 4:
-                        AttaqueCaC();
+                        StartCoroutine(AttaqueCaC());
                         _actionActive = true;
                         Debug.Log("AttaqueCaC");
                         break;
@@ -128,7 +127,9 @@ namespace Ennemies
 
         private void TirDeCouverture()
         {
-            Instantiate(_bullet, _mySelf.position + _player.transform.position.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
+            _currentTarget = (_player.transform.position - _mySelf.position);
+
+            Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
 
             while (_couvertureDuration > 0)
             {
@@ -153,34 +154,23 @@ namespace Ennemies
             _canGoDelay = true;
         }
 
-        private void AttaqueCaC()
+        private IEnumerator AttaqueCaC()
         {
-            while (_attackCast > 0)
-            {
-                _attackCast -= Time.deltaTime;
-            }
+            yield return new WaitForSeconds(_attackCast);
 
-            _attackCast = _attackCastOrigin;
-
-            Collider2D[] playerToHit = Physics2D.OverlapCircleAll(_mySelf.position, _attackRange);
-
-            for (int k = 0; k < playerToHit.Length; k++)
-            {
-                if (playerToHit[k].gameObject.transform.parent.parent.CompareTag("Player"))
-                {
-                    Vector2 _knockBackDirection = _player.transform.position - _mySelf.position;
-                    playerToHit[k].gameObject.transform.parent.GetComponentInChildren<Scr_PlayerLifeSystem>().TakingDamage(1, _playerBody, _knockBackDirection, _knockBackSpeed, _stunDuration);
-                }
-            }
+            Instantiate(_attackZone, _mySelf.position + _player.transform.position.normalized, _mySelf.rotation, _mySelf);
 
             _canGoDelay = true;
         }
 
         private IEnumerator FouDeLaGachette()
         {
-            Instantiate(_bulletsFury, _mySelf.position, _mySelf.rotation, _bulletContainer);
-
-            yield return new WaitForSeconds(2);
+            for (int i = 0; i < _bulletFury.Count; i++)
+            {
+                _currentTarget = (_bulletFury[i] - _mySelf.position);
+                Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
+                yield return new WaitForSeconds(_delayBetweenShots);
+            }
 
             _canGoDelay = true;
         }

@@ -104,22 +104,31 @@ MonoBehaviour:
   - {fileID: 1088682750905992788}
   - {fileID: 1088682750659093316}
   - {fileID: 1088682750620355066}
-  _bullet: {fileID: 5395202852239185847, guid: d9f849e130e02a04ab3d819ba94cff39, type: 3}
+  _bullet: {fileID: 1769438472544907946, guid: c30ad2b038fb5c34c982d48aaaf23c58, type: 3}
   _couvertureSpeed: 10
   _couvertureDurationOrigin: 1.5
   _bulletContainer: {fileID: 1088682752240457265}
   _shootingAllonge: 1
+  _delayBetweenShotsOrigin: 0.25
+  _bulletFury:
+  - {x: 0, y: -100000, z: 0}
+  - {x: -100000, y: -100000, z: 0}
+  - {x: -100000, y: 0, z: 0}
+  - {x: -100000, y: 100000, z: 0}
+  - {x: 0, y: 100000, z: 0}
+  - {x: 100000, y: 100000, z: 0}
+  - {x: 100000, y: 0, z: 0}
+  - {x: 100000, y: -100000, z: 0}
+  _currentTarget: {x: 0, y: 0, z: 0}
   _attackRange: 5
   _attackCastOrigin: 0.5
   _knockBackSpeed: 10
   _stunDuration: 1
+  _attackZone: {fileID: 9183827998595511520, guid: 029b81c695a817443a7576672063c48c,
+    type: 3}
   _grenade: {fileID: 8110184703439340443, guid: c217b238a7453c843a1acad5b05206a6,
     type: 3}
   _grenadeTarget: {x: 0, y: 0, z: 0}
-  _bulletsFury: {fileID: 6704465286223731875, guid: 500488aa3eae70a4780172d0e1f823f5,
-    type: 3}
-  _delayBetweenShotsOrigin: 0.25
-  _currentTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &1088682750620354949
 GameObject:
   m_ObjectHideFlags: 0
