@@ -141,22 +141,28 @@ namespace Ennemis
         public IEnumerator Execution(float timeBtwShoot, int NumberOfBullet)
         {
             _willShoot = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timeBtwShoot);
             _willShoot = true;
             _isShooting = true;
-            //première Balle
-            Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+
+            //balle basique
+            GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+            bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_playerDirection.normalized);            
+            
             _isShooting = false;
 
             do
             {
                 NumberOfBullet--;
                 _willShoot = true;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(timeBtwShoot);
                 _willShoot = true;
                 _isShooting = true;
+                
                 //Les balles anticipée
-                Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+                bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+                bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
+
                 _isShooting = false;
 
             } while (NumberOfBullet > 0);
