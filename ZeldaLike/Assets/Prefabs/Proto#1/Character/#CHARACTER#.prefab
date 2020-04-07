@@ -164,7 +164,7 @@ MonoBehaviour:
   - P_Character_Stun
   - P_Character_HeavyAttack
   - P_Character_BondAttack
-  _life: 5
+  _life: 1000
   _isTakingDamage: 0
   knockbackSensibility: 3
 --- !u!1 &6783160623866592712
@@ -758,8 +758,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1743217921
-  m_SortingLayer: -3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6563209630271767111, guid: d4bfa2e013aa6d74eb8195d275938c24,
     type: 3}
@@ -815,7 +815,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 23102
+  m_InstanceId: 24262
 --- !u!95 &7467358304093456034
 Animator:
   serializedVersion: 3
@@ -852,9 +852,6 @@ MonoBehaviour:
   _input: {fileID: 6783160623888833418}
   _playerLife: {fileID: 6783160623715740308}
   _formeManager: {fileID: 6783160623602813877}
-  _humainAttack: {fileID: 6783160624990897162}
   _isHumain: 0
-  _agileAttack: {fileID: 6783160623866592714}
   _isAgile: 0
-  _heavyAttack: {fileID: 6783160625199375984}
   _isLourd: 0

@@ -16,17 +16,11 @@ namespace Management
 
         [Space(10)]
         //Humain
-        [SerializeField] Actif_KnifeThrowing _humainAttack = null;
         public bool _isHumain = false;
         //lourd
-        [SerializeField] Actif_AgileAttack _agileAttack = null;
         public bool _isAgile = false;
         //Agile
-        [SerializeField] Actif_HeavyAttack _heavyAttack = null;
         public bool _isLourd = false;
-
-
-
 
         void Start()
         {
