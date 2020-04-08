@@ -21,6 +21,13 @@ namespace Ennemis
 
         [Header("Variable à Lire")]
         public bool _inPattern = false;
+
+        //ComboEclair
+        public bool _willLightningRush = false;
+        public bool _isLightningRush = false;
+        private Vector2 _lightningRushDirection = Vector2.zero;
+
+
         //Execution
         public bool _willShoot = false;
         public bool _isShooting = false;
@@ -36,21 +43,35 @@ namespace Ennemis
             set { _mySelf = value; }
         }
 
-        [Space(10)]
+        //AngleMort
+        public bool _willTPonPlayer = false;
 
+
+        [Space(10)]
         [Header("Variable à Tweek")]
         public float _movementSpeed = 5f;
+
+        //ComboEclair
+        [SerializeField] private Transform UpLeftCorner = null;
+        [SerializeField] private Transform DownRightCorner = null;
+        public float _lightningRushSpeed = 15f;
+        public int _numberOflightningRush = 3;
 
         //Execution
         public GameObject _projectile = null;
         public float _shootingAllonge = 5f;
 
         //Acharnement
-        public float _RushSpeed = 5f;
+        public float _RushSpeed = 15f;
         public int _numberOfRush = 3;
 
-        [Space(10)]
+        //AngleMort
+        [SerializeField] private GameObject _angleMortAttack = null;
 
+        //AngleMort
+        [SerializeField] private GameObject _DegageAttack = null;
+
+        [Space(10)]
 
         [Header("Target")]
         [SerializeField] private Transform _player = null;
@@ -66,7 +87,6 @@ namespace Ennemis
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             //_myAnimator = this.GetComponent<Animator>();
-
         }
 
         private void Update()
@@ -75,7 +95,6 @@ namespace Ennemis
             _playerDirection = (_player.position - _mySelf.position);
             //calcul la distance entre le GameObject et le joueur
             _playerDistance = Vector2.Distance(_mySelf.position, _player.position);
-
             //pré-shoot
             _preShootDirection = ((_player.position + new Vector3(_input._CharacterDirection.x, _input._CharacterDirection.y) * _preShootDist ) - _mySelf.position);
 
@@ -91,18 +110,22 @@ namespace Ennemis
 
                         _inPattern = true;
                         Debug.Log("Pattern nothing");
+                        NextDirection(_actualPattern);
+                        _inPattern = false;
+
                         break;
 
                     case Pattern.Execution:
 
                         _inPattern = true;
-                        StartCoroutine(Execution(_RushSpeed, _numberOfRush));
+                        StartCoroutine(Execution(1.5f, 3));
                         Debug.Log("Pattern Execution");
                         break;
 
                     case Pattern.ComboEclair:
 
                         _inPattern = true;
+                        StartCoroutine(ComboEclair(_lightningRushSpeed, _numberOflightningRush, UpLeftCorner.position, DownRightCorner.position));
                         Debug.Log("Pattern ComboEclair");
                         break;
 
@@ -116,18 +139,21 @@ namespace Ennemis
                     case Pattern.AngleMort:
 
                         _inPattern = true;
+                        StartCoroutine(AngleMort(_player.position));
                         Debug.Log("Pattern AngleMort");
                         break;
 
                     case Pattern.TirDansLeDos:
                         
                         _inPattern = true;
+                        StartCoroutine(TirDansLeDos());
                         Debug.Log("Pattern TirDansLeDos");
                         break;
 
                     case Pattern.Degage:
 
                         _inPattern = true;
+                        StartCoroutine(Degage());
                         Debug.Log("Pattern Degage");
                         break;
 
@@ -142,11 +168,12 @@ namespace Ennemis
         {
             _willShoot = true;
             yield return new WaitForSeconds(timeBtwShoot);
-            _willShoot = true;
+
+            _willShoot = false;
             _isShooting = true;
 
             //balle basique
-            GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+            GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
             bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_playerDirection.normalized);            
             
             _isShooting = false;
@@ -160,15 +187,20 @@ namespace Ennemis
                 _isShooting = true;
                 
                 //Les balles anticipée
-                bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y) * _shootingAllonge, _mySelf.rotation, _mySelf);
+                bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
                 bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
 
                 _isShooting = false;
 
             } while (NumberOfBullet > 0);
 
+
+            yield return new WaitForSeconds(1f);
+
             //fin du pattern
-            _inPattern = true;
+            _inPattern = false;
+            NextDirection(_actualPattern);
+
         }
 
         public IEnumerator Acharnement(float rushSpeed, int NumberOfIteration)
@@ -178,10 +210,11 @@ namespace Ennemis
             do
             {
                 NumberOfIteration--;
+                _lifeSyst._isVunerable = false;
                 targetPos = _player.position;
                 _willRush = true;
 
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.2f);
 
                 _willRush = false;
                 _isRushing = true;
@@ -189,7 +222,7 @@ namespace Ennemis
                 _rushDirection = (targetPos - _mySelf.position).normalized;
                 _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
 
-                while (_spotDistance > 2) // boucle durant la durée du dash
+                while (_spotDistance > 0.5f) // boucle durant la durée du dash
                 {
                     _rushDirection = (targetPos - _mySelf.position).normalized;
                     _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
@@ -198,7 +231,7 @@ namespace Ennemis
 
                     _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
 
-                    if(Vector2.Distance(_mySelf.position, _player.position) < 2f)
+                    if(Vector2.Distance(_mySelf.position, _player.position) < 1f)
                     {
                         NumberOfIteration = 0;
                     }
@@ -208,13 +241,177 @@ namespace Ennemis
                 }
 
                 _myBody.velocity = Vector2.zero;
+                _lifeSyst._isVunerable = true;
                 _isRushing = false;
             } while (NumberOfIteration > 0);
 
+            yield return new WaitForSeconds(1f);
+
             //fin du pattern
-            _inPattern = true;
+            _inPattern = false;
+            NextDirection(_actualPattern);
+
         }
 
+        public IEnumerator ComboEclair(float lightningRushSpeed, int NumberOfIteration, Vector3 UpLeft, Vector3 DownRight)
+        {
+            Vector3 targetPos;
+            bool touchLimit;
 
+            do
+            {
+                NumberOfIteration--;
+                _willLightningRush = true;
+
+                yield return new WaitForSeconds(0.75f);
+                targetPos = _player.position;
+
+                _willLightningRush = false;
+                _isLightningRush = true;
+                touchLimit = false;
+
+                _lightningRushDirection = (targetPos - _mySelf.position).normalized;
+
+                while (!touchLimit) // boucle durant la durée du dash
+                {
+
+                    _myBody.velocity = _lightningRushDirection * lightningRushSpeed;
+
+                    if (_mySelf.position.x < UpLeft.x && _lightningRushDirection.x < 0)
+                    {
+                        touchLimit = true;
+                    }
+                    else if (_mySelf.position.x > DownRight.x && _lightningRushDirection.x > 0)
+                    {
+                        touchLimit = true;
+                    }
+                    else if (_mySelf.position.y > UpLeft.y && _lightningRushDirection.y > 0)
+                    {
+                        touchLimit = true;
+                    }
+                    else if (_mySelf.position.y < DownRight.y && _lightningRushDirection.y < 0)
+                    {
+                        touchLimit = true;
+                    }
+
+                    // Retour à la prochaine frame
+                    yield return new WaitForEndOfFrame();
+                }
+
+                _myBody.velocity = Vector2.zero;
+                _isLightningRush = false;
+
+            } while (NumberOfIteration > 0);
+
+            yield return new WaitForSeconds(1f);
+
+            //fin du pattern
+            _inPattern = false;
+            NextDirection(_actualPattern);
+
+        }
+
+        public IEnumerator AngleMort(Vector3 PlayerPos)
+        {
+            _willTPonPlayer = true;
+
+            yield return new WaitForSeconds(1.5f);
+
+            _willTPonPlayer = false;
+
+            _myBody.position = PlayerPos;
+            Instantiate(_angleMortAttack, this.transform.position, this.transform.rotation);
+
+            yield return new WaitForSeconds(1f);
+
+            //fin du pattern
+            _inPattern = false; 
+            NextDirection(_actualPattern);
+
+        }
+
+        public IEnumerator TirDansLeDos()
+        {
+
+            yield return new WaitForSeconds(0.5f);
+
+            //TP derrière le joueur
+            _mySelf.position = _player.position - (new Vector3(_input._CharacterDirection.x, _input._CharacterDirection.y, 0) * 3) ;
+
+            yield return new WaitForSeconds(0.5f);
+
+            //Les balles anticipée
+            GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
+            bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
+
+            yield return new WaitForSeconds(1f);
+
+            //fin du pattern
+            _inPattern = false;
+            NextDirection(_actualPattern);
+        }
+
+        public IEnumerator Degage()
+        {
+
+            yield return new WaitForSeconds(1.5f);
+
+            Instantiate(_DegageAttack, this.transform.position, this.transform.rotation);
+
+            yield return new WaitForSeconds(1f);
+
+            //fin du pattern
+            _inPattern = false;
+            NextDirection(_actualPattern);
+
+        }
+
+        private void NextDirection(Pattern previousPattern)
+        {
+            int diceRoll = 0;
+
+            
+                diceRoll = Random.Range(0, 11); //il y a 6 patterns
+
+                if (diceRoll < 2)
+                {
+                    _actualPattern = Pattern.TirDansLeDos;
+                }
+                else if (diceRoll >= 2 && diceRoll < 4)
+                {
+                    _actualPattern = Pattern.Acharnement;
+                }
+                else if (diceRoll >= 4 && diceRoll < 5)
+                {
+                    _actualPattern = Pattern.AngleMort;
+                }
+                else if (diceRoll >= 5 && diceRoll < 6)
+                {
+                    _actualPattern = Pattern.Degage;
+                }
+                else if (diceRoll >= 6 && diceRoll < 8)
+                {
+                    _actualPattern = Pattern.Execution;
+                }
+                else if (diceRoll >= 8 && diceRoll < 10)
+                {
+                    _actualPattern = Pattern.Acharnement;
+                }
+                else //  diceRoll < 20
+                {
+                    _actualPattern = Pattern.Rien;
+                }
+        }
+
+        private void OnDrawGizmos()
+        {
+            //Zone de combat
+            Vector3 test = UpLeftCorner.position - DownRightCorner.position;
+
+            Debug.DrawRay(UpLeftCorner.position, Vector3.down * test.y, Color.green);
+            Debug.DrawRay(UpLeftCorner.position, Vector3.left * test.x, Color.green);
+            Debug.DrawRay(DownRightCorner.position, Vector3.up * test.y, Color.green);
+            Debug.DrawRay(DownRightCorner.position, Vector3.right * test.x, Color.green);
+        }
     }
 }

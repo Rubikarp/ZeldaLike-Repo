@@ -18,6 +18,7 @@ namespace Ennemis
         [Header("Variable à lire")]
         public bool _isTakingDamage = false;
         public bool _isMarked = false;
+        public bool _isVunerable = true;
         public bool IsBleeding
         {
             get { return _isMarked; }
@@ -63,22 +64,25 @@ namespace Ennemis
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Attack") || collision.gameObject.CompareTag("Knife"))
+            if (_isVunerable)
             {
-                if (collision.gameObject.CompareTag("Knife"))
+                if (collision.gameObject.CompareTag("Attack") || collision.gameObject.CompareTag("Knife"))
                 {
-                    GetMarked();
-                }
+                    if (collision.gameObject.CompareTag("Knife"))
+                    {
+                        GetMarked();
+                    }
 
-                Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;
+                    Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;
 
-                Int_Damage attackData = collision.gameObject.GetComponent<Int_Damage>();
+                    Int_Damage attackData = collision.gameObject.GetComponent<Int_Damage>();
 
-                float knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
+                    float knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
 
-                if (!_isTakingDamage)
-                {
-                    StartCoroutine(TakingDamage(attackData.Damage, knockBackDirection, knockbackSpeed, attackData.StunDuration));
+                    if (!_isTakingDamage)
+                    {
+                        StartCoroutine(TakingDamage(attackData.Damage, knockBackDirection, knockbackSpeed, attackData.StunDuration));
+                    }
                 }
             }
         }
