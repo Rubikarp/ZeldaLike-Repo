@@ -18,12 +18,8 @@ namespace Game
         // Update is called once per frame
         void Update()
         {
-            if (GetComponent<Scr_LD_ActiveState>()._isActive == false)
-            {
-                _portal1.SetActive(false);
-                _portal2.SetActive(false);
-            }
-            else if (GetComponent<Scr_LD_ActiveState>()._isActive == true)
+            
+            if (GetComponent<Scr_LD_ActiveState>()._isActive == true)
             {
                 _portal1.SetActive(true);
                 _portal2.SetActive(true);
