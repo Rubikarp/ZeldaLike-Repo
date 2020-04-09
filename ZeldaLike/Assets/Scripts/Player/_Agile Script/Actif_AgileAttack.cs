@@ -10,6 +10,7 @@ namespace Game
         [SerializeField] private GameObject _Avatar = null;
         [SerializeField] private GameObject _HurtBox = null;
         [SerializeField] private AnimatorManager _animator = null;
+        [SerializeField] private Bond_zone _bondDetecZone = null;
 
 
         private Rigidbody2D _rgb = null;
@@ -50,57 +51,31 @@ namespace Game
         {
             if (_input._attack && _canAttack)
             {
-                //calcul angle
-                float rotZ = Mathf.Atan2(_input._CharacterDirection.y, _input._CharacterDirection.x) * Mathf.Rad2Deg;
-                RaycastHit2D hit = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5 - Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur/2), new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position);
+                GameObject Target = _bondDetecZone.NearestEnnemis();
 
-                if (hit.collider != null)
+                if(Target == null)
                 {
-                    //Est ce que je touche un ennemi ?
-                    if (hit.transform.CompareTag("Ennemis"))
+                    //attaque classique
+                    Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
+                    _animator.TriggerAttack();
+                    _canAttack = false;
+                }
+                else
+                {
+                    _isBleeding = Target.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
+
+                    if (_isBleeding)
                     {
-                        _canAttack = false;
-                        _canAttackTime = _canAttackTimer;
-
-                        GameObject _actualTarget = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5, new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position).transform.gameObject;
-                        
-                        _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
-                        if (!_isBleeding)
-                        {
-                            _isBleeding = _actualTarget.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
-                        }
-
-                        //saigne t'il?
-                        if (_isBleeding)
-                        {
-                            StartCoroutine(Bond(_Avatar.transform.position, _actualTarget.transform.position, _bondSpeed, _bondMaxDur));
-                            _isBleeding = false;
-                        }
-                        //attaque classique
-                        else
-                        {
-                            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
-                            _animator.TriggerAttack();
-
-                        }
+                        StartCoroutine(Bond(_Avatar.transform.position, Target, _bondSpeed, _bondMaxDur));
+                        _isBleeding = false;
                     }
                     else
                     {
                         //attaque classique
-                        Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+                        Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
                         _animator.TriggerAttack();
                         _canAttack = false;
                     }
-                }
-                //attaque classique dans le vide
-                else
-                {
-                    //attaque classique
-                    Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
-                    _animator.TriggerAttack();
-                    _canAttack = false;
-
-
                 }
             }
             else
@@ -121,12 +96,12 @@ namespace Game
             }
         }
 
-        private IEnumerator Bond(Vector3 me, Vector3 cible, float speed, float maxDuration)
+        private IEnumerator Bond(Vector3 me, GameObject cible, float speed, float maxDuration)
         {
-            float distance = Vector2.Distance(_rgb.position, cible);
-            Vector2 direction = cible - me;
+            float distance = Vector2.Distance(_rgb.position, cible.transform.position);
+            Vector2 direction = (cible.transform.position - me).normalized;
 
-            GameObject bond = Instantiate(_bondObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
+            GameObject bond = Instantiate(_bondObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
 
             _HurtBox.SetActive(false);
             _invulnerabiltyTime = _invulnerabiltyTimer;
@@ -135,29 +110,25 @@ namespace Game
             {
                 _rgb.position += direction * speed * Time.deltaTime;
 
-                distance = Vector2.Distance(_rgb.position, cible);
+                distance = Vector2.Distance(_rgb.position, cible.transform.position);
+                direction = (cible.transform.position - me).normalized;
+
                 maxDuration -= Time.deltaTime;
-                //Debug.Log("distance = " + distance + "maxDuration = " + maxDuration);
 
                 if (0 > maxDuration)
                 {
+                    _rgb.velocity = Vector2.zero;
                     break;
                 }
 
-                // Retour à la prochaine frame
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();   // Retour à la prochaine frame
             }
 
             yield return null;
 
+            _rgb.velocity = Vector2.zero;
             Destroy(bond);
             _canAttack = true;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 - Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
-            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 + Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
         }
 
         private void OnDisable()
