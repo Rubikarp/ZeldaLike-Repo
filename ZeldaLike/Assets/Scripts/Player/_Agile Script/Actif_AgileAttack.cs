@@ -11,7 +11,6 @@ namespace Game
         [SerializeField] private GameObject _HurtBox = null;
         [SerializeField] private AnimatorManager _animator = null;
 
-
         private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
 
@@ -57,18 +56,14 @@ namespace Game
                 if (hit.collider != null)
                 {
                     //Est ce que je touche un ennemi ?
-                    if (hit.transform.CompareTag("Ennemis"))
+                    if (hit.transform.CompareTag("Ennemis/HurtBox"))
                     {
                         _canAttack = false;
                         _canAttackTime = _canAttackTimer;
 
                         GameObject _actualTarget = Physics2D.BoxCast(_rgb.position + _input._CharacterDirection * 5, new Vector2(_jumpRange, _jumpLargeur), rotZ, _Avatar.transform.position).transform.gameObject;
                         
-                        _isBleeding = _actualTarget.GetComponentInChildren<Int_EnnemisLifeSystem>().IsBleeding;
-                        if (!_isBleeding)
-                        {
-                            _isBleeding = _actualTarget.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
-                        }
+                        _isBleeding = _actualTarget.GetComponent<Int_EnnemisLifeSystem>().IsBleeding;
 
                         //saigne t'il?
                         if (_isBleeding)
@@ -99,8 +94,6 @@ namespace Game
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _Avatar.transform);
                     _animator.TriggerAttack();
                     _canAttack = false;
-
-
                 }
             }
             else
@@ -152,12 +145,6 @@ namespace Game
 
             Destroy(bond);
             _canAttack = true;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 - Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
-            Debug.DrawRay(_rgb.position + _input._CharacterDirection * 3 + Vector2.Perpendicular(_input._CharacterDirection) * (_jumpLargeur / 2), _input._CharacterDirection.normalized.normalized * _jumpRange, Color.blue);
         }
 
         private void OnDisable()
