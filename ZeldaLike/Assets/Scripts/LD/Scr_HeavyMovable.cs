@@ -8,19 +8,39 @@ namespace Game
         [SerializeField] private GameObject _HeavyForm = null;
         [SerializeField] private Rigidbody2D _myBody = null;
         private float _delay;
+        private bool _movable;
+        [HideInInspector] public Vector2 _rockDirection;
 
         void Start()
         {
             _myBody = this.gameObject.GetComponent<Rigidbody2D>();
             _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            _movable = false;
             _delay = 0.25f;
         }
 
         void Update()
         {
-            if (_HeavyForm.activeSelf)
+            //_myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            if (_movable == true)
             {
-                _myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+                _rockDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY")).normalized;
+
+                if (Mathf.Abs(_rockDirection.x) > Mathf.Abs(_rockDirection.y))
+                {
+                    _myBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                    _myBody.velocity = new Vector2(0 , 5).normalized;
+
+                }
+                else if (Mathf.Abs(_rockDirection.x) <= Mathf.Abs(_rockDirection.y))
+                {
+                    _myBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    _myBody.velocity = new Vector2(5, 0).normalized;
+
+
+                }
             }
             else
             {
@@ -38,6 +58,22 @@ namespace Game
                 _delay = 0.25f;
             }
  
+        }
+
+        private void OnTriggerEnter2D (Collider2D collision)
+        {
+            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _HeavyForm.activeSelf)
+            {
+                _movable = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _HeavyForm.activeSelf)
+            {
+                _movable = false;
+            }
         }
     }
 }
