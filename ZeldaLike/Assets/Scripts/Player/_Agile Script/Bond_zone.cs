@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ennemis
+namespace Game
 {
     public class Bond_zone : MonoBehaviour
     {
@@ -30,16 +30,16 @@ namespace Ennemis
         public GameObject NearestEnnemis()
         {
             GameObject nearestEnnemis = null;
+            float nearestDist = 1000;
 
             foreach (GameObject ennemis in _detectedEnnemisList)
             {
-                float nearestDist = 1000;
                 float testingDist = Vector2.Distance(_player.position, ennemis.transform.position);
 
                 if (testingDist < nearestDist)
                 {
                     nearestEnnemis = ennemis;
-                    testingDist = nearestDist;
+                    nearestDist = testingDist;
                 }
             }
 
