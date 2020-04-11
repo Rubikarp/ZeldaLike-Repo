@@ -58,6 +58,7 @@ namespace Game
                     //attaque classique
                     Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
                     _animator.TriggerAttack();
+                    _canAttackTime = _canAttackTimer;
                     _canAttack = false;
                 }
                 else
@@ -66,6 +67,8 @@ namespace Game
 
                     if (_isBleeding)
                     {
+                        _canAttackTime = _canAttackTimer;
+                        _canAttack = false;
                         StartCoroutine(Bond(_Avatar.transform.position, Target, _bondSpeed, _bondMaxDur));
                         _isBleeding = false;
                     }
@@ -74,6 +77,7 @@ namespace Game
                         //attaque classique
                         Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
                         _animator.TriggerAttack();
+                        _canAttackTime = _canAttackTimer;
                         _canAttack = false;
                     }
                 }
@@ -88,10 +92,13 @@ namespace Game
                 }
 
                 //invulnerability timer
-                _canAttackTime -= Time.deltaTime;
                 if (_canAttackTime <= 0)
                 {
                     _canAttack = true;
+                }
+                else
+                {
+                    _canAttackTime -= Time.deltaTime;
                 }
             }
         }
@@ -128,17 +135,13 @@ namespace Game
 
             _rgb.velocity = Vector2.zero;
             Destroy(bond);
-            _canAttack = true;
         }
 
         private void OnDisable()
         {
             _HurtBox.SetActive(true);
-        }
-
-        private void OnEnable()
-        {
             _canAttack = true;
         }
+
     }
 }
