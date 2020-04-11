@@ -18,7 +18,6 @@ namespace Game
         public bool _canSwitch = true;
         public float _switchTimer = 0f;
 
-
         [Header("Variable à Tweek")]
         public float _switchCooldown = 0.3f;
 
@@ -27,9 +26,9 @@ namespace Game
         public Data_PlayerForme _agile = null;
         public Data_PlayerForme _heavy = null;
 
-        private Data_PlayerForme _leftForm = null;
-        private Data_PlayerForme _actualForm = null;
-        private Data_PlayerForme _rightForm = null;
+        public Data_PlayerForme _leftForm = null;
+        public Data_PlayerForme _actualForm = null;
+        public Data_PlayerForme _rightForm = null;
 
         [Space(10)]
 

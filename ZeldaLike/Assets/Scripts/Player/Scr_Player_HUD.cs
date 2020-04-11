@@ -8,16 +8,28 @@ namespace Game
 {
     public class Scr_Player_HUD : MonoBehaviour
     {
-        [SerializeField] Scr_PlayerLifeSystem _lifeSystem = default;
+        public enum Forme { Humain, Agile, Lourd }
+
         [SerializeField] InputManager _input = default;
         [SerializeField] Scr_FormeManager _forme = default;
-        
-        [SerializeField] Image[] coeur = default;
-        [SerializeField] Slider energieBar = default;
+        [SerializeField] Scr_PlayerLifeSystem _lifeSystem = default;
+
+        [SerializeField] public Image[] coeur = default;
+        [SerializeField] public RectTransform _formePalette = default;
+
+        private void Start()
+        {
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+        }
 
         void Update()
         {
             lifeBarUpdate(_lifeSystem._life);
+        }
+
+        private void LateUpdate()
+        {
+            FormePalette();          
         }
 
         private void lifeBarUpdate(int health)
@@ -109,9 +121,9 @@ namespace Game
                     break;
                 case 6: //Max de départ
                     {
-                        for(int i = 1; i < coeur.Length; i++)
+                        for (int i = 1; i < coeur.Length; i++)
                         {
-                            if(i <= 6)
+                            if (i <= 6)
                             {
                                 coeur[i].gameObject.SetActive(true);
                             }
@@ -169,12 +181,20 @@ namespace Game
             }
         }
 
-        private void EnergieJauge(int energie)
+        private void FormePalette()
         {
-            energieBar.value = energie;
+            if (_forme._humanSprite.activeInHierarchy)
+            {
+                _formePalette.LeanRotateZ( 0, 0.3f);
+            }
+            if (_forme._agileSprite.activeInHierarchy)
+            {
+                _formePalette.LeanRotateZ(120, 0.3f);
+            }
+            if (_forme._heavySprite.activeInHierarchy)
+            {
+                _formePalette.LeanRotateZ(-120, 0.3f);
+            }
         }
-
-
-
     }
 }
