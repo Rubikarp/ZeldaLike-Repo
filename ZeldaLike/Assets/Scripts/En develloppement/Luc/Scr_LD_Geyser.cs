@@ -15,6 +15,7 @@ namespace Game
         private bool _startRepulse;
 
         public Rigidbody2D _targetBody;
+        private List<GameObject> _targetEnnemyBodies; 
 
         // Start is called before the first frame update
         void Start()
@@ -43,6 +44,7 @@ namespace Game
 
         void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("truc");
             if (collision.gameObject.CompareTag("Player"))
             {
                 _targetBody = collision.gameObject.transform.parent.parent.GetComponent<Rigidbody2D>();
@@ -56,6 +58,19 @@ namespace Game
                 }
 
                 Debug.Log("Target");
+            }
+            else if (collision.gameObject.CompareTag("Ennemis"))
+            {
+
+                StartCoroutine(RepulseEnnemies(collision.gameObject.transform.parent.position, collision.gameObject.GetComponentInParent<Rigidbody2D>(), _repulseDelay, _repulseDuration));
+
+                //On lance le délai si celui-ci n'est pas déjà lancé;
+                if (_startRepulse == false)
+                {
+                    _startRepulse = true;
+                }
+
+                Debug.Log("Target Ennemy");
             }
         }
 
@@ -79,6 +94,30 @@ namespace Game
                     }
 
                     body.velocity = Vector2.zero;
+                }
+            }
+        }
+
+        IEnumerator RepulseEnnemies(Vector3 position, Rigidbody2D targetObject, float delay, float duration)
+        {
+            yield return new WaitForSeconds(delay);
+
+            Collider2D[] ennemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
+
+            for (int i = 0; i < ennemyToRepulse.Length; i++)
+            {
+                if (ennemyToRepulse[i].gameObject == targetObject.gameObject)
+                {
+                    Vector3 repulseDirection = position - ennemyToRepulse[i].gameObject.transform.position;
+
+                    while (duration > 0)
+                    {
+                        targetObject.velocity = repulseDirection * _repulseSpeed;
+                        duration -= Time.deltaTime;
+                        yield return new WaitForEndOfFrame();
+                    }
+
+                    targetObject.velocity = Vector2.zero;
                 }
             }
         }
