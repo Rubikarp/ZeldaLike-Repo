@@ -112,8 +112,6 @@ namespace Game
     
         void RefreshActual()
         {
-            PlayerMove._actualForme = _actualForm;
-
             switch (actualForm)
             {
                 case Forme.Humain:

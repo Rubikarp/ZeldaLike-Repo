@@ -3,17 +3,20 @@ using Management;
 
 public class Actif_KnifeThrowing : MonoBehaviour
 {
-
+    [Header("Component")]
     [SerializeField] private InputManager _input = null;
     [SerializeField] private AnimatorManager _animator = null;
 
-    public GameObject _knife;
-    public Transform _Container;
-    public Transform _attackPos;
+    [Space(10)]
 
-    [SerializeField] private bool _goodToShoot = true;
-    public float _throwRecup = 0.2f;
-    public float _recupTimer = 0f;
+    [SerializeField] private GameObject _knife;
+    [SerializeField] private Transform _KnifeContainer;
+    [SerializeField] private Transform _attackPos;
+
+    [Header("Variable")]
+    [SerializeField] private bool _canShoot = true;
+    [SerializeField] private float _Cooldown = 0.2f;
+    private float _reloadTime = 0f;
 
     void Start()
     {
@@ -22,22 +25,27 @@ public class Actif_KnifeThrowing : MonoBehaviour
 
     void Update()
     {
-        if (_input._attack && _goodToShoot == true)
+        if (_input._attack && _canShoot == true)
         {
-            Instantiate(_knife, _attackPos.position, _attackPos.rotation, _Container);
+            Instantiate(_knife, _attackPos.position, _attackPos.rotation, _KnifeContainer);
             _animator.TriggerAttack();
 
-            _goodToShoot = false;
-            _recupTimer = _throwRecup;
+            _canShoot = false;
+            _reloadTime = _Cooldown;
         }
         else
         {
-            _recupTimer -= Time.deltaTime;
+            _reloadTime -= Time.deltaTime;
 
-            if(_recupTimer <= 0)
+            if(_reloadTime <= 0)
             {
-                _goodToShoot = true;
+                _canShoot = true;
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        _canShoot = true;
     }
 }

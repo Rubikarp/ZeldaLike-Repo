@@ -12,7 +12,7 @@ namespace Management
 
         [Header("Components")]
         [SerializeField] Scr_PlayerLifeSystem _playerLife = null;
-        [SerializeField] Scr_FormeManager _formeManager = null;
+        [SerializeField] Scr_FormeHandler _formeManager = null;
 
         [Space(10)]
         //Humain
@@ -47,7 +47,7 @@ namespace Management
             _animator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
 
             //Bool pour la forme
-            if(_formeManager.actualForm == Scr_FormeManager.Forme.Lourd && !_isLourd)
+            if(_formeManager._switchForm == Scr_FormeHandler.Forme.Heavy && !_isLourd)
             {
                 _spritRend.color = Color.red;
 
@@ -62,7 +62,7 @@ namespace Management
                 _animator.SetTrigger("GoLourd");
             }
             else
-            if (_formeManager.actualForm == Scr_FormeManager.Forme.Agile && !_isAgile)
+            if (_formeManager._switchForm == Scr_FormeHandler.Forme.Agile && !_isAgile)
             {
                 _spritRend.color = Color.white;
 
@@ -78,7 +78,7 @@ namespace Management
 
             }
             else
-            if(_formeManager.actualForm == Scr_FormeManager.Forme.Humain && !_isHumain)
+            if(_formeManager._switchForm == Scr_FormeHandler.Forme.Humain && !_isHumain)
             {
                 _spritRend.color = Color.white;
 

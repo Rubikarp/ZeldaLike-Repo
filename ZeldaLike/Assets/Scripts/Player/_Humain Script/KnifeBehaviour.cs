@@ -6,19 +6,23 @@ namespace Game
 {
     public class KnifeBehaviour : MonoBehaviour
     {
+        [Header("Component")]
+        private Rigidbody2D _Body;
+        private GameObject _player;
+
+        [Header("Variable")]
         public float _Speed = 35f;
         public float _Damage = 2f;
-        public float _angleCorrection = 0;
-        private Rigidbody2D _Body;
-        private bool _ephemerate;
+        [Space(10)]
+        public bool _ephemerate = true;
         public float _Lifetime = 0.4f;
-        private GameObject _player;
+        [Space(10)]
+        public float _angleCorrection = 0;
         private Vector2 _playerOrientation;
 
         private void Start()
         {
             _Body = GetComponent<Rigidbody2D>();
-            _ephemerate = true;
             _player = GameObject.FindGameObjectWithTag("Player");
             _playerOrientation = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>()._CharacterDirection;
             FaceShootingDirection(_playerOrientation);
@@ -26,32 +30,24 @@ namespace Game
 
         private void Update()
         {
-            _Body.velocity = _Speed * 1000 * _playerOrientation.normalized * Time.deltaTime;
-
-            if (_ephemerate == true)
+            if (_ephemerate)
             {
+                Destroy(gameObject, _Lifetime);
                 _ephemerate = false;
-                StartCoroutine(LimitedLifetime(_Lifetime));
             }
+        }
+
+        private void FixedUpdate()
+        {
+            _Body.velocity = _Speed * _playerOrientation.normalized;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Ennemis"))
             {
-                DestroyKnife(gameObject);
+                Destroy(gameObject);
             }
-        }
-
-        private IEnumerator LimitedLifetime(float Lifetime)
-        {
-            yield return new WaitForSeconds(Lifetime);
-            DestroyKnife(gameObject);
-        }
-
-        private void DestroyKnife(GameObject knife)
-        {
-            Destroy(knife);
         }
 
         private void FaceShootingDirection(Vector2 shootingDirection)

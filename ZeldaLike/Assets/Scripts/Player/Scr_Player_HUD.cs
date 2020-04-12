@@ -11,7 +11,7 @@ namespace Game
         public enum Forme { Humain, Agile, Lourd }
 
         [SerializeField] InputManager _input = default;
-        [SerializeField] Scr_FormeManager _forme = default;
+        [SerializeField] Scr_FormeHandler _forme = default;
         [SerializeField] Scr_PlayerLifeSystem _lifeSystem = default;
 
         [SerializeField] public Image[] coeur = default;
@@ -25,11 +25,7 @@ namespace Game
         void Update()
         {
             lifeBarUpdate(_lifeSystem._life);
-        }
-
-        private void LateUpdate()
-        {
-            FormePalette();          
+            FormePalette();
         }
 
         private void lifeBarUpdate(int health)
@@ -183,17 +179,19 @@ namespace Game
 
         private void FormePalette()
         {
-            if (_forme._humanSprite.activeInHierarchy)
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
             {
-                _formePalette.LeanRotateZ( 0, 0.3f);
+                _formePalette.LeanRotateZ(0, 1f);
             }
-            if (_forme._agileSprite.activeInHierarchy)
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
             {
-                _formePalette.LeanRotateZ(120, 0.3f);
+                _formePalette.LeanRotateZ(120, 1f);
             }
-            if (_forme._heavySprite.activeInHierarchy)
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
-                _formePalette.LeanRotateZ(-120, 0.3f);
+                _formePalette.LeanRotateZ(-120, 1f);
             }
         }
     }

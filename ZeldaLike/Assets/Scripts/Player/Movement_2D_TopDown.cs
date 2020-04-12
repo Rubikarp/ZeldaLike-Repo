@@ -10,7 +10,7 @@ namespace Game
         [SerializeField] private Rigidbody2D _body = null;
         [SerializeField] private InputManager _input = null;
         [Space(10)]
-        public Data_PlayerForme _actualForme = null;
+        public Scr_FormeHandler _forme = null;
         [Space(10)]
         [SerializeField] private float _activeSpeed = 0f;
 
@@ -38,13 +38,13 @@ namespace Game
 
 
                 //determine la vitesse
-                if (_accTimer < _actualForme._accelerationCurve.keys[_actualForme._accelerationCurve.length - 1].time) //regarde le temps de la dernière key
+                if (_accTimer < _forme._actualForm._accelerationCurve.keys[_forme._actualForm._accelerationCurve.length - 1].time) //regarde le temps de la dernière key
                 {
-                    _activeSpeed = _actualForme._maxSpeed * _actualForme._accelerationCurve.Evaluate(_accTimer);
+                    _activeSpeed = _forme._actualForm._maxSpeed * _forme._actualForm._accelerationCurve.Evaluate(_accTimer);
                 }
                 else
                 {
-                    _activeSpeed = _actualForme._maxSpeed * _actualForme._topSpeedCurve.Evaluate(_accTimer);
+                    _activeSpeed = _forme._actualForm._maxSpeed * _forme._actualForm._topSpeedCurve.Evaluate(_accTimer);
                 }
 
                 //applique la vitesse
@@ -62,7 +62,7 @@ namespace Game
                 _decTimer += Time.deltaTime;
 
                 //determine la vitesse
-                _activeSpeed = _actualForme._maxSpeed * _actualForme._deccelerationCurve.Evaluate(_decTimer);
+                _activeSpeed = _forme._actualForm._maxSpeed * _forme._actualForm._deccelerationCurve.Evaluate(_decTimer);
 
                 //applique la vitesse
                 _body.velocity = _input._CharacterDirection * _activeSpeed;
