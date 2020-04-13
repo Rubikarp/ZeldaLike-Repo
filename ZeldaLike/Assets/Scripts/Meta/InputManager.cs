@@ -56,8 +56,8 @@ namespace Management
                     _stickMagnitude = _stickDirection.magnitude;
 
                     //Je prends les buttons
-                    _interaction = Input.GetButton("A/Cross");
-                    _attack = Input.GetButton("B/Circle");
+                    _interaction = Input.GetButton("Y/Triangle");
+                    _attack = Input.GetButton("X/Square");
                     _leftSwitch = Input.GetButton("LB/L1");
                     _rightSwitch = Input.GetButton("RB/R1");
 
