@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Management;
 using UnityEngine;
 using UnityEngine.UI;
-using Management;
 
 namespace Game
 {
@@ -10,19 +8,28 @@ namespace Game
     {
         public enum Forme { Humain, Agile, Lourd }
 
-        [SerializeField] InputManager _input = default;
-        [SerializeField] Scr_FormeHandler _forme = default;
-        [SerializeField] Scr_PlayerLifeSystem _lifeSystem = default;
+        [SerializeField] private InputManager _input = default;
+        [SerializeField] private Scr_FormeHandler _forme = default;
+        [SerializeField] private Scr_PlayerLifeSystem _lifeSystem = default;
 
         [SerializeField] public Image[] coeur = default;
         [SerializeField] public RectTransform _formePalette = default;
+
+        private float switchDuration = 0.3f;
+
+        private float littleSize = 0.3f;
+        private float largeSize = 0.4f;
+
+        [SerializeField] public RectTransform _formeAgile = default;
+        [SerializeField] public RectTransform _formeHeavy = default;
+        [SerializeField] public RectTransform _formeHumain = default;
 
         private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
         }
 
-        void Update()
+        private void Update()
         {
             lifeBarUpdate(_lifeSystem._life);
             FormePalette();
@@ -40,6 +47,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 1:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -55,6 +63,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 2:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -70,6 +79,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 3:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -85,6 +95,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 4:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -100,6 +111,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 5:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -115,6 +127,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 6: //Max de départ
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -130,6 +143,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 7:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -145,6 +159,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 8:
                     {
                         for (int i = 1; i < coeur.Length; i++)
@@ -160,6 +175,7 @@ namespace Game
                         }
                     }
                     break;
+
                 case 9:
                     {
                         foreach (Image allImage in coeur)
@@ -179,19 +195,52 @@ namespace Game
 
         private void FormePalette()
         {
-            if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
+            if (_input._leftSwitch || _input._rightSwitch)
             {
-                _formePalette.LeanRotateZ(0, 1f);
-            }
-            else
-            if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
-            {
-                _formePalette.LeanRotateZ(120, 1f);
-            }
-            else
-            if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
-            {
-                _formePalette.LeanRotateZ(-120, 1f);
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
+                {
+                    _formePalette.LeanRotateZ(0, switchDuration);
+
+                    _formeHumain.LeanScaleX(largeSize, switchDuration);
+                    _formeHumain.LeanScaleY(largeSize, switchDuration);
+
+                    _formeAgile.LeanScaleX(littleSize, switchDuration);
+                    _formeAgile.LeanScaleY(littleSize, switchDuration);
+
+                    _formeHeavy.LeanScaleX(littleSize, switchDuration);
+                    _formeHeavy.LeanScaleY(littleSize, switchDuration);
+
+                }
+                else
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
+                {
+                    _formePalette.LeanRotateZ(120, switchDuration);
+
+                    _formeHumain.LeanScaleX(littleSize, switchDuration);
+                    _formeHumain.LeanScaleY(littleSize, switchDuration);
+
+                    _formeAgile.LeanScaleX(largeSize, switchDuration);
+                    _formeAgile.LeanScaleY(largeSize, switchDuration);
+
+                    _formeHeavy.LeanScaleX(littleSize, switchDuration);
+                    _formeHeavy.LeanScaleY(littleSize, switchDuration);
+
+                }
+                else
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+                {
+                    _formePalette.LeanRotateZ(-120, switchDuration);
+
+                    _formeHumain.LeanScaleX(littleSize, switchDuration);
+                    _formeHumain.LeanScaleY(littleSize, switchDuration);
+
+                    _formeAgile.LeanScaleX(littleSize, switchDuration);
+                    _formeAgile.LeanScaleY(littleSize, switchDuration);
+
+                    _formeHeavy.LeanScaleX(largeSize, switchDuration);
+                    _formeHeavy.LeanScaleY(largeSize, switchDuration);
+
+                }
             }
         }
     }

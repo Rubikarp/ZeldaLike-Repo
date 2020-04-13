@@ -3,10 +3,10 @@
 namespace Management
 {
     /// Fait par Arthur Deleye
-    /// 
-    /// [SerializeField] private InputManager _input;        
+    ///
+    /// [SerializeField] private InputManager _input;
     /// _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-    
+
     public class InputManager : Singleton<InputManager>
     {
         public bool _canInput = true;
@@ -15,6 +15,7 @@ namespace Management
         [Header("Stick")]
         //Direction du stick
         public Vector2 _stickDirection;
+
         public float _stickMagnitude;
 
         [Header("Interaction Button")]
@@ -29,6 +30,9 @@ namespace Management
         [Header("Right Switch Button")]
         public bool _rightSwitch;
 
+        [Header("Pause Button")]
+        public bool _pause;
+
         [Header("Avatar facing direction")]
         //Dernière direction
         public Vector2 _CharacterDirection = Vector2.zero;
@@ -40,6 +44,8 @@ namespace Management
             {
                 _360Controller = !_360Controller;
             }
+
+            _pause = Input.GetButtonDown("Pause");
 
             if (_canInput)
             {
@@ -81,7 +87,7 @@ namespace Management
                 }
             }
         }
-        
+
         public void DesactivateControl()
         {
             _canInput = false;

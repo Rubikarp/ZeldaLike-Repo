@@ -1,6 +1,5 @@
-﻿using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game
 {
@@ -18,6 +17,5 @@ namespace Game
             Debug.LogError("Vous venez de quitter le jeu");
             Application.Quit();
         }
-
     }
 }

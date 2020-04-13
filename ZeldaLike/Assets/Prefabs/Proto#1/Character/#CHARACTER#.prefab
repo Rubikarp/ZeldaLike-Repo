@@ -81,6 +81,7 @@ MonoBehaviour:
   _attack: 0
   _leftSwitch: 0
   _rightSwitch: 0
+  _pause: 0
   _CharacterDirection: {x: 0, y: 0}
 --- !u!1 &426099458629431352
 GameObject:
@@ -518,7 +519,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -13844
+  m_InstanceId: -61650
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -1144,7 +1145,7 @@ RectTransform:
   m_GameObject: {fileID: 6063372154500745179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 8630220930838488849}
   m_RootOrder: 2
@@ -1314,6 +1315,9 @@ MonoBehaviour:
   - {fileID: 548593379350778482}
   - {fileID: 5883814575136420286}
   _formePalette: {fileID: 8630220930838488849}
+  _formeAgile: {fileID: 5403616364737251022}
+  _formeHeavy: {fileID: 26214751107164236}
+  _formeHumain: {fileID: 7755014635157741646}
 --- !u!1 &6466084614867164100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1685,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7667871355287191357}
-  m_LocalRotation: {x: 0, y: 0, z: 0.86602545, w: 0.49999994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
@@ -1690,7 +1694,7 @@ RectTransform:
   - {fileID: 7755014635157741646}
   m_Father: {fileID: 7729979151798623250}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -200, y: 200}
@@ -1817,7 +1821,7 @@ GameObject:
   - component: {fileID: 3943034753498928402}
   - component: {fileID: 7791669802953591657}
   m_Layer: 0
-  m_Name: Lourd
+  m_Name: Agile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

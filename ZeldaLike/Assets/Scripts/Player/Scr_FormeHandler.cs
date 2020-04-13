@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using Game;
+﻿using Game;
+using UnityEngine;
 
 namespace Management
 {
     public class Scr_FormeHandler : MonoBehaviour
     {
         public enum Forme { Humain, Agile, Heavy }
+
         [SerializeField] public Forme _switchForm;
 
         [Header("Components")]
@@ -20,26 +21,28 @@ namespace Management
 
         [Header("GameObject Forme")]
         public GameObject _humanGameObject = null;
+
         public GameObject _agileGameObject = null;
         public GameObject _heavyGameObject = null;
 
         [Space(10f)]
-
         [Header("Variable")]
         public bool _canSwitch = true;
+
         public bool _heavyFormeUnlock = false;
 
         [Header("Variable à Tweek")]
         [SerializeField] private float _switchCooldown = 0.3f;
+
         private float _switchTimer = 0f;
 
-        void Start()
+        private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             Initialisation();
         }
 
-        void Update()
+        private void Update()
         {
             if (_canSwitch)
             {
@@ -83,9 +86,9 @@ namespace Management
 
                 case Forme.Agile:
                     if (_heavyFormeUnlock)
-                    { HeavyActivation();}
+                    { HeavyActivation(); }
                     else
-                    {  HumainActivation();}
+                    { HumainActivation(); }
                     break;
 
                 case Forme.Heavy:
@@ -97,6 +100,7 @@ namespace Management
                     break;
             }
         }
+
         private void RoulementGauche()
         {
             switch (_switchForm)
@@ -120,7 +124,6 @@ namespace Management
                     Debug.Log("problem in the switch");
                     break;
             }
-
         }
 
         //Activer une forme
@@ -134,17 +137,18 @@ namespace Management
 
             _humanGameObject.SetActive(true);
         }
+
         public void AgileActivation()
         {
             _switchForm = Forme.Agile;
             _actualForm = _agileForme;
-
 
             _humanGameObject.SetActive(false);
             _heavyGameObject.SetActive(false);
 
             _agileGameObject.SetActive(true);
         }
+
         public void HeavyActivation()
         {
             _switchForm = Forme.Heavy;
