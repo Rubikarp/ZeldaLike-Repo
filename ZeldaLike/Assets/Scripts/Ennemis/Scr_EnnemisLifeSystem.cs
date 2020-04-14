@@ -23,14 +23,16 @@ namespace Ennemis
 
         [Header("Statistiques")]
         public int _life = 5;
+        public bool _isDead = false;
         public bool _isTakingDamage = false;
-        public float _dyingDuration = 0f;
+        public float _dyingDuration = 10f;
         public float knockbackSensibility = 1f;
 
         private void Update()
         {
             if (_life <= 0)
             {
+                _isDead = true;
                 Destroy(Ennemis, _dyingDuration);
             }
 

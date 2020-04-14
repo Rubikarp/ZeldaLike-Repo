@@ -9,7 +9,7 @@ namespace Game
         [Header("Component")]
         public GameObject Avatar = null;
         public Rigidbody2D body = null;
-        public AnimatorManager _animator = null;
+        public AnimatorManager_Player _animator = null;
         public InputManager _input = null;
         private bool dead = false;
 

@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Game;
 
 namespace Ennemis
 {
-    public class Scr_EnnemisBehaviour_NoBrain : MonoBehaviour
+    public class EnnemisBehaviour_ExpRate : MonoBehaviour
     {
         [Header("Data")]
         public Transform _mySelf = null;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
         public Rigidbody2D _myBody = null;
-        //public Animator _myAnimator = null;
 
         [Header("Statistique")]
         public float _movementSpeed = 5f;
@@ -34,7 +34,6 @@ namespace Ennemis
             set { _mySelf = value; }
         }
 
-
         private Vector2 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
@@ -43,7 +42,6 @@ namespace Ennemis
             _target = GameObject.FindGameObjectWithTag("Player").transform;
             _mySelf = this.transform;
             _myBody = this.GetComponent<Rigidbody2D>();
-            //_myAnimator = this.GetComponent<Animator>();
         }
 
         private void Update()
@@ -62,21 +60,24 @@ namespace Ennemis
 
         private void FixedUpdate()
         {
-            if (_haveDetect && !_lifeSyst._isTakingDamage)
+            if (!_lifeSyst._isDead)
             {
-                if (_canDash)
+                if (_haveDetect && !_lifeSyst._isTakingDamage)
                 {
-                    StartCoroutine(Dash(_targetDirection, _dashSpeed, _dashDuration, _dashRepos, _dashCooldown));
-                }
+                    if (_canDash)
+                    {
+                        StartCoroutine(Dash(_targetDirection, _dashSpeed, _dashDuration, _dashRepos, _dashCooldown));
+                    }
 
-                if (!_isDashing)
-                {
-                    _myBody.velocity = _targetDirection.normalized * _movementSpeed;
+                    if (!_isDashing)
+                    {
+                        _myBody.velocity = _targetDirection.normalized * _movementSpeed;
+                    }
                 }
-            }
-            else
-            {
-                StopCoroutine("Dash");
+                else
+                {
+                    StopCoroutine("Dash");
+                }
             }
         }
 

@@ -9,7 +9,7 @@ namespace Game
         [SerializeField] private InputManager _input = null;
         [SerializeField] private GameObject _Avatar = null;
         [SerializeField] private GameObject _HurtBox = null;
-        [SerializeField] private AnimatorManager _animator = null;
+        [SerializeField] private AnimatorManager_Player _animator = null;
         [SerializeField] private Bond_zone _bondDetecZone = null;
 
 

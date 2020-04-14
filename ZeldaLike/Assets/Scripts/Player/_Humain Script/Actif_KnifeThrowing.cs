@@ -5,7 +5,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
 {
     [Header("Component")]
     [SerializeField] private InputManager _input = null;
-    [SerializeField] private AnimatorManager _animator = null;
+    [SerializeField] private AnimatorManager_Player _animator = null;
 
     [Space(10)]
 

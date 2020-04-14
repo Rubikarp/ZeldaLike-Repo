@@ -3,7 +3,7 @@ using Game;
 
 namespace Management
 {
-    public class AnimatorManager : MonoBehaviour
+    public class AnimatorManager_Player : MonoBehaviour
     {
         [Header("Auto Components")]
         [SerializeField] SpriteRenderer _spritRend = null;

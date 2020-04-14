@@ -8,7 +8,7 @@ namespace Game
     {
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private InputManager _input = null;
-        [SerializeField] private AnimatorManager _animator = null;
+        [SerializeField] private AnimatorManager_Player _animator = null;
 
 
         public GameObject _attackObj;
