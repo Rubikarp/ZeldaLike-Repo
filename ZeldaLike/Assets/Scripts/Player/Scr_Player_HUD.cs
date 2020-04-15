@@ -43,7 +43,7 @@ namespace Game
                     {
                         foreach (Image allImage in coeur)
                         {
-                            allImage.gameObject.SetActive(false);
+                            allImage.rectTransform.LeanScale(Vector3.zero, 0.3f);
                         }
                     }
                     break;
@@ -52,13 +52,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 1)
+                            if (i < 1)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -68,13 +68,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 2)
+                            if (i < 2)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -84,13 +84,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 3)
+                            if (i < 3)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -100,13 +100,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 4)
+                            if (i < 4)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -116,13 +116,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 5)
+                            if (i < 5)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -132,13 +132,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 6)
+                            if (i < 6)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -148,13 +148,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 7)
+                            if (i < 7)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -164,13 +164,13 @@ namespace Game
                     {
                         for (int i = 1; i < coeur.Length; i++)
                         {
-                            if (i <= 8)
+                            if (i < 8)
                             {
-                                coeur[i].gameObject.SetActive(true);
+                                coeur[i].rectTransform.LeanScale(Vector3.one, 0.3f);
                             }
                             else
                             {
-                                coeur[i].gameObject.SetActive(false);
+                                coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
                     }
@@ -180,7 +180,7 @@ namespace Game
                     {
                         foreach (Image allImage in coeur)
                         {
-                            allImage.gameObject.SetActive(true);
+                            allImage.rectTransform.LeanScale(Vector3.one, 0.3f);
                         }
                     }
                     break;
