@@ -10,6 +10,7 @@ namespace Game
         public GameObject Avatar = null;
         public Rigidbody2D body = null;
         public AnimatorManager_Player _animator = null;
+        public ScreenShake _scrShake = null;
         public InputManager _input = null;
         private bool dead = false;
 
@@ -86,6 +87,7 @@ namespace Game
         {
             _isTakingDamage = true;
             _life -= damage;
+            _scrShake.trauma = 0.5f;
 
             while (0 < stunDuration) // boucle durant la durée du dash
             {
