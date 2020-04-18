@@ -49,8 +49,6 @@ namespace Management
             //Bool pour la forme
             if(_formeManager._switchForm == Scr_FormeHandler.Forme.Heavy && !_isLourd)
             {
-                _spritRend.color = Color.red;
-
                 _animator.SetBool("IsLourd", true);
                 _animator.SetBool("IsAgile", false);
                 _animator.SetBool("IsHuman", false);
@@ -64,8 +62,6 @@ namespace Management
             else
             if (_formeManager._switchForm == Scr_FormeHandler.Forme.Agile && !_isAgile)
             {
-                _spritRend.color = Color.white;
-
                 _animator.SetBool("IsLourd", false);
                 _animator.SetBool("IsAgile", true);
                 _animator.SetBool("IsHuman", false);
@@ -80,8 +76,6 @@ namespace Management
             else
             if(_formeManager._switchForm == Scr_FormeHandler.Forme.Humain && !_isHumain)
             {
-                _spritRend.color = Color.white;
-
                 _animator.SetBool("IsLourd", false);
                 _animator.SetBool("IsAgile", false);
                 _animator.SetBool("IsHuman", true);

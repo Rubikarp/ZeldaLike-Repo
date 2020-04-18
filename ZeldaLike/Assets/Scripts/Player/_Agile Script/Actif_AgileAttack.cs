@@ -10,6 +10,7 @@ namespace Game
         [SerializeField] private GameObject _Avatar = null;
         [SerializeField] private GameObject _HurtBox = null;
         [SerializeField] private AnimatorManager_Player _animator = null;
+        [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private Bond_zone _bondDetecZone = null;
 
 
@@ -18,7 +19,7 @@ namespace Game
 
         [Header("Attaque data")]
         public GameObject _attackObj;
-
+        [SerializeField] private float _animDecal = 0.2f;
         public Transform _attackContainer;
         public Transform _attackPos;
         [SerializeField] private bool _canAttack = true;
@@ -55,11 +56,8 @@ namespace Game
 
                 if(Target == null)
                 {
-                    //attaque classique
-                    Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
-                    _animator.TriggerAttack();
-                    _canAttackTime = _canAttackTimer;
-                    _canAttack = false;
+                    StartCoroutine(attackClassique(_animDecal));
+
                 }
                 else
                 {
@@ -74,11 +72,7 @@ namespace Game
                     }
                     else
                     {
-                        //attaque classique
-                        Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
-                        _animator.TriggerAttack();
-                        _canAttackTime = _canAttackTimer;
-                        _canAttack = false;
+                        StartCoroutine(attackClassique(_animDecal));
                     }
                 }
             }
@@ -135,6 +129,18 @@ namespace Game
 
             _rgb.velocity = Vector2.zero;
             Destroy(bond);
+        }
+
+        private IEnumerator attackClassique(float _animDecal)
+        {
+            _animator.TriggerAttack();
+            _canAttackTime = _canAttackTimer;
+            _canAttack = false;
+
+            yield return new WaitForSeconds(_animDecal);
+
+            _PlMovement.Immobilize();
+            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
         }
 
         private void OnDisable()

@@ -146,9 +146,11 @@ MonoBehaviour:
   _Avatar: {fileID: 426099458672461377}
   _HurtBox: {fileID: 426099458780276581}
   _animator: {fileID: 426099458913968089}
+  _PlMovement: {fileID: 426099459853713051}
   _bondDetecZone: {fileID: 6614503165312500494}
   _attackObj: {fileID: 2031849455262277083, guid: 9c1d934a943812e41a2510884e7b4a5f,
     type: 3}
+  _animDecal: 0.25
   _attackContainer: {fileID: 426099459497941201}
   _attackPos: {fileID: 426099459277516483}
   _canAttack: 1
@@ -235,7 +237,7 @@ MonoBehaviour:
   _input: {fileID: 426099458386974330}
   _attackPos: {fileID: 426099459277516483}
   _avatar: {fileID: 426099458672461376}
-  _allonge: 2
+  _allonge: 1.5
   _correctionPos: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4788644426683925218
 MonoBehaviour:
@@ -323,6 +325,7 @@ MonoBehaviour:
   Avatar: {fileID: 426099458672461377}
   body: {fileID: 426099458672461379}
   _animator: {fileID: 426099458913968089}
+  _scrShake: {fileID: 0}
   _input: {fileID: 426099458386974330}
   _playerAttack:
   - P_Character_Stun
@@ -519,7 +522,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -12022
+  m_InstanceId: -3800
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -708,6 +711,7 @@ MonoBehaviour:
     type: 3}
   _attackContainer: {fileID: 426099459497941201}
   _attackPos: {fileID: 426099459277516483}
+  _animDecal: 0.2
   _canAttack: 1
   _attackCooldown: 0.5
 --- !u!1 &426099459497941214
@@ -805,7 +809,8 @@ MonoBehaviour:
   _KnifeContainer: {fileID: 426099459497941201}
   _attackPos: {fileID: 426099459277516483}
   _canShoot: 1
-  _Cooldown: 0.2
+  _Cooldown: 0.3
+  _animDecal: 0.4
 --- !u!1 &426099459853713048
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Management;
 
 public class Actif_KnifeThrowing : MonoBehaviour
@@ -16,6 +17,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [Header("Variable")]
     [SerializeField] private bool _canShoot = true;
     [SerializeField] private float _Cooldown = 0.2f;
+    [SerializeField] private float _animDecal = 0.2f;
     private float _reloadTime = 0f;
 
     void Start()
@@ -27,8 +29,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     {
         if (_input._attack && _canShoot == true)
         {
-            Instantiate(_knife, _attackPos.position, _attackPos.rotation, _KnifeContainer);
-            _animator.TriggerAttack();
+            StartCoroutine(Throwing(_animDecal));
 
             _canShoot = false;
             _reloadTime = _Cooldown;
@@ -42,6 +43,14 @@ public class Actif_KnifeThrowing : MonoBehaviour
                 _canShoot = true;
             }
         }
+    }
+
+    IEnumerator Throwing(float prepTime)
+    {
+        _animator.TriggerAttack();
+        yield return new WaitForSeconds(prepTime);
+        Instantiate(_knife, _attackPos.position, _attackPos.rotation, _KnifeContainer);
+
     }
 
     private void OnDisable()

@@ -14,6 +14,7 @@ namespace Game
         public GameObject _attackObj;
         public Transform _attackContainer;
         public Transform _attackPos;
+        [SerializeField] private float _animDecal = 0.2f;
 
         [SerializeField] private bool _canAttack;
 
@@ -33,17 +34,25 @@ namespace Game
                 _canAttack = false;
                 _PlMovement._canMove = false;
 
-                _PlMovement.Immobilize();
-
-                Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
-                _animator.TriggerAttack();
-
-                StartCoroutine(AttaqueDelay());
+                StartCoroutine(Attaque(_animDecal));
             }
         }
 
-        IEnumerator AttaqueDelay()
+        IEnumerator Attaque(float _animDecal)
         {
+            _animator.TriggerAttack();
+
+            while (0 < _animDecal) // boucle durant la durée du dash
+            {
+                _PlMovement.Immobilize();
+
+                _animDecal -= Time.deltaTime;
+
+                yield return new WaitForEndOfFrame();   // Retour à la prochaine frame
+            }
+
+            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
+
             yield return new WaitForSeconds(_attackCooldown);
             _canAttack = true;
         }
