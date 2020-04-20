@@ -22,7 +22,7 @@ namespace Game
         [SerializeField] private float _animDecal = 0.2f;
         public Transform _attackContainer;
         public Transform _attackPos;
-        [SerializeField] private bool _canAttack = true;
+        public bool _canAttack = true;
 
         [Header("Bond")]
         public GameObject _bondObj;

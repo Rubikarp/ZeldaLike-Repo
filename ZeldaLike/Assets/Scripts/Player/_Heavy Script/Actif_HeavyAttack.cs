@@ -16,7 +16,7 @@ namespace Game
         public Transform _attackPos;
         [SerializeField] private float _animDecal = 0.2f;
 
-        [SerializeField] private bool _canAttack;
+        public bool _canAttack;
 
         public float _attackCooldown;
 

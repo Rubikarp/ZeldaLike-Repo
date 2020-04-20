@@ -11,12 +11,18 @@ namespace Game
         [SerializeField] private InputManager _input = default;
         [SerializeField] private Scr_FormeHandler _forme = default;
         [SerializeField] private Scr_PlayerLifeSystem _lifeSystem = default;
+        [SerializeField] private Actif_HeavyAttack heavyActif = default;
+        [SerializeField] private Actif_KnifeThrowing humanActif = default;
+        [SerializeField] private Actif_AgileAttack agileActif = default;
 
         [SerializeField] public Image[] coeur = default;
         [SerializeField] public RectTransform _formePalette = default;
+        [SerializeField] public Image _attackButton = default;
 
+        [SerializeField] private Color inactiveColor = Color.grey;
+
+        private bool CanAttack = true;
         private float switchDuration = 0.3f;
-
         private float littleSize = 0.3f;
         private float largeSize = 0.4f;
 
@@ -33,6 +39,7 @@ namespace Game
         {
             lifeBarUpdate(_lifeSystem._life);
             FormePalette();
+            InputAttack();
         }
 
         private void lifeBarUpdate(int health)
@@ -241,6 +248,36 @@ namespace Game
                     _formeHeavy.LeanScaleY(largeSize, switchDuration);
 
                 }
+            }
+        }
+
+        private void InputAttack()
+        {
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
+            {
+                CanAttack = humanActif._canShoot;
+
+            }
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
+            {
+                CanAttack = agileActif._canAttack;
+
+            }
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+            {
+                CanAttack = heavyActif._canAttack;
+
+            }
+
+            if (CanAttack)
+            {
+                _attackButton.color = Color.white;
+            }
+            else
+            {
+                _attackButton.color = inactiveColor;
             }
         }
     }
