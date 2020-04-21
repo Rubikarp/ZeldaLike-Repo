@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Management;
@@ -21,11 +20,11 @@ namespace Dialogue
         [SerializeField] private Text _nom = null;
         [SerializeField] private Text _dialogues = null;
 
-
         [Header("Variable")]
         [SerializeField] [Range(0, 0.05f)]
         private float DelayBetweenLetters = 1f;
         private float tempsLectParLettre = 0.05f;
+        public bool haveEnd = false;
 
         void Start()
         {
@@ -41,6 +40,8 @@ namespace Dialogue
             _actualEchange = _actualConversation.echangeList[_EchangeCounter];
 
             _SentanceCounter = 0;
+
+            haveEnd = false;
 
             StartCoroutine(StartDialogue());
         }
@@ -96,7 +97,7 @@ namespace Dialogue
             }
 
             StopAllCoroutines();
-            StartCoroutine(TypeSentence(_SentanceCounter % 2 == 0? _actualEchange.interlocuteur_B : _actualEchange.interlocuteur_A, _actualEchange._echange[_SentanceCounter]));
+            StartCoroutine(TypeSentence(_SentanceCounter % 2 == 0? _actualEchange.interlocuteur_A : _actualEchange.interlocuteur_B, _actualEchange._echange[_SentanceCounter]));
             
             _SentanceCounter++;
         }
@@ -112,6 +113,7 @@ namespace Dialogue
             StopAllCoroutines();
 
             _actualEchange = _actualConversation.echangeList[_EchangeCounter];
+            _SentanceCounter = 0;
 
             DisplayNextSentence();
 
@@ -122,6 +124,7 @@ namespace Dialogue
         public void EndDialogue()
         {
             LeanTween.moveY(_textBox, -100, 0.3f);
+            haveEnd = true;
         }
     }
 }

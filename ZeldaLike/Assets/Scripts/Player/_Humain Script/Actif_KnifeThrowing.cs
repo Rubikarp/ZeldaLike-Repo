@@ -10,9 +10,9 @@ public class Actif_KnifeThrowing : MonoBehaviour
 
     [Space(10)]
 
-    [SerializeField] private GameObject _knife;
-    [SerializeField] private Transform _KnifeContainer;
-    [SerializeField] private Transform _attackPos;
+    [SerializeField] private GameObject _knife = null;
+    [SerializeField] private Transform _KnifeContainer = null;
+    [SerializeField] private Transform _attackPos = null;
 
     [Header("Variable")]
     public bool _canShoot = true;

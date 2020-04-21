@@ -41,17 +41,18 @@ namespace Game
         IEnumerator Attaque(float _animDecal)
         {
             _animator.TriggerAttack();
+            _input.DesactivateControl();
 
             while (0 < _animDecal) // boucle durant la durée du dash
             {
-                _PlMovement.Immobilize();
-
                 _animDecal -= Time.deltaTime;
 
                 yield return new WaitForEndOfFrame();   // Retour à la prochaine frame
             }
 
-            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackContainer);
+            _input.ReActivateControl();
+
+            Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
 
             yield return new WaitForSeconds(_attackCooldown);
             _canAttack = true;
