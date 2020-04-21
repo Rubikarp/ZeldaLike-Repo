@@ -24,6 +24,9 @@ namespace Management
         [Header("Attack Button")]
         public bool _attack;
 
+        [Header("Interaction Button")]
+        public bool _mark;
+
         [Header("Left Switch Button")]
         public bool _leftSwitch;
 
@@ -56,8 +59,9 @@ namespace Management
                     _stickMagnitude = _stickDirection.magnitude;
 
                     //Je prends les buttons
-                    _interaction = Input.GetButton("Y/Triangle");
+                    _mark = Input.GetButton("Y/Triangle");
                     _attack = Input.GetButton("X/Square");
+                    _interaction = Input.GetButton("A/Cross");
                     _leftSwitch = Input.GetButton("LB/L1");
                     _rightSwitch = Input.GetButton("RB/R1");
 
@@ -74,8 +78,9 @@ namespace Management
                     _stickMagnitude = _stickDirection.magnitude;
 
                     //Je prends les buttons
-                    _interaction = Input.GetButton("Keyboard-InteractionButton");
+                    _mark = Input.GetButton("Keyboard-MarkButton");
                     _attack = Input.GetButton("Keyboard-AttackButton");
+                    _interaction = Input.GetButton("Keyboard-InteractionButton");
                     _leftSwitch = Input.GetButton("Keyboard-LeftSwitch");
                     _rightSwitch = Input.GetButton("Keyboard-RightSwitch");
 

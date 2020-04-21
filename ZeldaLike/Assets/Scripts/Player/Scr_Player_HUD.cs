@@ -8,27 +8,33 @@ namespace Game
     {
         public enum Forme { Humain, Agile, Lourd }
 
-        [SerializeField] private InputManager _input = default;
+        [Header("Component")]
+         private InputManager _input = default;
         [SerializeField] private Scr_FormeHandler _forme = default;
         [SerializeField] private Scr_PlayerLifeSystem _lifeSystem = default;
+        [Space(5)]
         [SerializeField] private Actif_HeavyAttack heavyActif = default;
         [SerializeField] private Actif_KnifeThrowing humanActif = default;
         [SerializeField] private Actif_AgileAttack agileActif = default;
 
-        [SerializeField] public Image[] coeur = default;
-        [SerializeField] public RectTransform _formePalette = default;
-        [SerializeField] public Image _attackButton = default;
+        [Header("Element de l'UI")]
+        public Image[] coeur = default;
+        [Space(5)]
+        public RectTransform _formePalette = default;
+        public RectTransform _formeAgile = default;
+        public RectTransform _formeHeavy = default;
+        public RectTransform _formeHumain = default;
+        [Space(5)]
+        public Image _attackButton = default;
+        public Image _markButton = default;
+        public Transform _markContainer = default;
 
+        [Header("Variable")]
         [SerializeField] private Color inactiveColor = Color.grey;
-
         private bool CanAttack = true;
         private float switchDuration = 0.3f;
         private float littleSize = 0.3f;
         private float largeSize = 0.4f;
-
-        [SerializeField] public RectTransform _formeAgile = default;
-        [SerializeField] public RectTransform _formeHeavy = default;
-        [SerializeField] public RectTransform _formeHumain = default;
 
         private void Start()
         {
@@ -39,7 +45,7 @@ namespace Game
         {
             lifeBarUpdate(_lifeSystem._life);
             FormePalette();
-            InputAttack();
+            Input();
         }
 
         private void lifeBarUpdate(int health)
@@ -251,7 +257,7 @@ namespace Game
             }
         }
 
-        private void InputAttack()
+        private void Input()
         {
             if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
             {
@@ -278,6 +284,15 @@ namespace Game
             else
             {
                 _attackButton.color = inactiveColor;
+            }
+
+            if (_markContainer.childCount != 0)
+            {
+                _markButton.color = Color.white;
+            }
+            else
+            {
+                _markButton.color = inactiveColor;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace Game
 
         void Update()
         {
-            if (_input._interaction)
+            if (_input._mark)
             {
                 _player.transform.position = gameObject.transform.position;
 

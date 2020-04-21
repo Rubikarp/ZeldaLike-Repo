@@ -79,6 +79,7 @@ MonoBehaviour:
   _stickMagnitude: 0
   _interaction: 0
   _attack: 0
+  _mark: 0
   _leftSwitch: 0
   _rightSwitch: 0
   _pause: 0
@@ -543,7 +544,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -163508
+  m_InstanceId: -3244
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -1048,7 +1049,7 @@ GameObject:
   - component: {fileID: 8867511720262966165}
   - component: {fileID: 6688691381983982566}
   m_Layer: 0
-  m_Name: TP sceau
+  m_Name: Mark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1515,7 +1516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d07c4a7c93f5042af56b0b3f0c80d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 426099458386974330}
   _forme: {fileID: 4788644426683925218}
   _lifeSystem: {fileID: 426099458780276580}
   heavyActif: {fileID: 426099459425250176}
@@ -1529,11 +1529,13 @@ MonoBehaviour:
   - {fileID: 548593379350778482}
   - {fileID: 5883814575136420286}
   _formePalette: {fileID: 8630220930838488849}
-  _attackButton: {fileID: 1769189012043275670}
-  inactiveColor: {r: 0.5019608, g: 0.4020706, b: 0.4020706, a: 0.69803923}
   _formeAgile: {fileID: 5403616364737251022}
   _formeHeavy: {fileID: 26214751107164236}
   _formeHumain: {fileID: 7755014635157741646}
+  _attackButton: {fileID: 1769189012043275670}
+  _markButton: {fileID: 6688691381983982566}
+  _markContainer: {fileID: 426099457826937178}
+  inactiveColor: {r: 0.5019608, g: 0.4020706, b: 0.4020706, a: 0.69803923}
 --- !u!1 &6466084614867164100
 GameObject:
   m_ObjectHideFlags: 0
