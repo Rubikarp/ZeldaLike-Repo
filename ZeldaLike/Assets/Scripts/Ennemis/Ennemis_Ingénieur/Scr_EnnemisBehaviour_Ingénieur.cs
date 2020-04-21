@@ -107,7 +107,7 @@ namespace Ennemis
         {
             _canRun = false;
             _isRunning = true;
-            Instantiate(_bomb,transform.position, transform.rotation);
+            Instantiate(_bomb, transform.position, transform.rotation);
 
             while (0 < runDuration)
             {
