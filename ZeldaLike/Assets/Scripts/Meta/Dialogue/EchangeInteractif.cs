@@ -2,7 +2,7 @@
 
 namespace Dialogue
 {
-    [CreateAssetMenu(fileName = "Dialogue", menuName = "EchangeInteractif")]
+    [CreateAssetMenu(fileName = "New_EchangeInteractif", menuName = "Dialogue/EchangeInteractif")]
     public class EchangeInteractif : ScriptableObject
     {
         [Header("Interlocuteur A qui parle à B")]

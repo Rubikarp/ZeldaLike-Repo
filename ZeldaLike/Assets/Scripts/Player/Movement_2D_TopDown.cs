@@ -9,6 +9,8 @@ namespace Game
     {
         [SerializeField] private Rigidbody2D _body = null;
         [SerializeField] private InputManager _input = null;
+        [SerializeField] private Scr_PlayerLifeSystem lifeSyst = null;
+
         [Space(10)]
         public Scr_FormeHandler _forme = null;
         [Space(10)]
@@ -77,6 +79,8 @@ namespace Game
 
         public IEnumerator SpeedBoostCoroutine(float boostPourcentage, float boostDuration, Data_PlayerForme _boostedForm)
         {
+            lifeSyst._isVunerable = false;
+
             float basedSpeed = _boostedForm._maxSpeed;
             float boostedSpeed = basedSpeed + ((basedSpeed / 100) * boostPourcentage);
 
@@ -87,6 +91,8 @@ namespace Game
 
             _boostedForm._maxSpeed = basedSpeed;
             _isBoosted = false;
+
+            lifeSyst._isVunerable = true;
 
             yield return null;
         }

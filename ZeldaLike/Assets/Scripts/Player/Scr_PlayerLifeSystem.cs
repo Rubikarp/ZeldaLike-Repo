@@ -19,6 +19,7 @@ namespace Game
 
         public int _life = 5;
         public bool _isTakingDamage = false;
+        public bool _isVunerable = true;
         public float knockbackSensibility = 1f;
 
         private void Start()
@@ -49,7 +50,7 @@ namespace Game
                     knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
                 }
 
-                if (!_isTakingDamage)
+                if (!_isTakingDamage & _isVunerable)
                 {
                     StartCoroutine(TakingDamage(attackData == null ? 1 :attackData.Damage, body, knockBackDirection, knockbackSpeed, attackData == null? 1f :attackData.StunDuration));
                 }
@@ -75,7 +76,7 @@ namespace Game
 
                     float knockbackSpeed = knockbackSensibility * attackData.KnockbackPower;
 
-                    if (!_isTakingDamage)
+                    if (!_isTakingDamage & _isVunerable)
                     {
                         StartCoroutine(TakingDamage(attackData.Damage, body, knockBackDirection, knockbackSpeed, attackData.StunDuration));
                     }

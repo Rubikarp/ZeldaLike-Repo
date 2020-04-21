@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
@@ -21,7 +19,14 @@ namespace Game
             {
                 Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));
             }
-        }      
-        
+        }
+
+        public void SpeedBoost()
+        {
+            if (!Movement._isBoosted)
+            {
+                Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));
+            }
+        }
     }
 }

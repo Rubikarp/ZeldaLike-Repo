@@ -62,6 +62,11 @@ namespace Ennemis
 
                 if(!_isTakingDamage)
                 {
+                    if(collision.name == "HeavyAttack" && _isMarked)
+                    {
+                        StartCoroutine(TakingDamage(attackData.Damage * 2, body, knockBackDirection, knockbackSpeed, attackData.StunDuration));
+                    }
+
                     StartCoroutine(TakingDamage(attackData.Damage, body, knockBackDirection, knockbackSpeed, attackData.StunDuration));
                 }
 

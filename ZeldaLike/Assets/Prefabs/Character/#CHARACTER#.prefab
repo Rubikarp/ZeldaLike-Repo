@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 426099458629431354}
   m_Layer: 0
   m_Name: AgileForm
-  m_TagString: Untagged
+  m_TagString: Player/Forme/Agile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   - P_Character_BondAttack
   _life: 6
   _isTakingDamage: 0
+  _isVunerable: 1
   knockbackSensibility: 3
 --- !u!1 &426099458865168693
 GameObject:
@@ -542,7 +543,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -3342
+  m_InstanceId: -163508
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -677,7 +678,7 @@ GameObject:
   - component: {fileID: 426099459425250176}
   m_Layer: 0
   m_Name: HeavyForm
-  m_TagString: Untagged
+  m_TagString: Player/Forme/Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -710,8 +711,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boostedForm: {fileID: 11400000, guid: 1bcd263b63ecb3645a3ddc305b517b74, type: 2}
   Movement: {fileID: 426099459853713051}
-  _boostPourcentage: 60
-  _boostDuration: 1.5
+  _boostPourcentage: 70
+  _boostDuration: 3
 --- !u!114 &426099459425250176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +778,7 @@ GameObject:
   - component: {fileID: 426099459518368250}
   m_Layer: 0
   m_Name: HumaineForm
-  m_TagString: Untagged
+  m_TagString: Player/Forme/Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,6 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 426099458672461379}
   _input: {fileID: 426099458386974330}
+  lifeSyst: {fileID: 426099458780276580}
   _forme: {fileID: 4788644426683925218}
   _activeSpeed: 0
   _canMove: 1

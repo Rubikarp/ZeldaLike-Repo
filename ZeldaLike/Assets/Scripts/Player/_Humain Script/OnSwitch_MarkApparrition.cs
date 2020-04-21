@@ -17,5 +17,16 @@ namespace Game
             
             Instantiate(_markPrefab, this.transform.position, Quaternion.identity, _markContainer);
         }
+
+        public void MarkApparrition()
+        {
+            if (_markContainer.childCount >= 1)
+            {
+                Destroy(_markContainer.GetChild(0).gameObject);
+            }
+
+            Instantiate(_markPrefab, this.transform.position, Quaternion.identity, _markContainer);
+
+        }
     }
 }

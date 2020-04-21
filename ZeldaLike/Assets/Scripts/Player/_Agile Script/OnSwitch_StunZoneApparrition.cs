@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
@@ -14,5 +12,10 @@ namespace Game
             Instantiate(_StunZonePrefab, this.transform.position, Quaternion.identity, _attackContainer);
         }
 
+        public void StunZoneApparrition()
+        {
+            Instantiate(_StunZonePrefab, this.transform.position, Quaternion.identity, _attackContainer);
+
+        }
     }
 }
