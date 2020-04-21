@@ -18,7 +18,6 @@ namespace Management
 
         private Queue<string> _sentences;
 
-        // Start is called before the first frame update
         void Start()
         {
             _sentences = new Queue<string>();

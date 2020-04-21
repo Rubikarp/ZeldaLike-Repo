@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 426099458672461379}
   - component: {fileID: 426099458672461378}
   - component: {fileID: 4788644426683925218}
+  - component: {fileID: 5021294589772490011}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Player
@@ -262,6 +263,25 @@ MonoBehaviour:
   _canSwitch: 1
   _heavyFormeUnlock: 1
   _switchCooldown: 0.3
+--- !u!95 &5021294589772490011
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426099458672461377}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &426099458780276581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 100}
+  m_AnchoredPosition: {x: 325, y: 75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8867511720262966165
@@ -1121,7 +1141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 150}
+  m_AnchoredPosition: {x: 175, y: 175}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6191468585903611945
@@ -1145,7 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1508,7 +1528,7 @@ MonoBehaviour:
   - {fileID: 5883814575136420286}
   _formePalette: {fileID: 8630220930838488849}
   _attackButton: {fileID: 1769189012043275670}
-  inactiveColor: {r: 0.6, g: 0.6, b: 0.6, a: 0.6}
+  inactiveColor: {r: 0.5019608, g: 0.4020706, b: 0.4020706, a: 0.69803923}
   _formeAgile: {fileID: 5403616364737251022}
   _formeHeavy: {fileID: 26214751107164236}
   _formeHumain: {fileID: 7755014635157741646}

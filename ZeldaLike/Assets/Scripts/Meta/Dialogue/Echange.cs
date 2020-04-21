@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+
+namespace Dialogue
+{
+    [CreateAssetMenu(fileName = "Dialogue", menuName = "Echange")]
+    public class Echange : ScriptableObject
+    {
+        [Header("Interlocuteur A qui parle à B")]
+        public string interlocuteur_A, interlocuteur_B;
+
+        [Header("Phrase de A /Réponse de B")]
+        [TextArea(2, 10)] public string phrase_A, reponse_B;
+
+    }
+}

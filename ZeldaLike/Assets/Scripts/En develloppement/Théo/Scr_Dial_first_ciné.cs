@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Management;
 
@@ -17,14 +16,15 @@ public class Scr_Dial_first_ciné : MonoBehaviour
     public GameObject _shooter;
     public GameObject _experience;
 
-    // Start is called before the first frame update
+    private Scr_DialogManager DialogueManager;
+
     void Start()
     {
-        FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialog);
+        DialogueManager = FindObjectOfType<Scr_DialogManager>();
+        DialogueManager.StartDialogue(_dialog);
         _actifDialog[0] = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Soldat
@@ -36,8 +36,8 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         {
             Debug.Log("Merde");
             _dialog.name = "Soldat";
-            FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialog);
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+            DialogueManager.StartDialogue(_dialog);
+            DialogueManager.DisplayNextSentence();
             _actifDialog[0] = false;
             _actifDialog[1] = true;
         }
@@ -50,9 +50,9 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         else if (_delai[1] <= 0 && _actifDialog[1] == true)
         {
             _dialog.name = "Nahua";
-            FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialog);
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+            DialogueManager.StartDialogue(_dialog);
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
             _actifDialog[1] = false;
             _actifDialog[2] = true;
 
@@ -66,10 +66,10 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         else if (_delai[2] <= 0 && _actifDialog[2] == true)
         {
             _dialog.name = "Soldat";
-            FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialog);
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+            DialogueManager.StartDialogue(_dialog);
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
             _actifDialog[2] = false;
             _actifDialog[3] = true;
         }
@@ -82,11 +82,11 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         else if (_delai[3] <= 0 && _actifDialog[3] == true)
         {
             _dialog.name = "Nahua";
-            FindObjectOfType<Scr_DialogManager>().StartDialogue(_dialog);
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+            DialogueManager.StartDialogue(_dialog);
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
             _actifDialog[3] = false;
             _actifDialog[4] = true;
         }
@@ -98,7 +98,7 @@ public class Scr_Dial_first_ciné : MonoBehaviour
         }
         else if (_delai[4] <= 0 && _actifDialog[4] == true)
         {
-            FindObjectOfType<Scr_DialogManager>().DisplayNextSentence();
+            DialogueManager.DisplayNextSentence();
             _actifDialog[4] = false;
             FindObjectOfType<InputManager>().ReActivateControl();
             Instantiate(_experience, _enemy1);
