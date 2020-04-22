@@ -17,6 +17,7 @@ namespace Ennemis
         public float _movementSpeed = 5f;
         public float _detectionRange = 20f;
         public float _circleRange = 3f;
+        public float _timer = 0.3f;
 
 
         [Header("Parameter")]
@@ -60,6 +61,13 @@ namespace Ennemis
                 {
                     Orbit();
 
+                    _timer -= Time.deltaTime;
+
+                    if (_timer <= 0)
+                    {
+                        Instantiate(_puddle, transform.position, transform.rotation);
+                        _timer = 0.3f;
+                    }
                 }
             }
 
@@ -73,18 +81,6 @@ namespace Ennemis
         protected bool PlayerInEnnemyRange(float playerDistance, float testedRange)
         {
             if (playerDistance <= testedRange)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        protected bool EnemyInOrbitRange(float playerDistance)
-        {
-            if (playerDistance > 10 && playerDistance < 15)
             {
                 return true;
             }
