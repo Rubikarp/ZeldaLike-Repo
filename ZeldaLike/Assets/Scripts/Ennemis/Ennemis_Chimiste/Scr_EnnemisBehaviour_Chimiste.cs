@@ -8,47 +8,46 @@ namespace Ennemis
     {
         [Header("Data")]
         public Transform _mySelf = null;
-        public GameObject _puddle = null;
-        public Scr_EnnemisLifeSystem _lifeSyst = null;
         public Rigidbody2D _myBody = null;
+        public Scr_EnnemisLifeSystem _lifeSyst = null;
+        [Space(5)]
+        public GameObject _puddle = null;
 
         [Header("Statistique")]
         public float _movementSpeed = 5f;
-
         public float _detectionRange = 20f;
+        public float _circleRange = 3f;
 
-        public float _timer = 1f;
-
-        public float orbitDistance = 10f;
-        public float orbitDegreesPerSec = 45f;
 
         [Header("Parameter")]
         public bool _haveDetect = false;
-        public bool _startRevolving = false;
-        public bool _makePuddles = false;
 
         [Header("Target")]
         [SerializeField] private Transform _target = null;
 
-        private Vector2 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
-        public Vector3 relativeDistance = Vector3.zero;
+        private Vector2 _targetDirection = Vector2.zero;
+        private Vector2 _movingPos = Vector2.zero;
+        private Vector2 _movingDirection = Vector2.zero;
 
         void Start()
         {
-            _target = GameObject.FindGameObjectWithTag("Player").transform;
             _mySelf = this.transform;
             _myBody = this.GetComponent<Rigidbody2D>();
+            
+            _target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         void Update()
         {
             #region Variables Actualisée
 
-            _targetDirection = (_target.position - _mySelf.position);
+            _targetDirection = (_target.position - _mySelf.position).normalized;
             _targetDistance = Vector2.Distance(_mySelf.position, _target.position);
             _haveDetect = PlayerInEnnemyRange(_targetDistance, _detectionRange);
-            _startRevolving = EnemyInOrbitRange(_targetDistance);
+
+            _movingPos = new Vector2(_target.position.x, _target.position.y) + (-_targetDirection * _circleRange) + (Vector2.Perpendicular(-_targetDirection) * _circleRange);
+            _movingDirection = (_movingPos - _myBody.position).normalized;
 
             #endregion Variables Actualisée
         }
@@ -59,42 +58,16 @@ namespace Ennemis
             {
                 if (_haveDetect && !_lifeSyst._isTakingDamage)
                 {
-                    if (_startRevolving)
-                    {
-                        Orbit();
-                        _makePuddles = true;
-                    }
+                    Orbit();
 
-                    if (!_startRevolving)
-                    {
-                        _myBody.velocity = _targetDirection.normalized * _movementSpeed;
-                    }
-                }
-                else
-                {
-                    StopCoroutine("inOrbit");
                 }
             }
 
-            if (_makePuddles)
-            {
-                _timer -= Time.deltaTime;
-            }
-
-            if(_timer <= 0)
-            {
-                Instantiate(_puddle);
-                _timer = 1f;
-            }
         }
 
-        void Orbit()
+        private void Orbit()
         {
-            if(_target != null)
-            {
-                _mySelf.position = _target.position + relativeDistance;
-                transform.RotateAround(_target.position, Vector2.up, orbitDegreesPerSec * Time.deltaTime);
-            }
+            _myBody.velocity = _movingDirection * _movementSpeed;
         }
 
         protected bool PlayerInEnnemyRange(float playerDistance, float testedRange)
@@ -120,5 +93,11 @@ namespace Ennemis
                 return false;
             }
         }
+
+        private void OnDrawGizmos()
+        {
+            Debug.DrawLine(_movingPos, _mySelf.position, Color.red);
+        }
+
     }
 }
