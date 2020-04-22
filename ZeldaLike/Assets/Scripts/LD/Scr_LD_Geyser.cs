@@ -44,7 +44,6 @@ namespace Game
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("truc");
             if (collision.gameObject.CompareTag("Player"))
             {
                 _targetBody = collision.gameObject.transform.parent.parent.GetComponent<Rigidbody2D>();

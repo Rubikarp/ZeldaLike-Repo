@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 namespace Dialogue
 {
@@ -9,8 +11,11 @@ namespace Dialogue
 
         [Header("Component")]
         public Conversation Intro = null;
+        public PlayableDirector playableDirector;
+        public TimelineAsset timeline;
 
-        void Start()
+
+        void OnEnable()
         {
             dialogManag = GameObject.FindGameObjectWithTag("DialogueManager").GetComponent<DialogueManager>();
             dialogManag.BeginCoversation(Intro);
@@ -20,10 +25,9 @@ namespace Dialogue
         {
             if (dialogManag.haveEnd)
             {
-
+                timeline.GetOutputTracks();
+                playableDirector.Stop();
             }
-
-            Destroy(gameObject);
         }
 
     }

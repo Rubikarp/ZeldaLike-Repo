@@ -57,5 +57,10 @@ namespace Game
             yield return new WaitForSeconds(_attackCooldown);
             _canAttack = true;
         }
+
+        private void OnEnable()
+        {
+            _canAttack = true;
+        }
     }
 }
