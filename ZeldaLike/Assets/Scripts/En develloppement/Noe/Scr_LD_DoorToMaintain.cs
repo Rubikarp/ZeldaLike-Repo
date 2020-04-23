@@ -6,10 +6,13 @@ namespace Game
 {
     public class Scr_LD_DoorToMaintain : MonoBehaviour
     {
+
+        Transform[] allChildren;
+
         // Start is called before the first frame update
         void Start()
         {
-
+            allChildren = GetComponentsInChildren<Transform>();
         }
 
         // Update is called once per frame
@@ -17,12 +20,18 @@ namespace Game
         {
             if (GetComponent<Scr_LD_ActiveState>()._isActive == true)
             {
-                gameObject.SetActive(false);
+                foreach (Transform child in transform)
+                {
+                    child.gameObject.SetActive(false);
+                }
             }
 
             if (GetComponent<Scr_LD_ActiveState>()._isActive == false)
             {
-                gameObject.SetActive(true);
+                foreach (Transform child in transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
         }
     }
