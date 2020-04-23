@@ -14,7 +14,7 @@ namespace Game
         [Space(10)]
         public Scr_FormeHandler _forme = null;
         [Space(10)]
-        [SerializeField] private float _activeSpeed = 0f;
+        public float _activeSpeed = 0f;
 
         private float _accTimer = 0f;
         private float _decTimer = 0f;

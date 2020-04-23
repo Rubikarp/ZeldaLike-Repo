@@ -29,7 +29,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     {
         if (_input._attack && _canShoot == true)
         {
-            StartCoroutine(Throwing(_animDecal));
+            Throwing();
 
             _canShoot = false;
             _reloadTime = _Cooldown;
@@ -45,10 +45,9 @@ public class Actif_KnifeThrowing : MonoBehaviour
         }
     }
 
-    IEnumerator Throwing(float prepTime)
+    void Throwing()
     {
         _animator.TriggerAttack();
-        yield return new WaitForSeconds(prepTime);
         Instantiate(_knife, _attackPos.position, _attackPos.rotation, _KnifeContainer);
 
     }

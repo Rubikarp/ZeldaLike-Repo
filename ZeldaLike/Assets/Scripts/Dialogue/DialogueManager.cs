@@ -25,6 +25,7 @@ namespace Dialogue
         private float DelayBetweenLetters = 1f;
         private float tempsLectParLettre = 0.05f;
         public bool haveEnd = false;
+        public bool isAuto = false;
 
         void Start()
         {
@@ -88,11 +89,19 @@ namespace Dialogue
             DisplayNextSentence();
         }
 
-        private void DisplayNextSentence()
+        public void DisplayNextSentence()
         {
             if (_SentanceCounter >= _actualEchange._echange.Length)
             {
-                NextEchange();
+                if (isAuto)
+                {
+                    NextEchange();
+                }
+                else
+                {
+                    _dialogues.text = "";
+                    _nom.text = "";
+                }
                 return;
             }
 

@@ -2,7 +2,7 @@
 
 namespace Game
 {
-    public class OnSwitch_StunZoneApparrition : MonoBehaviour
+    public class OnSwitch_StunZoneApparrition : Singleton<OnSwitch_StunZoneApparrition>
     {
         [SerializeField] GameObject _StunZonePrefab = null;
         [SerializeField] Transform _attackContainer = null;

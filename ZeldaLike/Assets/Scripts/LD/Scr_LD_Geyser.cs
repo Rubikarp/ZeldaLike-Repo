@@ -15,6 +15,8 @@ namespace Game
         private bool _startRepulse;
 
         public Rigidbody2D _targetBody;
+        public GameObject _water;
+        public float _waterDur;
         private List<GameObject> _targetEnnemyBodies; 
 
         // Start is called before the first frame update
@@ -22,6 +24,7 @@ namespace Game
         {
             _startRepulse = false;
             _repulseDelay = _repulseDelayOrigin;
+            _water.SetActive(false);
         }
 
         // Update is called once per frame
@@ -76,6 +79,7 @@ namespace Game
         IEnumerator Repulse(Vector3 position, Rigidbody2D body, float delay, float duration)
         {
             yield return new WaitForSeconds(delay);
+            _water.SetActive(true);
 
             Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
 
@@ -95,11 +99,16 @@ namespace Game
                     body.velocity = Vector2.zero;
                 }
             }
+
+            yield return new WaitForSeconds(_waterDur);
+            _water.SetActive(false);
+
         }
 
         IEnumerator RepulseEnnemies(Vector3 position, Rigidbody2D targetObject, float delay, float duration)
         {
             yield return new WaitForSeconds(delay);
+            _water.SetActive(true);
 
             Collider2D[] ennemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
 
@@ -119,6 +128,10 @@ namespace Game
                     targetObject.velocity = Vector2.zero;
                 }
             }
+
+            yield return new WaitForSeconds(_waterDur);
+            _water.SetActive(false);
+
         }
 
         void OnDrawGizmosSelected()

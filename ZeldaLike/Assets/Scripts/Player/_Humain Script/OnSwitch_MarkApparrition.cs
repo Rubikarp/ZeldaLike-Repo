@@ -2,7 +2,7 @@
 
 namespace Game
 {
-    public class OnSwitch_MarkApparrition : MonoBehaviour
+    public class OnSwitch_MarkApparrition : Singleton<OnSwitch_MarkApparrition>
     {
         [SerializeField] GameObject _markPrefab = null;
         [SerializeField] Transform  _markContainer = null;

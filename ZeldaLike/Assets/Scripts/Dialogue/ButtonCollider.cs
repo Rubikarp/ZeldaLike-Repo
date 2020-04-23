@@ -11,7 +11,6 @@ namespace Management
 
         public UnityEvent onInteraction;
 
-
         private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();

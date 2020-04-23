@@ -19,7 +19,7 @@ namespace Game
 
         [Header("Attaque data")]
         public GameObject _attackObj;
-        [SerializeField] private float _animDecal = 0.2f;
+        [SerializeField] private float _attackDur = 0.2f;
         public Transform _attackContainer;
         public Transform _attackPos;
         public bool _canAttack = true;
@@ -56,7 +56,7 @@ namespace Game
 
                 if(Target == null)
                 {
-                    StartCoroutine(attackClassique(_animDecal));
+                    StartCoroutine(AttackClassique(_attackDur));
 
                 }
                 else
@@ -72,7 +72,7 @@ namespace Game
                     }
                     else
                     {
-                        StartCoroutine(attackClassique(_animDecal));
+                        StartCoroutine(AttackClassique(_attackDur));
                     }
                 }
             }
@@ -111,6 +111,12 @@ namespace Game
             {
                 _rgb.position += direction * speed * Time.deltaTime;
 
+                if (cible == null)
+                {
+                    _rgb.velocity = Vector2.zero;
+                    break;
+                }
+
                 distance = Vector2.Distance(_rgb.position, cible.transform.position);
                 direction = (cible.transform.position - me).normalized;
 
@@ -122,7 +128,7 @@ namespace Game
                     break;
                 }
 
-                yield return new WaitForEndOfFrame();   // Retour à la prochaine frame
+                yield return new WaitForEndOfFrame();  
             }
 
             yield return null;
@@ -131,16 +137,21 @@ namespace Game
             Destroy(bond);
         }
 
-        private IEnumerator attackClassique(float _animDecal)
+        private IEnumerator AttackClassique(float attackDur)
         {
             _animator.TriggerAttack();
             _canAttackTime = _canAttackTimer;
             _canAttack = false;
 
-            yield return new WaitForSeconds(_animDecal);
-
-            _PlMovement.Immobilize();
             Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
+            
+            while(attackDur > 0)
+            {
+                _PlMovement.Immobilize();
+                attackDur -= Time.deltaTime;
+
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         private void OnDisable()

@@ -12,12 +12,14 @@ namespace Game
         public AnimatorManager_Player _animator = null;
         public ScreenShake _scrShake = null;
         public InputManager _input = null;
-        private bool dead = false;
+        public bool isDead = false;
 
         [Header("Statistiques")]
+        public Vector2 _respawnPoint = Vector2.zero;
         public string[] _playerAttack;
 
-        public int _life = 5;
+        public int _life = 6;
+        public int _maxlife = 6;
         public bool _isTakingDamage = false;
         public bool _isVunerable = true;
         public float knockbackSensibility = 1f;
@@ -78,6 +80,7 @@ namespace Game
 
                     if (!_isTakingDamage & _isVunerable)
                     {
+                        StopAllCoroutines();
                         StartCoroutine(TakingDamage(attackData.Damage, body, knockBackDirection, knockbackSpeed, attackData.StunDuration));
                     }
                 }
@@ -106,14 +109,22 @@ namespace Game
 
         private void Living()
         {
-            if (_life <= 0 && !dead)
+            if (_life <= 0 && !isDead)
             {
                 _animator.TriggerDeath();
                 _input.DesactivateControl();
 
-                dead = true;
+                isDead = true;
                 //Destroy(Avatar, /*_deathAnim.clip.length*/ 10f);
             }
+        }
+
+        public void Respawn()
+        {
+            isDead = false;
+            _life = _maxlife;
+            _input.ReActivateControl();
+            body.position = _respawnPoint;
         }
     }
 }

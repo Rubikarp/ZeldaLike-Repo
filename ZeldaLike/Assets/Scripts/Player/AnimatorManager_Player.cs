@@ -9,6 +9,8 @@ namespace Management
         [SerializeField] SpriteRenderer _spritRend = null;
         [SerializeField] Animator _animator = null;
         [SerializeField] InputManager _input = null;
+        [SerializeField] Movement_2D_TopDown _movement = null;
+        [SerializeField] Rigidbody2D _rgb = null;
 
         [Header("Components")]
         [SerializeField] Scr_PlayerLifeSystem _playerLife = null;
@@ -43,7 +45,7 @@ namespace Management
 
             //Valeur des actions
             _animator.SetFloat("MouvY", _input._CharacterDirection.y);
-            _animator.SetFloat("MouvSpeed", _input._stickDirection.magnitude);
+            _animator.SetFloat("MouvSpeed", _rgb.velocity.magnitude);
             _animator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
 
             //Bool pour la forme

@@ -63,7 +63,7 @@ namespace Game
 
                 case 1:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 1)
                             {
@@ -79,7 +79,7 @@ namespace Game
 
                 case 2:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 2)
                             {
@@ -95,7 +95,7 @@ namespace Game
 
                 case 3:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 3)
                             {
@@ -111,7 +111,7 @@ namespace Game
 
                 case 4:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 4)
                             {
@@ -127,7 +127,7 @@ namespace Game
 
                 case 5:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 5)
                             {
@@ -143,7 +143,7 @@ namespace Game
 
                 case 6: //Max de départ
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 6)
                             {
@@ -159,7 +159,7 @@ namespace Game
 
                 case 7:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 7)
                             {
@@ -175,7 +175,7 @@ namespace Game
 
                 case 8:
                     {
-                        for (int i = 1; i < coeur.Length; i++)
+                        for (int i = 0; i < coeur.Length; i++)
                         {
                             if (i < 8)
                             {
