@@ -14,6 +14,7 @@ namespace Ennemies
         public float _delayBetweenPatterns;
         private GameObject _player;
         public Transform _attackPos;
+        public Vector3 _bossDirection;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -37,7 +38,8 @@ namespace Ennemies
         public float _repulseTime;
 
         [Header("CoupMassif")]
-        public float _hitDelay;
+        public Transform _coupMassifPos;
+        public GameObject _coupMassifHitbox;
 
         [Header("Jet de débris")]
         public GameObject _projectileThrown;
@@ -52,6 +54,8 @@ namespace Ennemies
         // Update is called once per frame
         void Update()
         {
+            _bossDirection = (_player.transform.position - transform.position);
+
             if (_inPattern == false)
             {
                 if (_patternCount < 3)
@@ -116,7 +120,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 5);
+            randomPattern = Random.Range(4, 5);
 
             if (randomPattern == 0)
             {
@@ -222,6 +226,8 @@ namespace Ennemies
 
         private IEnumerator CoupMassif()
         {
+            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 25, _coupMassifPos.rotation, _coupMassifPos);
+
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
