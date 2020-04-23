@@ -36,6 +36,8 @@ namespace Ennemies
         public float _repulseRange;
         public float _repulseSpeed;
         public float _repulseTime;
+        public LayerMask _playerMask;
+        public LayerMask _enemyMask;
 
         [Header("CoupMassif")]
         public Transform _coupMassifPos;
@@ -120,7 +122,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(4, 5);
+            randomPattern = Random.Range(3, 4);
 
             if (randomPattern == 0)
             {
@@ -178,47 +180,45 @@ namespace Ennemies
 
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
         {
-            /*Collider2D[] objectsToAspirate = Physics2D.OverlapCircleAll(transform.position, _aspirationRange);
-
             while (aspiTime > 0)
             {
-                aspiTime -= Time.deltaTime;
+                Collider2D[] playerToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
+                Collider2D[] enemyToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
 
-                for (int k = 0; k < objectsToAspirate.Length; k++)
+                for (int k = 0; k < playerToAspi.Length; k++)
                 {
-                    if (objectsToAspirate[k].gameObject.transform.parent.CompareTag("Ennemis"))
-                    {
-                        objectsToAspirate[k].gameObject.transform.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[k].gameObject.transform.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
-                    }
-                    else if (objectsToAspirate[k].gameObject.transform.parent.parent.CompareTag("Player"))
-                    {
-                        objectsToAspirate[k].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[k].gameObject.transform.parent.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
-                    }
+                    playerToAspi[k].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(playerToAspi[k].gameObject.transform.parent.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
                 }
 
-                yield return new WaitForEndOfFrame();
+                for (int h = 0; h < enemyToAspi.Length; h++)
+                {
+                    enemyToAspi[h].gameObject.transform.position = Vector2.MoveTowards(enemyToAspi[h].gameObject.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
+                }
+
+                aspiTime -= Time.deltaTime;
             }
 
-            Collider2D[] objectsToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
+            yield return new WaitForSeconds(0.25f);
 
             while (repulseTime > 0)
             {
-                repulseTime -= Time.deltaTime;
+                Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
+                Collider2D[] enemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
 
-                for (int l = 0; l < objectsToAspirate.Length; l++)
+                for (int m = 0; m < playerToRepulse.Length; m++)
                 {
-                    if (objectsToAspirate[l].gameObject.transform.parent.CompareTag("Ennemis"))
-                    {
-                        objectsToAspirate[l].gameObject.transform.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[l].gameObject.transform.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
-                    }
-                    else if (objectsToAspirate[l].gameObject.transform.parent.parent.CompareTag("Player"))
-                    {
-                        objectsToAspirate[l].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[l].gameObject.transform.parent.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
-                    }
+                    playerToRepulse[m].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(playerToRepulse[m].gameObject.transform.parent.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
                 }
 
-                yield return new WaitForEndOfFrame();
-            }*/
+                for (int n = 0; n < enemyToRepulse.Length; n++)
+                {
+                    enemyToRepulse[n].gameObject.transform.position = Vector2.MoveTowards(enemyToRepulse[n].gameObject.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
+                }
+
+                repulseTime -= Time.deltaTime;
+
+            }
+
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
@@ -234,7 +234,7 @@ namespace Ennemies
 
         private IEnumerator JetDeDebris()
         {
-            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
+           // Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
