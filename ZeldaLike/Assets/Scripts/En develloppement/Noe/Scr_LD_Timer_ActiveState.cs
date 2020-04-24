@@ -32,7 +32,7 @@ namespace Game
                 child.gameObject.SetActive(true);
             }
 
-            yield return new WaitForSeconds(timer);
+            yield return new WaitForSecondsRealtime(timer);
 
             foreach (Transform child in transform)
             {
