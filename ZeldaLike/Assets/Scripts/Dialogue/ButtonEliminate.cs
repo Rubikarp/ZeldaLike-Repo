@@ -5,25 +5,19 @@ namespace Management
 {
     public class ButtonEliminate : MonoBehaviour
     {
-        
-        
-        
-        void Awake()
+        public Transform container;
+        [Space(10)]
+        public UnityEvent onInteraction;
+
+        public void Update()
         {
-            
+            if (container.childCount == 0)
+            {
+                onInteraction.Invoke();
+                Destroy(this);
+            }
         }
-        
-        void Start()
-        {
-            
-        }
-        
-        void Update()
-        {
-            
-        }
-        
-        
-        
+
+
     }
 }
