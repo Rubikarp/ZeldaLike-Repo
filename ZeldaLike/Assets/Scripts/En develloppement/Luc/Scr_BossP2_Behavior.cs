@@ -122,7 +122,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(3, 4);
+            randomPattern = Random.Range(0, 5);
 
             if (randomPattern == 0)
             {
@@ -234,7 +234,7 @@ namespace Ennemies
 
         private IEnumerator JetDeDebris()
         {
-           // Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
+           Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
