@@ -16,7 +16,7 @@ namespace Game
 
         void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
+            _player = GameObject.FindGameObjectWithTag("Player/Avatar");
 
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
 
