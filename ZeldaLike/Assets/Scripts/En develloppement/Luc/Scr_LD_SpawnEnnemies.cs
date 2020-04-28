@@ -24,7 +24,7 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             for (int j = 0; j < _ennemiesToSpawn.Count; j++)
             {
