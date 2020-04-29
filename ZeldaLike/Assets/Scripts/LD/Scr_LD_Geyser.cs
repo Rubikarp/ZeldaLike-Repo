@@ -85,7 +85,7 @@ namespace Game
 
             for (int i = 0; i < playerToRepulse.Length; i++)
             {
-                if (playerToRepulse[i].gameObject.transform.parent.parent.CompareTag("Player"))
+                if (playerToRepulse[i].gameObject.transform.parent.parent.CompareTag("Player/Avatar"))
                 {
                     Vector3 repulseDirection = position - playerToRepulse[i].gameObject.transform.parent.parent.position;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scr_LD_SpawnEnnemies : MonoBehaviour
 {
     public List<GameObject> _ennemiesToSpawn;
-    public float _spawnDelay;
+    public float[] _spawnDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +26,16 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            for (int j = 0; j < _ennemiesToSpawn.Count; j++)
-            {
-                _ennemiesToSpawn[j].SetActive(true);
-            }
+            StartCoroutine(EnemySpawn());
+        }
+    }
+
+    private IEnumerator EnemySpawn()
+    {
+        for (int j = 0; j < _ennemiesToSpawn.Count; j++)
+        {
+            yield return new WaitForSeconds(_spawnDelay[j]);
+            _ennemiesToSpawn[j].SetActive(true);
         }
     }
 }
