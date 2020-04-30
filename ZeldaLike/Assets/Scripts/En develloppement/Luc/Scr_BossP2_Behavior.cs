@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Management;
+using Game;
 
 namespace Ennemies
 {
@@ -122,7 +123,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 5);
+            randomPattern = Random.Range(2, 3);
 
             if (randomPattern == 0)
             {
@@ -174,6 +175,22 @@ namespace Ennemies
 
         private IEnumerator Laser()
         {
+            RaycastHit2D hitInfo = Physics2D.Raycast(_attackPos.position, -_attackPos.up);
+
+            if (hitInfo.transform.gameObject.CompareTag("Environment"))
+            {
+                Debug.Log("Laser bloqué");
+            }
+            else if (!hitInfo.transform.gameObject.CompareTag("Environment"))
+            {
+                Debug.Log("Laser traverse");
+
+                if (hitInfo.transform.gameObject.CompareTag("Player"))
+                {
+                    hitInfo.transform.gameObject.GetComponent<Scr_PlayerLifeSystem>().TakingDamage(2, hitInfo.transform.gameObject.GetComponent<Rigidbody2D>(), hitInfo.transform.right, 10, 1);
+                }
+            }
+
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
