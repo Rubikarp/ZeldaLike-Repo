@@ -216,12 +216,15 @@ namespace Game
 
                     _formeHumain.LeanScaleX(largeSize, switchDuration);
                     _formeHumain.LeanScaleY(largeSize, switchDuration);
+                    _formeHumain.LeanRotateZ(0, switchDuration);
 
                     _formeAgile.LeanScaleX(littleSize, switchDuration);
                     _formeAgile.LeanScaleY(littleSize, switchDuration);
+                    _formeAgile.LeanRotateZ(0, switchDuration);
 
                     _formeHeavy.LeanScaleX(littleSize, switchDuration);
                     _formeHeavy.LeanScaleY(littleSize, switchDuration);
+                    _formeHeavy.LeanRotateZ(0, switchDuration);
 
                 }
                 else
@@ -231,12 +234,15 @@ namespace Game
 
                     _formeHumain.LeanScaleX(littleSize, switchDuration);
                     _formeHumain.LeanScaleY(littleSize, switchDuration);
+                    _formeHumain.LeanRotateZ(0, switchDuration);
 
                     _formeAgile.LeanScaleX(largeSize, switchDuration);
                     _formeAgile.LeanScaleY(largeSize, switchDuration);
+                    _formeAgile.LeanRotateZ(0, switchDuration);
 
                     _formeHeavy.LeanScaleX(littleSize, switchDuration);
                     _formeHeavy.LeanScaleY(littleSize, switchDuration);
+                    _formeHeavy.LeanRotateZ(0, switchDuration);
 
                 }
                 else
@@ -246,12 +252,15 @@ namespace Game
 
                     _formeHumain.LeanScaleX(littleSize, switchDuration);
                     _formeHumain.LeanScaleY(littleSize, switchDuration);
+                    _formeHumain.LeanRotateZ(0, switchDuration);
 
                     _formeAgile.LeanScaleX(littleSize, switchDuration);
                     _formeAgile.LeanScaleY(littleSize, switchDuration);
+                    _formeAgile.LeanRotateZ(0, switchDuration);
 
                     _formeHeavy.LeanScaleX(largeSize, switchDuration);
                     _formeHeavy.LeanScaleY(largeSize, switchDuration);
+                    _formeHeavy.LeanRotateZ(0, switchDuration);
 
                 }
             }
