@@ -27,11 +27,11 @@ namespace Ennemis
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player/HurtBox"))
             {
                 Destroy(gameObject);
             }
-            else
+            else if (collision.gameObject.CompareTag("Environment"))
             {
                 Debug.Log(collision.gameObject.name);
                 Destroy(gameObject);

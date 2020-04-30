@@ -154,7 +154,7 @@ MonoBehaviour:
   _detectionShootingRange: 18
   _shootingAllonge: 2
   _shootingRepos: 0.3
-  _shootingCooldown: 0.9
+  _shootingCooldown: 1.5
   _detectionRunningRange: 8
   _runSpeed: 8
   _runDuration: 1.2
@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7921538551067045195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3919554, y: -3.8501124, z: 2.5071561}
+  m_LocalPosition: {x: 0, y: 0.89, z: 2.5071561}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7921538552476212214}
@@ -333,6 +333,7 @@ MonoBehaviour:
   Ennemis: {fileID: 7921538551037002539}
   body: {fileID: 7921538551037002551}
   _life: 3
+  _isDead: 0
   _isTakingDamage: 0
   _dyingDuration: 0
   knockbackSensibility: 1
