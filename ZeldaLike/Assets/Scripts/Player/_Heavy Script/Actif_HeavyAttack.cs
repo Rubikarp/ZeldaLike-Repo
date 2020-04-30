@@ -19,6 +19,7 @@ namespace Game
         public bool _canAttack;
 
         public float _attackCooldown;
+        public float _attackDelay;
 
         void Start()
         {
@@ -44,6 +45,8 @@ namespace Game
 
             _input.DesactivateControl();
             _PlMovement.Immobilize();
+
+            yield return new WaitForSeconds(_attackDelay);
 
             Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
 
