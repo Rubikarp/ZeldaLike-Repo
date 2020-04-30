@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 426456508859618307}
   - component: {fileID: 426456508859618364}
   - component: {fileID: 426456508859618365}
+  - component: {fileID: 3104738289340679768}
   m_Layer: 0
   m_Name: P_Puddle
   m_TagString: Ennemis
@@ -73,7 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2c612b96e6e74c349ab6bb6b32bbe3eb, type: 3}
+  m_Sprite: {fileID: -2533547058725022897, guid: e817bab2bce35944aaf6d1038ab9aa99,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 2, y: 1}
     newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -139,3 +141,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _puddle: {fileID: 426456508859618305}
   _timer: 1.2
+--- !u!111 &3104738289340679768
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426456508859618366}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8a2632b5ed7d6664ab193f0649ece6d2, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

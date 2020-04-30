@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4339934527091888967}
   - component: {fileID: 4339934527091888964}
   - component: {fileID: 4339934527091888965}
+  - component: {fileID: 9164102057368420063}
   m_Layer: 0
   m_Name: P_Bombe_Ingenieur
   m_TagString: Untagged
@@ -71,7 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cee4edc79b1c0d40b0519fd9b68d3c7, type: 3}
+  m_Sprite: {fileID: -8092295105046505211, guid: 4d6104bfa33845f498c3d6cd96b1cb21,
+    type: 3}
   m_Color: {r: 0.5754717, g: 0.36982453, b: 0.078720205, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,3 +102,18 @@ MonoBehaviour:
     type: 3}
   _timeBeforeExplosion: 0.9
   _timer: 2
+--- !u!111 &9164102057368420063
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4339934527091888962}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b23f5d6fc393989429d54ea9919adf15, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
