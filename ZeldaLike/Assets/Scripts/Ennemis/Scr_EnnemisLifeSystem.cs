@@ -20,6 +20,7 @@ namespace Ennemis
         [Header("Data")]
         public GameObject Ennemis = null;
         public Rigidbody2D body = null;
+        public GameObject _healObject;
 
         [Header("Statistiques")]
         public int _life = 5;
@@ -27,12 +28,20 @@ namespace Ennemis
         public bool _isTakingDamage = false;
         public float _dyingDuration = 10f;
         public float knockbackSensibility = 1f;
+        private float _healSpawnChance;
 
         private void Update()
         {
             if (_life <= 0)
             {
                 _isDead = true;
+
+                _healSpawnChance = Random.Range(0, 5);
+
+                if (_healSpawnChance == 4)
+                {
+                    Instantiate(_healObject, transform.position, transform.rotation);
+                }
                 Destroy(Ennemis, _dyingDuration);
             }
 

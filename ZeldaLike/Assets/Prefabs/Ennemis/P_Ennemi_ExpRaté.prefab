@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 1.7, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &760303728
@@ -279,6 +279,8 @@ MonoBehaviour:
   _markedDuration: 20
   Ennemis: {fileID: 1603008124410424614}
   body: {fileID: 1603008124410424620}
+  _healObject: {fileID: 780740348253267393, guid: f4fff1d70c5b9b04aa1f1ac196c713b0,
+    type: 3}
   _life: 5
   _isDead: 0
   _isTakingDamage: 0
