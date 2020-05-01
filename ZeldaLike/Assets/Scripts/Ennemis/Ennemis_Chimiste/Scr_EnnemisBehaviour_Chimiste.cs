@@ -90,10 +90,10 @@ namespace Ennemis
             }
         }
 
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
             Debug.DrawLine(_movingPos, _mySelf.position, Color.red);
-        }
+        }*/
 
     }
 }
