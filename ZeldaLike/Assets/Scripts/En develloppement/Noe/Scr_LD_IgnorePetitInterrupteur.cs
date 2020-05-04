@@ -9,7 +9,7 @@ public class Scr_LD_IgnorePetitInterrupteur : MonoBehaviour
     {
         if (collision.gameObject.tag == "PetitInterrupteur")
         {
-            Physics.IgnoreCollision(collision.collider, collider);
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
     }
 }
