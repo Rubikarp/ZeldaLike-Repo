@@ -24,15 +24,28 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
+    //Bruitage
     public void PlaySound(string name)
     {
         GameSound son = Array.Find(sounds, sound => sound.name == name);
         son.source.Play();
     }
+    public void StopSound(string name)
+    {
+        GameSound son = Array.Find(sounds, sound => sound.name == name);
+        son.source.Stop();
+    }
 
+    //Musique
     public void PlayMusic(string name)
     {
         GameSound son = Array.Find(musics, sound => sound.name == name);
         son.source.Play();
     }
+    public void StopMusic(string name)
+    {
+        GameSound son = Array.Find(musics, sound => sound.name == name);
+        son.source.Stop();
+    }
+
 }
