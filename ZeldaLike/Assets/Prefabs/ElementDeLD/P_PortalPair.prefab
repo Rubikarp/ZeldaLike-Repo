@@ -136,7 +136,9 @@ MonoBehaviour:
   _otherPortal: {fileID: 2054052858003425884}
   Player: {fileID: 0}
   _canTP: 0
-  _TPDelay: 5
+  _canTPBlocks: 0
+  _TPDelay: 2.5
+  _TPBlocksDelay: 5
 --- !u!1 &1559082471105297509
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,9 +318,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.000000230968}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.50000006
 --- !u!114 &5348759052207202033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,20 +336,6 @@ MonoBehaviour:
   _otherPortal: {fileID: 1343747552032835654}
   Player: {fileID: 0}
   _canTP: 0
-  _TPDelay: 5
---- !u!58 &800529584600464683
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054052858003425884}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.000000230968}
-  serializedVersion: 2
-  m_Radius: 0.50000006
+  _canTPBlocks: 0
+  _TPDelay: 2.5
+  _TPBlocksDelay: 5
