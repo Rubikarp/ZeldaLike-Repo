@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ennemis;
 
 namespace Game
 {
@@ -9,6 +10,7 @@ namespace Game
         [SerializeField] private int _damage = 3;
         [SerializeField] private float _stunDuration = 0.3f;
         [SerializeField] private float _knockbackPower = 20f;
+        public GameObject _shockWave;
         public int Damage
         {
             get
@@ -67,6 +69,17 @@ namespace Game
             _PlMovement._canMove = true;
 
             Destroy(scriptGameobject);
+        }
+
+        private void OnTriggerEnter2D (Collider2D collision)
+        {
+           if (collision.gameObject.CompareTag("Ennemis/HurtBox"))
+           {
+                if (collision.gameObject.GetComponent<Scr_EnnemisLifeSystem>()._isMarked == true)
+                {
+                    Instantiate(_shockWave, collision.transform.position, collision.transform.rotation);
+                }
+           }
         }
     }
 }
