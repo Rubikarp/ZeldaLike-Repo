@@ -10,6 +10,7 @@ namespace Game
         private float _delay;
         private bool _movable;
         [HideInInspector] public Vector2 _rockDirection;
+        public bool _isBig;
 
         void Start()
         {
