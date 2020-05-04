@@ -1,32 +1,38 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using Management;
 
 /// Fait par Arthur Deleye
-/// private SoundManager _sound;        
-/// _sound = FindObjectOfType<ARD_SoundManager>().Play("name");
+/// private SoundManager sound;        
+/// sound = SoundManager.instance;
 /// 
-namespace Management
+
+public class SoundManager : Singleton<SoundManager>
 {
-    public class SoundManager : Singleton<SoundManager>
+    [SerializeField] public GameSound[] musics;
+    [SerializeField] public GameSound[] sounds;
+
+    void Awake()
     {
-        public GameSound[] sounds;
-
-        void Awake()
+        foreach (GameSound son in sounds)
         {
-            foreach (GameSound s in sounds)
-            {
-                s.source = gameObject.AddComponent<AudioSource>();
-                s.source.clip = s.clip;
+            son.source = gameObject.AddComponent<AudioSource>();
+            son.source.clip = son.clip;
 
-                s.source.loop = s.loop;
-            }
+            son.source.loop = son.loop;
         }
+    }
 
-        public void Play(string name)
-        {
-            GameSound s = Array.Find(sounds, sound => sound.name == name);
-            s.source.Play();
-        }
+    public void PlaySound(string name)
+    {
+        GameSound son = Array.Find(sounds, sound => sound.name == name);
+        son.source.Play();
+    }
+
+    public void PlayMusic(string name)
+    {
+        GameSound son = Array.Find(musics, sound => sound.name == name);
+        son.source.Play();
     }
 }

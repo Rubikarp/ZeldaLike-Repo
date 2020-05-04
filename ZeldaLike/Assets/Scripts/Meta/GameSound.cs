@@ -2,6 +2,7 @@
 
 namespace Management
 {
+    [System.Serializable]
     public class GameSound
     {
         [Header("NAME")]
