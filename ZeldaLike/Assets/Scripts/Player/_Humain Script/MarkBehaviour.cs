@@ -13,6 +13,7 @@ namespace Game
         private OnSwitch_MarkApparrition _human = null;
         private OnSwitch_SpeedBoost _heavy = null;
         private OnSwitch_StunZoneApparrition _agile = null;
+        public float _distanceLimit;
 
         void Start()
         {
@@ -72,6 +73,11 @@ namespace Game
                     Destroy(gameObject, 0.2f);
 
                 }
+            }
+
+            if (Vector2.Distance(_player.transform.position, transform.position) > _distanceLimit)
+            {
+                transform.position = _player.transform.position;
             }
         }
 
