@@ -6,7 +6,7 @@ namespace Management
     ///
     /// [SerializeField] private InputManager _input;
     /// _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-
+    [ExecuteInEditMode]
     public class InputManager : Singleton<InputManager>
     {
         public bool _canInput = true;
@@ -66,9 +66,10 @@ namespace Management
                     _rightSwitch = Input.GetButton("RB/R1");
 
                     //update de la direction du joueur
-                    if (_stickDirection != Vector2.zero)
+                    if (_stickDirection.magnitude >= 0.8f)
                     {
-                        _CharacterDirection = _stickDirection.normalized;
+                        _CharacterDirection = _stickDirection;
+                        _CharacterDirection.Normalize();
                     }
                 }
                 else
@@ -109,6 +110,12 @@ namespace Management
         public void ReActivateControl()
         {
             _canInput = true;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Debug.DrawRay(Vector2.zero, _CharacterDirection * 5 , Color.red);
+
         }
     }
 }
