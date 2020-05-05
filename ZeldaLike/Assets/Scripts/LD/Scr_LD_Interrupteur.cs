@@ -8,6 +8,7 @@ namespace Game
     {
         public bool _isActive;
         public GameObject _thingToActivate;
+        public bool _isBig;
 
         // Start is called before the first frame update
         void Start()
@@ -33,7 +34,16 @@ namespace Game
         {
             if (collision.gameObject.CompareTag("Environment"))
             {
-                _isActive = true;
+                
+                if (collision.gameObject.GetComponent<Scr_HeavyMovable>()._isBig == true)
+                {
+                    _isActive = true;
+                }
+
+                else if (collision.gameObject.GetComponent<Scr_HeavyMovable>()._isBig == false && _isBig == false)
+                {
+                    _isActive = true;
+                }
             }
             else if (collision.gameObject.transform.parent.parent.CompareTag("Player"))
             {
