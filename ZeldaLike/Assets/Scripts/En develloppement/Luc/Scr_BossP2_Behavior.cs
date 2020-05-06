@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Management;
+using Game;
 
 namespace Ennemies
 {
@@ -14,6 +15,7 @@ namespace Ennemies
         public float _delayBetweenPatterns;
         private GameObject _player;
         public Transform _attackPos;
+        public Vector3 _bossDirection;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -24,20 +26,26 @@ namespace Ennemies
         public List<GameObject> _ennemiesArmy;
         public List<Transform> _armySpawns;
         public float _castDelayArmy;
+        private bool _playerHit;
 
         [Header("Laser")]
-        public float _laserTimer;
+        public float _laserRotateSpeed;
+        private float _laserRotateSpeedActive;
+        public GameObject _laserHit;
 
-        [Header("Aspirtaion")]
+        [Header("Aspiration")]
         public float _aspirationRange;
         public float _aspirationSpeed;
         public float _aspirationTime;
         public float _repulseRange;
         public float _repulseSpeed;
         public float _repulseTime;
+        public LayerMask _playerMask;
+        public LayerMask _enemyMask;
 
         [Header("CoupMassif")]
-        public float _hitDelay;
+        public Transform _coupMassifPos;
+        public GameObject _coupMassifHitbox;
 
         [Header("Jet de débris")]
         public GameObject _projectileThrown;
@@ -47,11 +55,15 @@ namespace Ennemies
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _inPattern = false;
+            _laserRotateSpeedActive = _laserRotateSpeed;
+            _playerHit = false;
         }
 
         // Update is called once per frame
         void Update()
         {
+            _bossDirection = (_player.transform.position - transform.position);
+
             if (_inPattern == false)
             {
                 if (_patternCount < 3)
@@ -79,7 +91,7 @@ namespace Ennemies
 
                         case Pattern.Laser:
                             _inPattern = true;
-                            StartCoroutine(Laser());
+                            StartCoroutine(LaserPattern());
                             Debug.Log("Laser");
                             NextDirection();
                             break;
@@ -116,7 +128,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 5);
+            randomPattern = Random.Range(3, 4);
 
             if (randomPattern == 0)
             {
@@ -166,55 +178,95 @@ namespace Ennemies
             _inPattern = false;
         }
 
-        private IEnumerator Laser()
+        private IEnumerator LaserPattern()
         {
+            while (_laserRotateSpeedActive > 0)
+            {
+                LaserBehavior();
+                //transform.Rotate
+                _laserRotateSpeedActive -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                Debug.Log("Un fois");
+            }
+
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
+            _laserRotateSpeedActive = _laserRotateSpeed;
+        }
+
+        private void LaserBehavior()
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(_attackPos.position, -_attackPos.up);
+
+            if (hitInfo)
+            {
+                if (hitInfo.transform.gameObject.CompareTag("Environment"))
+                {
+                    Debug.Log("Laser bloqué");
+                }
+                else if (!hitInfo.transform.gameObject.CompareTag("Environment"))
+                {
+                    Debug.Log("Laser traverse");
+
+                    if (hitInfo.transform.gameObject.CompareTag("Player") && _playerHit == false)
+                    {
+                        Instantiate(_laserHit, hitInfo.transform.position, hitInfo.transform.rotation);
+                        _playerHit = true;
+                        Debug.Log("Blessure");
+                    }
+                }
+
+                Debug.Log(hitInfo.transform.name);
+                Debug.Log(hitInfo.transform.position);
+            }
+            else
+            {
+                Debug.Log("Nada");
+            }
         }
 
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
         {
-            /*Collider2D[] objectsToAspirate = Physics2D.OverlapCircleAll(transform.position, _aspirationRange);
-
             while (aspiTime > 0)
             {
-                aspiTime -= Time.deltaTime;
+                Collider2D[] playerToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
+                Collider2D[] enemyToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
 
-                for (int k = 0; k < objectsToAspirate.Length; k++)
+                for (int k = 0; k < playerToAspi.Length; k++)
                 {
-                    if (objectsToAspirate[k].gameObject.transform.parent.CompareTag("Ennemis"))
-                    {
-                        objectsToAspirate[k].gameObject.transform.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[k].gameObject.transform.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
-                    }
-                    else if (objectsToAspirate[k].gameObject.transform.parent.parent.CompareTag("Player"))
-                    {
-                        objectsToAspirate[k].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[k].gameObject.transform.parent.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
-                    }
+                    playerToAspi[k].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(playerToAspi[k].gameObject.transform.parent.parent.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
                 }
 
+                for (int h = 0; h < enemyToAspi.Length; h++)
+                {
+                    enemyToAspi[h].gameObject.transform.position = Vector2.MoveTowards(enemyToAspi[h].gameObject.transform.position, transform.position, _aspirationSpeed * Time.deltaTime);
+                }
+
+                aspiTime -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
 
-            Collider2D[] objectsToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
+            yield return new WaitForSeconds(0.25f);
 
             while (repulseTime > 0)
             {
-                repulseTime -= Time.deltaTime;
+                Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
+                Collider2D[] enemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
 
-                for (int l = 0; l < objectsToAspirate.Length; l++)
+                for (int m = 0; m < playerToRepulse.Length; m++)
                 {
-                    if (objectsToAspirate[l].gameObject.transform.parent.CompareTag("Ennemis"))
-                    {
-                        objectsToAspirate[l].gameObject.transform.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[l].gameObject.transform.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
-                    }
-                    else if (objectsToAspirate[l].gameObject.transform.parent.parent.CompareTag("Player"))
-                    {
-                        objectsToAspirate[l].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(objectsToAspirate[l].gameObject.transform.parent.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
-                    }
+                    playerToRepulse[m].gameObject.transform.parent.parent.transform.position = Vector2.MoveTowards(playerToRepulse[m].gameObject.transform.parent.parent.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
                 }
 
+                for (int n = 0; n < enemyToRepulse.Length; n++)
+                {
+                    enemyToRepulse[n].gameObject.transform.position = Vector2.MoveTowards(enemyToRepulse[n].gameObject.transform.position, transform.position, -_repulseSpeed * Time.deltaTime);
+                }
+
+                repulseTime -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
-            }*/
+            }
+
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
@@ -222,13 +274,15 @@ namespace Ennemies
 
         private IEnumerator CoupMassif()
         {
+            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 25, _coupMassifPos.rotation, _coupMassifPos);
+
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
 
         private IEnumerator JetDeDebris()
         {
-            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
+           Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
