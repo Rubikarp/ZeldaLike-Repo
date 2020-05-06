@@ -91,10 +91,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2968003353328135411}
   - component: {fileID: 2968003353328135416}
+  - component: {fileID: 2040370687763400489}
   - component: {fileID: 2968003353328135421}
   - component: {fileID: 2968003353328135422}
   - component: {fileID: 2968003353328135420}
   - component: {fileID: 2968003353328135423}
+  - component: {fileID: 9028550213445797799}
   m_Layer: 0
   m_Name: P_Ennemi_Soldat
   m_TagString: Ennemis
@@ -156,8 +158,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 890990c21edb51648bc553798f050a4a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -2091970622311281140, guid: 1eb233336cfc9f249b82289043ace0c6,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -167,6 +170,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2040370687763400489
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968003353328135410}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 224e98a32ff964a4aa636ffd49d6fef9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &2968003353328135421
 Rigidbody2D:
   serializedVersion: 4
@@ -205,7 +227,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.1, y: 3.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -230,6 +252,7 @@ MonoBehaviour:
   _projectile: {fileID: 2116023118318632045, guid: ec8d2db733d976c48a932b5a0d545a4c,
     type: 3}
   _lifeSyst: {fileID: 2968003354461898751}
+  animator: {fileID: 9028550213445797799}
   _myBody: {fileID: 2968003353328135421}
   _detectionShootingRange: 18
   _shootingAllonge: 2
@@ -263,6 +286,21 @@ MonoBehaviour:
   _damage: 1
   _stunDuration: 0.25
   _knockbackPower: 10
+--- !u!114 &9028550213445797799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968003353328135410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071be6eeb69c43a44b1a1a95bad93eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soldat: {fileID: 2968003353328135420}
+  lifeSyst: {fileID: 2968003354461898751}
+  animator: {fileID: 2040370687763400489}
 --- !u!1 &2968003354461898749
 GameObject:
   m_ObjectHideFlags: 0

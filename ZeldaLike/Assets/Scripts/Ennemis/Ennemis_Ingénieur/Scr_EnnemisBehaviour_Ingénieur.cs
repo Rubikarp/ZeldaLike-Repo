@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Management;
 
@@ -12,6 +11,7 @@ namespace Ennemis
         public GameObject _projectile;
         public GameObject _bomb;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
+        public AnimatorHandler_Inge animator = null;
         public Rigidbody2D _myBody = null;
 
         [Header("Shoot")]
@@ -61,6 +61,10 @@ namespace Ennemis
             _targetDistance = Vector2.Distance(_mySelf.position, _target.position);
             _haveDetected = PlayerInShootingRange(_targetDistance, _detectionShootingRange, _detectionRunningRange);
             _inDanger = PlayerInRunningRange(_targetDistance, _detectionRunningRange);
+            
+            animator.animator.SetFloat("OrientationX", _targetDirection.x);
+            animator.animator.SetFloat("OrientationY", _targetDirection.y);
+
         }
         void FixedUpdate()
         {
@@ -112,6 +116,9 @@ namespace Ennemis
             while (0 < runDuration)
             {
                 runDuration -= Time.deltaTime;
+
+                animator.animator.SetFloat("OrientationX", -runDirection.x);
+                animator.animator.SetFloat("OrientationY", -runDirection.y);
 
                 _myBody.velocity = -runDirection.normalized * runSpeed; //opposé à la position de la target de l'ennemi > Fuite
 

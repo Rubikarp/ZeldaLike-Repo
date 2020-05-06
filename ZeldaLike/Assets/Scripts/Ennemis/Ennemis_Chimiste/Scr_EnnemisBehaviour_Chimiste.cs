@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Ennemis
 {
@@ -10,6 +8,7 @@ namespace Ennemis
         public Transform _mySelf = null;
         public Rigidbody2D _myBody = null;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
+        public AnimatorHandler_Chimiste animator = null;
         [Space(5)]
         public GameObject _puddle = null;
 
@@ -18,7 +17,6 @@ namespace Ennemis
         public float _detectionRange = 20f;
         public float _circleRange = 3f;
         public float _timer = 0.3f;
-
 
         [Header("Parameter")]
         public bool _haveDetect = false;
@@ -51,6 +49,11 @@ namespace Ennemis
             _movingDirection = (_movingPos - _myBody.position).normalized;
 
             #endregion Variables Actualisée
+
+            if (_lifeSyst._isDead)
+            {
+                animator.TriggerDeath();
+            }
         }
 
         private void FixedUpdate()
@@ -75,6 +78,9 @@ namespace Ennemis
 
         private void Orbit()
         {
+            animator.animator.SetFloat("OrientationX", _movingDirection.x);
+            animator.animator.SetFloat("OrientationY", _movingDirection.y);
+
             _myBody.velocity = _movingDirection * _movementSpeed;
         }
 

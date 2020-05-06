@@ -30,11 +30,11 @@ namespace Game
             //Flip Horizontal
             if (_rgd2D.velocity.x < 0)
             {
-                _spritRend.flipX = false;
+                _spritRend.flipX = true;
             }
             else if (_rgd2D.velocity.x > 0)
             {
-                _spritRend.flipX = true;
+                _spritRend.flipX = false;
             }
 
             //Valeur des actions
