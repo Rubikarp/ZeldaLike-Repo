@@ -4,7 +4,7 @@ using System;
 
 /// Fait par Arthur Deleye
 /// private SoundManager sound;        
-/// sound = SoundManager.instance;
+/// sound = SoundManager.Instance;
 
 public class SoundManager : Singleton<SoundManager>
 {
