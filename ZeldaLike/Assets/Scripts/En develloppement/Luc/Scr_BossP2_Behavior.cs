@@ -26,11 +26,14 @@ namespace Ennemies
         public List<GameObject> _ennemiesArmy;
         public List<Transform> _armySpawns;
         public float _castDelayArmy;
+        private bool _playerHit;
 
         [Header("Laser")]
-        public float _laserTimer;
+        public float _laserRotateSpeed;
+        private float _laserRotateSpeedActive;
+        public GameObject _laserHit;
 
-        [Header("Aspirtaion")]
+        [Header("Aspiration")]
         public float _aspirationRange;
         public float _aspirationSpeed;
         public float _aspirationTime;
@@ -52,6 +55,8 @@ namespace Ennemies
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _inPattern = false;
+            _laserRotateSpeedActive = _laserRotateSpeed;
+            _playerHit = false;
         }
 
         // Update is called once per frame
@@ -86,7 +91,7 @@ namespace Ennemies
 
                         case Pattern.Laser:
                             _inPattern = true;
-                            StartCoroutine(Laser());
+                            StartCoroutine(LaserPattern());
                             Debug.Log("Laser");
                             NextDirection();
                             break;
@@ -123,7 +128,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(2, 3);
+            randomPattern = Random.Range(3, 4);
 
             if (randomPattern == 0)
             {
@@ -173,26 +178,51 @@ namespace Ennemies
             _inPattern = false;
         }
 
-        private IEnumerator Laser()
+        private IEnumerator LaserPattern()
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(_attackPos.position, -_attackPos.up);
-
-            if (hitInfo.transform.gameObject.CompareTag("Environment"))
+            while (_laserRotateSpeedActive > 0)
             {
-                Debug.Log("Laser bloqué");
-            }
-            else if (!hitInfo.transform.gameObject.CompareTag("Environment"))
-            {
-                Debug.Log("Laser traverse");
-
-                if (hitInfo.transform.gameObject.CompareTag("Player"))
-                {
-                    hitInfo.transform.gameObject.GetComponent<Scr_PlayerLifeSystem>().TakingDamage(2, hitInfo.transform.gameObject.GetComponent<Rigidbody2D>(), hitInfo.transform.right, 10, 1);
-                }
+                LaserBehavior();
+                //transform.Rotate
+                _laserRotateSpeedActive -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                Debug.Log("Un fois");
             }
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
+            _laserRotateSpeedActive = _laserRotateSpeed;
+        }
+
+        private void LaserBehavior()
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(_attackPos.position, -_attackPos.up);
+
+            if (hitInfo)
+            {
+                if (hitInfo.transform.gameObject.CompareTag("Environment"))
+                {
+                    Debug.Log("Laser bloqué");
+                }
+                else if (!hitInfo.transform.gameObject.CompareTag("Environment"))
+                {
+                    Debug.Log("Laser traverse");
+
+                    if (hitInfo.transform.gameObject.CompareTag("Player") && _playerHit == false)
+                    {
+                        Instantiate(_laserHit, hitInfo.transform.position, hitInfo.transform.rotation);
+                        _playerHit = true;
+                        Debug.Log("Blessure");
+                    }
+                }
+
+                Debug.Log(hitInfo.transform.name);
+                Debug.Log(hitInfo.transform.position);
+            }
+            else
+            {
+                Debug.Log("Nada");
+            }
         }
 
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
@@ -213,6 +243,7 @@ namespace Ennemies
                 }
 
                 aspiTime -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
             }
 
             yield return new WaitForSeconds(0.25f);
@@ -233,7 +264,7 @@ namespace Ennemies
                 }
 
                 repulseTime -= Time.deltaTime;
-
+                yield return new WaitForEndOfFrame();
             }
 
 

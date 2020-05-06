@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee66f354b36f284487e02730995a2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBetweenPatterns: 2
+  _delayBetweenPatterns: 4
   _attackPos: {fileID: 3585198221793334281}
   _bossDirection: {x: 0, y: 0, z: 0}
   _ennemiesRenforts:
@@ -188,7 +188,9 @@ MonoBehaviour:
   - {fileID: 6274636095554384739}
   - {fileID: 6274636094260660593}
   _castDelayArmy: 1
-  _laserTimer: 2
+  _laserRotateSpeed: 0
+  _laserHit: {fileID: 3197152112058518235, guid: 9107afa1ee95f5b429fc124e790792e7,
+    type: 3}
   _aspirationRange: 15
   _aspirationSpeed: 10
   _aspirationTime: 4
