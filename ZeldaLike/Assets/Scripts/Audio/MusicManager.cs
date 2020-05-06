@@ -5,7 +5,6 @@ using System;
 /// Fait par Arthur Deleye
 /// private MusicManager music;        
 /// music = MusicManager.instance;
-/// 
 
 namespace Game
 {
@@ -20,6 +19,8 @@ namespace Game
                 son.source = gameObject.AddComponent<AudioSource>();
                 son.source.clip = son.clip;
 
+                son.source.volume = son.volume;
+                son.source.pitch = son.pitch;
                 son.source.loop = son.loop;
             }
         }
