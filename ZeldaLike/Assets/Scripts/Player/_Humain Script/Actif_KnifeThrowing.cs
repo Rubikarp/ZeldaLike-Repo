@@ -17,7 +17,6 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [Header("Variable")]
     public bool _canShoot = true;
     [SerializeField] private float _Cooldown = 0.2f;
-    [SerializeField] private float _animDecal = 0.2f;
     private float _reloadTime = 0f;
 
     void Start()

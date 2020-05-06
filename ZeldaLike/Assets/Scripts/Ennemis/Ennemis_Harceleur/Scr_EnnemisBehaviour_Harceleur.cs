@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Management;
 
@@ -11,6 +10,7 @@ namespace Ennemis
         public Transform _mySelf = null;
         public GameObject _attackZone = null;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
+        public AnimatorHandler_Harceleur animator = null;
         public Rigidbody2D _myBody = null;
         private InputManager _input = null;
         public bool Debug = false;
@@ -41,7 +41,7 @@ namespace Ennemis
         [Header("Target")]
         [SerializeField] private Transform _target = null;
 
-        private Vector2 _targetDirection = Vector2.zero;
+        [HideInInspector] public Vector2 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
         private void Start()
@@ -62,6 +62,11 @@ namespace Ennemis
             _canTeleport = EnemyInTeleportingRange(_targetDistance);
 
             #endregion Variables Actualisée
+
+            if (_lifeSyst._isDead)
+            {
+                animator.TriggerDeath();
+            }
         }
         private void FixedUpdate()
         {
@@ -77,10 +82,16 @@ namespace Ennemis
 
                     if (_targetDistance < _distNear & !_isAttacking)
                     {
+                        animator.animator.SetFloat("MouvementX", -_targetDirection.x);
+                        animator.animator.SetFloat("MouvementY", -_targetDirection.y);
+
                         _myBody.velocity = -_targetDirection.normalized * _movementSpeed;
                     }
                     else if (_targetDistance > _distFar & !_isAttacking)
                     {
+                        animator.animator.SetFloat("MouvementX", _targetDirection.x);
+                        animator.animator.SetFloat("MouvementY", _targetDirection.y);
+
                         _myBody.velocity = _targetDirection.normalized * _movementSpeed;
                     }
                 }
@@ -122,14 +133,19 @@ namespace Ennemis
             _isAttacking = true;
             _canTeleport = false;
 
+            animator.TriggerTP();
             _myBody.position = new Vector2(_target.position.x, _target.position.y) - (_backTeleportRange * new Vector2(_input._CharacterDirection.x, _input._CharacterDirection.y));
             _myBody.velocity = Vector2.zero;
 
+            animator.animator.SetBool("IsAttackingPrep", true);
             yield return new WaitForSeconds(attackCharge);
+            animator.animator.SetBool("IsAttackingPrep", false);
 
             Instantiate(_attackZone, new Vector2(transform.position.x, transform.position.y) + _targetDirection.normalized * _attackRange, transform.rotation);
 
+            animator.animator.SetBool("IsAttacking", true);
             yield return new WaitForSeconds(_attackDur);
+            animator.animator.SetBool("IsAttacking", false);
 
             _isAttacking = false;
 

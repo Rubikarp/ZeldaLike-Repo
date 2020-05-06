@@ -9,6 +9,7 @@ namespace Ennemis
         public Transform _mySelf = null;
         public GameObject _projectile;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
+        public AnimatorHandler_Soldat animator = null;
         public Rigidbody2D _myBody = null;
 
         [Header("Shoot")]
@@ -21,7 +22,7 @@ namespace Ennemis
         public float _detectionChargingRange = 8f;
         public float _chargeSpeed = 35f;
         public float _chargeDuration = 2f;
-        public float _chargeRepos = 0.3f;
+        public float _chargePrep = 0.3f;
         public float _chargeCooldown = 1.9f;
 
         [Header("Parameter detecting")]
@@ -55,6 +56,7 @@ namespace Ennemis
             _targetDistance = Vector2.Distance(_mySelf.position, _target.position);
             _haveDetected = PlayerInShootingRange(_targetDistance, _detectionShootingRange, _detectionChargingRange);
             _inDanger = PlayerInChargingRange(_targetDistance, _detectionChargingRange);
+
         }
 
         private void FixedUpdate()
@@ -71,7 +73,7 @@ namespace Ennemis
             {
                 if (_canCharge)
                 {
-                    StartCoroutine(Charge(_targetDirection, _chargeSpeed, _chargeDuration, _chargeRepos, _chargeCooldown));
+                    StartCoroutine(Charge(_targetDirection, _chargeSpeed, _chargeDuration, _chargePrep, _chargeCooldown));
                 }
             }
 
@@ -99,6 +101,11 @@ namespace Ennemis
         public IEnumerator Charge(Vector2 chargeDirection, float chargeSpeed, float chargeDuration, float chargeRepos, float chargeCooldown)
         {
             _canCharge = false;
+
+            animator.animator.SetBool("isAttackingPrep", true);
+            yield return new WaitForSeconds(chargeRepos);
+            animator.animator.SetBool("isAttackingPrep", false);
+
             _isCharging = true;
 
             while (0 < chargeDuration)
@@ -111,9 +118,6 @@ namespace Ennemis
             }
 
             _myBody.velocity = Vector2.zero;
-
-            yield return new WaitForSeconds(chargeRepos);
-
             _isCharging = false;
 
             yield return new WaitForSeconds(chargeCooldown);
