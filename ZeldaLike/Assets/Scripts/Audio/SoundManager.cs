@@ -5,7 +5,6 @@ using System;
 /// Fait par Arthur Deleye
 /// private SoundManager sound;        
 /// sound = SoundManager.instance;
-/// 
 
 public class SoundManager : Singleton<SoundManager>
 {
@@ -18,6 +17,8 @@ public class SoundManager : Singleton<SoundManager>
             son.source = gameObject.AddComponent<AudioSource>();
             son.source.clip = son.clip;
 
+            son.source.volume = son.volume;
+            son.source.pitch = son.pitch;
             son.source.loop = son.loop;
         }
     }
