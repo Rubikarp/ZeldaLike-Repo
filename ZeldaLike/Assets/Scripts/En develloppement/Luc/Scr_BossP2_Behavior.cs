@@ -16,6 +16,7 @@ namespace Ennemies
         private GameObject _player;
         public Transform _attackPos;
         public Vector3 _bossDirection;
+        public Transform _attackPosParent;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -26,12 +27,16 @@ namespace Ennemies
         public List<GameObject> _ennemiesArmy;
         public List<Transform> _armySpawns;
         public float _castDelayArmy;
-        private bool _playerHit;
 
         [Header("Laser")]
         public float _laserRotateSpeed;
         private float _laserRotateSpeedActive;
         public GameObject _laserHit;
+        public LayerMask _laserMask;
+        private bool _playerHit;
+        public LineRenderer _laserGraph;
+        private Vector2 _laserSpawnPoint;
+        private float _rotation;
 
         [Header("Aspiration")]
         public float _aspirationRange;
@@ -57,6 +62,7 @@ namespace Ennemies
             _inPattern = false;
             _laserRotateSpeedActive = _laserRotateSpeed;
             _playerHit = false;
+            _laserSpawnPoint = _attackPos.position;
         }
 
         // Update is called once per frame
@@ -128,7 +134,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(3, 4);
+            randomPattern = Random.Range(2, 3);
 
             if (randomPattern == 0)
             {
@@ -180,23 +186,27 @@ namespace Ennemies
 
         private IEnumerator LaserPattern()
         {
-            while (_laserRotateSpeedActive > 0)
+            while (_rotation > -360)
             {
-                LaserBehavior();
-                //transform.Rotate
-                _laserRotateSpeedActive -= Time.deltaTime;
+                LaserBehavior(_attackPos.position, -_attackPos.up);
+                _rotation -= Time.deltaTime * _laserRotateSpeed;
+                _attackPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
                 yield return new WaitForEndOfFrame();
                 Debug.Log("Un fois");
             }
+
+            _rotation = 0;
+            _attackPosParent.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _laserGraph.enabled = false;
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
             _laserRotateSpeedActive = _laserRotateSpeed;
         }
 
-        private void LaserBehavior()
+        private void LaserBehavior(Vector2 origin, Vector2 destination)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(_attackPos.position, -_attackPos.up);
+            RaycastHit2D hitInfo = Physics2D.Raycast(origin, destination, Mathf.Infinity, _laserMask);
 
             if (hitInfo)
             {
@@ -213,8 +223,14 @@ namespace Ennemies
                         Instantiate(_laserHit, hitInfo.transform.position, hitInfo.transform.rotation);
                         _playerHit = true;
                         Debug.Log("Blessure");
+                        _laserMask = LayerMask.GetMask("Nothing");
+                        _laserMask = LayerMask.GetMask("Default");
                     }
                 }
+
+                _laserGraph.enabled = true;
+                _laserGraph.SetPosition(0, _attackPos.position);
+                _laserGraph.SetPosition(1, hitInfo.transform.position);
 
                 Debug.Log(hitInfo.transform.name);
                 Debug.Log(hitInfo.transform.position);
