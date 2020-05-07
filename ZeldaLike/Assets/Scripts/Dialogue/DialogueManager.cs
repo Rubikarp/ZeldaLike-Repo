@@ -99,10 +99,14 @@ namespace Dialogue
                 }
                 else
                 {
-                    _dialogues.text = "";
-                    _nom.text = "";
+                    EndDialogue();
                 }
                 return;
+            }
+            if (haveEnd)
+            {
+                StartDialogue();
+                haveEnd = false;
             }
 
             StopAllCoroutines();
@@ -132,6 +136,8 @@ namespace Dialogue
 
         public void EndDialogue()
         {
+            _nom.text = "";
+            _dialogues.text = "";
             LeanTween.moveY(_textBox, -100, 0.3f);
             haveEnd = true;
         }

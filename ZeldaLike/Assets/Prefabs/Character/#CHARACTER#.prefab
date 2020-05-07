@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5021294589772490011}
   m_Layer: 0
   m_Name: Avatar
-  m_TagString: Player
+  m_TagString: Player/Avatar
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426099458672461377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.1, y: 78.4, z: 0}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426099459853713050}
@@ -336,7 +336,7 @@ MonoBehaviour:
   - P_Character_Stun
   - P_Character_HeavyAttack
   - P_Character_BondAttack
-  _life: 6
+  _life: 5
   _maxlife: 6
   _isTakingDamage: 0
   _isVunerable: 1
@@ -529,7 +529,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38496
+  m_InstanceId: -5458
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -820,7 +820,6 @@ MonoBehaviour:
   _attackPos: {fileID: 426099459277516483}
   _canShoot: 1
   _Cooldown: 0.6
-  _animDecal: 0
 --- !u!1 &426099459853713048
 GameObject:
   m_ObjectHideFlags: 0
