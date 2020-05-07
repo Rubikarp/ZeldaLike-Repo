@@ -7,7 +7,7 @@ namespace Game
     public class KnifeBehaviour : MonoBehaviour
     {
         [Header("Component")]
-        private Rigidbody2D _Body;
+        public Rigidbody2D _Body;
         private GameObject _player;
 
         [Header("Variable")]
@@ -18,7 +18,7 @@ namespace Game
         public float _Lifetime = 0.4f;
         [Space(10)]
         public float _angleCorrection = 0;
-        private Vector2 _playerOrientation;
+        public Vector2 _playerOrientation;
 
         private void Start()
         {
@@ -50,7 +50,7 @@ namespace Game
             }
         }
 
-        private void FaceShootingDirection(Vector2 shootingDirection)
+        public void FaceShootingDirection(Vector2 shootingDirection)
         {
             //calcul l'angle pour faire face au joueur
             float rotZ = Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg + _angleCorrection;
