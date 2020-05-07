@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6182628577938991819
+--- !u!1 &2079233049359880927
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,28 +8,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8597727682256225201}
+  - component: {fileID: 954974134134445541}
   m_Layer: 9
-  m_Name: AttackPosParent
+  m_Name: LaserPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8597727682256225201
+--- !u!4 &954974134134445541
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6182628577938991819}
+  m_GameObject: {fileID: 2079233049359880927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3585198221793334281}
+  m_Children: []
   m_Father: {fileID: 6274636094840920908}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6274636094260660606
 GameObject:
@@ -94,7 +93,7 @@ Transform:
   - {fileID: 6274636095554384739}
   - {fileID: 6274636094260660593}
   m_Father: {fileID: 6274636096001965033}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6274636094840920906
 GameObject:
@@ -127,9 +126,11 @@ Transform:
   m_LocalScale: {x: 3.9479737, y: 3.9479737, z: 3.9479737}
   m_Children:
   - {fileID: 6814870832448041603}
-  - {fileID: 8597727682256225201}
+  - {fileID: 3585198221793334281}
+  - {fileID: 4015835940544312761}
+  - {fileID: 954974134134445541}
   m_Father: {fileID: 6274636096001965033}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6274636094840920909
 SpriteRenderer:
@@ -197,7 +198,6 @@ MonoBehaviour:
   _delayBetweenPatterns: 4
   _attackPos: {fileID: 3585198221793334281}
   _bossDirection: {x: 0, y: 0, z: 0}
-  _attackPosParent: {fileID: 8597727682256225201}
   _ennemiesRenforts:
   - {fileID: 7921538551037002539, guid: 455a408cb34358f46a8423bc2f95a8af, type: 3}
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
@@ -227,6 +227,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   _laserGraph: {fileID: 4565835045290300008}
+  _laserPos: {fileID: 954974134134445541}
+  _laserCastTime: 1
   _aspirationRange: 15
   _aspirationSpeed: 10
   _aspirationTime: 4
@@ -393,7 +395,7 @@ Transform:
   - {fileID: 6277445985062883890}
   - {fileID: 6277445984328676960}
   m_Father: {fileID: 6274636096001965033}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6274636095727324544
 GameObject:
@@ -452,7 +454,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4015835940544312761}
   - {fileID: 6274636094840920908}
   - {fileID: 6274636095695644258}
   - {fileID: 6274636094608941554}
@@ -484,11 +485,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788945336213787281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.416, y: -0.2650015, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2532945, y: 0.2532945, z: 0.2532945}
   m_Children: []
-  m_Father: {fileID: 6274636096001965033}
-  m_RootOrder: 0
+  m_Father: {fileID: 6274636094840920908}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &4565835045290300008
 LineRenderer:
@@ -585,7 +586,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!1 &8081811122814804101
 GameObject:
@@ -660,8 +661,8 @@ Transform:
   m_LocalPosition: {x: 1.4160004, y: -0.26500148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8597727682256225201}
-  m_RootOrder: 0
+  m_Father: {fileID: 6274636094840920908}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6274636094913383074
 PrefabInstance:
