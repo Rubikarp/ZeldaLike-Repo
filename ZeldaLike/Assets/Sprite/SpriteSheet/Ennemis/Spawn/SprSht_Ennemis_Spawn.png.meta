@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 4d8aa608168b067459628f77bed7f353
+guid: 7ae316541caf1084d892ca0db507d823
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2654877595096219963
-    second: boss2Explosion1_0
+      213: 642615160656406465
+    second: SprSht_Ennemis_Spawn_0
   - first:
-      213: -1606580676024807660
-    second: boss2Explosion1_1
+      213: 4795542370905994175
+    second: SprSht_Ennemis_Spawn_1
   - first:
-      213: -2873069253168210218
-    second: boss2Explosion1_2
+      213: -5395916063563047487
+    second: SprSht_Ennemis_Spawn_2
+  - first:
+      213: -3602717225541549715
+    second: SprSht_Ennemis_Spawn_3
+  - first:
+      213: 1930949694552932841
+    second: SprSht_Ennemis_Spawn_4
+  - first:
+      213: -473263127111865326
+    second: SprSht_Ennemis_Spawn_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -69,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -81,7 +90,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -95,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss2Explosion1_0
+      name: SprSht_Ennemis_Spawn_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 15
-        height: 15
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ce7526b4eaf72bd0800000000000000
-      internalID: -2654877595096219963
+      spriteID: 1c7a43a75170be800800000000000000
+      internalID: 642615160656406465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss2Explosion1_1
+      name: SprSht_Ennemis_Spawn_1
       rect:
         serializedVersion: 2
-        x: 15
+        x: 50
         y: 0
-        width: 15
-        height: 15
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41fc88e136744b9e0800000000000000
-      internalID: -1606580676024807660
+      spriteID: fb3bf23e0603d8240800000000000000
+      internalID: 4795542370905994175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss2Explosion1_2
+      name: SprSht_Ennemis_Spawn_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 100
         y: 0
-        width: 15
-        height: 15
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +160,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dedfc58cbec028d0800000000000000
-      internalID: -2873069253168210218
+      spriteID: 1cd1081ddeadd15b0800000000000000
+      internalID: -5395916063563047487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSht_Ennemis_Spawn_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d614a6975c3900ec0800000000000000
+      internalID: -3602717225541549715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSht_Ennemis_Spawn_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e10afe348c1cca10800000000000000
+      internalID: 1930949694552932841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SprSht_Ennemis_Spawn_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ce43f71b1ae69f0800000000000000
+      internalID: -473263127111865326
       vertices: []
       indices: 
       edges: []
