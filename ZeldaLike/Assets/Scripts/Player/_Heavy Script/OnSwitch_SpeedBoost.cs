@@ -7,6 +7,12 @@ namespace Game
         [Header("Information")]
         public Data_PlayerForme _boostedForm = null;
         public Movement_2D_TopDown Movement = null;
+        [SerializeField] private SoundManager sound;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         [Header("Variable")]
         [Range(0, 200)]
@@ -23,6 +29,9 @@ namespace Game
 
         public void SpeedBoost()
         {
+            sound.PlaySound("OnSwitchCharge");
+
+
             if (!Movement._isBoosted)
             {
                 Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));

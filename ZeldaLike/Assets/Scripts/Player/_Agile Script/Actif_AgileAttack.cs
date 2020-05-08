@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Management;
+using UnityEngine.Events;
 
 namespace Game
 {
@@ -13,6 +14,8 @@ namespace Game
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private Bond_zone _bondDetecZone = null;
 
+        public UnityEvent Actif;
+        public UnityEvent SpeBond;
 
         private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
@@ -57,6 +60,7 @@ namespace Game
                 if(Target == null)
                 {
                     StartCoroutine(AttackClassique(_attackDur));
+                    Actif?.Invoke();
 
                 }
                 else
@@ -67,12 +71,16 @@ namespace Game
                     {
                         _canAttackTime = _canAttackTimer;
                         _canAttack = false;
+
+                        SpeBond?.Invoke();
                         StartCoroutine(Bond(_Avatar.transform.position, Target, _bondSpeed, _bondMaxDur));
                         _isBleeding = false;
                     }
                     else
                     {
                         StartCoroutine(AttackClassique(_attackDur));
+                        Actif?.Invoke();
+
                     }
                 }
             }

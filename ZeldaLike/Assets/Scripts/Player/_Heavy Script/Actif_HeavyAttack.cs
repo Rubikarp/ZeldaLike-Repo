@@ -2,6 +2,9 @@
 using UnityEngine;
 using Management;
 
+using UnityEngine.Events;
+
+
 namespace Game
 {
     public class Actif_HeavyAttack : MonoBehaviour
@@ -9,6 +12,8 @@ namespace Game
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private InputManager _input = null;
         [SerializeField] private AnimatorManager_Player _animator = null;
+
+        public UnityEvent Actif;
 
 
         public GameObject _attackObj;
@@ -36,6 +41,8 @@ namespace Game
                 _PlMovement._canMove = false;
 
                 StartCoroutine(Attaque(_attackDur));
+
+                Actif?.Invoke();
             }
         }
 

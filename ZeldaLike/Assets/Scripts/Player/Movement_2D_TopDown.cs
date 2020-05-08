@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Management;
 
@@ -10,6 +9,7 @@ namespace Game
         [SerializeField] private Rigidbody2D _body = null;
         [SerializeField] private InputManager _input = null;
         [SerializeField] private Scr_PlayerLifeSystem lifeSyst = null;
+        [SerializeField] private SoundManager sound;
 
         [Space(10)]
         public Scr_FormeHandler _forme = null;
@@ -22,6 +22,11 @@ namespace Game
 
         public bool _canMove = true;
         public bool _isBoosted = false;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         void Update()
         {
@@ -38,7 +43,6 @@ namespace Game
                 //incrémentation du timer en fonction du temps
                 _accTimer += Time.deltaTime;
 
-
                 //determine la vitesse
                 if (_accTimer < _forme._actualForm._accelerationCurve.keys[_forme._actualForm._accelerationCurve.length - 1].time) //regarde le temps de la dernière key
                 {
@@ -51,6 +55,8 @@ namespace Game
 
                 //applique la vitesse
                 _body.velocity = _input._CharacterDirection * _activeSpeed;
+
+                InvokeRepeating( "GroundSound", 0, 0.2f);
 
                 //Reset decceleration timer
                 if (_decTimer != 0)
@@ -97,6 +103,24 @@ namespace Game
             yield return null;
         }
     
+        void GroundSound()
+        {
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
+            {
+                sound.PlaySound("PasHumain");
+            }
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
+            {
+                sound.PlaySound("PasFeline");
+            }
+            else
+            if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+            {
+                sound.PlaySound("PasDino");
+            }
+        }
+
         public void Immobilize()
         {
             _body.velocity = Vector2.zero;

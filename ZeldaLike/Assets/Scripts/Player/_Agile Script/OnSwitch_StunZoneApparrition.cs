@@ -6,6 +6,12 @@ namespace Game
     {
         [SerializeField] GameObject _StunZonePrefab = null;
         [SerializeField] Transform _attackContainer = null;
+        [SerializeField] private SoundManager sound;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void OnEnable()
         {
@@ -14,6 +20,9 @@ namespace Game
 
         public void StunZoneApparrition()
         {
+            sound.PlaySound("OnSwitchRoar");
+
+
             Instantiate(_StunZonePrefab, this.transform.position, Quaternion.identity, _attackContainer);
 
         }

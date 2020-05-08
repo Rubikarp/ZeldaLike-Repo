@@ -6,6 +6,12 @@ namespace Game
     {
         [SerializeField] GameObject _markPrefab = null;
         [SerializeField] Transform  _markContainer = null;
+        [SerializeField] private SoundManager sound;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void OnEnable()
         {
@@ -20,6 +26,8 @@ namespace Game
 
         public void MarkApparrition()
         {
+            sound.PlaySound("OnSwitchMark");
+
             if (_markContainer.childCount >= 1)
             {
                 Destroy(_markContainer.GetChild(0).gameObject);

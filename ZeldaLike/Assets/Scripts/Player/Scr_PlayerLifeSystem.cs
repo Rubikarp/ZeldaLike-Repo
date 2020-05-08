@@ -13,6 +13,8 @@ namespace Game
         public ScreenShake _scrShake = null;
         public InputManager _input = null;
         public bool isDead = false;
+        private Scr_FormeHandler _forme;
+        private SoundManager sound;
 
         [Header("Statistiques")]
         public Vector2 _respawnPoint = Vector2.zero;
@@ -23,6 +25,11 @@ namespace Game
         public bool _isTakingDamage = false;
         public bool _isVunerable = true;
         public float knockbackSensibility = 1f;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void Start()
         {
@@ -113,6 +120,21 @@ namespace Game
             {
                 _animator.TriggerDeath();
                 _input.DesactivateControl();
+
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
+                {
+                    sound.PlaySound("DeathHumain");
+                }
+                else
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
+                {
+                    sound.PlaySound("DeathFeline");
+                }
+                else
+                if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+                {
+                    sound.PlaySound("DeathDino");
+                }
 
                 isDead = true;
                 //Destroy(Avatar, /*_deathAnim.clip.length*/ 10f);
