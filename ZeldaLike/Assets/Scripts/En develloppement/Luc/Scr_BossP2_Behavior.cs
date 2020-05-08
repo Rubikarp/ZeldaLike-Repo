@@ -16,7 +16,7 @@ namespace Ennemies
         private GameObject _player;
         public Transform _attackPos;
         public Vector3 _bossDirection;
-        public Transform _attackPosParent;
+        public GameObject[] _interrupteursTargets;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -30,13 +30,13 @@ namespace Ennemies
 
         [Header("Laser")]
         public float _laserRotateSpeed;
-        private float _laserRotateSpeedActive;
         public GameObject _laserHit;
         public LayerMask _laserMask;
         private bool _playerHit;
         public LineRenderer _laserGraph;
-        private Vector2 _laserSpawnPoint;
         private float _rotation;
+        public Transform _laserPos;
+        public float _laserCastTime;
 
         [Header("Aspiration")]
         public float _aspirationRange;
@@ -60,9 +60,7 @@ namespace Ennemies
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _inPattern = false;
-            _laserRotateSpeedActive = _laserRotateSpeed;
             _playerHit = false;
-            _laserSpawnPoint = _attackPos.position;
         }
 
         // Update is called once per frame
@@ -128,31 +126,48 @@ namespace Ennemies
                     _patternCount = 0;
                 }
             }
+
+            if (_interrupteursTargets[0].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+            {
+                if (_interrupteursTargets[1].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                {
+                    if (_interrupteursTargets[2].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                    {
+                        if (_interrupteursTargets[3].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                        {
+                            if (_interrupteursTargets[4].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                            {
+                                Destroy(gameObject);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void NextDirection()
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(2, 3);
+            randomPattern = Random.Range(0, 12);
 
-            if (randomPattern == 0)
+            if (randomPattern == 0 || randomPattern == 1)
             {
                 _actualPattern = Pattern.Renforts;
             }
-            else if (randomPattern == 1)
+            else if (randomPattern == 2)
             {
                 _actualPattern = Pattern.MonArmee;
             }
-            else if (randomPattern == 2)
+            else if (randomPattern == 3 || randomPattern == 4 || randomPattern == 5)
             {
                 _actualPattern = Pattern.Laser;
             }
-            else if (randomPattern == 3)
+            else if (randomPattern == 6 || randomPattern == 7 || randomPattern == 8)
             {
                 _actualPattern = Pattern.Aspiration;
             }
-            else if (randomPattern == 4)
+            else if (randomPattern == 9 || randomPattern == 10 ||randomPattern == 11)
             {
                 _actualPattern = Pattern.CoupMassif;
             }
@@ -186,22 +201,22 @@ namespace Ennemies
 
         private IEnumerator LaserPattern()
         {
+            yield return new WaitForSeconds(_laserCastTime);
             while (_rotation > -360)
             {
-                LaserBehavior(_attackPos.position, -_attackPos.up);
+                LaserBehavior(_laserPos.position, -_laserPos.up);
                 _rotation -= Time.deltaTime * _laserRotateSpeed;
-                _attackPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
+                _laserPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
                 yield return new WaitForEndOfFrame();
                 Debug.Log("Un fois");
             }
 
             _rotation = 0;
-            _attackPosParent.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _laserPos.rotation = Quaternion.Euler(0f, 0f, 0f);
             _laserGraph.enabled = false;
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
-            _laserRotateSpeedActive = _laserRotateSpeed;
         }
 
         private void LaserBehavior(Vector2 origin, Vector2 destination)
@@ -229,7 +244,7 @@ namespace Ennemies
                 }
 
                 _laserGraph.enabled = true;
-                _laserGraph.SetPosition(0, _attackPos.position);
+                _laserGraph.SetPosition(0, origin);
                 _laserGraph.SetPosition(1, hitInfo.transform.position);
 
                 Debug.Log(hitInfo.transform.name);
