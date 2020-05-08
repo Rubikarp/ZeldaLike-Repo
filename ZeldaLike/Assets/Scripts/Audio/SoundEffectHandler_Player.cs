@@ -32,7 +32,7 @@ namespace Game
         
         void Update()
         {
-            
+
         }
         
         
