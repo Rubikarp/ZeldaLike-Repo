@@ -16,6 +16,7 @@ namespace Ennemies
         private GameObject _player;
         public Transform _attackPos;
         public Vector3 _bossDirection;
+        public GameObject[] _interrupteursTargets;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -125,31 +126,48 @@ namespace Ennemies
                     _patternCount = 0;
                 }
             }
+
+            if (_interrupteursTargets[0].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+            {
+                if (_interrupteursTargets[1].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                {
+                    if (_interrupteursTargets[2].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                    {
+                        if (_interrupteursTargets[3].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                        {
+                            if (_interrupteursTargets[4].GetComponent<Scr_LD_ActiveState>()._isActive == true)
+                            {
+                                Destroy(gameObject);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void NextDirection()
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(2, 3);
+            randomPattern = Random.Range(0, 12);
 
-            if (randomPattern == 0)
+            if (randomPattern == 0 || randomPattern == 1)
             {
                 _actualPattern = Pattern.Renforts;
             }
-            else if (randomPattern == 1)
+            else if (randomPattern == 2)
             {
                 _actualPattern = Pattern.MonArmee;
             }
-            else if (randomPattern == 2)
+            else if (randomPattern == 3 || randomPattern == 4 || randomPattern == 5)
             {
                 _actualPattern = Pattern.Laser;
             }
-            else if (randomPattern == 3)
+            else if (randomPattern == 6 || randomPattern == 7 || randomPattern == 8)
             {
                 _actualPattern = Pattern.Aspiration;
             }
-            else if (randomPattern == 4)
+            else if (randomPattern == 9 || randomPattern == 10 ||randomPattern == 11)
             {
                 _actualPattern = Pattern.CoupMassif;
             }
