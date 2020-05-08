@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Management;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Ennemis
 {
@@ -14,6 +15,8 @@ namespace Ennemis
         public Rigidbody2D _myBody = null;
         private InputManager _input = null;
         public bool Debug = false;
+
+        public Light2D Gyrophare = null;
 
 
         [Header("Statistique")]
@@ -62,6 +65,15 @@ namespace Ennemis
             _canTeleport = EnemyInTeleportingRange(_targetDistance);
 
             #endregion Variables Actualisée
+
+            if (_haveDetect && Gyrophare.color != Color.red)
+            {
+                Gyrophare.color = Color.red;
+            }
+            else if (!_haveDetect)
+            {
+                Gyrophare.color = Color.blue;
+            }
 
             if (_lifeSyst._isDead)
             {

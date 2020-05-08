@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Ennemis
 {
@@ -11,6 +12,7 @@ namespace Ennemis
         public Scr_EnnemisLifeSystem _lifeSyst = null;
         public AnimatorHandler_Soldat animator = null;
         public Rigidbody2D _myBody = null;
+        public Light2D Gyrophare = null;
 
         [Header("Shoot")]
         public float _detectionShootingRange = 18f;
@@ -57,6 +59,14 @@ namespace Ennemis
             _haveDetected = PlayerInShootingRange(_targetDistance, _detectionShootingRange, _detectionChargingRange);
             _inDanger = PlayerInChargingRange(_targetDistance, _detectionChargingRange);
 
+            if (_haveDetected && Gyrophare.color != Color.red)
+            {
+                Gyrophare.color = Color.red;
+            }
+            else if (!_haveDetected)
+            {
+                Gyrophare.color = Color.blue;
+            }
         }
 
         private void FixedUpdate()

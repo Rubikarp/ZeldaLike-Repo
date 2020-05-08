@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Ennemis
 {
@@ -11,6 +12,8 @@ namespace Ennemis
         public AnimatorHandler_Chimiste animator = null;
         [Space(5)]
         public GameObject _puddle = null;
+
+        public Light2D Gyrophare = null;
 
         [Header("Statistique")]
         public float _movementSpeed = 5f;
@@ -49,6 +52,15 @@ namespace Ennemis
             _movingDirection = (_movingPos - _myBody.position).normalized;
 
             #endregion Variables Actualisée
+
+            if (_haveDetect && Gyrophare.color != Color.red)
+            {
+                Gyrophare.color = Color.red;
+            }
+            else if (!_haveDetect)
+            {
+                Gyrophare.color = Color.blue;
+            }
 
             if (_lifeSyst._isDead)
             {

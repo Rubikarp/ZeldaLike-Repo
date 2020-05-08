@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Game;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Ennemis
 {
@@ -10,6 +11,9 @@ namespace Ennemis
         public Transform _mySelf = null;
         public Scr_EnnemisLifeSystem _lifeSyst = null;
         public Rigidbody2D _myBody = null;
+
+        public Light2D Gyrophare = null;
+
 
         [Header("Statistique")]
         public float _movementSpeed = 5f;
@@ -56,6 +60,14 @@ namespace Ennemis
             _haveDetect = PlayerInEnnemyRange(_targetDistance, _detectionRange);
 
             #endregion Variables Actualisée
+            if (_haveDetect && Gyrophare.color != Color.red)
+            {
+                Gyrophare.color = Color.red;
+            }
+            else if (!_haveDetect)
+            {
+                Gyrophare.color = Color.blue;
+            }
         }
 
         private void FixedUpdate()
