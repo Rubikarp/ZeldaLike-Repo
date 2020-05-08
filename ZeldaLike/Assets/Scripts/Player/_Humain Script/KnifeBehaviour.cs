@@ -44,7 +44,7 @@ namespace Game
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Ennemis"))
+            if (collision.gameObject.CompareTag("Ennemis") || collision.gameObject.CompareTag("Environment"))
             {
                 Destroy(gameObject);
             }
