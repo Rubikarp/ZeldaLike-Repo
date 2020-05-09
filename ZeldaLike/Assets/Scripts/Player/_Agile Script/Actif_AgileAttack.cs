@@ -13,6 +13,7 @@ namespace Game
         [SerializeField] private AnimatorManager_Player _animator = null;
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private Bond_zone _bondDetecZone = null;
+        [SerializeField] private SoundManager sound;
 
         public UnityEvent Actif;
         public UnityEvent SpeBond;
@@ -44,6 +45,11 @@ namespace Game
         public float _bondEndDist = 3;
         public float _attackCooldown = 1;
 
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         private void Start()
         {
             _myTranfo = this.transform;
@@ -60,7 +66,7 @@ namespace Game
                 if(Target == null)
                 {
                     StartCoroutine(AttackClassique(_attackDur));
-                    Actif?.Invoke();
+                    sound.PlaySound("AttackFeline");
 
                 }
                 else
@@ -72,14 +78,14 @@ namespace Game
                         _canAttackTime = _canAttackTimer;
                         _canAttack = false;
 
-                        SpeBond?.Invoke();
                         StartCoroutine(Bond(_Avatar.transform.position, Target, _bondSpeed, _bondMaxDur));
+                        sound.PlaySound("BondFeline");
                         _isBleeding = false;
                     }
                     else
                     {
                         StartCoroutine(AttackClassique(_attackDur));
-                        Actif?.Invoke();
+                        sound.PlaySound("AttackFeline");
 
                     }
                 }

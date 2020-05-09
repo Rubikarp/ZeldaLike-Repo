@@ -12,9 +12,7 @@ namespace Game
         [SerializeField] private Movement_2D_TopDown _PlMovement = null;
         [SerializeField] private InputManager _input = null;
         [SerializeField] private AnimatorManager_Player _animator = null;
-
-        public UnityEvent Actif;
-
+        [SerializeField] private SoundManager sound;
 
         public GameObject _attackObj;
         public Transform _attackContainer;
@@ -25,6 +23,11 @@ namespace Game
 
         public float _attackCooldown;
         public float _attackDelay;
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         void Start()
         {
@@ -42,7 +45,8 @@ namespace Game
 
                 StartCoroutine(Attaque(_attackDur));
 
-                Actif?.Invoke();
+                sound.PlaySound("AttackDino");
+
             }
         }
 

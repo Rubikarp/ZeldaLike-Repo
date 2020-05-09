@@ -8,6 +8,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [Header("Component")]
     [SerializeField] private InputManager _input = null;
     [SerializeField] private AnimatorManager_Player _animator = null;
+    [SerializeField] private SoundManager sound;
 
     [Space(10)]
 
@@ -21,6 +22,11 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [SerializeField] private float _Cooldown = 0.2f;
     private float _reloadTime = 0f;
 
+    void Awake()
+    {
+        sound = SoundManager.Instance;
+    }
+
     void Start()
     {
         _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
@@ -30,6 +36,8 @@ public class Actif_KnifeThrowing : MonoBehaviour
     {
         if (_input._attack && _canShoot == true)
         {
+            sound.PlaySound("AttackHuman");
+
             Throwing();
 
             _canShoot = false;

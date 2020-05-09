@@ -14,6 +14,8 @@ namespace Game
 
         void Awake()
         {
+            MakeSingleton(true);
+
             foreach (Music son in musics)
             {
                 son.source = gameObject.AddComponent<AudioSource>();

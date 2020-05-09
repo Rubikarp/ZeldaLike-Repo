@@ -31,7 +31,6 @@ namespace Game
         {
             sound.PlaySound("OnSwitchCharge");
 
-
             if (!Movement._isBoosted)
             {
                 Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));
