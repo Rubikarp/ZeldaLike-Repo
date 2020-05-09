@@ -12,8 +12,6 @@ public class SoundManager : Singleton<SoundManager>
 
     void Awake()
     {
-        MakeSingleton(true);
-
         foreach (SoundEffect son in sounds)
         {
             son.source = gameObject.AddComponent<AudioSource>();

@@ -23,6 +23,9 @@ namespace Game
         public bool _canMove = true;
         public bool _isBoosted = false;
 
+        private float horloge = 0.3f;
+        private float horlogeDecompte = 0.3f;
+
         void Awake()
         {
             sound = SoundManager.Instance;
@@ -56,7 +59,16 @@ namespace Game
                 //applique la vitesse
                 _body.velocity = _input._CharacterDirection * _activeSpeed;
 
-                InvokeRepeating( "GroundSound", 0, 0.2f);
+
+                if(horlogeDecompte > 0)
+                {
+                    horlogeDecompte -= Time.deltaTime;
+                }
+                else
+                {
+                    GroundSound();
+                    horlogeDecompte = horloge;
+                }
 
                 //Reset decceleration timer
                 if (_decTimer != 0)
@@ -107,7 +119,7 @@ namespace Game
         {
             if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
             {
-                sound.PlaySound("PasHumain");
+                sound.PlaySound("PasHuman");
             }
             else
             if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
