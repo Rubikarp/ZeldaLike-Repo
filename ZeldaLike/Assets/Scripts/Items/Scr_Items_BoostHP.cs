@@ -13,13 +13,17 @@ namespace Game
         private void Start()
         {
             _boostItems = this.gameObject;
+            _playerLife = GameObject.FindGameObjectWithTag("Player/HurtBox").GetComponent<Scr_PlayerLifeSystem>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _playerLife._maxlife <= 9)
+            if (collision.gameObject.CompareTag("Player/HurtBox"))
             {
-                _playerLife._maxlife = _playerLife._maxlife + 1;
+                if(_playerLife._maxlife <= 9)
+                {
+                    _playerLife._maxlife = _playerLife._maxlife + 1;
+                }
                 Destroy(_boostItems);
             }
         }

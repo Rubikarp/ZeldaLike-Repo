@@ -302,6 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldat: {fileID: 2968003353328135420}
   lifeSyst: {fileID: 2968003354461898751}
+  _spritRend: {fileID: 2968003353328135416}
+  _rgd2D: {fileID: 2968003353328135421}
   animator: {fileID: 2040370687763400489}
 --- !u!1 &2968003354461898749
 GameObject:
@@ -371,11 +373,12 @@ MonoBehaviour:
   body: {fileID: 2968003353328135421}
   _healObject: {fileID: 780740348253267393, guid: f4fff1d70c5b9b04aa1f1ac196c713b0,
     type: 3}
-  _life: 5
+  _life: 4
   _isDead: 0
   _isTakingDamage: 0
-  _dyingDuration: 0
+  _dyingDuration: 0.3
   knockbackSensibility: 1
+  _healSpawnChance: 50
 --- !u!1 &4186283260353594839
 GameObject:
   m_ObjectHideFlags: 0

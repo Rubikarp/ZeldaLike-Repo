@@ -80,7 +80,7 @@ namespace Ennemis
 
                     if (_timer <= 0)
                     {
-                        Instantiate(_puddle, transform.position, transform.rotation);
+                        Instantiate(_puddle, transform.position - new Vector3(_movingDirection.normalized.x, _movingDirection.normalized.y, 0), transform.rotation);
                         _timer = 0.3f;
                     }
                 }
@@ -90,9 +90,6 @@ namespace Ennemis
 
         private void Orbit()
         {
-            animator.animator.SetFloat("OrientationX", _movingDirection.x);
-            animator.animator.SetFloat("OrientationY", _movingDirection.y);
-
             _myBody.velocity = _movingDirection * _movementSpeed;
         }
 

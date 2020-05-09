@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using Management;
 
 namespace Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Scr_HeavyMovable : MonoBehaviour
     {
-        [SerializeField] private GameObject _HeavyForm = null;
+        [SerializeField] private Scr_FormeHandler _forme = null;
         [SerializeField] private Rigidbody2D _myBody = null;
         private float _delay;
         private bool _movable;
@@ -18,10 +19,14 @@ namespace Game
             _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
             _movable = false;
             _delay = 0.25f;
+
+            _forme = GameObject.Find("Avatar").GetComponent<Scr_FormeHandler>();
+
         }
 
         void Update()
         {
+
             //_myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             if (_movable == true)
@@ -49,11 +54,11 @@ namespace Game
             }
 
             //Pour éviter que le Bloc ne s'arrête pas lorsqu'on ne change pas de forme.
-            if(_delay > 0 && _HeavyForm.activeSelf)
+            if(_delay > 0 && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
                 _delay -= Time.deltaTime;
             }
-            else if (_delay <= 0 && _HeavyForm.activeSelf)
+            else if (_delay <= 0 && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
                 _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
                 _delay = 0.25f;
@@ -63,7 +68,7 @@ namespace Game
 
         private void OnTriggerEnter2D (Collider2D collision)
         {
-            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _HeavyForm.activeSelf)
+            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
                 _movable = true;
             }
@@ -71,7 +76,7 @@ namespace Game
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _HeavyForm.activeSelf)
+            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
                 _movable = false;
             }

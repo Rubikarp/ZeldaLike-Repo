@@ -12,7 +12,7 @@ namespace Ennemis
         public GameObject _Boss = null;
         public Rigidbody2D _body = null;
         public GameObject _logoMarked = null;
-        public Slider _lifeBar = null;
+        //public Slider _lifeBar = null;
         [Space(10)]
 
         [Header("Variable à lire")]
@@ -35,20 +35,20 @@ namespace Ennemis
 
         private void Start()
         {
-            _lifeBar.minValue = 0;
-            _lifeBar.maxValue = _life;
+            //_lifeBar.minValue = 0;
+            //_lifeBar.maxValue = _life;
         }
 
         private void Update()
         {
             if (_life <= 0)
             {
-                _lifeBar.value = 0;
+                //_lifeBar.value = 0;
                 Destroy(_Boss, _dyingDuration);
             }
             else
             {
-                _lifeBar.value = _life;
+                //_lifeBar.value = _life;
             }
 
             if (_isMarked && _markedTimer <= 0)

@@ -49,6 +49,7 @@ namespace Game
 
         public void BackToMainMenue()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(_MainMenuScene);
         }
 

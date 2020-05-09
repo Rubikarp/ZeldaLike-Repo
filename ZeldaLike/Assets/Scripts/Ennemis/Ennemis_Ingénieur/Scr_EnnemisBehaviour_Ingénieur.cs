@@ -104,6 +104,8 @@ namespace Ennemis
             _canShoot = false;
             _isShooting = true;
 
+            yield return new WaitForSeconds(0.3f);
+
             GameObject bullet = Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
 
             bullet.GetComponent<Scr_ProjectileBehaviour_Ingénieur>().BulletSetDir(_targetDirection.normalized);
@@ -126,9 +128,6 @@ namespace Ennemis
             while (0 < runDuration)
             {
                 runDuration -= Time.deltaTime;
-
-                animator.animator.SetFloat("OrientationX", -runDirection.x);
-                animator.animator.SetFloat("OrientationY", -runDirection.y);
 
                 _myBody.velocity = -runDirection.normalized * runSpeed; //opposé à la position de la target de l'ennemi > Fuite
 

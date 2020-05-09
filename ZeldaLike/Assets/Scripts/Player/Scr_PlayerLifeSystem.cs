@@ -12,8 +12,7 @@ namespace Game
         public AnimatorManager_Player _animator = null;
         public ScreenShake _scrShake = null;
         public InputManager _input = null;
-        public bool isDead = false;
-        private Scr_FormeHandler _forme;
+        public Scr_FormeHandler _forme;
         private SoundManager sound;
 
         [Header("Statistiques")]
@@ -25,6 +24,9 @@ namespace Game
         public bool _isTakingDamage = false;
         public bool _isVunerable = true;
         public float knockbackSensibility = 1f;
+
+        public bool isDead = false;
+        public bool Dying = false;
 
         void Awake()
         {
@@ -116,8 +118,9 @@ namespace Game
 
         private void Living()
         {
-            if (_life <= 0 && !isDead)
+            if (_life <= 0 && !Dying)
             {
+                Dying = true;
                 _animator.TriggerDeath();
                 _input.DesactivateControl();
 
@@ -136,15 +139,23 @@ namespace Game
                     sound.PlaySound("DeathDino");
                 }
 
-                isDead = true;
-                //Destroy(Avatar, /*_deathAnim.clip.length*/ 10f);
+                Invoke("WillDie", 0.8f);
             }
+        }
+        
+        private void WillDie()
+        {
+            isDead = true;
+
         }
 
         public void Respawn()
         {
-            isDead = false;
             _life = _maxlife;
+            isDead = false;
+            Dying = false;
+
+            _animator.Respawn();
             _input.ReActivateControl();
             body.position = _respawnPoint;
         }

@@ -97,9 +97,14 @@ namespace Ennemis
         {
             _canShoot = false;
             _isShooting = true;
+
+            animator.animator.SetBool("isShooting", true);
+            yield return new WaitForSeconds(0.2f);
+
             Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
 
             yield return new WaitForSeconds(_shootingRepos);
+            animator.animator.SetBool("isShooting", false);
 
             _isShooting = false;
 
@@ -117,6 +122,7 @@ namespace Ennemis
             animator.animator.SetBool("isAttackingPrep", false);
 
             _isCharging = true;
+            animator.animator.SetBool("isAttacking", true);
 
             while (0 < chargeDuration)
             {
@@ -127,6 +133,7 @@ namespace Ennemis
                 yield return new WaitForEndOfFrame();
             }
 
+            animator.animator.SetBool("isAttacking", false);
             _myBody.velocity = Vector2.zero;
             _isCharging = false;
 

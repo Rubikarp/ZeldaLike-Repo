@@ -78,16 +78,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3239584396668978474, guid: 0f477b92a2337994d900773f784f5e42,
+  m_Sprite: {fileID: 1232159932764786318, guid: 68701500caee2404dbee003b11f9cc60,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.7, y: 1.4}
+  m_Size: {x: 3.5, y: 2.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &760303728
@@ -164,8 +164,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7, y: 1.4}
-    newSize: {x: 1.7, y: 1.4}
+    oldSize: {x: 3.5, y: 2.5}
+    newSize: {x: 3.5, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -282,11 +282,12 @@ MonoBehaviour:
   body: {fileID: 1603008124410424620}
   _healObject: {fileID: 780740348253267393, guid: f4fff1d70c5b9b04aa1f1ac196c713b0,
     type: 3}
-  _life: 5
+  _life: 2
   _isDead: 0
   _isTakingDamage: 0
-  _dyingDuration: 0
+  _dyingDuration: 0.3
   knockbackSensibility: 1
+  _healSpawnChance: 50
 --- !u!1 &3722324166954444341
 GameObject:
   m_ObjectHideFlags: 0

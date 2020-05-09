@@ -94,16 +94,14 @@ namespace Ennemis
 
                     if (_targetDistance < _distNear & !_isAttacking)
                     {
-                        animator.animator.SetFloat("MouvementX", -_targetDirection.x);
-                        animator.animator.SetFloat("MouvementY", -_targetDirection.y);
-
+                        animator.animator.SetFloat("MouvementX", _myBody.velocity.x);
+                        animator.animator.SetFloat("MouvementY", _myBody.velocity.y);
                         _myBody.velocity = -_targetDirection.normalized * _movementSpeed;
                     }
                     else if (_targetDistance > _distFar & !_isAttacking)
                     {
-                        animator.animator.SetFloat("MouvementX", _targetDirection.x);
-                        animator.animator.SetFloat("MouvementY", _targetDirection.y);
-
+                        animator.animator.SetFloat("MouvementX", _myBody.velocity.x);
+                        animator.animator.SetFloat("MouvementY", _myBody.velocity.y);
                         _myBody.velocity = _targetDirection.normalized * _movementSpeed;
                     }
                 }

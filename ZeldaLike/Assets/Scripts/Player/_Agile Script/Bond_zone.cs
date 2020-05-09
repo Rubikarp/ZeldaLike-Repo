@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -9,22 +8,21 @@ namespace Game
         public List<GameObject> _detectedEnnemisList = new List<GameObject>();
         public Transform _player = null;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.transform.CompareTag("Ennemis/HurtBox"))
             {
-                _detectedEnnemisList.Add(collision.gameObject);
+                if (!_detectedEnnemisList.Contains(collision.gameObject))
+                {
+                    _detectedEnnemisList.Add(collision.gameObject);
+                }
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private void LateUpdate()
         {
-            if (collision.transform.CompareTag("Ennemis/HurtBox"))
-            {
-                _detectedEnnemisList.Remove(collision.gameObject);
-            }
+            _detectedEnnemisList.Clear();
         }
-
 
 
         public GameObject NearestEnnemis()
@@ -32,14 +30,18 @@ namespace Game
             GameObject nearestEnnemis = null;
             float nearestDist = 1000;
 
-            foreach (GameObject ennemis in _detectedEnnemisList)
+            if(_detectedEnnemisList.Count != 0)
             {
-                float testingDist = Vector2.Distance(_player.position, ennemis.transform.position);
-
-                if (testingDist < nearestDist)
+                foreach (GameObject ennemis in _detectedEnnemisList)
                 {
-                    nearestEnnemis = ennemis;
-                    nearestDist = testingDist;
+                    float testingDist = Vector2.Distance(_player.position, ennemis.transform.position);
+
+                    if (testingDist < nearestDist)
+                    {
+                        nearestEnnemis = ennemis;
+                        nearestDist = testingDist;
+                    }
+
                 }
             }
 

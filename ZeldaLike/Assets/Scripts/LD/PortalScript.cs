@@ -18,7 +18,7 @@ namespace Game
             _canTP = true;
             _canTPBlocks = true;
             _TPDelay = _otherPortal.GetComponent<PortalScript>()._TPDelay;
-            Player = GameObject.FindGameObjectWithTag("Player");
+            Player = GameObject.Find("Avatar");
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

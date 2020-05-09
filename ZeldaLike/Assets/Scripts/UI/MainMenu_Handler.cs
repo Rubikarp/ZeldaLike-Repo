@@ -9,6 +9,7 @@ namespace Game
 
         public void StartGame()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(_StartingScene);
         }
 

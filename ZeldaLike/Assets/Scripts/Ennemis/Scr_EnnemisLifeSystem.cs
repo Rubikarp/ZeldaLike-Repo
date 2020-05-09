@@ -26,9 +26,11 @@ namespace Ennemis
         public int _life = 5;
         public bool _isDead = false;
         public bool _isTakingDamage = false;
-        public float _dyingDuration = 10f;
+        public float _dyingDuration = 1f;
         public float knockbackSensibility = 1f;
-        private float _healSpawnChance;
+        [Range(0, 100)] public float _healSpawnChance = 50f;
+        private bool haveLoot = false;
+
 
         private void Update()
         {
@@ -36,12 +38,12 @@ namespace Ennemis
             {
                 _isDead = true;
 
-                _healSpawnChance = Random.Range(0, 5);
-
-                if (_healSpawnChance == 4)
+                if(Random.Range(0, 100) < _healSpawnChance && haveLoot)
                 {
                     Instantiate(_healObject, transform.position, transform.rotation);
+                    haveLoot = true;
                 }
+
                 Destroy(Ennemis, _dyingDuration);
             }
 

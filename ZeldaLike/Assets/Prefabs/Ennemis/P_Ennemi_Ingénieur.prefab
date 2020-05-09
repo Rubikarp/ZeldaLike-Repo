@@ -249,7 +249,7 @@ MonoBehaviour:
   _myBody: {fileID: 7921538551037002551}
   Gyrophare: {fileID: 6163982051288508946}
   _detectionShootingRange: 18
-  _shootingAllonge: 2
+  _shootingAllonge: 1
   _shootingRepos: 0.3
   _shootingCooldown: 1.5
   _detectionRunningRange: 8
@@ -261,7 +261,7 @@ MonoBehaviour:
   _inDanger: 0
   _anticipation: 6
   _canShoot: 1
-  _isShooting: 0
+  _isShooting: 1
   _canRun: 1
   _isRunning: 0
   _target: {fileID: 0}
@@ -294,8 +294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92eca6f0fb717e144aba12257442b809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingenieur: {fileID: 0}
+  ingenieur: {fileID: 7921538551037002537}
   lifeSyst: {fileID: 7921538552476212215}
+  _spritRend: {fileID: 7921538551037002548}
+  _rgd2D: {fileID: 7921538551037002551}
   animator: {fileID: 2333129305603898080}
 --- !u!1 &7921538551067045195
 GameObject:
@@ -446,8 +448,9 @@ MonoBehaviour:
   body: {fileID: 7921538551037002551}
   _healObject: {fileID: 780740348253267393, guid: f4fff1d70c5b9b04aa1f1ac196c713b0,
     type: 3}
-  _life: 3
+  _life: 5
   _isDead: 0
   _isTakingDamage: 0
-  _dyingDuration: 0
+  _dyingDuration: 0.3
   knockbackSensibility: 1
+  _healSpawnChance: 50

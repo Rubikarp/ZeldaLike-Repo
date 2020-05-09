@@ -19,9 +19,8 @@ namespace Game
 
         private void Update()
         {
-            if (lifeSyst.isDead)
+            if (lifeSyst.isDead && _DeathCanvas.activeInHierarchy == false)
             {
-                new WaitForSeconds(1f);
                 StopGame();
             }
         }
@@ -42,6 +41,7 @@ namespace Game
 
         public void BackToMainMenue()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(_MainMenuScene);
         }
 

@@ -27,19 +27,22 @@ namespace Management
 
         [Space(10f)]
         [Header("Variable")]
+        [SerializeField] private Scr_PlayerLifeSystem lifesyst = null;
+
         public bool _canSwitch = true;
 
         public bool _heavyFormeUnlock = false;
 
         [Header("Variable à Tweek")]
-        [SerializeField] private float _switchCooldown = 0.3f;
+        [SerializeField] private float _switchCooldown = 0.5f;
 
-        private float _switchTimer = 0f;
+        private float _switchTimer = 0.5f;
 
         private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             Initialisation();
+            _switchTimer = _switchCooldown;
         }
 
         private void Update()
@@ -52,6 +55,7 @@ namespace Management
 
                     _canSwitch = false;
                     _switchTimer = _switchCooldown;
+                    lifesyst._isTakingDamage = false;
                 }
                 else
                 if (_input._rightSwitch)
@@ -60,6 +64,7 @@ namespace Management
 
                     _canSwitch = false;
                     _switchTimer = _switchCooldown;
+                    lifesyst._isTakingDamage = false;
                 }
             }
             else

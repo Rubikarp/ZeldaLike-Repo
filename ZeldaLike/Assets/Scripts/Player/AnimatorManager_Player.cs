@@ -126,5 +126,9 @@ namespace Management
             _fxAnimator.SetTrigger("OnTP");
         }
 
+        public void Respawn()
+        {
+            _playerAnimator.SetTrigger("Respawn");
+        }
     }
 }

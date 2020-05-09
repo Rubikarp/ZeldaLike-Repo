@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ennemies
+namespace Ennemis
 {
     public class Scr_BossBulletBehavior : MonoBehaviour
     {

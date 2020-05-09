@@ -136,8 +136,9 @@ MonoBehaviour:
   _life: 4
   _isDead: 0
   _isTakingDamage: 0
-  _dyingDuration: 0
+  _dyingDuration: 0.3
   knockbackSensibility: 1
+  _healSpawnChance: 50
 --- !u!58 &2889761824729441596
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ MonoBehaviour:
   animator: {fileID: 4317356477978353833}
   _puddle: {fileID: 426456508859618366, guid: cfdeea4cbb1741d44aa32e0f478bee73, type: 3}
   Gyrophare: {fileID: 2723523150488559156}
-  _movementSpeed: 5
+  _movementSpeed: 3
   _detectionRange: 20
   _circleRange: 5
   _timer: 0.3
@@ -419,6 +420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chimiste: {fileID: 5163854538428288735}
   lifeSyst: {fileID: 1614434436361931006}
+  _spritRend: {fileID: 5163854538428288730}
+  _rgd2D: {fileID: 5163854538428288729}
   animator: {fileID: 685052833589181266}
 --- !u!114 &5163854538428288724
 MonoBehaviour:

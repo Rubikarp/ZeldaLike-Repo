@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1088682750586191931}
   - component: {fileID: 1088682750586191930}
+  - component: {fileID: 2211983162061513166}
   - component: {fileID: 1088682750586192325}
   - component: {fileID: 2195933354433194699}
   - component: {fileID: 5860665599838956294}
+  - component: {fileID: 4371421309206605951}
   m_Layer: 0
   m_Name: AvatarBossP1
   m_TagString: Ennemis
@@ -27,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088682750586192324}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77736664, y: 6.507927, z: 0}
-  m_LocalScale: {x: 2.0059, y: 2.85481, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7638604890367706685}
   - {fileID: 9018175249935586082}
@@ -76,7 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 890990c21edb51648bc553798f050a4a, type: 3}
+  m_Sprite: {fileID: 6048689838555365553, guid: 82aeab60d26679b4fbe7247c91a89578,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +90,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2211983162061513166
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088682750586192324}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23b3e5d6a01f6b9459b5f0bf1d924b06, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1088682750586192325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +127,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _bossDirection: {x: 0, y: 0, z: 0}
   _retreatDistance: 12
+  b: {fileID: 4371421309206605951}
   _renforts:
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
@@ -129,10 +152,7 @@ MonoBehaviour:
   - {x: 100000, y: 0, z: 0}
   - {x: 100000, y: -100000, z: 0}
   _currentTarget: {x: 0, y: 0, z: 0}
-  _attackRange: 5
   _attackCast: 0.5
-  _knockBackSpeed: 10
-  _stunDuration: 1
   _attackZone: {fileID: 9183827998595511520, guid: 029b81c695a817443a7576672063c48c,
     type: 3}
   _attackPos: {fileID: 6430142782366174477}
@@ -156,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.6, y: 3.9}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -186,6 +206,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &4371421309206605951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088682750586192324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3285cd882fa9b7f49b9c985c3d4cb702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BossP1: {fileID: 1088682750586192325}
+  lifeSyst: {fileID: 5047052047721667627}
+  _spritRend: {fileID: 1088682750586191930}
+  _rgd2D: {fileID: 5860665599838956294}
+  animator: {fileID: 2211983162061513166}
 --- !u!1 &1088682750620354949
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +235,7 @@ GameObject:
   m_Layer: 0
   m_Name: RenfortsSpawn3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -210,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088682750620354949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15554047, y: 2.025879, z: 0}
+  m_LocalPosition: {x: 0.02, y: 5.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
@@ -228,7 +265,7 @@ GameObject:
   m_Layer: 0
   m_Name: RenfortsSpawn2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -240,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088682750659093319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.4839935, y: 4.2240753, z: 0}
+  m_LocalPosition: {x: 8.08, y: 0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
@@ -258,7 +295,7 @@ GameObject:
   m_Layer: 0
   m_Name: RenfortsSpawn1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -270,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088682750905992791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.718796, y: 9.848053, z: 0}
+  m_LocalPosition: {x: -7.85, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
@@ -334,8 +371,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088682752240457264}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77736664, y: 6.507927, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088682752224681323}
@@ -388,10 +425,10 @@ MonoBehaviour:
   _Boss: {fileID: 1088682750586192324}
   _body: {fileID: 5860665599838956294}
   _logoMarked: {fileID: 5688187178040579960}
-  _lifeBar: {fileID: 0}
   _isTakingDamage: 0
   _isMarked: 0
-  _life: 30
+  _isVunerable: 1
+  _life: 20
   _dyingDuration: 0
   knockbackSensibility: 0.5
   _markedDuration: 2

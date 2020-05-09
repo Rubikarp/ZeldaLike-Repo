@@ -15,9 +15,6 @@ namespace Game
         [SerializeField] private Bond_zone _bondDetecZone = null;
         [SerializeField] private SoundManager sound;
 
-        public UnityEvent Actif;
-        public UnityEvent SpeBond;
-
         private Rigidbody2D _rgb = null;
         private Transform _myTranfo = null;
 

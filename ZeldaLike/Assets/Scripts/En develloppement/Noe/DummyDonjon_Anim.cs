@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Ennemis
 {
@@ -15,13 +13,14 @@ namespace Ennemis
         {
             dummyAnim = GetComponent<Animator>();
 
-            _isMarked = GetComponentInChildren<Scr_DummyLifeSystem>();
+            _isMarked = GetComponentInChildren<Scr_DummyLifeSystem>()._isMarked;
         }
 
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(_isMarked);
+            _isMarked = GetComponentInChildren<Scr_DummyLifeSystem>()._isMarked;
+
             if (_isMarked == true)
             {
                 dummyAnim.SetBool("Dummy", _isMarked);

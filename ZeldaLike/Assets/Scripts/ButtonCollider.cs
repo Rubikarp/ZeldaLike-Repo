@@ -16,21 +16,25 @@ namespace Management
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
         }
 
-        public void OnTriggerStay()
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (_input._interaction & !haveInput)
+            if (collision.CompareTag("Player"))
             {
-                if (onInteraction != null)
+                if (_input._interaction & !haveInput)
                 {
-                    onInteraction.Invoke();
-                }
+                    if (onInteraction != null)
+                    {
+                        onInteraction.Invoke();
+                    }
 
-                haveInput = true;
-            }
-            else
-            {
-                haveInput = false;
+                    haveInput = true;
+                }
+                else
+                {
+                    haveInput = false;
+                }
             }
         }
+
     }
 }

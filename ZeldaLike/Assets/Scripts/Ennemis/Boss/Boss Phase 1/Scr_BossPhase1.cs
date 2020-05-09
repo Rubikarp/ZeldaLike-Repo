@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game;
 
-namespace Ennemies
+namespace Ennemis
 {
     public class Scr_BossPhase1 : MonoBehaviour
     {
@@ -19,6 +19,8 @@ namespace Ennemies
         public float _moveSpeed;  //Vitesse de déplacement du Boss.
         public Vector3 _bossDirection;  //Direction du Boss vers le PJ.
         public float _retreatDistance;  //Distance à laquelle le Boss recule.
+
+        public AnimatorController_BossP1 b = null;
 
         [Header("Renforts")]
         public List<GameObject> _renforts;  //Liste des ennemis à faire spawn.
@@ -101,31 +103,57 @@ namespace Ennemies
                 switch (_randomAction)
                 {
                     case 1:
+                        b.animator.SetBool("isShooting", false);
+                        b.animator.SetBool("isGrenading", false);
+                        b.animator.SetBool("isAttacking", false);
+                        b.animator.SetBool("IsGunSlinger", false);
+                        b.animator.SetBool("isCallingHelp", true);
                         Renforts();
                         _actionActive = true;
                         Debug.Log("Renforts");
                         break;
 
                     case 2:
+                        b.animator.SetBool("isShooting", true);
+                        b.animator.SetBool("isGrenading", false);
+                        b.animator.SetBool("isAttacking", false);
+                        b.animator.SetBool("IsGunSlinger", false);
+                        b.animator.SetBool("isCallingHelp", false);
                         TirDeCouverture();
                         _actionActive = true;
                         Debug.Log("TirDeCouverture");
                         break;
 
                     case 3:
+                        b.animator.SetBool("isShooting", false);
+                        b.animator.SetBool("isGrenading", true);
+                        b.animator.SetBool("isAttacking", false);
+                        b.animator.SetBool("IsGunSlinger", false);
+                        b.animator.SetBool("isCallingHelp", false);
                         Grenade();
                         _actionActive = true;
                         Debug.Log("Grenade");
                         break;
 
                     case 4:
+                        b.animator.SetBool("isShooting", false);
+                        b.animator.SetBool("isGrenading", false);
+                        b.animator.SetBool("isAttacking", true);
+                        b.animator.SetBool("IsGunSlinger", false);
+                        b.animator.SetBool("isCallingHelp", false);
                         StartCoroutine(AttaqueCaC());
                         _actionActive = true;
                         Debug.Log("AttaqueCaC");
                         break;
 
+
                     case 5:
-                       StartCoroutine(FouDeLaGachette());
+                        b.animator.SetBool("isShooting", false);
+                        b.animator.SetBool("isGrenading", false);
+                        b.animator.SetBool("isAttacking", false);
+                        b.animator.SetBool("IsGunSlinger", true);
+                        b.animator.SetBool("isCallingHelp", false);
+                        StartCoroutine(FouDeLaGachette());
                         _actionActive = true;
                         Debug.Log("FouDeLaGachette");
                         break;
