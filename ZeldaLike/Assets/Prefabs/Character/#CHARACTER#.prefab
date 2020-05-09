@@ -538,7 +538,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 31798
+  m_InstanceId: -7462
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritRend: {fileID: 426099458913968102}
+  _FXspritRend: {fileID: 2836327925510153995}
   _playerAnimator: {fileID: 4353306581679868754}
   _fxAnimator: {fileID: 6487569458270697087}
   _input: {fileID: 426099458386974330}
@@ -1335,7 +1336,7 @@ GameObject:
   m_Layer: 0
   m_Name: FX
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1347,8 +1348,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754199240970760524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 426099458672461376}
   m_RootOrder: 2

@@ -7,6 +7,7 @@ namespace Management
     {
         [Header("Auto Components")]
         [SerializeField] SpriteRenderer _spritRend = null;
+        [SerializeField] SpriteRenderer _FXspritRend = null;
         [SerializeField] Animator _playerAnimator = null;
         [SerializeField] Animator _fxAnimator = null;
         [SerializeField] InputManager _input = null;
@@ -44,8 +45,22 @@ namespace Management
                 _spritRend.flipX = false;
             }
 
+            //Flip Horizontal
+            if (_input._CharacterDirection.x < 0)
+            {
+                _FXspritRend.flipX = true;
+            }
+            else if (_input._CharacterDirection.x > 0)
+            {
+                _FXspritRend.flipX = false;
+            }
+
             //Valeur des actions
             _playerAnimator.SetFloat("MouvY", _input._CharacterDirection.y);
+
+            _fxAnimator.SetFloat("OrientationX", _input._CharacterDirection.x);
+            _fxAnimator.SetFloat("OrientationY", _input._CharacterDirection.y);
+
             _playerAnimator.SetFloat("MouvSpeed", _rgb.velocity.magnitude);
             _playerAnimator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
 
