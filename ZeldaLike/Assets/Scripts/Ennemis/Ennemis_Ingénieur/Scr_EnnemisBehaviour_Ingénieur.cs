@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Management;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Ennemis
 {
@@ -13,6 +14,7 @@ namespace Ennemis
         public Scr_EnnemisLifeSystem _lifeSyst = null;
         public AnimatorHandler_Inge animator = null;
         public Rigidbody2D _myBody = null;
+        public Light2D Gyrophare = null;
 
         [Header("Shoot")]
         public float _detectionShootingRange = 18f;
@@ -65,6 +67,14 @@ namespace Ennemis
             animator.animator.SetFloat("OrientationX", _targetDirection.x);
             animator.animator.SetFloat("OrientationY", _targetDirection.y);
 
+            if (_haveDetected && Gyrophare.color != Color.red)
+            {
+                Gyrophare.color = Color.red;
+            }
+            else if (!_haveDetected)
+            {
+                Gyrophare.color = Color.blue;
+            }
         }
         void FixedUpdate()
         {
