@@ -7,7 +7,8 @@ namespace Management
     {
         [Header("Auto Components")]
         [SerializeField] SpriteRenderer _spritRend = null;
-        [SerializeField] Animator _animator = null;
+        [SerializeField] Animator _playerAnimator = null;
+        [SerializeField] Animator _fxAnimator = null;
         [SerializeField] InputManager _input = null;
         [SerializeField] Movement_2D_TopDown _movement = null;
         [SerializeField] Rigidbody2D _rgb = null;
@@ -27,7 +28,7 @@ namespace Management
         void Start()
         {
             _spritRend = this.gameObject.GetComponent<SpriteRenderer>();
-            _animator = this.gameObject.GetComponent<Animator>();
+            _playerAnimator = this.gameObject.GetComponent<Animator>();
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
         }
         
@@ -44,63 +45,70 @@ namespace Management
             }
 
             //Valeur des actions
-            _animator.SetFloat("MouvY", _input._CharacterDirection.y);
-            _animator.SetFloat("MouvSpeed", _rgb.velocity.magnitude);
-            _animator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
+            _playerAnimator.SetFloat("MouvY", _input._CharacterDirection.y);
+            _playerAnimator.SetFloat("MouvSpeed", _rgb.velocity.magnitude);
+            _playerAnimator.SetBool("IsTakingDamage", _playerLife._isTakingDamage);
 
             //Bool pour la forme
             if(_formeManager._switchForm == Scr_FormeHandler.Forme.Heavy && !_isLourd)
             {
-                _animator.SetBool("IsLourd", true);
-                _animator.SetBool("IsAgile", false);
-                _animator.SetBool("IsHuman", false);
+                _playerAnimator.SetBool("IsLourd", true);
+                _playerAnimator.SetBool("IsAgile", false);
+                _playerAnimator.SetBool("IsHuman", false);
 
                 _isHumain = false;
                 _isAgile = false;
                 _isLourd = true;
 
-                _animator.SetTrigger("GoLourd");
+                _playerAnimator.SetTrigger("GoLourd");
+                _fxAnimator.SetTrigger("GoLourd");
             }
             else
             if (_formeManager._switchForm == Scr_FormeHandler.Forme.Agile && !_isAgile)
             {
-                _animator.SetBool("IsLourd", false);
-                _animator.SetBool("IsAgile", true);
-                _animator.SetBool("IsHuman", false);
+                _playerAnimator.SetBool("IsLourd", false);
+                _playerAnimator.SetBool("IsAgile", true);
+                _playerAnimator.SetBool("IsHuman", false);
 
                 _isAgile = true;
                 _isHumain = false;
                 _isLourd = false;
 
-                _animator.SetTrigger("GoAgile");
+                _playerAnimator.SetTrigger("GoAgile");
+                _fxAnimator.SetTrigger("GoAgile");
 
             }
             else
             if(_formeManager._switchForm == Scr_FormeHandler.Forme.Humain && !_isHumain)
             {
-                _animator.SetBool("IsLourd", false);
-                _animator.SetBool("IsAgile", false);
-                _animator.SetBool("IsHuman", true);
+                _playerAnimator.SetBool("IsLourd", false);
+                _playerAnimator.SetBool("IsAgile", false);
+                _playerAnimator.SetBool("IsHuman", true);
 
                 _isHumain = true;
                 _isAgile = false;
                 _isLourd = false;
 
-                _animator.SetTrigger("GoHumain");
+                _playerAnimator.SetTrigger("GoHumain");
+                _fxAnimator.SetTrigger("GoHumain");
 
             }
-
+            _fxAnimator.SetBool("IsChargingForward",_movement._isBoosted);
         }
 
         //AttackTrigger
         public void TriggerAttack()
         {
-            _animator.SetTrigger("Attack");
+            _playerAnimator.SetTrigger("Attack");
         }
 
         public void TriggerDeath()
         {
-            _animator.SetTrigger("Die");
+            _playerAnimator.SetTrigger("Die");
+        }
+        public void TriggerTP()
+        {
+            _fxAnimator.SetTrigger("OnTP");
         }
 
     }
