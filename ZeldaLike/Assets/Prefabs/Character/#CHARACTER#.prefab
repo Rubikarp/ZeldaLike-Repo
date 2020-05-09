@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 426099458629431355}
   - component: {fileID: 426099458629431357}
   - component: {fileID: 426099458629431354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AgileForm
   m_TagString: Player/Forme/Agile
   m_Icon: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   _StunZonePrefab: {fileID: 1993359397713845183, guid: 918762e292f17704a89f002c93c1307c,
     type: 3}
   _attackContainer: {fileID: 426099459497941201}
+  sound: {fileID: 0}
 --- !u!114 &426099458629431354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +150,13 @@ MonoBehaviour:
   _animator: {fileID: 426099458913968089}
   _PlMovement: {fileID: 426099459853713051}
   _bondDetecZone: {fileID: 6614503165312500494}
+  sound: {fileID: 0}
+  Actif:
+    m_PersistentCalls:
+      m_Calls: []
+  SpeBond:
+    m_PersistentCalls:
+      m_Calls: []
   _attackObj: {fileID: 2031849455262277083, guid: 9c1d934a943812e41a2510884e7b4a5f,
     type: 3}
   _attackDur: 0.2
@@ -179,7 +187,7 @@ GameObject:
   - component: {fileID: 426099458672461379}
   - component: {fileID: 4788644426683925218}
   - component: {fileID: 5021294589772490011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Avatar
   m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -276,7 +284,7 @@ GameObject:
   - component: {fileID: 426099458780276582}
   - component: {fileID: 426099458780276583}
   - component: {fileID: 426099458780276580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HurtBox
   m_TagString: Player/HurtBox
   m_Icon: {fileID: 0}
@@ -291,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426099458780276581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 426099459853713050}
@@ -340,7 +348,7 @@ MonoBehaviour:
   _maxlife: 6
   _isTakingDamage: 0
   _isVunerable: 1
-  knockbackSensibility: 3
+  knockbackSensibility: 2
 --- !u!1 &426099458865168693
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426099458865168692}
   - component: {fileID: 426099458865168695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -366,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426099458865168693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.878, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 426099459853713050}
@@ -412,7 +420,7 @@ GameObject:
   - component: {fileID: 426099458913968103}
   - component: {fileID: 4353306581679868754}
   - component: {fileID: 426099458913968089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +537,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1388
+  m_InstanceId: 145840
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -616,7 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426099459277516483}
   - component: {fileID: 426099459277516482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -664,7 +672,7 @@ GameObject:
   - component: {fileID: 426099459425250177}
   - component: {fileID: 426099459425250179}
   - component: {fileID: 426099459425250176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeavyForm
   m_TagString: Player/Forme/Heavy
   m_Icon: {fileID: 0}
@@ -699,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boostedForm: {fileID: 11400000, guid: 1bcd263b63ecb3645a3ddc305b517b74, type: 2}
   Movement: {fileID: 426099459853713051}
+  sound: {fileID: 0}
   _boostPourcentage: 30
   _boostDuration: 3
 --- !u!114 &426099459425250176
@@ -716,6 +725,7 @@ MonoBehaviour:
   _PlMovement: {fileID: 426099459853713051}
   _input: {fileID: 426099458386974330}
   _animator: {fileID: 426099458913968089}
+  sound: {fileID: 0}
   _attackObj: {fileID: 8535114425437957988, guid: d2f78ac06e8b8654d8a2ec72164f1d65,
     type: 3}
   _attackContainer: {fileID: 426099459497941201}
@@ -765,7 +775,7 @@ GameObject:
   - component: {fileID: 426099459518368251}
   - component: {fileID: 426099459518368253}
   - component: {fileID: 426099459518368250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HumaineForm
   m_TagString: Player/Forme/Human
   m_Icon: {fileID: 0}
@@ -801,6 +811,7 @@ MonoBehaviour:
   _markPrefab: {fileID: 5795848866136646902, guid: 3cb8403910c464344b26ba011375e67e,
     type: 3}
   _markContainer: {fileID: 426099457826937178}
+  sound: {fileID: 0}
 --- !u!114 &426099459518368250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,9 +826,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _input: {fileID: 426099458386974330}
   _animator: {fileID: 426099458913968089}
+  sound: {fileID: 0}
   _knife: {fileID: 6980779766148977113, guid: c1ef55d1029078643a39055034a4ffd5, type: 3}
   _KnifeContainer: {fileID: 426099459497941201}
   _attackPos: {fileID: 426099459277516483}
+  Actif:
+    m_PersistentCalls:
+      m_Calls: []
   _canShoot: 1
   _Cooldown: 0.6
 --- !u!1 &426099459853713048
@@ -831,7 +846,7 @@ GameObject:
   - component: {fileID: 426099459853713050}
   - component: {fileID: 426099459853713051}
   - component: {fileID: 3979598919573580603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Physic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,6 +885,7 @@ MonoBehaviour:
   _body: {fileID: 426099458672461379}
   _input: {fileID: 426099458386974330}
   lifeSyst: {fileID: 426099458780276580}
+  sound: {fileID: 0}
   _forme: {fileID: 4788644426683925218}
   _activeSpeed: 0
   _canMove: 1
@@ -2108,7 +2124,7 @@ GameObject:
   - component: {fileID: 6614503165312500481}
   - component: {fileID: 6614503165312500495}
   - component: {fileID: 6614503165312500494}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BondZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

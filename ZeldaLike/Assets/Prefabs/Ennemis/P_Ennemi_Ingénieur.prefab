@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6591912553246879774}
   - component: {fileID: 6163982051288508946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Warning Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7921538551037002537}
   - component: {fileID: 7921538551037002536}
   - component: {fileID: 6031003343251515102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "P_Ennemi_Ing\xE9nieur"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7921538551067045192}
   - component: {fileID: 7921538551067045193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,8 +322,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7921538551067045195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 2.5071561}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0285, y: 1.4215, z: 2.5071561}
+  m_LocalScale: {x: 1.2845, y: 1.2845, z: 1.2845}
   m_Children: []
   m_Father: {fileID: 7921538552476212214}
   m_RootOrder: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 7921538552476212214}
   - component: {fileID: 7921538552476212212}
   - component: {fileID: 7921538552476212215}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hitbox
   m_TagString: Ennemis/HurtBox
   m_Icon: {fileID: 0}
@@ -424,9 +424,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.090847015}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.9390936
 --- !u!114 &7921538552476212215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _logoMarked: {fileID: 7921538551067045195}
   _isMarked: 0
-  _markedDuration: 2
+  _markedDuration: 5
   Ennemis: {fileID: 7921538551037002539}
   body: {fileID: 7921538551037002551}
   _healObject: {fileID: 780740348253267393, guid: f4fff1d70c5b9b04aa1f1ac196c713b0,
