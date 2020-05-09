@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 6844231886875695455}
   - component: {fileID: 6844231886875695454}
   - component: {fileID: 6844231886875695424}
-  - component: {fileID: 6844231886875695453}
-  - component: {fileID: 227938401138951452}
+  - component: {fileID: 7475327499598849123}
+  - component: {fileID: 3624355501007816855}
   m_Layer: 0
   m_Name: P_LD_Dummy 1
   m_TagString: Ennemis
@@ -171,8 +171,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6844231886875695453
-CircleCollider2D:
+--- !u!61 &7475327499598849123
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -184,10 +184,20 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.9422952, y: -1.5966668}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.04, y: 0.04}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &227938401138951452
+  m_Size: {x: 2.1154096, y: 3.3066664}
+  m_EdgeRadius: 0
+--- !u!114 &3624355501007816855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,7 +237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6844231888515745723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6844231886875695455}

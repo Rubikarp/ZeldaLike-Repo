@@ -19,6 +19,12 @@ namespace Ennemis
         public GameObject Dummy = null;
         public Rigidbody2D body = null;
 
+        //private Animator dummyAnimator;
+
+        /*void Start ()
+        {
+            dummyAnimator = GetComponent<Animator>();
+        }*/
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -33,6 +39,14 @@ namespace Ennemis
             _isMarked = true;
             _logoMarked.SetActive(true);
         }
+
+        /*void Update ()
+        {
+            if (_isMarked == true)
+            {
+                dummyAnimator.SetBool("Dummy", _isMarked);dummyAnimator.SetBool("Dummy", _isMarked);
+            }
+        }*/
 
         public IEnumerator TakingDamage(int damage, Rigidbody2D body, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
         {
