@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4290022481031530885}
   - component: {fileID: 4256789850445662734}
   - component: {fileID: 4095997774177996202}
+  - component: {fileID: 9090125330782983886}
   m_Layer: 0
   m_Name: Portal2
   m_TagString: Untagged
@@ -73,8 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cee4edc79b1c0d40b0519fd9b68d3c7, type: 3}
-  m_Color: {r: 0.20407164, g: 0.10332859, b: 0.509434, a: 1}
+  m_Sprite: {fileID: -5979980038675522798, guid: 0f65ac701c741c842b3badea28599dd1,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -139,6 +141,26 @@ MonoBehaviour:
   _canTPBlocks: 0
   _TPDelay: 2.5
   _TPBlocksDelay: 5
+  _isBig: 0
+--- !u!95 &9090125330782983886
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343747552032835654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb23b4a42d88a6645ae45dd052210d83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1559082471105297509
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +235,7 @@ GameObject:
   - component: {fileID: 3982263533982331596}
   - component: {fileID: 800529584600464683}
   - component: {fileID: 5348759052207202033}
+  - component: {fileID: 2343928713090651521}
   m_Layer: 0
   m_Name: Portal1
   m_TagString: Untagged
@@ -273,8 +296,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cee4edc79b1c0d40b0519fd9b68d3c7, type: 3}
-  m_Color: {r: 0.20407164, g: 0.10332859, b: 0.509434, a: 1}
+  m_Sprite: {fileID: -5979980038675522798, guid: 0f65ac701c741c842b3badea28599dd1,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -339,3 +363,23 @@ MonoBehaviour:
   _canTPBlocks: 0
   _TPDelay: 2.5
   _TPBlocksDelay: 5
+  _isBig: 0
+--- !u!95 &2343928713090651521
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054052858003425884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb23b4a42d88a6645ae45dd052210d83, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
