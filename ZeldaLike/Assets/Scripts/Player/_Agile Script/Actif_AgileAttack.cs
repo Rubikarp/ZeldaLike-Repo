@@ -64,7 +64,6 @@ namespace Game
                 {
                     StartCoroutine(AttackClassique(_attackDur));
                     sound.PlaySound("AttackFeline");
-
                 }
                 else
                 {

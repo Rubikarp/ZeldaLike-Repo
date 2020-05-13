@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _StunZonePrefab: {fileID: 1993359397713845183, guid: 918762e292f17704a89f002c93c1307c,
     type: 3}
-  _attackContainer: {fileID: 426099459497941201}
+  _attackContainer: {fileID: 426099458672461376}
   sound: {fileID: 0}
 --- !u!114 &426099458629431354
 MonoBehaviour:
@@ -151,12 +151,6 @@ MonoBehaviour:
   _PlMovement: {fileID: 426099459853713051}
   _bondDetecZone: {fileID: 6614503165312500494}
   sound: {fileID: 0}
-  Actif:
-    m_PersistentCalls:
-      m_Calls: []
-  SpeBond:
-    m_PersistentCalls:
-      m_Calls: []
   _attackObj: {fileID: 2031849455262277083, guid: 9c1d934a943812e41a2510884e7b4a5f,
     type: 3}
   _attackDur: 0.2
@@ -252,6 +246,7 @@ MonoBehaviour:
   _humanGameObject: {fileID: 426099459518368248}
   _agileGameObject: {fileID: 426099458629431352}
   _heavyGameObject: {fileID: 426099459425250190}
+  lifesyst: {fileID: 426099458780276580}
   _canSwitch: 1
   _heavyFormeUnlock: 1
   _switchCooldown: 0.5
@@ -339,7 +334,6 @@ MonoBehaviour:
   _animator: {fileID: 426099458913968089}
   _scrShake: {fileID: 0}
   _input: {fileID: 426099458386974330}
-  isDead: 0
   _forme: {fileID: 4788644426683925218}
   _respawnPoint: {x: 0, y: 0}
   _playerAttack:
@@ -351,6 +345,8 @@ MonoBehaviour:
   _isTakingDamage: 0
   _isVunerable: 1
   knockbackSensibility: 2
+  isDead: 0
+  Dying: 0
 --- !u!1 &426099458865168693
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,7 +535,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 148250
+  m_InstanceId: -61826
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3

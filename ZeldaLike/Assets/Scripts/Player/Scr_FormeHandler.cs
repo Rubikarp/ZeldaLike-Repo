@@ -72,8 +72,8 @@ namespace Management
                 if (_switchTimer <= 0)
                 {
                     _canSwitch = true;
-                }
-                else
+                } 
+                else 
                 {
                     _switchTimer -= Time.deltaTime;
                 }
@@ -105,7 +105,6 @@ namespace Management
                     break;
             }
         }
-
         private void RoulementGauche()
         {
             switch (_switchForm)
@@ -142,7 +141,6 @@ namespace Management
 
             _humanGameObject.SetActive(true);
         }
-
         public void AgileActivation()
         {
             _switchForm = Forme.Agile;
@@ -153,7 +151,6 @@ namespace Management
 
             _agileGameObject.SetActive(true);
         }
-
         public void HeavyActivation()
         {
             _switchForm = Forme.Heavy;
@@ -165,7 +162,13 @@ namespace Management
             _heavyGameObject.SetActive(true);
         }
 
-        private void Initialisation()
+        //Activer une forme
+        public void UnlockHeavy()
+        {
+            _heavyFormeUnlock = true;
+        }
+
+    private void Initialisation()
         {
             switch (_switchForm)
             {

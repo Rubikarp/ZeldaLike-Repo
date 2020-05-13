@@ -49,6 +49,8 @@ namespace Game
 
         void Start()
         {
+            gameObject.LeanScale(new Vector3(2, 2, 1), _LifeTime>0.2f? _LifeTime - 0.2f : _LifeTime);
+
             if(_Stun == null)
             {
                 Debug.Log(this.gameObject + "n'a pas été assigné en tant que stun");
