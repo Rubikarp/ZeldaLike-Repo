@@ -17,6 +17,7 @@ namespace Ennemies
         public Transform _attackPos;
         public Vector3 _bossDirection;
         public GameObject[] _interrupteursTargets;
+        public Scr_AnimatorManager_BossP2 _anim;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -51,12 +52,19 @@ namespace Ennemies
         [Header("CoupMassif")]
         public Transform _coupMassifPos;
         public GameObject _coupMassifHitbox;
+        public float _massiveDelay;
 
         [Header("Jet de débris")]
         public GameObject _projectileThrown;
+        public float _throwDelay;
 
-    // Start is called before the first frame update
-    void Start()
+        private void Awake()
+        {
+            _anim = GetComponent<Scr_AnimatorManager_BossP2>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _inPattern = false;
@@ -137,6 +145,7 @@ namespace Ennemies
                         {
                             if (_interrupteursTargets[4].GetComponent<Scr_LD_ActiveState>()._isActive == true)
                             {
+                                _anim.Death();
                                 Destroy(gameObject);
                             }
                         }
@@ -175,6 +184,7 @@ namespace Ennemies
 
         private IEnumerator Renforts()
         {
+            _anim.RenfortsTrigger(true);
             yield return new WaitForSeconds(_castDelayRenforts);
 
             for (int i = 0; i < _ennemiesRenforts.Count; i++)
@@ -182,12 +192,14 @@ namespace Ennemies
                 Instantiate(_ennemiesRenforts[i], _renfortsSpawns[i]);
             }
 
+            _anim.RenfortsTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
 
         private IEnumerator MonArmee()
         {
+            _anim.MonArmeeTrigger(true);
             yield return new WaitForSeconds(_castDelayArmy);
 
             for (int j = 0; j < _ennemiesArmy.Count; j++)
@@ -195,12 +207,14 @@ namespace Ennemies
                 Instantiate(_ennemiesArmy[j], _armySpawns[j]);
             }
 
+            _anim.MonArmeeTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
 
         private IEnumerator LaserPattern()
         {
+            _anim.LaserTrigger(true);
             yield return new WaitForSeconds(_laserCastTime);
             while (_rotation > -360)
             {
@@ -215,6 +229,7 @@ namespace Ennemies
             _laserPos.rotation = Quaternion.Euler(0f, 0f, 0f);
             _laserGraph.enabled = false;
 
+            _anim.LaserTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
@@ -258,6 +273,7 @@ namespace Ennemies
 
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
         {
+            _anim.AspirationTrigger(true);
             while (aspiTime > 0)
             {
                 Collider2D[] playerToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
@@ -298,23 +314,29 @@ namespace Ennemies
                 yield return new WaitForEndOfFrame();
             }
 
-
+            _anim.AspirationTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
 
         private IEnumerator CoupMassif()
         {
+            _anim.CoupMassifTrigger(true);
             Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 25, _coupMassifPos.rotation, _coupMassifPos);
+            yield return new WaitForSeconds(_massiveDelay);
 
+            _anim.CoupMassifTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
 
         private IEnumerator JetDeDebris()
         {
+            _anim.JetDeDebrisTrigger(true);
+            yield return new WaitForSeconds(_throwDelay);
            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
 
+            _anim.JetDeDebrisTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }

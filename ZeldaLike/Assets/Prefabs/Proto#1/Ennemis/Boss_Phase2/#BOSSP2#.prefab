@@ -319,6 +319,8 @@ GameObject:
   - component: {fileID: 6274636094840920911}
   - component: {fileID: 6274636094840920910}
   - component: {fileID: 1746264455080389995}
+  - component: {fileID: 6489524447453571940}
+  - component: {fileID: 3156897731142839312}
   m_Layer: 0
   m_Name: AvatarBossP2
   m_TagString: Ennemis
@@ -335,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 6274636094840920906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.9479737, y: 3.9479737, z: 3.9479737}
+  m_LocalScale: {x: 1, y: 1, z: 11}
   m_Children:
   - {fileID: 6814870832448041603}
   - {fileID: 3585198221793334281}
@@ -416,6 +418,7 @@ MonoBehaviour:
   - {fileID: 1479497373257771733}
   - {fileID: 2243164255614680035}
   - {fileID: 5161242703462610704}
+  _anim: {fileID: 0}
   _ennemiesRenforts:
   - {fileID: 7921538551037002539, guid: 455a408cb34358f46a8423bc2f95a8af, type: 3}
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
@@ -462,8 +465,10 @@ MonoBehaviour:
   _coupMassifPos: {fileID: 6814870832448041603}
   _coupMassifHitbox: {fileID: 468361108904842436, guid: c46ccc07573688946b89cc506ac9140f,
     type: 3}
+  _massiveDelay: 2
   _projectileThrown: {fileID: 9160847272068689511, guid: 6d0748ee3f3bf254b97b8c8093aff737,
     type: 3}
+  _throwDelay: 1
 --- !u!61 &6274636094840920910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -505,6 +510,38 @@ MonoBehaviour:
   _damage: 1
   _stunDuration: 0.25
   _knockbackPower: 10
+--- !u!95 &6489524447453571940
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274636094840920906}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3f45d10f566aa7458f31cfca3060ce3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3156897731142839312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274636094840920906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38643710b2e9ed046b13a3c4859eccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6489524447453571940}
 --- !u!1 &6274636095411642975
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +852,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 5
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -847,7 +884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8081811122814804101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.28, z: 0}
+  m_LocalPosition: {x: 0, y: -1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6274636094840920908}
@@ -892,7 +929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8866277164635407175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4160004, y: -0.26500148, z: 0}
+  m_LocalPosition: {x: 1.29, y: -0.26500148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6274636094840920908}
@@ -959,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916991, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916995, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1030,7 +1067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916991, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916995, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1101,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916991, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916995, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1172,7 +1209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916991, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916995, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1243,7 +1280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916991, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3953387548916995, guid: 438888038757c73438e5bc20775de3e7, type: 3}
       propertyPath: m_LocalPosition.x
