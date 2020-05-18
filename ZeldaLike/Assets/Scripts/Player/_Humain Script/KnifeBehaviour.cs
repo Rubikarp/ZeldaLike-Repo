@@ -20,6 +20,13 @@ namespace Game
         public float _angleCorrection = 0;
         public Vector2 _playerOrientation;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         private void Start()
         {
             _Body = GetComponent<Rigidbody2D>();
@@ -47,6 +54,7 @@ namespace Game
             if (collision.gameObject.CompareTag("Ennemis/HurtBox") || collision.gameObject.CompareTag("Environment"))
             {
                 Destroy(gameObject);
+                sound.PlaySound("KnifeImpact");
             }
         }
 

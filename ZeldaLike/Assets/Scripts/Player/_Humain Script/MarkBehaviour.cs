@@ -15,6 +15,13 @@ namespace Game
         private OnSwitch_StunZoneApparrition _agile = null;
         public float _distanceLimit;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         void Start()
         {
             _player = GameObject.Find("Avatar");
@@ -43,6 +50,8 @@ namespace Game
             if (_input._mark)
             {
                 _player.transform.position = gameObject.transform.position;
+
+                sound.PlaySound("TeleportationPJ");
 
                 if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
                 {

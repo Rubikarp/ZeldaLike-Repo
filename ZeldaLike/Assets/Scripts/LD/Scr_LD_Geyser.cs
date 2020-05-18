@@ -17,7 +17,14 @@ namespace Game
         public Rigidbody2D _targetBody;
         public GameObject _water;
         public float _waterDur;
-        private List<GameObject> _targetEnnemyBodies; 
+        private List<GameObject> _targetEnnemyBodies;
+
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -80,6 +87,7 @@ namespace Game
         {
             yield return new WaitForSeconds(delay);
             _water.SetActive(true);
+            sound.PlaySound("GeyserGushing");
 
             Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
 
@@ -109,6 +117,7 @@ namespace Game
         {
             yield return new WaitForSeconds(delay);
             _water.SetActive(true);
+            sound.PlaySound("GeyserGushing");
 
             Collider2D[] ennemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _repulseRange);
 

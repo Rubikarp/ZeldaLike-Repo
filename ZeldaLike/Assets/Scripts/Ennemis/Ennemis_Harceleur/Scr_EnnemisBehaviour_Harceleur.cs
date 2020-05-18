@@ -47,6 +47,13 @@ namespace Ennemis
         [HideInInspector] public Vector2 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         private void Start()
         {
             _target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -146,6 +153,7 @@ namespace Ennemis
             animator.TriggerTP();
             _myBody.position = new Vector2(_target.position.x, _target.position.y) - (_backTeleportRange * new Vector2(_input._CharacterDirection.x, _input._CharacterDirection.y));
             _myBody.velocity = Vector2.zero;
+            sound.PlaySound("TeleportationHarceleur");
 
             animator.animator.SetBool("IsAttackingPrep", true);
             yield return new WaitForSeconds(attackCharge);

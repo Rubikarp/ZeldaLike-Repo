@@ -49,6 +49,13 @@ namespace Ennemis
         [HideInInspector] public Vector3 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         void Start()
         {
             _target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -130,6 +137,7 @@ namespace Ennemis
                 runDuration -= Time.deltaTime;
 
                 _myBody.velocity = -runDirection.normalized * runSpeed; //opposé à la position de la target de l'ennemi > Fuite
+                sound.PlaySound("Run");
 
                 yield return new WaitForEndOfFrame();
             }
