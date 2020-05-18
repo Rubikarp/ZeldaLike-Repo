@@ -98,49 +98,29 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(1, 6);
+                _randomAction = Random.Range(5, 6);
 
                 switch (_randomAction)
                 {
                     case 1:
-                        b.animator.SetBool("isShooting", false);
-                        b.animator.SetBool("isGrenading", false);
-                        b.animator.SetBool("isAttacking", false);
-                        b.animator.SetBool("IsGunSlinger", false);
-                        b.animator.SetBool("isCallingHelp", true);
                         Renforts();
                         _actionActive = true;
                         Debug.Log("Renforts");
                         break;
 
                     case 2:
-                        b.animator.SetBool("isShooting", true);
-                        b.animator.SetBool("isGrenading", false);
-                        b.animator.SetBool("isAttacking", false);
-                        b.animator.SetBool("IsGunSlinger", false);
-                        b.animator.SetBool("isCallingHelp", false);
                         TirDeCouverture();
                         _actionActive = true;
                         Debug.Log("TirDeCouverture");
                         break;
 
                     case 3:
-                        b.animator.SetBool("isShooting", false);
-                        b.animator.SetBool("isGrenading", true);
-                        b.animator.SetBool("isAttacking", false);
-                        b.animator.SetBool("IsGunSlinger", false);
-                        b.animator.SetBool("isCallingHelp", false);
                         Grenade();
                         _actionActive = true;
                         Debug.Log("Grenade");
                         break;
 
                     case 4:
-                        b.animator.SetBool("isShooting", false);
-                        b.animator.SetBool("isGrenading", false);
-                        b.animator.SetBool("isAttacking", true);
-                        b.animator.SetBool("IsGunSlinger", false);
-                        b.animator.SetBool("isCallingHelp", false);
                         StartCoroutine(AttaqueCaC());
                         _actionActive = true;
                         Debug.Log("AttaqueCaC");
@@ -148,11 +128,6 @@ namespace Ennemis
 
 
                     case 5:
-                        b.animator.SetBool("isShooting", false);
-                        b.animator.SetBool("isGrenading", false);
-                        b.animator.SetBool("isAttacking", false);
-                        b.animator.SetBool("IsGunSlinger", true);
-                        b.animator.SetBool("isCallingHelp", false);
                         StartCoroutine(FouDeLaGachette());
                         _actionActive = true;
                         Debug.Log("FouDeLaGachette");
@@ -178,42 +153,50 @@ namespace Ennemis
         //Effet de "Renforts".
         private void Renforts()
         {
+            b.animator.SetBool("isCallingHelp", true);
             for (int i = 0; i < _renforts.Count; i++)
             {
                 Instantiate(_renforts[i], _renfortsSpawns[i]);
             }
 
             _canGoDelay = true;
+            b.animator.SetBool("isCallingHelp", false);
         }
 
         //Effet de "Tir de couverture".
         private void TirDeCouverture()
         {
+            b.animator.SetBool("isShooting", true);
             _currentTarget = (_player.transform.position - _mySelf.position);
 
             Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
 
             _couverture = true; //Permet de lancer le déplacement de "Tir de Couverture" qui se trouve dans l'Update.
+            b.animator.SetBool("isShooting", false);
         }
 
         //Effet de "Grenade".
         private void Grenade()
         {
+            b.animator.SetBool("isGrenading", true);
             _grenadeTarget = _player.transform.position;
 
             Instantiate(_grenade, _mySelf.position + _grenadeTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
 
             _canGoDelay = true;
+            b.animator.SetBool("isGrenading", false);
         }
 
         //Effet de "AttaqueCaC".
         private IEnumerator AttaqueCaC()
         {
+            b.animator.SetBool("isAttacking", true);
             yield return new WaitForSeconds(_attackCast);
 
             Instantiate(_attackZone, _attackPos.transform.position + _bossDirection.normalized * 2, _attackPos.transform.rotation, _attackPos.transform);
             _attackPos.GetComponent<Scr_BossP1AttackPos>()._attackSet = true;
 
+            b.animator.SetBool("isAttacking", false);
             yield return new WaitForSeconds(0.5f);
 
             _canGoDelay = true;
@@ -222,6 +205,7 @@ namespace Ennemis
         //Effet de "Fou de la Gachette".
         private IEnumerator FouDeLaGachette()
         {
+            b.animator.SetTrigger("IsGunSlinger");
             for (int i = 0; i < _bulletFury.Count; i++)
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
