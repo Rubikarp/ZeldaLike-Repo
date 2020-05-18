@@ -45,6 +45,13 @@ namespace Ennemis
         [HideInInspector] public Vector3 _targetDirection = Vector2.zero;
         private float _targetDistance = 0;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         private void Start()
         {
             _target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -129,6 +136,7 @@ namespace Ennemis
                 chargeDuration -= Time.deltaTime;
 
                 _myBody.velocity = chargeDirection.normalized * chargeSpeed;
+                sound.PlaySound("Charge");
 
                 yield return new WaitForEndOfFrame();
             }

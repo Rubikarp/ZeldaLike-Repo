@@ -1,5 +1,6 @@
 ﻿using Game;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Management
 {
@@ -37,6 +38,13 @@ namespace Management
         [SerializeField] private float _switchCooldown = 0.5f;
 
         private float _switchTimer = 0.5f;
+
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void Start()
         {
@@ -104,6 +112,7 @@ namespace Management
                     Debug.LogError("problem in the switch");
                     break;
             }
+            sound.PlaySound("FormeChanged");
         }
         private void RoulementGauche()
         {
@@ -128,6 +137,7 @@ namespace Management
                     Debug.Log("problem in the switch");
                     break;
             }
+            sound.PlaySound("FormeChanged");
         }
 
         //Activer une forme

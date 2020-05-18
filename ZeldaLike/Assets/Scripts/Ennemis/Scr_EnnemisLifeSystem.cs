@@ -31,6 +31,12 @@ namespace Ennemis
         [Range(0, 100)] public float _healSpawnChance = 50f;
         private bool haveLoot = false;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void Update()
         {
@@ -63,6 +69,7 @@ namespace Ennemis
                 if (collision.gameObject.CompareTag("Knife"))
                 {
                     GetMarked();
+                    sound.PlaySound("Mark");
                 }
 
                 Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;

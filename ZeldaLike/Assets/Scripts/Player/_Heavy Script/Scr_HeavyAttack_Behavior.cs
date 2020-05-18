@@ -50,6 +50,12 @@ namespace Game
         [SerializeField] private float _LifeTime = 0.8f;
         [SerializeField] private GameObject _heavyAttack = null;
 
+        private SoundManager sound;
+
+        private void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         void Start()
         {
@@ -78,6 +84,7 @@ namespace Game
                 if (collision.gameObject.GetComponent<Scr_EnnemisLifeSystem>()._isMarked == true)
                 {
                     Instantiate(_shockWave, collision.transform.position, collision.transform.rotation);
+                    sound.PlaySound("ShockWave");
                 }
            }
         }
