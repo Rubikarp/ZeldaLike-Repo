@@ -73,18 +73,25 @@ namespace Ennemis
                 if (_delay > 0)
                 {
                     _delay -= Time.deltaTime;
+                    b._canFlip = true;
 
                     if (Vector2.Distance(_mySelf.position, _player.transform.position) > _fightDistance)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, _moveSpeed * Time.deltaTime);
+                        b.SpriteFlip(false);
+                        b.animator.SetBool("IsWalking", true);
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_moveSpeed * Time.deltaTime);
+                        b.SpriteFlip(true);
+                        b.animator.SetBool("IsWalking", true);
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && Vector2.Distance(_mySelf.position, _player.transform.position) > _retreatDistance)
                     {
                         _mySelf.position = _mySelf.position;
+                        b.SpriteFlip(false);
+                        b.animator.SetBool("IsWalking", false);
                     }
                 }
                 else if (_delay <= 0)
@@ -98,7 +105,7 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(5, 6);
+                _randomAction = Random.Range(2, 3);
 
                 switch (_randomAction)
                 {
@@ -109,7 +116,7 @@ namespace Ennemis
                         break;
 
                     case 2:
-                        TirDeCouverture();
+                        StartCoroutine(TirDeCouverture());
                         _actionActive = true;
                         Debug.Log("TirDeCouverture");
                         break;
@@ -141,6 +148,8 @@ namespace Ennemis
                 _couvertureDuration -= Time.deltaTime;
 
                 _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_couvertureSpeed * Time.deltaTime);
+                b.SpriteFlip(true);
+                b.animator.SetBool("IsWalking", true);
             }
             else if (_couverture == true && _couvertureDuration <= 0)
             {
@@ -153,31 +162,33 @@ namespace Ennemis
         //Effet de "Renforts".
         private void Renforts()
         {
-            b.animator.SetBool("isCallingHelp", true);
+            b.animator.SetBool("IsWalking", false);
             for (int i = 0; i < _renforts.Count; i++)
             {
                 Instantiate(_renforts[i], _renfortsSpawns[i]);
             }
 
             _canGoDelay = true;
-            b.animator.SetBool("isCallingHelp", false);
         }
 
         //Effet de "Tir de couverture".
-        private void TirDeCouverture()
+        private IEnumerator TirDeCouverture()
         {
-            b.animator.SetBool("isShooting", true);
+            b.animator.SetBool("IsWalking", false);
+            b.animator.SetTrigger("isShooting");
+            yield return new WaitForSeconds(0.5f);
             _currentTarget = (_player.transform.position - _mySelf.position);
 
             Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
 
+            yield return new WaitForSeconds(0.25f);
             _couverture = true; //Permet de lancer le déplacement de "Tir de Couverture" qui se trouve dans l'Update.
-            b.animator.SetBool("isShooting", false);
         }
 
         //Effet de "Grenade".
         private void Grenade()
         {
+            b.animator.SetBool("IsWalking", false);
             b.animator.SetBool("isGrenading", true);
             _grenadeTarget = _player.transform.position;
 
@@ -190,6 +201,7 @@ namespace Ennemis
         //Effet de "AttaqueCaC".
         private IEnumerator AttaqueCaC()
         {
+            b.animator.SetBool("IsWalking", false);
             b.animator.SetBool("isAttacking", true);
             yield return new WaitForSeconds(_attackCast);
 
@@ -205,7 +217,11 @@ namespace Ennemis
         //Effet de "Fou de la Gachette".
         private IEnumerator FouDeLaGachette()
         {
+            b._canFlip = false;
+            b._spritRend.flipX = false;
+            b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("IsGunSlinger");
+
             for (int i = 0; i < _bulletFury.Count; i++)
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
@@ -213,6 +229,8 @@ namespace Ennemis
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 
+            yield return new WaitForSeconds(0.5f);
+            b._canFlip = true;
             _canGoDelay = true;
         }
 
