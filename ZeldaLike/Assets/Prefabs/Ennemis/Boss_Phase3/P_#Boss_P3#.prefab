@@ -601,11 +601,10 @@ MonoBehaviour:
   _Boss: {fileID: 4172128610304137077}
   _body: {fileID: 4172128610304137087}
   _logoMarked: {fileID: 3447901031858309130}
-  _lifeBar: {fileID: 3447901032581604299}
   _isTakingDamage: 0
   _isMarked: 0
   _isVunerable: 1
-  _life: 20
+  _life: 40
   _dyingDuration: 5
   knockbackSensibility: 0.5
   _markedDuration: 2
@@ -624,6 +623,7 @@ GameObject:
   - component: {fileID: 4172128610304137086}
   - component: {fileID: 4675652143878241788}
   - component: {fileID: 4172128610304137079}
+  - component: {fileID: 3786244484631536717}
   m_Layer: 0
   m_Name: Boss_Phase-3
   m_TagString: Ennemis
@@ -693,7 +693,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4172128610304137076
@@ -811,6 +811,25 @@ MonoBehaviour:
   _DegageAttack: {fileID: 814698707707313316, guid: a24818bc772e05c42babbd56bdcfd3b4,
     type: 3}
   _player: {fileID: 0}
+--- !u!95 &3786244484631536717
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172128610304137077}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 147f87e460bee384dbf81ba89158bae9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8375880092474930956
 GameObject:
   m_ObjectHideFlags: 0
