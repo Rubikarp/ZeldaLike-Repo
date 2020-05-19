@@ -184,7 +184,7 @@ namespace Ennemies
 
         private IEnumerator Renforts()
         {
-            _anim.RenfortsTrigger(true);
+            _anim.RenfortsTrigger();
             yield return new WaitForSeconds(_castDelayRenforts);
 
             for (int i = 0; i < _ennemiesRenforts.Count; i++)
@@ -192,7 +192,6 @@ namespace Ennemies
                 Instantiate(_ennemiesRenforts[i], _renfortsSpawns[i]);
             }
 
-            _anim.RenfortsTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
@@ -332,11 +331,10 @@ namespace Ennemies
 
         private IEnumerator JetDeDebris()
         {
-            _anim.JetDeDebrisTrigger(true);
+            _anim.JetDeDebrisTrigger();
             yield return new WaitForSeconds(_throwDelay);
            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
 
-            _anim.JetDeDebrisTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }

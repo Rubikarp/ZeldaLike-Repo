@@ -18,9 +18,9 @@ namespace Management
             _animator.SetBool("IsMassiveThumping", state);
         }
 
-        public void RenfortsTrigger(bool state)
+        public void RenfortsTrigger()
         {
-            _animator.SetBool("isCallingHelp", state);
+            _animator.SetTrigger("isCallingHelp");
         }
 
         public void MonArmeeTrigger(bool state)
@@ -28,9 +28,9 @@ namespace Management
             _animator.SetBool("isCallingArmy", state);
         }
 
-        public void JetDeDebrisTrigger(bool state)
+        public void JetDeDebrisTrigger()
         {
-            _animator.SetBool("IsThrowing", state);
+            _animator.SetTrigger("IsThrowing");
         }
 
         public void AspirationTrigger(bool state)

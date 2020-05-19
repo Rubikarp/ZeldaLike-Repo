@@ -16,6 +16,7 @@ namespace Ennemis
         public Rigidbody2D _myBody = null;
         public Scr_BossLifeSystem _lifeSyst = null;
         public InputManager _input = null;
+        public Scr_BossP3_AnimatorManager _myAnimator;
         //public Animator _myAnimator = null;
         [Space(10)]
 
@@ -86,7 +87,7 @@ namespace Ennemis
             _myBody = this.GetComponent<Rigidbody2D>();
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             _player = GameObject.FindGameObjectWithTag("Player").transform;
-            //_myAnimator = this.GetComponent<Animator>();
+            _myAnimator = this.GetComponent<Scr_BossP3_AnimatorManager>();
         }
 
         private void Update()

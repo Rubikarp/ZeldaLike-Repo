@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 4675652143878241788}
   - component: {fileID: 4172128610304137079}
   - component: {fileID: 3786244484631536717}
+  - component: {fileID: 5702461087049062836}
   m_Layer: 0
   m_Name: Boss_Phase-3
   m_TagString: Ennemis
@@ -640,7 +641,7 @@ Transform:
   m_GameObject: {fileID: 4172128610304137077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4172128609867958618}
   m_Father: {fileID: 3447901032853749280}
@@ -788,6 +789,7 @@ MonoBehaviour:
   _myBody: {fileID: 0}
   _lifeSyst: {fileID: 4172128609867958612}
   _input: {fileID: 0}
+  _myAnimator: {fileID: 0}
   _inPattern: 0
   _willLightningRush: 0
   _isLightningRush: 0
@@ -830,6 +832,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5702461087049062836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172128610304137077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda84192aae39a549bd22508aef14f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8375880092474930956
 GameObject:
   m_ObjectHideFlags: 0
