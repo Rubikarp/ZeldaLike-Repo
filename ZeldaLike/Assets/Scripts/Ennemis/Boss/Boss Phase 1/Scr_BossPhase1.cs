@@ -105,12 +105,12 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(2, 3);
+                _randomAction = Random.Range(1, 2);
 
                 switch (_randomAction)
                 {
                     case 1:
-                        Renforts();
+                        StartCoroutine(Renforts());
                         _actionActive = true;
                         Debug.Log("Renforts");
                         break;
@@ -160,20 +160,25 @@ namespace Ennemis
         }
 
         //Effet de "Renforts".
-        private void Renforts()
+        private IEnumerator Renforts()
         {
+            b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
+            b.animator.SetTrigger("isCallingHelp");
+            yield return new WaitForSeconds(0.5f);
             for (int i = 0; i < _renforts.Count; i++)
             {
                 Instantiate(_renforts[i], _renfortsSpawns[i]);
             }
 
+            yield return new WaitForSeconds(0.25f);
             _canGoDelay = true;
         }
 
         //Effet de "Tir de couverture".
         private IEnumerator TirDeCouverture()
         {
+            b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isShooting");
             yield return new WaitForSeconds(0.5f);
@@ -182,6 +187,7 @@ namespace Ennemis
             Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
 
             yield return new WaitForSeconds(0.25f);
+            b._canFlip = true;
             _couverture = true; //Permet de lancer le déplacement de "Tir de Couverture" qui se trouve dans l'Update.
         }
 
@@ -201,8 +207,9 @@ namespace Ennemis
         //Effet de "AttaqueCaC".
         private IEnumerator AttaqueCaC()
         {
+            b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
-            b.animator.SetBool("isAttacking", true);
+            b.animator.SetTrigger("isAttacking");
             yield return new WaitForSeconds(_attackCast);
 
             Instantiate(_attackZone, _attackPos.transform.position + _bossDirection.normalized * 2, _attackPos.transform.rotation, _attackPos.transform);
