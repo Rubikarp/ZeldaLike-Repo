@@ -19,6 +19,7 @@ namespace Ennemis
         public float _moveSpeed;  //Vitesse de déplacement du Boss.
         public Vector3 _bossDirection;  //Direction du Boss vers le PJ.
         public float _retreatDistance;  //Distance à laquelle le Boss recule.
+        private SoundManager sound; //Le son
 
         public AnimatorController_BossP1 b = null;
 
@@ -61,6 +62,10 @@ namespace Ennemis
             _couverture = false;
 
         }
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         // Update is called once per frame
         void Update()
@@ -80,12 +85,14 @@ namespace Ennemis
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, _moveSpeed * Time.deltaTime);
                         b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", true);
+                        sound.PlaySound("BOSS P1_Pas");
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_moveSpeed * Time.deltaTime);
                         b.SpriteFlip(true);
                         b.animator.SetBool("IsWalking", true);
+                        sound.PlaySound("BOSS P1_Pas");
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && Vector2.Distance(_mySelf.position, _player.transform.position) > _retreatDistance)
                     {
@@ -166,6 +173,7 @@ namespace Ennemis
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isCallingHelp");
             yield return new WaitForSeconds(0.5f);
+            sound.PlaySound("Renforts");
             for (int i = 0; i < _renforts.Count; i++)
             {
                 Instantiate(_renforts[i], _renfortsSpawns[i]);
@@ -185,7 +193,7 @@ namespace Ennemis
             _currentTarget = (_player.transform.position - _mySelf.position);
 
             Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-
+            sound.PlaySound("Création Balle");
             yield return new WaitForSeconds(0.25f);
             b._canFlip = true;
             _couverture = true; //Permet de lancer le déplacement de "Tir de Couverture" qui se trouve dans l'Update.
@@ -199,7 +207,7 @@ namespace Ennemis
             _grenadeTarget = _player.transform.position;
 
             Instantiate(_grenade, _mySelf.position + _grenadeTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-
+            sound.PlaySound("Création Bombe");
             _canGoDelay = true;
             b.animator.SetBool("isGrenading", false);
         }
@@ -214,7 +222,7 @@ namespace Ennemis
 
             Instantiate(_attackZone, _attackPos.transform.position + _bossDirection.normalized * 2, _attackPos.transform.rotation, _attackPos.transform);
             _attackPos.GetComponent<Scr_BossP1AttackPos>()._attackSet = true;
-
+            sound.PlaySound("BOSS_Attaque CaC");
             b.animator.SetBool("isAttacking", false);
             yield return new WaitForSeconds(0.5f);
 
@@ -233,6 +241,7 @@ namespace Ennemis
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
                 Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
+                sound.PlaySound("Création Balle");
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 

@@ -13,12 +13,17 @@ namespace Ennemies
         public float _explosionDelay;
         public float _explosionLife;
         public GameObject _Explosion;
+        private SoundManager sound; //Le son
 
         // Start is called before the first frame update
         void Start()
         {
             _grenadeTarget = GameObject.FindGameObjectWithTag("Player").transform.position;
             _targetAttained = false;
+        }
+        void Awake()
+        {
+            sound = SoundManager.Instance;
         }
 
         // Update is called once per frame
@@ -42,6 +47,7 @@ namespace Ennemies
                 else if (_explosionDelay <= 0)
                 {
                     _Explosion.SetActive(true);
+                    sound.PlaySound("Explosion Bombe");
                 }
 
                 if (_explosionLife > 0 && _explosionDelay <= 0)
