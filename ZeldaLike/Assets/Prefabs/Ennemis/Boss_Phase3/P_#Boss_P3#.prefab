@@ -789,7 +789,7 @@ MonoBehaviour:
   _myBody: {fileID: 0}
   _lifeSyst: {fileID: 4172128609867958612}
   _input: {fileID: 0}
-  _myAnimator: {fileID: 0}
+  _myAnimator: {fileID: 5702461087049062836}
   _inPattern: 0
   _willLightningRush: 0
   _isLightningRush: 0
@@ -813,6 +813,7 @@ MonoBehaviour:
   _DegageAttack: {fileID: 814698707707313316, guid: a24818bc772e05c42babbd56bdcfd3b4,
     type: 3}
   _player: {fileID: 0}
+  _playerDirection: {x: 0, y: 0}
 --- !u!95 &3786244484631536717
 Animator:
   serializedVersion: 3
@@ -844,6 +845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda84192aae39a549bd22508aef14f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bossP3: {fileID: 4172128610304137079}
+  _sprite: {fileID: 4172128610304137081}
+  _animator: {fileID: 3786244484631536717}
+  _bossDirection: {x: 0, y: 0}
 --- !u!1 &8375880092474930956
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ namespace Ennemis
         public Scr_BossLifeSystem _lifeSyst = null;
         public InputManager _input = null;
         public Scr_BossP3_AnimatorManager _myAnimator;
-        //public Animator _myAnimator = null;
+
         [Space(10)]
 
         [Header("Variable à Lire")]
@@ -76,7 +76,7 @@ namespace Ennemis
 
         [Header("Target")]
         [SerializeField] private Transform _player = null;
-        private Vector2 _playerDirection = Vector2.zero;
+        public Vector2 _playerDirection = Vector2.zero;
         private Vector2 _preShootDirection = Vector2.zero;
         private float _preShootDist = 6f;
         private float _playerDistance = 0;
@@ -173,6 +173,8 @@ namespace Ennemis
             _willShoot = false;
             _isShooting = true;
 
+            _myAnimator._animator.SetTrigger("IsSoldatShooting");
+            yield return new WaitForSeconds(0.5f);
             //balle basique
             GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
             bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_playerDirection.normalized);            
@@ -186,7 +188,9 @@ namespace Ennemis
                 yield return new WaitForSeconds(timeBtwShoot);
                 _willShoot = true;
                 _isShooting = true;
-                
+
+                _myAnimator._animator.SetTrigger("IsIngénieurShooting");
+                yield return new WaitForSeconds(0.5f);
                 //Les balles anticipée
                 bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
                 bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
@@ -215,7 +219,8 @@ namespace Ennemis
                 targetPos = _player.position;
                 _willRush = true;
 
-                yield return new WaitForSeconds(0.2f);
+                _myAnimator._animator.SetTrigger("isPersisting");
+                yield return new WaitForSeconds(0.5f);
 
                 _willRush = false;
                 _isRushing = true;
@@ -319,8 +324,10 @@ namespace Ennemis
             yield return new WaitForSeconds(1.5f);
 
             _willTPonPlayer = false;
+            _myAnimator._animator.SetTrigger("isAngleMort");
 
             _myBody.position = PlayerPos;
+            yield return new WaitForSeconds(0.25f);
             Instantiate(_angleMortAttack, this.transform.position, this.transform.rotation);
 
             yield return new WaitForSeconds(1f);
@@ -333,11 +340,15 @@ namespace Ennemis
 
         public IEnumerator TirDansLeDos()
         {
-
-            yield return new WaitForSeconds(0.5f);
+            _myAnimator._animator.SetTrigger("isBackShooting");
+            yield return new WaitForSeconds(1.175f);
 
             //TP derrière le joueur
             _mySelf.position = _player.position - (new Vector3(_input._CharacterDirection.x, _input._CharacterDirection.y, 0) * 3) ;
+
+            yield return new WaitForSeconds(0.5f);
+
+            _myAnimator._animator.SetTrigger("IsIngénieurShooting");
 
             yield return new WaitForSeconds(0.5f);
 
@@ -354,8 +365,8 @@ namespace Ennemis
 
         public IEnumerator Degage()
         {
-
-            yield return new WaitForSeconds(1.5f);
+            _myAnimator._animator.SetTrigger("isDegaging");
+            yield return new WaitForSeconds(1.25f);
 
             Instantiate(_DegageAttack, this.transform.position, this.transform.rotation);
 
@@ -372,7 +383,7 @@ namespace Ennemis
             int diceRoll = 0;
 
             
-                diceRoll = Random.Range(0, 11); //il y a 6 patterns
+                diceRoll = Random.Range(0, 2); //il y a 6 patterns
 
                 if (diceRoll < 2)
                 {
@@ -396,7 +407,7 @@ namespace Ennemis
                 }
                 else if (diceRoll >= 8 && diceRoll < 10)
                 {
-                    _actualPattern = Pattern.Acharnement;
+                    _actualPattern = Pattern.ComboEclair;
                 }
                 else //  diceRoll < 20
                 {
