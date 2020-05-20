@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Scr_LD_Reset_Objects : MonoBehaviour
 {
-    public List<GameObject> _objectsToReset;
-    public List<Vector2> _objectsPositions;
+    public List<Transform> _objectsToReset;
+    public List<Vector2> _objectsInitialPositions;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +19,7 @@ public class Scr_LD_Reset_Objects : MonoBehaviour
         {
             for (int i = 0; i < _objectsToReset.Count; i++)
             {
-                Destroy(_objectsToReset[i]);
-                _objectReseted = Instantiate(_objectsToReset[i], _objectsPositions[i], Quaternion.identity);
+                _objectsToReset[i].position = _objectsInitialPositions[i];
             }
         }
     }
