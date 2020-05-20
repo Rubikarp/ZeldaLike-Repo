@@ -9,7 +9,7 @@ namespace Ennemis
         [SerializeField] private Scr_BossBehavior_Phase3 _bossP3;
         public SpriteRenderer _sprite;
         public Animator _animator = null;
-        public Vector3 _bossDirection;
+        public Vector2 _bossDirection;
 
         // Start is called before the first frame update
         void Start()
@@ -20,14 +20,16 @@ namespace Ennemis
         // Update is called once per frame
         void Update()
         {
-            if (_bossDirection.x < 0)
+            _bossDirection = _bossP3._playerDirection;
+
+            /*if (_bossDirection.x < 0)
             {
                 _sprite.flipX = true;
             }
             else if (_bossDirection.x > 0)
             {
                 _sprite.flipX = false;
-            }
+            }*/
 
             _animator.SetFloat("Orientation X", _bossDirection.x);
             _animator.SetFloat("Orientation Y", _bossDirection.y);
