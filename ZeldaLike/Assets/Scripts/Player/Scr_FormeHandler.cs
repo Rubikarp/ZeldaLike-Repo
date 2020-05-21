@@ -28,6 +28,7 @@ namespace Management
 
         [Space(10f)]
         [Header("Variable")]
+        [SerializeField] private Scr_Player_HUD HUD = null;
         [SerializeField] private Scr_PlayerLifeSystem lifesyst = null;
 
         public bool _canSwitch = true;
@@ -35,7 +36,7 @@ namespace Management
         public bool _heavyFormeUnlock = false;
 
         [Header("Variable à Tweek")]
-        [SerializeField] private float _switchCooldown = 0.5f;
+        public float _switchCooldown = 0.5f;
 
         private float _switchTimer = 0.5f;
 
@@ -59,18 +60,22 @@ namespace Management
             {
                 if (_input._leftSwitch)
                 {
+                    _canSwitch = false;
+                    _switchTimer = _switchCooldown;
+
                     RoulementGauche();
 
-                    _canSwitch = false;
                     _switchTimer = _switchCooldown;
                     lifesyst._isTakingDamage = false;
                 }
                 else
                 if (_input._rightSwitch)
                 {
+                    _canSwitch = false;
+                    _switchTimer = _switchCooldown;
+
                     RoulementDroite();
 
-                    _canSwitch = false;
                     _switchTimer = _switchCooldown;
                     lifesyst._isTakingDamage = false;
                 }
@@ -150,6 +155,8 @@ namespace Management
             _heavyGameObject.SetActive(false);
 
             _humanGameObject.SetActive(true);
+
+            HUD.SwitchUIhuman();
         }
         public void AgileActivation()
         {
@@ -160,6 +167,8 @@ namespace Management
             _heavyGameObject.SetActive(false);
 
             _agileGameObject.SetActive(true);
+
+            HUD.SwitchUIfeline();
         }
         public void HeavyActivation()
         {
@@ -170,6 +179,8 @@ namespace Management
             _agileGameObject.SetActive(false);
 
             _heavyGameObject.SetActive(true);
+
+            HUD.SwitchUIdino();
         }
 
         //Activer une forme

@@ -32,19 +32,19 @@ namespace Game
         [Header("Variable")]
         [SerializeField] private Color inactiveColor = Color.grey;
         private bool CanAttack = true;
-        private float switchDuration = 0.3f;
+        [SerializeField] private float switchDuration = 0.2f;
         private float littleSize = 0.3f;
         private float largeSize = 0.4f;
 
         private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+            switchDuration = _forme._switchCooldown - 0.1f;
         }
 
         private void Update()
         {
             lifeBarUpdate(_lifeSystem._life);
-            FormePalette();
             Input();
         }
 
@@ -60,7 +60,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 1:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -76,7 +75,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 2:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -92,7 +90,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 3:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -108,7 +105,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 4:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -124,7 +120,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 5:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -140,7 +135,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 6: //Max de départ
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -156,7 +150,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 7:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -172,7 +165,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 8:
                     {
                         for (int i = 0; i < coeur.Length; i++)
@@ -188,7 +180,6 @@ namespace Game
                         }
                     }
                     break;
-
                 case 9:
                     {
                         foreach (Image allImage in coeur)
@@ -197,7 +188,6 @@ namespace Game
                         }
                     }
                     break;
-
                 default:
                     {
                         Debug.LogError("Problème avec l'affichage de la vie");
@@ -206,64 +196,53 @@ namespace Game
             }
         }
 
-        private void FormePalette()
+        public void SwitchUIdino()
         {
-            if (_input._leftSwitch || _input._rightSwitch)
-            {
-                if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
-                {
-                    _formePalette.LeanRotateZ(0, switchDuration);
+            _formePalette.LeanRotateZ(-120, switchDuration);
 
-                    _formeHumain.LeanScaleX(largeSize, switchDuration);
-                    _formeHumain.LeanScaleY(largeSize, switchDuration);
-                    _formeHumain.LeanRotateZ(0, switchDuration);
+            _formeHumain.LeanScaleX(littleSize, switchDuration);
+            _formeHumain.LeanScaleY(littleSize, switchDuration);
+            _formeHumain.LeanRotateZ(0, switchDuration);
 
-                    _formeAgile.LeanScaleX(littleSize, switchDuration);
-                    _formeAgile.LeanScaleY(littleSize, switchDuration);
-                    _formeAgile.LeanRotateZ(0, switchDuration);
+            _formeAgile.LeanScaleX(littleSize, switchDuration);
+            _formeAgile.LeanScaleY(littleSize, switchDuration);
+            _formeAgile.LeanRotateZ(0, switchDuration);
 
-                    _formeHeavy.LeanScaleX(littleSize, switchDuration);
-                    _formeHeavy.LeanScaleY(littleSize, switchDuration);
-                    _formeHeavy.LeanRotateZ(0, switchDuration);
+            _formeHeavy.LeanScaleX(largeSize, switchDuration);
+            _formeHeavy.LeanScaleY(largeSize, switchDuration);
+            _formeHeavy.LeanRotateZ(0, switchDuration);
+        }
+        public void SwitchUIhuman()
+        {
+            _formePalette.LeanRotateZ(0, switchDuration);
 
-                }
-                else
-                if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
-                {
-                    _formePalette.LeanRotateZ(120, switchDuration);
+            _formeHumain.LeanScaleX(largeSize, switchDuration);
+            _formeHumain.LeanScaleY(largeSize, switchDuration);
+            _formeHumain.LeanRotateZ(0, switchDuration);
 
-                    _formeHumain.LeanScaleX(littleSize, switchDuration);
-                    _formeHumain.LeanScaleY(littleSize, switchDuration);
-                    _formeHumain.LeanRotateZ(0, switchDuration);
+            _formeAgile.LeanScaleX(littleSize, switchDuration);
+            _formeAgile.LeanScaleY(littleSize, switchDuration);
+            _formeAgile.LeanRotateZ(0, switchDuration);
 
-                    _formeAgile.LeanScaleX(largeSize, switchDuration);
-                    _formeAgile.LeanScaleY(largeSize, switchDuration);
-                    _formeAgile.LeanRotateZ(0, switchDuration);
+            _formeHeavy.LeanScaleX(littleSize, switchDuration);
+            _formeHeavy.LeanScaleY(littleSize, switchDuration);
+            _formeHeavy.LeanRotateZ(0, switchDuration);
+        }
+        public void SwitchUIfeline()
+        {
+            _formePalette.LeanRotateZ(120, switchDuration);
 
-                    _formeHeavy.LeanScaleX(littleSize, switchDuration);
-                    _formeHeavy.LeanScaleY(littleSize, switchDuration);
-                    _formeHeavy.LeanRotateZ(0, switchDuration);
+            _formeHumain.LeanScaleX(littleSize, switchDuration);
+            _formeHumain.LeanScaleY(littleSize, switchDuration);
+            _formeHumain.LeanRotateZ(0, switchDuration);
 
-                }
-                else
-                if (_forme._switchForm == Scr_FormeHandler.Forme.Heavy)
-                {
-                    _formePalette.LeanRotateZ(-120, switchDuration);
+            _formeAgile.LeanScaleX(largeSize, switchDuration);
+            _formeAgile.LeanScaleY(largeSize, switchDuration);
+            _formeAgile.LeanRotateZ(0, switchDuration);
 
-                    _formeHumain.LeanScaleX(littleSize, switchDuration);
-                    _formeHumain.LeanScaleY(littleSize, switchDuration);
-                    _formeHumain.LeanRotateZ(0, switchDuration);
-
-                    _formeAgile.LeanScaleX(littleSize, switchDuration);
-                    _formeAgile.LeanScaleY(littleSize, switchDuration);
-                    _formeAgile.LeanRotateZ(0, switchDuration);
-
-                    _formeHeavy.LeanScaleX(largeSize, switchDuration);
-                    _formeHeavy.LeanScaleY(largeSize, switchDuration);
-                    _formeHeavy.LeanRotateZ(0, switchDuration);
-
-                }
-            }
+            _formeHeavy.LeanScaleX(littleSize, switchDuration);
+            _formeHeavy.LeanScaleY(littleSize, switchDuration);
+            _formeHeavy.LeanRotateZ(0, switchDuration);
         }
 
         private void Input()

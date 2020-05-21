@@ -20,7 +20,6 @@ namespace Game
         
         void Start()
         {
-            _rgd2D = this.gameObject.GetComponent<Rigidbody2D>();
             _animator = this.gameObject.GetComponent<Animator>();
             _spritRend = this.gameObject.GetComponent<SpriteRenderer>();
         }
