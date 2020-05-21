@@ -158,25 +158,25 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 12);
+            randomPattern = Random.Range(0, 10);
 
-            if (randomPattern == 0 || randomPattern == 1)
+            if (randomPattern == 0)
             {
                 _actualPattern = Pattern.Renforts;
             }
-            else if (randomPattern == 2)
+            /*else if (randomPattern == 2)
             {
                 _actualPattern = Pattern.MonArmee;
-            }
-            else if (randomPattern == 3 || randomPattern == 4 || randomPattern == 5)
+            }*/
+            else if (randomPattern == 1 || randomPattern == 2 || randomPattern == 3)
             {
                 _actualPattern = Pattern.Laser;
             }
-            else if (randomPattern == 6 || randomPattern == 7 || randomPattern == 8)
+            else if (randomPattern == 4 || randomPattern == 5 || randomPattern == 6)
             {
                 _actualPattern = Pattern.Aspiration;
             }
-            else if (randomPattern == 9 || randomPattern == 10 ||randomPattern == 11)
+            else if (randomPattern == 7 || randomPattern == 8 ||randomPattern == 9)
             {
                 _actualPattern = Pattern.CoupMassif;
             }
@@ -213,7 +213,7 @@ namespace Ennemies
 
         private IEnumerator LaserPattern()
         {
-            _anim.LaserTrigger(true);
+            _anim.LaserTrigger();
             yield return new WaitForSeconds(_laserCastTime);
             while (_rotation > -360)
             {
@@ -228,7 +228,6 @@ namespace Ennemies
             _laserPos.rotation = Quaternion.Euler(0f, 0f, 0f);
             _laserGraph.enabled = false;
 
-            _anim.LaserTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
@@ -320,11 +319,11 @@ namespace Ennemies
 
         private IEnumerator CoupMassif()
         {
-            _anim.CoupMassifTrigger(true);
-            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 25, _coupMassifPos.rotation, _coupMassifPos);
+            _anim.CoupMassifTrigger();
+            yield return new WaitForSeconds(0.75f);
+            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 2, _coupMassifPos.rotation, _coupMassifPos);
             yield return new WaitForSeconds(_massiveDelay);
 
-            _anim.CoupMassifTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }

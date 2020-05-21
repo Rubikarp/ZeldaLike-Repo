@@ -8,14 +8,14 @@ namespace Management
     {
         public Animator _animator;
 
-        public void LaserTrigger(bool state)
+        public void LaserTrigger()
         {
-            _animator.SetBool("IsFiringLaser", state);
+            _animator.SetTrigger("IsFiringLaser");
         }
 
-        public void CoupMassifTrigger(bool state)
+        public void CoupMassifTrigger()
         {
-            _animator.SetBool("IsMassiveThumping", state);
+            _animator.SetTrigger("IsMassiveThumping");
         }
 
         public void RenfortsTrigger()

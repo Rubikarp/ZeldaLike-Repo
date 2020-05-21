@@ -383,7 +383,7 @@ namespace Ennemis
             int diceRoll = 0;
 
             
-                diceRoll = Random.Range(0, 2); //il y a 6 patterns
+                diceRoll = Random.Range(0, 11); //il y a 6 patterns
 
                 if (diceRoll < 2)
                 {
