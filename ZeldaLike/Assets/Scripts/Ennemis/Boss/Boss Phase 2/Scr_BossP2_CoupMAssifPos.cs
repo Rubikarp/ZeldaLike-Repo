@@ -28,7 +28,7 @@ namespace Ennemies
 
                 _rotZ = Mathf.Atan2(_bossDir.y, _bossDir.x) * Mathf.Rad2Deg;
 
-                transform.rotation = Quaternion.Euler(0f, 0f, _rotZ - 90);
+                transform.rotation = Quaternion.Euler(0f, 0f, _rotZ + 90);
             }
 
             if (_attackSet == true && _timer > 0)
