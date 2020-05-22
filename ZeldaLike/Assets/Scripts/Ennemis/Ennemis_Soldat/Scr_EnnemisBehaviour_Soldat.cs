@@ -123,12 +123,12 @@ namespace Ennemis
         public IEnumerator Charge(Vector2 chargeDirection, float chargeSpeed, float chargeDuration, float chargeRepos, float chargeCooldown)
         {
             _canCharge = false;
+            _isCharging = true;
 
             animator.animator.SetBool("isAttackingPrep", true);
             yield return new WaitForSeconds(chargeRepos);
             animator.animator.SetBool("isAttackingPrep", false);
 
-            _isCharging = true;
             animator.animator.SetBool("isAttacking", true);
 
             while (0 < chargeDuration)
@@ -143,11 +143,11 @@ namespace Ennemis
 
             animator.animator.SetBool("isAttacking", false);
             _myBody.velocity = Vector2.zero;
-            _isCharging = false;
 
             yield return new WaitForSeconds(chargeCooldown);
 
             _canCharge = true;
+            _isCharging = false;
         }
 
         #region Tools
