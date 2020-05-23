@@ -18,6 +18,7 @@ namespace Ennemies
         public Vector3 _bossDirection;
         public GameObject[] _interrupteursTargets;
         public Scr_AnimatorManager_BossP2 _anim;
+        private SoundManager sound; //Le son
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -61,6 +62,7 @@ namespace Ennemies
         private void Awake()
         {
             _anim = GetComponent<Scr_AnimatorManager_BossP2>();
+            sound = SoundManager.Instance;
         }
 
         // Start is called before the first frame update
@@ -204,6 +206,7 @@ namespace Ennemies
             for (int j = 0; j < _ennemiesArmy.Count; j++)
             {
                 Instantiate(_ennemiesArmy[j], _armySpawns[j]);
+                sound.PlaySound("Mon Armée");
             }
 
             _anim.MonArmeeTrigger(false);
@@ -220,6 +223,7 @@ namespace Ennemies
                 LaserBehavior(_laserPos.position, -_laserPos.up);
                 _rotation -= Time.deltaTime * _laserRotateSpeed;
                 _laserPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
+                sound.PlaySound("Laser");
                 yield return new WaitForEndOfFrame();
                 Debug.Log("Un fois");
             }
@@ -272,6 +276,7 @@ namespace Ennemies
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
         {
             _anim.AspirationTrigger(true);
+            sound.PlaySound("Aspiration");
             while (aspiTime > 0)
             {
                 Collider2D[] playerToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
@@ -297,6 +302,8 @@ namespace Ennemies
             {
                 Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
                 Collider2D[] enemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
+                sound.PlaySound("Expulsion");
+
 
                 for (int m = 0; m < playerToRepulse.Length; m++)
                 {
@@ -320,8 +327,10 @@ namespace Ennemies
         private IEnumerator CoupMassif()
         {
             _anim.CoupMassifTrigger();
+            sound.PlaySound("Chargement Frappe");
             yield return new WaitForSeconds(0.75f);
             Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 2, _coupMassifPos.rotation, _coupMassifPos);
+            sound.PlaySound("Choc Massif");
             yield return new WaitForSeconds(_massiveDelay);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
@@ -333,6 +342,7 @@ namespace Ennemies
             _anim.JetDeDebrisTrigger();
             yield return new WaitForSeconds(_throwDelay);
            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
+           sound.PlaySound("Jet de débris");
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;

@@ -11,11 +11,18 @@ public class Scr_BossP2Debrisbehavior : MonoBehaviour
     public GameObject _hitBox;
     public float _damageLife;
     public GameObject _debris;
+    private SoundManager sound; //Le son
+
+    void Awake()
+    {
+        sound = SoundManager.Instance;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        sound.PlaySound("Créa Débris");
         _mySelf = transform;
         _targetAttained = false;
     }

@@ -32,6 +32,7 @@ namespace Ennemies
             if (_targetAttained == false)
             {
                 _mySelf.position = Vector2.MoveTowards(_mySelf.position, _grenadeTarget, _grenadeSpeed * Time.deltaTime);
+                sound.PlaySound("Lancer Bombe");
 
                 if (_mySelf.position == _grenadeTarget)
                 {

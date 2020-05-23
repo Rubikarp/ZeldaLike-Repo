@@ -6,10 +6,16 @@ namespace Ennemies
 {
     public class Scr_BossP2_DebrisDestruction : MonoBehaviour
     {
+        private SoundManager sound; //Le son
+
         // Start is called before the first frame update
         void Start()
         {
 
+        }
+        void Awake()
+        {
+            sound = SoundManager.Instance;
         }
 
         // Update is called once per frame
@@ -23,6 +29,7 @@ namespace Ennemies
             if (collision.gameObject.CompareTag("Environment"))
             {
                 Destroy(collision.gameObject);
+                sound.PlaySound("Destruction Debris");
             }
         }
     }
