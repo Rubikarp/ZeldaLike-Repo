@@ -9,12 +9,16 @@ namespace Game
     {
         public GameObject _healthItems;
         public int _regenerationCapacity = 1;
+        private SoundManager sound; //Le son
 
         private void Start()
         {
             _healthItems = this.gameObject;
         }
-
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player/HurtBox"))
@@ -22,6 +26,7 @@ namespace Game
                 if (collision.gameObject.GetComponent<Scr_PlayerLifeSystem>()._life < collision.gameObject.GetComponent<Scr_PlayerLifeSystem>()._maxlife)
                 {
                     collision.gameObject.GetComponent<Scr_PlayerLifeSystem>()._life += _regenerationCapacity;
+                    sound.PlaySound("Coeur ramassé");
                 }
                 Destroy(_healthItems);
             }

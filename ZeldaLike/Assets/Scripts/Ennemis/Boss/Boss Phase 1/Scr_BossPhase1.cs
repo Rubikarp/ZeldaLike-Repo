@@ -193,7 +193,7 @@ namespace Ennemis
             _currentTarget = (_player.transform.position - _mySelf.position);
 
             Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-            sound.PlaySound("Création Balle");
+            sound.PlaySound("Tir Soldat");
             yield return new WaitForSeconds(0.25f);
             b._canFlip = true;
             _couverture = true; //Permet de lancer le déplacement de "Tir de Couverture" qui se trouve dans l'Update.
@@ -241,7 +241,7 @@ namespace Ennemis
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
                 Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-                sound.PlaySound("Création Balle");
+                sound.PlaySound("Tir Demultiplie");
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 

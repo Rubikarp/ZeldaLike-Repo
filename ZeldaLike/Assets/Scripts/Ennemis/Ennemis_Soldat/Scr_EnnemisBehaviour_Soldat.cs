@@ -126,17 +126,17 @@ namespace Ennemis
             _isCharging = true;
 
             animator.animator.SetBool("isAttackingPrep", true);
+            sound.PlaySound("Load_Pos");
             yield return new WaitForSeconds(chargeRepos);
             animator.animator.SetBool("isAttackingPrep", false);
-
+            sound.PlaySound("Charge");
             animator.animator.SetBool("isAttacking", true);
 
             while (0 < chargeDuration)
             {
                 chargeDuration -= Time.deltaTime;
-
                 _myBody.velocity = chargeDirection.normalized * chargeSpeed;
-                sound.PlaySound("Charge");
+
 
                 yield return new WaitForEndOfFrame();
             }

@@ -12,6 +12,7 @@ namespace Game
         private bool _movable;
         [HideInInspector] public Vector2 _rockDirection;
         public bool _isBig;
+        private SoundManager sound; //Le son
 
         void Start()
         {
@@ -24,6 +25,11 @@ namespace Game
 
         }
 
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
+
         void Update()
         {
 
@@ -33,6 +39,7 @@ namespace Game
             {
 
                 _rockDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY")).normalized;
+                sound.PlaySound("Deplacement Bloc");
 
                 if (Mathf.Abs(_rockDirection.x) > Mathf.Abs(_rockDirection.y))
                 {

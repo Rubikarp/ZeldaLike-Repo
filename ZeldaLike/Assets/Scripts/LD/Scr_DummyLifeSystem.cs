@@ -19,18 +19,25 @@ namespace Ennemis
         public GameObject Dummy = null;
         public Rigidbody2D body = null;
 
+        private SoundManager sound; //Le son
+
         //private Animator dummyAnimator;
 
         /*void Start ()
         {
             dummyAnimator = GetComponent<Animator>();
         }*/
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Knife"))
             {
                 GetMarked();
+                sound.PlaySound("Activation Dummy");
             }
         }
 
