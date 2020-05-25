@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditorInternal;
+using UnityEngine;
 
 namespace Ennemis
 {
@@ -9,17 +10,26 @@ namespace Ennemis
         [SerializeField] private SpriteRenderer _spritRend = null;
         [SerializeField] Rigidbody2D _rgd2D = null;
         public Animator animator = null;
-        
+        private bool _canFlip;
+
+        private void Start()
+        {
+            _canFlip = true;
+        }
+
         void Update()
         {
             //Flip Horizontal
-            if (_rgd2D.velocity.x < 0)
+            if (_canFlip == true)
             {
-                _spritRend.flipX = true;
-            }
-            else if (_rgd2D.velocity.x > 0)
-            {
-                _spritRend.flipX = false;
+                if (harceleur._targetDirection.x < 0)
+                {
+                    _spritRend.flipX = true;
+                }
+                else if (harceleur._targetDirection.x > 0)
+                {
+                    _spritRend.flipX = false;
+                }
             }
 
             animator.SetFloat("MouvementX", harceleur._targetDirection.x);
@@ -37,6 +47,10 @@ namespace Ennemis
         public void TriggerTP()
         {
             animator.SetTrigger("Teleporting");
+        }
+        public void FlipLock(bool state)
+        {
+            _canFlip = state;
         }
     }
 }

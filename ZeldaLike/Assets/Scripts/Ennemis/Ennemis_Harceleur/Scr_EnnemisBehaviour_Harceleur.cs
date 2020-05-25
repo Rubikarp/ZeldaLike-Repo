@@ -159,7 +159,7 @@ namespace Ennemis
             yield return new WaitForSeconds(attackCharge);
             animator.animator.SetBool("IsAttackingPrep", false);
 
-            Instantiate(_attackZone, new Vector2(transform.position.x, transform.position.y) + _targetDirection.normalized * _attackRange, transform.rotation);
+            Instantiate(_attackZone, new Vector2(transform.position.x, transform.position.y) + _targetDirection.normalized * _attackRange, transform.rotation, transform);
 
             animator.animator.SetBool("IsAttacking", true);
             yield return new WaitForSeconds(_attackDur);
