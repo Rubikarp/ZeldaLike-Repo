@@ -12,6 +12,7 @@ namespace Game
         public float _TPDelay = 1f;
         public float _TPBlocksDelay;
         public bool _isBig;
+        private SoundManager sound; //Le son
 
         void Start()
         {
@@ -20,12 +21,18 @@ namespace Game
             _TPDelay = _otherPortal.GetComponent<PortalScript>()._TPDelay;
             Player = GameObject.Find("Avatar");
         }
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player") && _canTP == true)
             {
+                sound.PlaySound("Entrée Portail");
                 Player.transform.position = _otherPortal.transform.position;
+                sound.PlaySound("Sortie Portail");
                 _otherPortal.GetComponent<PortalScript>()._canTP = false;
                 StartCoroutine(OtherPortalLockPlayer());
             }

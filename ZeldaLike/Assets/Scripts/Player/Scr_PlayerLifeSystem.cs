@@ -64,6 +64,7 @@ namespace Game
                 if (!_isTakingDamage & _isVunerable)
                 {
                     StartCoroutine(TakingDamage(attackData == null ? 1 :attackData.Damage, body, knockBackDirection, knockbackSpeed, attackData == null? 1f :attackData.StunDuration));
+                    sound.PlaySound("Perte Vie");
                 }
             }
 

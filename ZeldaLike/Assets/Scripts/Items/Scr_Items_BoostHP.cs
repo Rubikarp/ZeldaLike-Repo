@@ -9,13 +9,17 @@ namespace Game
     {
         public GameObject _boostItems;
         public Scr_PlayerLifeSystem _playerLife;
+        private SoundManager sound; //Le son
 
         private void Start()
         {
             _boostItems = this.gameObject;
             _playerLife = GameObject.FindGameObjectWithTag("Player/HurtBox").GetComponent<Scr_PlayerLifeSystem>();
         }
-
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player/HurtBox"))
@@ -23,6 +27,7 @@ namespace Game
                 if(_playerLife._maxlife <= 9)
                 {
                     _playerLife._maxlife = _playerLife._maxlife + 1;
+                    sound.PlaySound("Amélioration Vie");
                 }
                 Destroy(_boostItems);
             }
