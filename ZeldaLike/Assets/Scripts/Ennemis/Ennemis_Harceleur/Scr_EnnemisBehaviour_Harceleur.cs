@@ -66,7 +66,10 @@ namespace Ennemis
         {
             #region Variables Actualisée
 
-            _targetDirection = (_target.position - _mySelf.position);
+            if (_isAttacking == false)
+            {
+                _targetDirection = (_target.position - _mySelf.position);
+            }
             _targetDistance = Vector2.Distance(_mySelf.position, _target.position);
             _haveDetect = PlayerInEnnemyRange(_targetDistance, _detectionRange);
             _canTeleport = EnemyInTeleportingRange(_targetDistance);
@@ -146,6 +149,7 @@ namespace Ennemis
 
         IEnumerator teleportedAttack(Vector2 playerDirection, float attackCharge, float _attackDur, float attackCooldown)
         {
+            animator.FlipLock(false);
             _canAttack = false;
             _isAttacking = true;
             _canTeleport = false;
@@ -155,21 +159,22 @@ namespace Ennemis
             _myBody.velocity = Vector2.zero;
             sound.PlaySound("TeleportationHarceleur");
 
-            animator.animator.SetBool("IsAttackingPrep", true);
+
             yield return new WaitForSeconds(attackCharge);
-            animator.animator.SetBool("IsAttackingPrep", false);
+
 
             Instantiate(_attackZone, new Vector2(transform.position.x, transform.position.y) + _targetDirection.normalized * _attackRange, transform.rotation, transform);
 
-            animator.animator.SetBool("IsAttacking", true);
+
             yield return new WaitForSeconds(_attackDur);
-            animator.animator.SetBool("IsAttacking", false);
+
 
             _isAttacking = false;
 
             yield return new WaitForSeconds(attackCooldown);
 
             _canAttack = true;
+            animator.FlipLock(true);
         }
 
         private void OnDrawGizmos()
