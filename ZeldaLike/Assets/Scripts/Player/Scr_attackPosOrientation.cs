@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Management;
 
 namespace Game
@@ -9,11 +7,10 @@ namespace Game
     {
         [SerializeField] 
         private InputManager _input = null;
-
         [SerializeField] 
         private Vector2 _playerDirection = Vector2.zero;
-
         public float _angleCorrection = 0;
+
         void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
@@ -33,7 +30,6 @@ namespace Game
             //oriente l'object pour faire face au joueur
             transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
         }
-
 
     }
 }

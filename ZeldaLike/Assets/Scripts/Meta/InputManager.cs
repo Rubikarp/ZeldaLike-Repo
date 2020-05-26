@@ -6,6 +6,7 @@ namespace Management
     ///
     /// [SerializeField] private InputManager _input;
     /// _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+
     [ExecuteInEditMode]
     public class InputManager : Singleton<InputManager>
     {
@@ -68,14 +69,16 @@ namespace Management
                     //update de la direction du joueur
                     if (_stickDirection.magnitude >= 0.8f)
                     {
-                        _CharacterDirection = _stickDirection;
+                        _CharacterDirection = new Vector2(
+                            Mathf.Abs(_stickDirection.x) > 0.5f ? Mathf.Sign(_stickDirection.x) : 0,
+                            Mathf.Abs(_stickDirection.y) > 0.5f ? Mathf.Sign(_stickDirection.y) : 0);
                         _CharacterDirection.Normalize();
                     }
                 }
                 else
                 {
                     //Je prends les valeurs du stick
-                    _stickDirection = new Vector2(Input.GetAxis("Keyboard-AxisX"), Input.GetAxis("Keyboard-AxisY"));
+                    _stickDirection = new Vector2(Input.GetAxisRaw("Keyboard-AxisX"), Input.GetAxisRaw("Keyboard-AxisY"));
                     _stickMagnitude = _stickDirection.magnitude;
 
                     //Je prends les buttons

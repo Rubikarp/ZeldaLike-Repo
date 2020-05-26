@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Management;
-using UnityEngine.Events;
 
 public class Actif_KnifeThrowing : MonoBehaviour
 {
@@ -15,7 +13,6 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [SerializeField] private GameObject _knife = null;
     [SerializeField] private Transform _KnifeContainer = null;
     [SerializeField] private Transform _attackPos = null;
-    public UnityEvent Actif;
 
     [Header("Variable")]
     public bool _canShoot = true;
