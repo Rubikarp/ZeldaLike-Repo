@@ -10,11 +10,12 @@ namespace Ennemis
         public SpriteRenderer _sprite;
         public Animator _animator = null;
         public Vector2 _bossDirection;
+        public bool _canDir;
 
         // Start is called before the first frame update
         void Start()
         {
-
+            _canDir = true;
         }
 
         // Update is called once per frame
@@ -31,8 +32,11 @@ namespace Ennemis
                 _sprite.flipX = false;
             }*/
 
-            _animator.SetFloat("Orientation X", _bossDirection.x);
-            _animator.SetFloat("Orientation Y", _bossDirection.y);
+            if (_canDir == true)
+            {
+                _animator.SetFloat("Orientation X", _bossDirection.x);
+                _animator.SetFloat("Orientation Y", _bossDirection.y);
+            }
         }
        
     }

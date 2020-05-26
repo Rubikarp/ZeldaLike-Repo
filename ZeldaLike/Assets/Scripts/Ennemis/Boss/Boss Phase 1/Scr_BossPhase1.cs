@@ -112,45 +112,42 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(1, 2);
+                _randomAction = Random.Range(1, 10);
 
-                switch (_randomAction)
+                if (_randomAction == 1)
                 {
-                    case 1:
-                        StartCoroutine(Renforts());
-                        _actionActive = true;
-                        Debug.Log("Renforts");
-                        break;
-
-                    case 2:
-                        StartCoroutine(TirDeCouverture());
-                        _actionActive = true;
-                        Debug.Log("TirDeCouverture");
-                        break;
-
-                    case 3:
-                        Grenade();
-                        _actionActive = true;
-                        Debug.Log("Grenade");
-                        break;
-
-                    case 4:
-                        StartCoroutine(AttaqueCaC());
-                        _actionActive = true;
-                        Debug.Log("AttaqueCaC");
-                        break;
-
-
-                    case 5:
-                        StartCoroutine(FouDeLaGachette());
-                        _actionActive = true;
-                        Debug.Log("FouDeLaGachette");
-                        break;
+                    StartCoroutine(Renforts());
+                    _actionActive = true;
+                    Debug.Log("Renforts");
+                }
+                else if (_randomAction == 2 || _randomAction == 3)
+                {
+                    StartCoroutine(TirDeCouverture());
+                    _actionActive = true;
+                    Debug.Log("TirDeCouverture");
+                }
+                else if (_randomAction == 4 || _randomAction == 5)
+                {
+                    Grenade();
+                    _actionActive = true;
+                    Debug.Log("Grenade");
+                }
+                else if (_randomAction == 6 || _randomAction == 7)
+                {
+                    StartCoroutine(AttaqueCaC());
+                    _actionActive = true;
+                    Debug.Log("AttaqueCaC");
+                }
+                else if (_randomAction == 8 || _randomAction == 9)
+                {
+                    StartCoroutine(FouDeLaGachette());
+                    _actionActive = true;
+                    Debug.Log("FouDeLaGachette");
                 }
             }
 
-            //Déplacement de "Tir de couverture".
-            if (_couverture == true && _couvertureDuration > 0)
+                //Déplacement de "Tir de couverture".
+                if (_couverture == true && _couvertureDuration > 0)
             {
                 _couvertureDuration -= Time.deltaTime;
 
@@ -218,6 +215,7 @@ namespace Ennemis
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isAttacking");
+            b._canTurn = false;
             yield return new WaitForSeconds(_attackCast);
 
             Instantiate(_attackZone, _attackPos.transform.position + _bossDirection.normalized * 2, _attackPos.transform.rotation, _attackPos.transform);
@@ -227,6 +225,8 @@ namespace Ennemis
             yield return new WaitForSeconds(0.5f);
 
             _canGoDelay = true;
+            b._canFlip = true;
+            b._canTurn = true;
         }
 
         //Effet de "Fou de la Gachette".

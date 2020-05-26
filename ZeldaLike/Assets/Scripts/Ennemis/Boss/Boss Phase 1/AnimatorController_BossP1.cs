@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Ennemis
 {
@@ -13,7 +14,13 @@ namespace Ennemis
         public Animator animator = null;
         public Vector3 _bossDirection;
         public bool _canFlip = true;
-        
+        public bool _canTurn;
+
+        private void Start()
+        {
+            _canTurn = true;
+        }
+
         void Update()
         {
             _bossDirection = BossP1._bossDirection;
@@ -30,8 +37,11 @@ namespace Ennemis
                 }
             }
 
-            animator.SetFloat("Orientation X", _bossDirection.x);
-            animator.SetFloat("Orientation Y", _bossDirection.y);
+            if (_canTurn == true)
+            {
+                animator.SetFloat("Orientation X", _bossDirection.x);
+                animator.SetFloat("Orientation Y", _bossDirection.y);
+            }
             animator.SetFloat("Speed", _rgd2D.velocity.magnitude);
 
             animator.SetBool("isTakingDamage", lifeSyst._isTakingDamage);

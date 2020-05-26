@@ -66,10 +66,10 @@ namespace Ennemis
         {
             #region Variables Actualisée
 
-            if (_isAttacking == false)
-            {
-                _targetDirection = (_target.position - _mySelf.position);
-            }
+
+            
+            _targetDirection = (_target.position - _mySelf.position);
+            
             _targetDistance = Vector2.Distance(_mySelf.position, _target.position);
             _haveDetect = PlayerInEnnemyRange(_targetDistance, _detectionRange);
             _canTeleport = EnemyInTeleportingRange(_targetDistance);
