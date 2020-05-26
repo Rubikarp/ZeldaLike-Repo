@@ -129,7 +129,7 @@ namespace Game
 
                     while (duration > 0)
                     {
-                        targetObject.velocity = repulseDirection * _repulseSpeed;
+                        targetObject.velocity = repulseDirection * _repulseSpeed * Time.deltaTime * 20;
                         duration -= Time.deltaTime;
                         yield return new WaitForEndOfFrame();
                     }
