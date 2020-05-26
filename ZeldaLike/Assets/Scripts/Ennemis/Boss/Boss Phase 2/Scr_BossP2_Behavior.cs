@@ -49,6 +49,7 @@ namespace Ennemies
         public float _repulseTime;
         public LayerMask _playerMask;
         public LayerMask _enemyMask;
+        public GameObject _aspiFX;
 
         [Header("CoupMassif")]
         public Transform _coupMassifPos;
@@ -160,16 +161,12 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 10);
+            randomPattern = Random.Range(1, 3);
 
             if (randomPattern == 0)
             {
                 _actualPattern = Pattern.Renforts;
             }
-            /*else if (randomPattern == 2)
-            {
-                _actualPattern = Pattern.MonArmee;
-            }*/
             else if (randomPattern == 1 || randomPattern == 2 || randomPattern == 3)
             {
                 _actualPattern = Pattern.Laser;
@@ -223,7 +220,7 @@ namespace Ennemies
                 LaserBehavior(_laserPos.position, -_laserPos.up);
                 _rotation -= Time.deltaTime * _laserRotateSpeed;
                 _laserPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
-                sound.PlaySound("Laser");
+                //sound.PlaySound("Laser");
                 yield return new WaitForEndOfFrame();
                 Debug.Log("Un fois");
             }
@@ -231,6 +228,7 @@ namespace Ennemies
             _rotation = 0;
             _laserPos.rotation = Quaternion.Euler(0f, 0f, 0f);
             _laserGraph.enabled = false;
+            _laserMask = LayerMask.GetMask("Player", "Default");
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
@@ -276,7 +274,8 @@ namespace Ennemies
         private IEnumerator Aspiration(float aspiTime, float repulseTime)
         {
             _anim.AspirationTrigger(true);
-            sound.PlaySound("Aspiration");
+            Instantiate(_aspiFX, transform.position, transform.rotation);
+            //sound.PlaySound("Aspiration");
             while (aspiTime > 0)
             {
                 Collider2D[] playerToAspi = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
@@ -296,13 +295,14 @@ namespace Ennemies
                 yield return new WaitForEndOfFrame();
             }
 
+            _anim.AspirationTrigger(false);
             yield return new WaitForSeconds(0.25f);
 
             while (repulseTime > 0)
             {
                 Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
                 Collider2D[] enemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
-                sound.PlaySound("Expulsion");
+                //sound.PlaySound("Expulsion");
 
 
                 for (int m = 0; m < playerToRepulse.Length; m++)
@@ -319,7 +319,6 @@ namespace Ennemies
                 yield return new WaitForEndOfFrame();
             }
 
-            _anim.AspirationTrigger(false);
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
         }
@@ -327,10 +326,10 @@ namespace Ennemies
         private IEnumerator CoupMassif()
         {
             _anim.CoupMassifTrigger();
-            sound.PlaySound("Chargement Frappe");
+            //sound.PlaySound("Chargement Frappe");
             yield return new WaitForSeconds(0.75f);
-            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 2, _coupMassifPos.rotation, _coupMassifPos);
-            sound.PlaySound("Choc Massif");
+            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 10, _coupMassifPos.rotation, _coupMassifPos);
+            //sound.PlaySound("Choc Massif");
             yield return new WaitForSeconds(_massiveDelay);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
@@ -342,7 +341,7 @@ namespace Ennemies
             _anim.JetDeDebrisTrigger();
             yield return new WaitForSeconds(_throwDelay);
            Instantiate(_projectileThrown, _attackPos.position, transform.rotation, _attackPos);
-           sound.PlaySound("Jet de débris");
+           //sound.PlaySound("Jet de débris");
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;

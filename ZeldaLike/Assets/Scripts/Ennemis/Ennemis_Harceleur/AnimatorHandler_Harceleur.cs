@@ -22,11 +22,11 @@ namespace Ennemis
             //Flip Horizontal
             if (_canFlip == true)
             {
-                if (harceleur._targetDirection.x < 0)
+                if (harceleur._targetDirection.x > 0)
                 {
                     _spritRend.flipX = true;
                 }
-                else if (harceleur._targetDirection.x > 0)
+                else if (harceleur._targetDirection.x < 0)
                 {
                     _spritRend.flipX = false;
                 }

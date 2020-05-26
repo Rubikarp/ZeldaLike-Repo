@@ -27,6 +27,7 @@ namespace Ennemis
         public bool _willLightningRush = false;
         public bool _isLightningRush = false;
         private Vector2 _lightningRushDirection = Vector2.zero;
+        private float _rushRotation;
 
 
         //Execution
@@ -219,7 +220,7 @@ namespace Ennemis
                 targetPos = _player.position;
                 _willRush = true;
 
-                _myAnimator._animator.SetTrigger("isPersisting");
+                _myAnimator._animator.SetBool("isPersisting", true);
                 yield return new WaitForSeconds(0.5f);
 
                 _willRush = false;
@@ -227,6 +228,7 @@ namespace Ennemis
 
                 _rushDirection = (targetPos - _mySelf.position).normalized;
                 _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
+                _myAnimator._canDir = false;
 
                 while (_spotDistance > 0.5f) // boucle durant la durée du dash
                 {
@@ -246,9 +248,12 @@ namespace Ennemis
                     yield return new WaitForEndOfFrame();
                 }
 
+                _myAnimator._animator.SetBool("isPersisting", false);
+                _myAnimator._canDir = true;
                 _myBody.velocity = Vector2.zero;
                 _lifeSyst._isVunerable = true;
                 _isRushing = false;
+                yield return new WaitForSeconds(0.125f);
             } while (NumberOfIteration > 0);
 
             yield return new WaitForSeconds(1f);
@@ -269,6 +274,7 @@ namespace Ennemis
                 NumberOfIteration--;
                 _willLightningRush = true;
 
+                _myAnimator._animator.SetBool("IsComboEclair", true);
                 yield return new WaitForSeconds(0.75f);
                 targetPos = _player.position;
 
@@ -277,6 +283,8 @@ namespace Ennemis
                 touchLimit = false;
 
                 _lightningRushDirection = (targetPos - _mySelf.position).normalized;
+                _rushRotation = Mathf.Atan2(_lightningRushDirection.y, _lightningRushDirection.x) * Mathf.Rad2Deg;
+                _mySelf.rotation = Quaternion.Euler(0f, 0f, _rushRotation + 90);
 
                 while (!touchLimit) // boucle durant la durée du dash
                 {
@@ -304,8 +312,11 @@ namespace Ennemis
                     yield return new WaitForEndOfFrame();
                 }
 
+                _mySelf.rotation = Quaternion.Euler(0f, 0f, 0f);
                 _myBody.velocity = Vector2.zero;
+                _myAnimator._animator.SetBool("IsComboEclair", false);
                 _isLightningRush = false;
+                yield return new WaitForSeconds(0.75f);
 
             } while (NumberOfIteration > 0);
 
