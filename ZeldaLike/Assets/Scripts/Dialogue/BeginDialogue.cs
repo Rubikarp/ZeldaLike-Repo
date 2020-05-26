@@ -13,6 +13,7 @@ namespace Dialogue
         public Conversation Intro = null;
         public PlayableDirector playableDirector;
         public TimelineAsset timeline;
+        public bool endwithdialog = true;
 
         void OnEnable()
         {
@@ -23,7 +24,7 @@ namespace Dialogue
 
         private void Update()
         {
-            if (dialogManag.haveEnd)
+            if (dialogManag.haveEnd && endwithdialog)
             {
                 timeline.GetOutputTracks();
                 playableDirector.Stop();
