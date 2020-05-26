@@ -8,7 +8,7 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
     public float[] _spawnDelay;
     public GameObject _limitTilemap;
     public GameObject _limitCollider;
-    public bool _fightStarted;
+    [HideInInspector] public bool _fightStarted;
     private int _killCount;
 
     // Start is called before the first frame update
