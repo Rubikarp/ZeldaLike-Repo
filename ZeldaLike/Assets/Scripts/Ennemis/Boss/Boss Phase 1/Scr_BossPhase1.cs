@@ -20,6 +20,7 @@ namespace Ennemis
         public Vector3 _bossDirection;  //Direction du Boss vers le PJ.
         public float _retreatDistance;  //Distance à laquelle le Boss recule.
         private SoundManager sound; //Le son
+        private bool _canWalk;
 
         public AnimatorController_BossP1 b = null;
 
@@ -60,7 +61,7 @@ namespace Ennemis
             _couvertureDuration = _couvertureDurationOrigin;
             _delayBetweenShots = _delayBetweenShotsOrigin;
             _couverture = false;
-
+            _canWalk = true;
         }
         void Awake()
         {
@@ -80,14 +81,14 @@ namespace Ennemis
                     _delay -= Time.deltaTime;
                     b._canFlip = true;
 
-                    if (Vector2.Distance(_mySelf.position, _player.transform.position) > _fightDistance)
+                    if (Vector2.Distance(_mySelf.position, _player.transform.position) > _fightDistance && _canWalk == true)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, _moveSpeed * Time.deltaTime);
                         b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", true);
                         sound.PlaySound("BOSS P1_Pas");
                     }
-                    else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance)
+                    else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && _canWalk == true)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_moveSpeed * Time.deltaTime);
                         b.SpriteFlip(true);
@@ -128,7 +129,7 @@ namespace Ennemis
                 }
                 else if (_randomAction == 4 || _randomAction == 5)
                 {
-                    Grenade();
+                    StartCoroutine(Grenade());
                     _actionActive = true;
                     Debug.Log("Grenade");
                 }
@@ -159,13 +160,15 @@ namespace Ennemis
             {
                 _couvertureDuration = _couvertureDurationOrigin;
                 _couverture = false;
-                _canGoDelay = true; 
+                _canGoDelay = true;
+                _canWalk = true;
             }
         }
 
         //Effet de "Renforts".
         private IEnumerator Renforts()
         {
+            _canWalk = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isCallingHelp");
@@ -178,11 +181,13 @@ namespace Ennemis
 
             yield return new WaitForSeconds(0.25f);
             _canGoDelay = true;
+            _canWalk = true;
         }
 
         //Effet de "Tir de couverture".
         private IEnumerator TirDeCouverture()
         {
+            _canWalk = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isShooting");
@@ -197,21 +202,24 @@ namespace Ennemis
         }
 
         //Effet de "Grenade".
-        private void Grenade()
+        private IEnumerator Grenade()
         {
+            _canWalk = false;
             b.animator.SetBool("IsWalking", false);
-            b.animator.SetBool("isGrenading", true);
+            b.animator.SetTrigger("isGrenading");
             _grenadeTarget = _player.transform.position;
+            yield return new WaitForSeconds(0.25f);
 
             Instantiate(_grenade, _mySelf.position + _grenadeTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
             sound.PlaySound("Création Bombe");
             _canGoDelay = true;
-            b.animator.SetBool("isGrenading", false);
+            _canWalk = true;
         }
 
         //Effet de "AttaqueCaC".
         private IEnumerator AttaqueCaC()
         {
+            _canWalk = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isAttacking");
@@ -227,11 +235,13 @@ namespace Ennemis
             _canGoDelay = true;
             b._canFlip = true;
             b._canTurn = true;
+            _canWalk = true;
         }
 
         //Effet de "Fou de la Gachette".
         private IEnumerator FouDeLaGachette()
         {
+            _canWalk = false;
             b._canFlip = false;
             b._spritRend.flipX = false;
             b.animator.SetBool("IsWalking", false);
@@ -248,6 +258,7 @@ namespace Ennemis
             yield return new WaitForSeconds(0.5f);
             b._canFlip = true;
             _canGoDelay = true;
+            _canWalk = true;
         }
 
 

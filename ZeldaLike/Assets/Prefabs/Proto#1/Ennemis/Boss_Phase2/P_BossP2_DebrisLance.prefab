@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5526922863174304665}
   - component: {fileID: 820417653729779070}
   - component: {fileID: 1650865006956339474}
+  - component: {fileID: 984500709935508371}
   m_Layer: 0
   m_Name: HitBoxDL
   m_TagString: Attack
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6193748405726051171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6866070502908149152}
   m_RootOrder: 0
@@ -72,15 +73,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cee4edc79b1c0d40b0519fd9b68d3c7, type: 3}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.6, y: 5.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &820417653729779070
@@ -96,9 +97,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06787872, y: -0.10179138}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.9980698
 --- !u!114 &1650865006956339474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +115,25 @@ MonoBehaviour:
   _damage: 1
   _stunDuration: 0.25
   _knockbackPower: 10
+--- !u!95 &984500709935508371
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6193748405726051171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3c217cbeccd3784588dd6b047413705, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9160847272068689511
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 9160847272068689511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 42.76, y: 192.48, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1494375200280338346}
   m_Father: {fileID: 0}
@@ -185,8 +205,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 890990c21edb51648bc553798f050a4a, type: 3}
+  m_SortingOrder: 12
+  m_Sprite: {fileID: 21300000, guid: c922da7da3f4aa342a437318e03f4419, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -212,5 +232,5 @@ MonoBehaviour:
   _target: {x: 0, y: 0, z: 0}
   _moveSpeed: 10
   _hitBox: {fileID: 6193748405726051171}
-  _damageLife: 1
+  _damageLife: 0.5
   _debris: {fileID: 3158927020427343519, guid: 9d3de949b11226f418a7850f93aee9ca, type: 3}
