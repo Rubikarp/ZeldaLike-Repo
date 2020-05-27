@@ -19,6 +19,7 @@ namespace Game
 
         [Header("Element de l'UI")]
         public Image[] coeur = default;
+        public GameObject[] extraCoeur = default;
         [Space(5)]
         public RectTransform _formePalette = default;
         public RectTransform _formeAgile = default;
@@ -163,6 +164,8 @@ namespace Game
                                 coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
+                        extraCoeur[0].SetActive(true);
+
                     }
                     break;
                 case 8:
@@ -178,6 +181,8 @@ namespace Game
                                 coeur[i].rectTransform.LeanScale(Vector3.zero, 0.3f);
                             }
                         }
+                        extraCoeur[1].SetActive(true);
+
                     }
                     break;
                 case 9:
@@ -186,6 +191,8 @@ namespace Game
                         {
                             allImage.rectTransform.LeanScale(Vector3.one, 0.3f);
                         }
+                        extraCoeur[2].SetActive(true);
+
                     }
                     break;
                 default:
