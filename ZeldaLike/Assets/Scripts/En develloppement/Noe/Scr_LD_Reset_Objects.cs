@@ -13,14 +13,13 @@ public class Scr_LD_Reset_Objects : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ResetPuzzleBlockE1_P3()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        
+        for (int i = 0; i < _objectsToReset.Count; i++)
         {
-            for (int i = 0; i < _objectsToReset.Count; i++)
-            {
-                _objectsToReset[i].position = _objectsInitialPositions[i];
-            }
+            _objectsToReset[i].position = _objectsInitialPositions[i];
         }
+ 
     }
 }
