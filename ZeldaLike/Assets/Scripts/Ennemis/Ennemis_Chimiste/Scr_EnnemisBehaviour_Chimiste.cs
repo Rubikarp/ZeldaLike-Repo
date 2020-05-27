@@ -33,16 +33,17 @@ namespace Ennemis
         private Vector2 _movingDirection = Vector2.zero;
 
         private SoundManager sound; //Le son
+
+        void Awake()
+        {
+            sound = SoundManager.Instance;
+        }
         void Start()
         {
             _mySelf = this.transform;
             _myBody = this.GetComponent<Rigidbody2D>();
 
             _target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-        void Awake()
-        {
-            sound = SoundManager.Instance;
         }
         void Update()
         {
@@ -56,7 +57,6 @@ namespace Ennemis
             _movingDirection = (_movingPos - _myBody.position).normalized;
 
             #endregion Variables Actualisée
-            sound.PlaySound("Bubulles");
 
             if (_haveDetect && Gyrophare.color != Color.red)
             {
@@ -86,8 +86,9 @@ namespace Ennemis
                     if (_timer <= 0)
                     {
                         Instantiate(_puddle, transform.position - new Vector3(_movingDirection.normalized.x, _movingDirection.normalized.y, 0), transform.rotation);
-                        sound.PlaySound("Traînée au sol");
                         _timer = 0.3f;
+                        sound.PlaySound("Traînée au sol");
+                        sound.PlaySound("Bubulles");
                     }
                 }
             }
