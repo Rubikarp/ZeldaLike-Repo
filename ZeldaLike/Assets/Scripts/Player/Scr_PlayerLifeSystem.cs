@@ -101,7 +101,11 @@ namespace Game
         {
             _isTakingDamage = true;
             _life -= damage;
-            _scrShake.trauma = 0.5f;
+
+            if (_scrShake != null)
+            {
+                _scrShake.trauma = 0.5f;
+            }
 
             while (0 < stunDuration) // boucle durant la durée du dash
             {

@@ -15,7 +15,6 @@ namespace Game
         public Scr_FormeHandler _forme = null;
         [Space(10)]
         public float _activeSpeed = 0f;
-
         private float _accTimer = 0f;
         private float _decTimer = 0f;
         private float _RunDeadZone = 0.5f;
@@ -120,7 +119,6 @@ namespace Game
             if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
             {
                 sound.PlaySound("PasHuman");
-                sound.PlaySound("Frottement Vetement");
             }
             else
             if (_forme._switchForm == Scr_FormeHandler.Forme.Agile)
