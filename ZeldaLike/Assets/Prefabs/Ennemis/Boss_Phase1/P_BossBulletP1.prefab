@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3019290013443182156}
   - component: {fileID: -6672326804316667102}
   - component: {fileID: 4827273144349433162}
+  - component: {fileID: 1346968531761608873}
   m_Layer: 0
   m_Name: P_BossBulletP1
   m_TagString: Ennemis
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cee4edc79b1c0d40b0519fd9b68d3c7, type: 3}
-  m_Color: {r: 0, g: 0.50873566, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 39a124489652b854983f07b4176e1101, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,9 +99,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0017433167}
+  m_Offset: {x: 0, y: -0.1628418}
   serializedVersion: 2
-  m_Radius: 0.51148224
+  m_Radius: 0.42393494
 --- !u!50 &3019290013443182156
 Rigidbody2D:
   serializedVersion: 4
@@ -137,6 +138,7 @@ MonoBehaviour:
   _behavBoss: {fileID: 0}
   _projectile: {fileID: 0}
   _rb2d: {fileID: 0}
+  _anim: {fileID: 1346968531761608873}
   _BulletDir: {x: 0, y: 0}
   _mySpeed: 10
   _timer: 12
@@ -155,3 +157,22 @@ MonoBehaviour:
   _damage: 1
   _stunDuration: 0.5
   _knockbackPower: 7
+--- !u!95 &1346968531761608873
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769438472544907946}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7bb42583ee3aa74a84111dfed7db582, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -161,7 +161,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(0, 10);
+            randomPattern = Random.Range(1, 3);
 
             if (randomPattern == 0)
             {
