@@ -23,30 +23,6 @@ namespace Game
         {
             _detectedEnnemisList.Clear();
         }
-
-
-        public GameObject NearestEnnemis()
-        {
-            GameObject nearestEnnemis = null;
-            float nearestDist = 1000;
-
-            if(_detectedEnnemisList.Count != 0)
-            {
-                foreach (GameObject ennemis in _detectedEnnemisList)
-                {
-                    float testingDist = Vector2.Distance(_player.position, ennemis.transform.position);
-
-                    if (testingDist < nearestDist)
-                    {
-                        nearestEnnemis = ennemis;
-                        nearestDist = testingDist;
-                    }
-
-                }
-            }
-
-            return nearestEnnemis;
-        }
     }
 
 }
