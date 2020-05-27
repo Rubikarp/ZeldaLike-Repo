@@ -8,21 +8,17 @@ namespace Game
     {
         [SerializeField] private Scr_FormeHandler _forme = null;
         [SerializeField] private Rigidbody2D _myBody = null;
-        private float _delay;
-        private bool _movable;
+
         [HideInInspector] public Vector2 _rockDirection;
+
+        private float _delay = 0.25f;
+        private bool _movable = false;
         public bool _isBig;
         private SoundManager sound; //Le son
 
         void Start()
         {
-            _myBody = this.gameObject.GetComponent<Rigidbody2D>();
-            _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
-            _movable = false;
-            _delay = 0.25f;
-
             _forme = GameObject.Find("Avatar").GetComponent<Scr_FormeHandler>();
-
         }
 
         void Awake()
