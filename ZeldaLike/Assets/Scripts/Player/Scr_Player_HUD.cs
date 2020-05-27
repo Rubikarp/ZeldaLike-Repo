@@ -197,7 +197,7 @@ namespace Game
                     break;
                 default:
                     {
-                        Debug.LogError("Problème avec l'affichage de la vie");
+                        Debug.Log("Vie inférieur à zéro");
                     }
                     break;
             }
