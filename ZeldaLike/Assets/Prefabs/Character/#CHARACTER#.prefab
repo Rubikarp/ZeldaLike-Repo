@@ -147,6 +147,7 @@ MonoBehaviour:
   _input: {fileID: 426099458386974330}
   _Avatar: {fileID: 426099458672461377}
   _HurtBox: {fileID: 426099458780276581}
+  lifeSystPlayer: {fileID: 426099458780276580}
   _animator: {fileID: 426099458913968089}
   _PlMovement: {fileID: 426099459853713051}
   _bondDetecZone: {fileID: 6614503165312500494}
@@ -166,8 +167,8 @@ MonoBehaviour:
   _invulnerabiltyTime: 0
   _canAttackTimer: 0.5
   _canAttackTime: 0
-  _bondMaxDur: 0.5
-  _bondEndDist: 2
+  _bondMaxDur: 1
+  _bondMaxDist: 8
   _attackCooldown: 0.7
 --- !u!1 &426099458672461377
 GameObject:
@@ -553,7 +554,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1218
+  m_InstanceId: -1448
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
