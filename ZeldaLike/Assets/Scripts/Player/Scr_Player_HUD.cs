@@ -45,8 +45,13 @@ namespace Game
 
         private void Update()
         {
-            lifeBarUpdate(_lifeSystem._life);
-            Input();
+            if(Time.timeScale != 0)
+            {
+                lifeBarUpdate(_lifeSystem._life);
+            }
+
+            //if (Input.anyKeyDown)
+            RefreshInput();
         }
 
         private void lifeBarUpdate(int health)
@@ -252,7 +257,7 @@ namespace Game
             _formeHeavy.LeanRotateZ(0, switchDuration);
         }
 
-        private void Input()
+        private void RefreshInput()
         {
             if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
             {

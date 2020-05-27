@@ -6,8 +6,9 @@ namespace Game
     public class BackGroundTravelling : MonoBehaviour
     {
         [Header("Travelling")]
-        public LeanTweenType easeType;
         public AnimationCurve curve;
+        [SerializeField] private GameObject BG = null;
+
         [SerializeField] private float finalHeight = 0f;
         [SerializeField] private float travelingTime = 5f;
 
@@ -16,14 +17,8 @@ namespace Game
 
         private void Start()
         {
-            if(easeType == LeanTweenType.animationCurve)
-            {
-                LeanTween.moveY(gameObject, finalHeight, travelingTime).setLoopOnce().setEase(curve);
-            }
-            else
-            {
-                LeanTween.moveY(gameObject, finalHeight, travelingTime).setLoopOnce().setEase(easeType);
-            }
+            Time.timeScale = 1;
+            LeanTween.moveY(BG, finalHeight, travelingTime).setLoopOnce().setEase(curve);
 
             Invoke("Evenement", travelingTime * 0.66f);
         }
