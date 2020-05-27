@@ -230,6 +230,7 @@ namespace Ennemis
                 _rushDirection = (targetPos - _mySelf.position).normalized;
                 _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
                 _myAnimator._canDir = false;
+                _collider.enabled = false;
 
                 while (_spotDistance > 0.5f) // boucle durant la durée du dash
                 {
@@ -254,6 +255,7 @@ namespace Ennemis
                 _myBody.velocity = Vector2.zero;
                 _lifeSyst._isVunerable = true;
                 _isRushing = false;
+                _collider.enabled = true;
                 yield return new WaitForSeconds(0.125f);
             } while (NumberOfIteration > 0);
 

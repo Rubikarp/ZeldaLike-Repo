@@ -15,11 +15,11 @@ namespace Ennemis
             if (_rgd2D.velocity != Vector2.zero)
             {
                 //Flip Horizontal
-                if (soldat._targetDirection.x < 0)
+                if (soldat._targetDirection.x > 0)
                 {
                     _spritRend.flipX = false;
                 }
-                else if (soldat._targetDirection.x > 0)
+                else if (soldat._targetDirection.x < 0)
                 {
                     _spritRend.flipX = true;
                 }
