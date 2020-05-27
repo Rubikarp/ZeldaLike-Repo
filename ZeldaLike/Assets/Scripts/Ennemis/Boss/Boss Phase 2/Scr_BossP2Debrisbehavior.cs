@@ -22,7 +22,7 @@ public class Scr_BossP2Debrisbehavior : MonoBehaviour
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform.position;
-        //sound.PlaySound("Créa Débris");
+        sound.PlaySound("Créa Débris");
         _mySelf = transform;
         _targetAttained = false;
     }
