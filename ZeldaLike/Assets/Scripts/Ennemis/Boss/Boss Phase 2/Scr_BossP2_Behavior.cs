@@ -161,7 +161,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(1, 3);
+            randomPattern = Random.Range(0, 10);
 
             if (randomPattern == 0)
             {
@@ -228,7 +228,8 @@ namespace Ennemies
             _rotation = 0;
             _laserPos.rotation = Quaternion.Euler(0f, 0f, 0f);
             _laserGraph.enabled = false;
-            _laserMask = LayerMask.GetMask("Player", "Default");
+            _laserMask = LayerMask.GetMask("Default", "Player");
+            _playerHit = false;
 
             yield return new WaitForSeconds(_delayBetweenPatterns);
             _inPattern = false;
