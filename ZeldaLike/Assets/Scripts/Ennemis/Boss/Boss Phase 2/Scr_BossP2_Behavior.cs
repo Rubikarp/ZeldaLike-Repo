@@ -203,7 +203,7 @@ namespace Ennemies
             for (int j = 0; j < _ennemiesArmy.Count; j++)
             {
                 Instantiate(_ennemiesArmy[j], _armySpawns[j]);
-                sound.PlaySound("Mon Armée");
+                //sound.PlaySound("Mon Armée");
             }
 
             _anim.MonArmeeTrigger(false);
