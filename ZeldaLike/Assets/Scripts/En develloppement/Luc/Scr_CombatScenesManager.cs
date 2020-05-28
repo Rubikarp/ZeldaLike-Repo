@@ -25,16 +25,22 @@ public class Scr_CombatScenesManager : MonoBehaviour
 
     public void RespawnFightReset()
     {
-        for (int i  = 0; i < _actualFightScenes.Count; i++)
+        foreach (Transform child in transform)
         {
-           if (_actualFightScenes[i].GetComponentInChildren<Scr_LD_SpawnEnnemies>()._fightStarted == true)
-           {
-                _replacedFSBarrier = _actualFightScenes[i].GetComponentInChildren<Scr_LD_SpawnEnnemies>()._limitTilemap.name;
-                Destroy(_actualFightScenes[i]);
-                Instantiate(_dataFightScenes[i], _fightScenesPos[i], transform.rotation, transform);
-                _actualFightScenes[i] = GameObject.Find(_fightScenesNames[i] + "(Clone)");
-                _actualFightScenes[i].GetComponentInChildren<Scr_LD_SpawnEnnemies>()._limitTilemap = GameObject.Find(_replacedFSBarrier);
-           }
+            Destroy(child.gameObject);
+        }
+
+        _actualFightScenes.Clear();
+        _actualFightScenes.TrimExcess();
+
+        for (int i = 0; i < _dataFightScenes.Count; i++)
+        {
+            Instantiate(_dataFightScenes[i], _fightScenesPos[i], Quaternion.identity, transform);
+        }
+
+        foreach (Transform child in transform)
+        {
+            _actualFightScenes.Add(child.gameObject);
         }
     }
 }
