@@ -13,6 +13,7 @@ namespace Ennemis
         public Vector2 _BulletDir = Vector2.zero;
         public float _mySpeed = 10f;
         public float _timer = 1f;
+        private float _rotZ;
 
         private void Start()
         {
@@ -20,6 +21,8 @@ namespace Ennemis
             _rb2d = this.GetComponent<Rigidbody2D>();
             _behavSoldat = this.gameObject.GetComponentInParent<Scr_EnnemisBehaviour_Soldat>();
             _BulletDir = _behavSoldat._targetDirection.normalized;
+            _rotZ = Mathf.Atan2(_BulletDir.y, _BulletDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, _rotZ + 90);
 
             Destroy(this.gameObject, _timer);
         }
