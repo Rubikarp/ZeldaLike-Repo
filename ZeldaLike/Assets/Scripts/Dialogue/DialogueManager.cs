@@ -19,6 +19,7 @@ namespace Dialogue
         [SerializeField] private RectTransform _textBox = null;
         [SerializeField] private Text _nom = null;
         [SerializeField] private Text _dialogues = null;
+        [SerializeField] private Image _portrait = null;
 
         [Header("Variable")]
         [SerializeField] [Range(0, 0.05f)]
@@ -58,13 +59,14 @@ namespace Dialogue
             NextEchange();
         }
 
-        private IEnumerator TypeSentence(string name, string phrase)
+        private IEnumerator TypeSentence(string name, string phrase, Sprite portrait)
         {
             _dialogues.text = "";
             _nom.text = "";
+            _portrait.sprite = null;
 
             _nom.text = name;
-
+            _portrait.sprite = portrait;
 
             foreach (char letter in phrase.ToCharArray())
             {
@@ -110,7 +112,11 @@ namespace Dialogue
             }
 
             StopAllCoroutines();
-            StartCoroutine(TypeSentence(_SentanceCounter % 2 == 0? _actualEchange.interlocuteur_A : _actualEchange.interlocuteur_B, _actualEchange._echange[_SentanceCounter]));
+            StartCoroutine(TypeSentence(
+                _SentanceCounter % 2 == 0? _actualEchange.interlocuteur_A : _actualEchange.interlocuteur_B
+                , _actualEchange._echange[_SentanceCounter]
+                , _SentanceCounter % 2 == 0 ? _actualEchange.image_A : _actualEchange.image_B
+                ));
             
             _SentanceCounter++;
         }
