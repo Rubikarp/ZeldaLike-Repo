@@ -32,7 +32,7 @@ namespace Game
             }
             else if (_formHandler.GetComponent<Scr_FormeHandler>()._switchForm == Scr_FormeHandler.Forme.Agile)
             {
-                _mySelf.localScale = new Vector3(1, 0.5f, 1);
+                _mySelf.localScale = new Vector3(0.85f, 0.5f, 1);
             }
             else if (_formHandler.GetComponent<Scr_FormeHandler>()._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
