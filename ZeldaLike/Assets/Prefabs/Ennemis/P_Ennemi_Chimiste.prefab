@@ -54,7 +54,7 @@ MonoBehaviour:
   _life: 15
   _isDead: 0
   _isTakingDamage: 0
-  _dyingDuration: 0.3
+  _dyingDuration: 0.5
   knockbackSensibility: 1
   _healSpawnChance: 50
 --- !u!58 &2889761824729441596
@@ -70,9 +70,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.040425777, y: 0}
   serializedVersion: 2
-  m_Radius: 0.908967
+  m_Radius: 0.86854124
 --- !u!1 &2215903960410885152
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +408,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.020212948, y: -0.10104036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -419,7 +419,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1.2395741, y: 1.2934723}
   m_EdgeRadius: 0
 --- !u!114 &5163854538428288735
 MonoBehaviour:
@@ -498,6 +498,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Info Ennemis
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321240410649911906, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3363791661818473092, guid: ae7c2f022c13ad94aa0748678ba17532,
         type: 3}
@@ -604,11 +609,42 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4191506197648535163, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191506197648535163, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 7332675231677129176, guid: ae7c2f022c13ad94aa0748678ba17532,
         type: 3}
       propertyPath: enemisLifeSyst
       value: 
       objectReference: {fileID: 1614434436361931006}
+    - target: {fileID: 7795692408989578884, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b88d2c3dfbea8d45bacd4bbd5a3f324,
+        type: 3}
+    - target: {fileID: 7795692408989578884, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795692408989578884, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795692408989578884, guid: ae7c2f022c13ad94aa0748678ba17532,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae7c2f022c13ad94aa0748678ba17532, type: 3}
 --- !u!224 &5243894410694711779 stripped

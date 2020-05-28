@@ -12,9 +12,11 @@ public class Scr_BombBehaviour_Ingénieur : MonoBehaviour
     [Header("Statistiques")]
     public float _timeBeforeExplosion = 0.7f;
     public float _timer = 2f;
+    private bool _explosion;
 
     private void Start()
     {
+        _explosion = false;
         _bomb = this.transform;
         bombSprite = this.gameObject.GetComponent<SpriteRenderer>();
         bombSprite.enabled = true;
@@ -24,9 +26,10 @@ public class Scr_BombBehaviour_Ingénieur : MonoBehaviour
     {
         _timeBeforeExplosion -= Time.deltaTime;
 
-        if(_timeBeforeExplosion <= 0)
+        if(_timeBeforeExplosion <= 0 && _explosion == false)
         {
             StartCoroutine(Explosion(_timer));
+            _explosion = true;
         }
     }
 
