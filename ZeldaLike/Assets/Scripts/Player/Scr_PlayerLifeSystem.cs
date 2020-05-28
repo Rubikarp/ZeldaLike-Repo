@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Management;
+using UnityEngine.Rendering;
 
 namespace Game
 {
@@ -12,7 +13,8 @@ namespace Game
         public AnimatorManager_Player _animator = null;
         public ScreenShake _scrShake = null;
         public InputManager _input = null;
-        public Scr_FormeHandler _forme;
+        public Scr_FormeHandler _forme = null;
+        public Volume lowLife = null;
         private SoundManager sound;
 
         [Header("Statistiques")]
@@ -145,6 +147,20 @@ namespace Game
                 }
 
                 Invoke("WillDie", 0.8f);
+            }
+
+            if (_life == 2)
+            {
+                lowLife.weight = 0.5f;
+            }
+            else
+            if (_life < 2)
+            {
+                lowLife.weight = 1f;
+            }
+            else
+            {
+                lowLife.weight = 0f;
             }
         }
         
