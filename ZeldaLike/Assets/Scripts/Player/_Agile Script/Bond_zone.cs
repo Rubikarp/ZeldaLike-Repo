@@ -7,6 +7,9 @@ namespace Game
     {
         public List<GameObject> _detectedEnnemisList = new List<GameObject>();
         public Transform _player = null;
+        public float _listClear;
+        [SerializeField] private float _listClearEffective;
+
 
         private void OnTriggerStay2D(Collider2D collision)
         {
@@ -21,7 +24,15 @@ namespace Game
 
         private void LateUpdate()
         {
-            _detectedEnnemisList.Clear();
+            if (_listClearEffective > 0)
+            {
+                _listClearEffective -= Time.deltaTime;
+            }
+            else if (_listClearEffective <= 0)
+            {
+                _detectedEnnemisList.Clear();
+                _listClearEffective = _listClear;
+            }
         }
     }
 
