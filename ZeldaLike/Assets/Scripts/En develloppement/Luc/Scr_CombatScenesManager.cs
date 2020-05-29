@@ -7,19 +7,13 @@ public class Scr_CombatScenesManager : MonoBehaviour
     public List<GameObject> _actualFightScenes;
     public List<GameObject> _dataFightScenes;
     [SerializeField] private List<Vector3> _fightScenesPos;
-    [SerializeField] private List<string> _fightScenesNames;
-    private string _replacedFSBarrier;
+
 
     private void Start()
     {
         for (int j = 0; j < _actualFightScenes.Count; j++)
         {
             _fightScenesPos.Add(_actualFightScenes[j].transform.position);
-        }
-
-        for (int k = 0; k < _actualFightScenes.Count; k++)
-        {
-            _fightScenesNames.Add(_dataFightScenes[k].name);
         }
     }
 
