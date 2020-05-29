@@ -66,4 +66,9 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
             _ennemiesToSpawn[j].SetActive(true);
         }
     }
+
+    public void DistantSpawnTrigger()
+    {
+        StartCoroutine(EnemySpawn());
+    }
 }
