@@ -7,81 +7,51 @@ namespace Game
     public class Scr_HeavyMovable : MonoBehaviour
     {
         [SerializeField] private Scr_FormeHandler _forme = null;
-        [SerializeField] private Rigidbody2D _myBody = null;
-
-        [HideInInspector] public Vector2 _rockDirection;
-
-        private float _delay = 0.25f;
-        private bool _movable = false;
-        public bool _isBig;
+        private Rigidbody2D _myBody = null;
         private SoundManager sound; //Le son
+        private Transform player = null;
+
+        [SerializeField] private bool movable = false;
+        public bool _isBig = true;
 
         void Start()
         {
             _forme = GameObject.Find("Avatar").GetComponent<Scr_FormeHandler>();
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         void Awake()
         {
             sound = SoundManager.Instance;
+            _myBody = this.GetComponent<Rigidbody2D>();
         }
 
         void Update()
         {
-
-            //_myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            if (_movable == true)
+            //Pas de forme lourd pas de bloc qui bouge
+            if(_forme._switchForm == Scr_FormeHandler.Forme.Heavy && PlayerNearBlock(player, 4f))
             {
-
-                _rockDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY")).normalized;
-                sound.PlaySound("Deplacement Bloc");
-
-                if (Mathf.Abs(_rockDirection.x) > Mathf.Abs(_rockDirection.y))
-                {
-                    _myBody.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                    _myBody.velocity = new Vector2(0 , 5).normalized;
-
-                }
-                else if (Mathf.Abs(_rockDirection.x) <= Mathf.Abs(_rockDirection.y))
-                {
-                    _myBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-                    _myBody.velocity = new Vector2(5, 0).normalized;
-
-
-                }
+                _myBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+                movable = true;
             }
             else
             {
                 _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+                movable = false;
             }
 
-            //Pour éviter que le Bloc ne s'arrête pas lorsqu'on ne change pas de forme.
-            if(_delay > 0 && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
-            {
-                _delay -= Time.deltaTime;
-            }
-            else if (_delay <= 0 && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
-            {
-                _myBody.constraints = RigidbodyConstraints2D.FreezeAll;
-                _delay = 0.25f;
-            }
- 
         }
 
-        private void OnTriggerEnter2D (Collider2D collision)
+        protected bool PlayerNearBlock(Transform player, float testingDist)
         {
-            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+            var distance = Vector2.Distance(this.transform.position, player.position);
+            if (distance <= testingDist)
             {
-                _movable = true;
+                return true;
             }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.transform.parent.parent.CompareTag("Player") && _forme._switchForm == Scr_FormeHandler.Forme.Heavy)
+            else
             {
-                _movable = false;
+                return false;
             }
         }
     }

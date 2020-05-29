@@ -9,7 +9,6 @@ namespace Game
         public bool _isBig;
         private SoundManager sound; //Le son
 
-        // Start is called before the first frame update
         void Start()
         {
             _isActive = false;
@@ -19,7 +18,6 @@ namespace Game
             sound = SoundManager.Instance;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (_isActive == false)
