@@ -9,23 +9,29 @@ namespace Game
         public GameObject _lockedDoor = null;
         //public GameObject _openedDoor = null;
         public Scr_LD_ActiveState[] _interruptors = null;
+        private bool _open;
 
         private void Start()
         {
-
+            _open = false;
         }
 
         private void Update()
         {
-            if(_interruptors[0]._isActive && _interruptors[1]._isActive && _interruptors[2]._isActive)
+            if(_interruptors[0]._isActive && _interruptors[1]._isActive && _interruptors[2]._isActive && _open == false)
             {
-                //_openedDoor.SetActive(true);
-                _lockedDoor.SetActive(false);
+                _lockedDoor.GetComponent<Collider2D>().enabled = false;
+                _lockedDoor.GetComponent<Animator>().SetTrigger("Ouverture");
+                _open = true;
             }
             else
             {
-                //_openedDoor.SetActive(false);
-                _lockedDoor.SetActive(true);
+                _lockedDoor.GetComponent<Collider2D>().enabled = true;
+                if (_open == true)
+                {
+                    _lockedDoor.GetComponent<Animator>().SetTrigger("Fermeture");
+                }
+                _open = false;
             }
         }
     }
