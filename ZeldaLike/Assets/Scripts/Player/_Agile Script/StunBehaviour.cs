@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Game
 {
@@ -56,6 +57,18 @@ namespace Game
                 Debug.Log(this.gameObject + "n'a pas été assigné en tant que stun");
             }
             Destroy(_Stun, _LifeTime);
+        }
+
+        private void Update()
+        {
+            if (_LifeTime > 0)
+            {
+                _LifeTime -= Time.deltaTime;
+            }
+            else if (_LifeTime <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
