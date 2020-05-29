@@ -21,7 +21,8 @@ namespace Game
             {
                 foreach (Transform child in transform)
                 {
-                    child.gameObject.SetActive(false);
+                    child.gameObject.GetComponent<Collider2D>().enabled = false;
+                    child.gameObject.GetComponent<Animator>().SetTrigger("Ouverture");
                 }
             }
         }
