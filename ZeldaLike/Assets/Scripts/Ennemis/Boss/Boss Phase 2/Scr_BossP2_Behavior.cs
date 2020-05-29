@@ -19,6 +19,7 @@ namespace Ennemies
         public GameObject[] _interrupteursTargets;
         public Scr_AnimatorManager_BossP2 _anim;
         private SoundManager sound; //Le son
+        public GameObject _spawnFX;
 
         [Header("Renforts")]
         public List<GameObject> _ennemiesRenforts;
@@ -161,7 +162,7 @@ namespace Ennemies
         {
             int randomPattern = 0;
 
-            randomPattern = Random.Range(1, 3);
+            randomPattern = Random.Range(0, 10);
 
             if (randomPattern == 0)
             {
@@ -186,6 +187,13 @@ namespace Ennemies
             _anim.RenfortsTrigger();
             sound.PlaySound("Mon Armée");
             yield return new WaitForSeconds(_castDelayRenforts);
+
+            for (int ii = 0; ii < _ennemiesRenforts.Count; ii++)
+            {
+                Instantiate(_spawnFX, _renfortsSpawns[ii].position, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(0.25f);
 
             for (int i = 0; i < _ennemiesRenforts.Count; i++)
             {

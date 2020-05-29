@@ -21,6 +21,7 @@ namespace Ennemis
         public float _retreatDistance;  //Distance à laquelle le Boss recule.
         private SoundManager sound; //Le son
         private bool _canWalk;
+        public GameObject _spawnFX;
 
         public AnimatorController_BossP1 b = null;
 
@@ -113,7 +114,7 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(1, 10);
+                _randomAction = Random.Range(1, 2);
 
                 if (_randomAction == 1)
                 {
@@ -176,7 +177,14 @@ namespace Ennemis
             sound.PlaySound("Renforts");
             for (int i = 0; i < _renforts.Count; i++)
             {
-                Instantiate(_renforts[i], _renfortsSpawns[i]);
+                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(0.25f);
+
+            for (int ii = 0; ii < _renforts.Count; ii++)
+            {
+                Instantiate(_renforts[ii], _renfortsSpawns[ii]);
             }
 
             yield return new WaitForSeconds(0.25f);

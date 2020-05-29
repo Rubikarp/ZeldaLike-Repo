@@ -127,6 +127,8 @@ MonoBehaviour:
   _moveSpeed: 5
   _bossDirection: {x: 0, y: 0, z: 0}
   _retreatDistance: 12
+  _spawnFX: {fileID: 3691116857866400219, guid: ae79e318c6b0b2d42b4a9bad94e10d50,
+    type: 3}
   b: {fileID: 4371421309206605951}
   _renforts:
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
@@ -225,6 +227,7 @@ MonoBehaviour:
   animator: {fileID: 2211983162061513166}
   _bossDirection: {x: 0, y: 0, z: 0}
   _canFlip: 1
+  _canTurn: 0
 --- !u!1 &1088682750620354949
 GameObject:
   m_ObjectHideFlags: 0
