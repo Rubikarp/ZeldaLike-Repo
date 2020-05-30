@@ -28,6 +28,7 @@ namespace Ennemis
         [Header("Renforts")]
         public List<GameObject> _renforts;  //Liste des ennemis à faire spawn.
         public List<Transform> _renfortsSpawns;  //Liste des emplacements de spawn des ennemis.
+        public GameObject ennemisContainer = null;
 
         [Header("Tir de Couverture et Fou de la Gachette")]
         public GameObject _bullet; //Le projectile.
@@ -114,7 +115,7 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(1, 2);
+                _randomAction = Random.Range(1, 9);
 
                 if (_randomAction == 1)
                 {
@@ -177,14 +178,14 @@ namespace Ennemis
             sound.PlaySound("Renforts");
             for (int i = 0; i < _renforts.Count; i++)
             {
-                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity);
+                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, ennemisContainer.transform);
             }
 
             yield return new WaitForSeconds(0.25f);
 
             for (int ii = 0; ii < _renforts.Count; ii++)
             {
-                Instantiate(_renforts[ii], _renfortsSpawns[ii]);
+                Instantiate(_renforts[ii], _renfortsSpawns[ii], ennemisContainer.transform);
             }
 
             yield return new WaitForSeconds(0.25f);

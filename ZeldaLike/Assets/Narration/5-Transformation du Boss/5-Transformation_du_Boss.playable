@@ -12,18 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
---- !u!114 &-8012047038338971601
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
-  m_Name: ActivationPlayableAsset
-  m_EditorClassIdentifier: 
 --- !u!114 &-7694669629348439268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,7 +459,7 @@ MonoBehaviour:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 1
   m_InfiniteClipPostExtrapolation: 1
-  m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: -10}
+  m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: 0}
   m_InfiniteClipOffsetEulerAngles: {x: -0, y: 0, z: 0}
   m_InfiniteClipTimeOffset: 0
   m_InfiniteClipRemoveOffset: 0
@@ -532,79 +520,10 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 3339035442068335993}
   m_Children: []
-  m_Clips:
-  - m_Version: 1
-    m_Start: 19.5
-    m_ClipIn: 0
-    m_Asset: {fileID: -8012047038338971601}
-    m_Duration: 5
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: -2653981581052643522}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 0
-    m_BlendOutDuration: 0
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: Active
+  m_Clips: []
   m_Markers:
     m_Objects: []
-  m_PostPlaybackState: 3
+  m_PostPlaybackState: 0
 --- !u!74 &-1248853999577498946
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -652,7 +571,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 9.166667
-        value: {x: 0, y: 15, z: 0}
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -870,7 +789,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 9.166667
-        value: 15
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1049,7 +968,7 @@ MonoBehaviour:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 1
   m_InfiniteClipPostExtrapolation: 1
-  m_InfiniteClipOffsetPosition: {x: 0, y: -20, z: 0}
+  m_InfiniteClipOffsetPosition: {x: 0, y: 5, z: 0}
   m_InfiniteClipOffsetEulerAngles: {x: -0, y: 0, z: 0}
   m_InfiniteClipTimeOffset: 0
   m_InfiniteClipRemoveOffset: 0
@@ -1201,6 +1120,7 @@ MonoBehaviour:
   - {fileID: 492600819844691206}
   - {fileID: -5018067469556874969}
   - {fileID: 2840025446741512301}
+  - {fileID: 3650016469771498804}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -1617,7 +1537,7 @@ MonoBehaviour:
     m_DisplayName: Active
   m_Markers:
     m_Objects: []
-  m_PostPlaybackState: 3
+  m_PostPlaybackState: 1
 --- !u!114 &3339035442068335993
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1647,6 +1567,30 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &3650016469771498804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bf7f712d84d26478ebe6a299f21738, type: 3}
+  m_Name: Activation Track (3)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+  m_PostPlaybackState: 1
 --- !u!114 &4339020103963926469
 MonoBehaviour:
   m_ObjectHideFlags: 1
