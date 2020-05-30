@@ -7,8 +7,6 @@ namespace Dialogue
 {
     public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] private InputManager _input = null;
-
         [Header("Dialogue")]
         public Conversation _actualConversation;
         private Echange _actualEchange;
@@ -27,11 +25,6 @@ namespace Dialogue
         private float tempsLectParLettre = 0.05f;
         public bool haveEnd = false;
         public bool isAuto = false;
-
-        void Start()
-        {
-            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-        }
 
         public void BeginCoversation(Conversation conversation)
         {
@@ -71,20 +64,15 @@ namespace Dialogue
             foreach (char letter in phrase.ToCharArray())
             {
                 _dialogues.text += letter;
-
-                if (!_input._interaction)
-                {
-                    yield return new WaitForSeconds(DelayBetweenLetters);
-                }
+                
+                yield return new WaitForSeconds(DelayBetweenLetters);
+                
             }
-
 
             float wait = phrase.Length * tempsLectParLettre;
+            
+            yield return new WaitForSeconds(wait);
 
-            if (!_input._interaction)
-            {
-                yield return new WaitForSeconds(wait);
-            }
 
             yield return new WaitForSeconds(0.1f);
 
