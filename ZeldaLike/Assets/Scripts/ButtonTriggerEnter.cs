@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Game
 {
-    [RequireComponent(typeof(PolygonCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class ButtonTriggerEnter : MonoBehaviour
     {
         public UnityEvent onInteraction;
