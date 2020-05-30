@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scr_Donjon_Rest : MonoBehaviour
 {
@@ -8,16 +6,9 @@ public class Scr_Donjon_Rest : MonoBehaviour
     public Transform _puzzlePosition;
     private Vector3 _spawnPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
         _spawnPosition = _puzzlePosition.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Reset_Puzzle ()

@@ -11,7 +11,6 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
     [HideInInspector] public bool _fightStarted;
     private int _killCount;
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < _ennemiesToSpawn.Count; i++)
@@ -21,11 +20,8 @@ public class Scr_LD_SpawnEnnemies : MonoBehaviour
 
         _fightStarted = false;
         _killCount = 0;
-        _limitCollider.SetActive(false);
-        _limitTilemap.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_fightStarted == true)

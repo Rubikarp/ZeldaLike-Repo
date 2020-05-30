@@ -8,7 +8,6 @@ public class Scr_CombatScenesManager : MonoBehaviour
     public List<GameObject> _dataFightScenes;
     [SerializeField] private List<Vector3> _fightScenesPos;
 
-
     private void Start()
     {
         for (int j = 0; j < _actualFightScenes.Count; j++)
