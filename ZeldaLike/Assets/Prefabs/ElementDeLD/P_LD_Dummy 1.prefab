@@ -85,6 +85,8 @@ GameObject:
   - component: {fileID: 6844231886875695455}
   - component: {fileID: 6844231886875695454}
   - component: {fileID: 6731866262130064421}
+  - component: {fileID: 7298949679490661362}
+  - component: {fileID: 7298949679490661372}
   m_Layer: 0
   m_Name: P_LD_Dummy 1
   m_TagString: Ennemis
@@ -146,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -3101998691916176125, guid: 7c69ae23a91170a4aa033d927580e991,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,6 +187,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0079868, y: 0.70676994}
   m_EdgeRadius: 0
+--- !u!95 &7298949679490661362
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844231886875695450}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c97c2ffaa440cb14eb56587b1b29ed72, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7298949679490661372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844231886875695450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b7e682a84b2984f9ead9b940e77ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6844231888515745723
 GameObject:
   m_ObjectHideFlags: 0

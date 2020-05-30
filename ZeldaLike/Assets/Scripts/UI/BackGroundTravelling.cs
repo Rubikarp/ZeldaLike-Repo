@@ -15,7 +15,7 @@ namespace Game
         [Header("Event")]
         public UnityEvent uEvent = null ;
 
-        private void Start()
+        private void OnEnable()
         {
             Time.timeScale = 1;
             LeanTween.moveY(BG, finalHeight, travelingTime).setLoopOnce().setEase(curve);
