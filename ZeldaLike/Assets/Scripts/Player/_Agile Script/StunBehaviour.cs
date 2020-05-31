@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 namespace Game
 {
@@ -50,24 +47,13 @@ namespace Game
 
         void Start()
         {
-            gameObject.LeanScale(new Vector3(2, 2, 1), _LifeTime>0.2f? _LifeTime - 0.2f : _LifeTime);
-
             if(_Stun == null)
             {
                 Debug.Log(this.gameObject + "n'a pas été assigné en tant que stun");
             }
-            Destroy(_Stun, _LifeTime);
-        }
-
-        private void Update()
-        {
-            if (_LifeTime > 0)
+            else
             {
-                _LifeTime -= Time.deltaTime;
-            }
-            else if (_LifeTime <= 0)
-            {
-                Destroy(gameObject);
+                Destroy(_Stun, _LifeTime);
             }
         }
     }

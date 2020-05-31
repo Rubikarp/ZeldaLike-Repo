@@ -50,7 +50,6 @@ namespace Game
                 lifeBarUpdate(_lifeSystem._life);
             }
 
-            //if (Input.anyKeyDown)
             RefreshInput();
         }
 
