@@ -40,6 +40,14 @@ namespace Game
                 movable = false;
             }
 
+            if(Mathf.Abs(_myBody.velocity.x) > Mathf.Abs(_myBody.velocity.y))
+            {
+                _myBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            }
+            else if (Mathf.Abs(_myBody.velocity.y) > Mathf.Abs(_myBody.velocity.x))
+            {
+                _myBody.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
+            }
         }
 
         protected bool PlayerNearBlock(Transform player, float testingDist)

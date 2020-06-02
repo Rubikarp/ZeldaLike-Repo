@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2308364657119634760}
   - component: {fileID: 1325592519923429471}
-  - component: {fileID: 7955421566390481368}
   - component: {fileID: 1174222377563346475}
+  - component: {fileID: 7955421566390481368}
   m_Layer: 0
   m_Name: HeavyAttack
   m_TagString: Attack
@@ -83,26 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7955421566390481368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2565579090490388475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb7b3e92f472e84780f4cc17f9702ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 8
-  _stunDuration: 0.2
-  _knockbackPower: 40
-  _shockWave: {fileID: 2857778026791853748, guid: 1fa0fb9d1c9557a40a256ca7ffaccef3,
-    type: 3}
-  _PlMovement: {fileID: 0}
-  _LifeTime: 0.3
-  _heavyAttack: {fileID: 8535114425437957988}
 --- !u!60 &1174222377563346475
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -128,22 +108,34 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.06113576, y: -0.55986774}
-      - {x: -0.067419976, y: -0.55986756}
-      - {x: -0.16755767, y: -0.4879926}
-      - {x: -0.16976102, y: -0.4856476}
-      - {x: -0.27139458, y: -0.29540658}
-      - {x: -0.39459345, y: 0.11891285}
-      - {x: -0.3249691, y: 0.24797596}
-      - {x: -0.21960905, y: 0.34292844}
-      - {x: 0.021151341, y: 0.3874603}
-      - {x: 0.24486393, y: 0.34507576}
-      - {x: 0.36291417, y: 0.24312292}
-      - {x: 0.4290617, y: 0.11873394}
-      - {x: 0.40713733, y: 0.045715515}
-      - {x: 0.2708964, y: -0.29723695}
-      - {x: 0.2708964, y: -0.29723695}
-      - {x: 0.15347292, y: -0.47785187}
+    - - {x: -0.21324521, y: -0.50339174}
+      - {x: -0.8984382, y: 0.5033918}
+      - {x: 0.0041585015, y: 0.70176053}
+      - {x: 0.8320317, y: 0.49999994}
+      - {x: 0.237393, y: -0.5033918}
+--- !u!114 &7955421566390481368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565579090490388475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb7b3e92f472e84780f4cc17f9702ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 8
+  _stunDuration: 0.2
+  _knockbackPower: 40
+  _damage: 8
+  _stunDuration: 0.2
+  _knockbackPower: 40
+  _shockWave: {fileID: 2857778026791853748, guid: 1fa0fb9d1c9557a40a256ca7ffaccef3,
+    type: 3}
+  _PlMovement: {fileID: 0}
+  _LifeTime: 0.3
+  _heavyAttack: {fileID: 8535114425437957988}
 --- !u!1 &8535114425437957988
 GameObject:
   m_ObjectHideFlags: 0

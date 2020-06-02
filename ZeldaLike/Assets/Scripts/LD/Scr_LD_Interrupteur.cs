@@ -22,11 +22,17 @@ namespace Game
         {
             if (_isActive == false)
             {
-                _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = false; 
+                if(_thingToActivate!= null)
+                {
+                    _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = false; 
+                }
             }
             else if (_isActive == true)
             {
-                _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = true;
+                if (_thingToActivate != null)
+                {
+                    _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = true;
+                }
             }
         }
 

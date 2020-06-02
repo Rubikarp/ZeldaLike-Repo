@@ -5,45 +5,12 @@ using Ennemis;
 
 namespace Game
 {
-    public class Scr_HeavyAttack_Behavior : MonoBehaviour, Int_Damage
+    public class Scr_HeavyAttack_Behavior : Scr_Damage
     {
         [SerializeField] private int _damage = 3;
         [SerializeField] private float _stunDuration = 0.3f;
         [SerializeField] private float _knockbackPower = 20f;
         public GameObject _shockWave;
-        public int Damage
-        {
-            get
-            {
-                return _damage;
-            }
-            set
-            {
-                _damage = value;
-            }
-        }
-        public float StunDuration
-        {
-            get
-            {
-                return _stunDuration;
-            }
-            set
-            {
-                _stunDuration = value;
-            }
-        }
-        public float KnockbackPower
-        {
-            get
-            {
-                return _knockbackPower;
-            }
-            set
-            {
-                _knockbackPower = value;
-            }
-        }
 
         [SerializeField] private Movement_2D_TopDown _PlMovement;
 
@@ -81,7 +48,7 @@ namespace Game
         {
            if (collision.gameObject.CompareTag("Ennemis/HurtBox"))
            {
-                if (collision.gameObject.GetComponent<Scr_EnnemisLifeSystem>()._isMarked == true)
+                if (collision.gameObject.GetComponent<Int_EnnemisLifeSystem>().IsBleeding == true)
                 {
                     Instantiate(_shockWave, collision.transform.position, collision.transform.rotation);
                     sound.PlaySound("ShockWave");
