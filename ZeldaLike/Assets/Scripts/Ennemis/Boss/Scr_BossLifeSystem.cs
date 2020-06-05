@@ -74,6 +74,7 @@ namespace Ennemis
                     }
 
                     Vector2 knockBackDirection = -(collision.transform.position - this.transform.position).normalized;
+                    _body.velocity = Vector2.zero;
 
                     Int_Damage attackData = collision.gameObject.GetComponent<Int_Damage>();
 
