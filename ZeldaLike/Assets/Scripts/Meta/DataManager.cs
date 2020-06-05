@@ -18,18 +18,23 @@ namespace Management
 		public void Awake()
 		{
 			instance = this;
-			SetPath();
+			SetPaths();
 		}
-		public void Save(int numberPoint)
+
+		public void Save(int saveNumber,bool heavyFormUnlock, int lifePoint, int maxLifePoint)
 		{
 			StreamWriter streamWriter = new StreamWriter(path, false, encoding);
 			Data data = new Data
 			{
+				_heavyFormUnlock = heavyFormUnlock,
+				_lifePoint = lifePoint,
+				_maxLifePoint = maxLifePoint,
 
 			};
 
 			serializer.Serialize(streamWriter, data);
 		}
+
 		public Data Load()
 		{
 			if (File.Exists(path))
@@ -42,9 +47,11 @@ namespace Management
 			return null;
 		}
 
-		public void SetPath()
+
+
+		public void SetPaths()
 		{
-			path = Path.Combine(Application.persistentDataPath, "Data.xml");
+			path = Path.Combine(Application.persistentDataPath, "Data0.xml");
 		}
 	}
 }
