@@ -270,7 +270,7 @@ namespace Ennemies
 
                 _laserGraph.enabled = true;
                 _laserGraph.SetPosition(0, origin);
-                _laserGraph.SetPosition(1, hitInfo.transform.position);
+                _laserGraph.SetPosition(1, hitInfo.point);
 
                 Debug.Log(hitInfo.transform.name);
                 Debug.Log(hitInfo.transform.position);
