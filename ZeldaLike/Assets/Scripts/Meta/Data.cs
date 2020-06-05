@@ -10,17 +10,8 @@ namespace Management
 		public int _lifePoint;
 		public int _maxLifePoint;
 
-		public Vector3[] _playerInitPos = new Vector3[] 
-		{
-			new Vector3(),
-			new Vector3(),
-			new Vector3(),
-			new Vector3(),
-			new Vector3(),
-			new Vector3(),
-			new Vector3(),
-			new Vector3()
-		};
+		public int _sceneAct = 0;
+		public Vector3 _plPos;
 
 	}
 }
