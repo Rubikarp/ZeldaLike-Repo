@@ -6,7 +6,7 @@ using Game;
 
 namespace Ennemis
 {
-    public class Scr_BossLifeSystem : MonoBehaviour
+    public class Scr_BossLifeSystem : MonoBehaviour, Int_EnnemisLifeSystem
     {
         [Header("Componnents")]
         public GameObject _Boss = null;
@@ -82,7 +82,7 @@ namespace Ennemis
 
                     if (!_isTakingDamage)
                     {
-                        StartCoroutine(TakingDamage(attackData.Damage, knockBackDirection, knockbackSpeed, attackData.StunDuration));
+                        StartCoroutine(TakingDamage(attackData.Damage, _body, knockBackDirection, knockbackSpeed, attackData.StunDuration));
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace Ennemis
 
         }
 
-        public IEnumerator TakingDamage(int damage, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
+        public IEnumerator TakingDamage(int damage, Rigidbody2D body ,Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
         {
             _isTakingDamage = true;
             _life -= damage;
