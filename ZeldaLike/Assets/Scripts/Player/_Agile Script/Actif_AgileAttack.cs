@@ -24,6 +24,9 @@ namespace Game
         public Transform _attackContainer;
         public Transform _attackPos;
         public bool _canAttack = true;
+        [HideInInspector] public bool _stopJump;
+        public Collider2D _hardCollider;
+        public Collider2D _jumpCollider;
 
         [Header("Bond")]
         public GameObject _bondObj;
@@ -51,6 +54,7 @@ namespace Game
         {
             _rgb = _Avatar.GetComponent<Rigidbody2D>();
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+            _stopJump = false;
         }
 
         private void Update()
@@ -63,7 +67,7 @@ namespace Game
 
                     foreach (GameObject ennemis in _bondDetecZone._detectedEnnemisList)
                     {
-                        if (ennemis.GetComponent<Int_EnnemisLifeSystem>().IsBleeding || ennemis.GetComponent<Scr_BossLifeSystem>()._isMarked == true)
+                        if (ennemis.GetComponent<Int_EnnemisLifeSystem>().IsBleeding)
                         {
                             _isBleeding = true;
                         }
@@ -122,10 +126,12 @@ namespace Game
             lifeSystPlayer._isVunerable = false;
             _HurtBox.SetActive(false);
             _invulnerabiltyTime = _invulnerabiltyTimer;
+            _hardCollider.enabled = false;
+            _jumpCollider.enabled = true;
 
             while (distanceMade < _bondMaxDist) // boucle durant la durée du dash
             {
-                _rgb.position += attaqueDir * speed * Time.deltaTime;
+                _rgb.velocity += attaqueDir * speed; //* Time.deltaTime;
 
                 distanceMade = Vector2.Distance(me, _rgb.position);
                 maxDuration -= Time.deltaTime;
@@ -137,11 +143,21 @@ namespace Game
                     break;
                 }
 
+                if( _stopJump == true)
+                {
+                    _rgb.velocity = Vector2.zero;
+                    lifeSystPlayer._isVunerable = true;
+                    break;
+                }
+
                 yield return new WaitForEndOfFrame();  
             }
 
             yield return null;
 
+            _hardCollider.enabled = true;
+            _jumpCollider.enabled = false;
+            _stopJump = false;
             lifeSystPlayer._isVunerable = true;
             _rgb.velocity = Vector2.zero;
             Destroy(bond);
