@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Management;
+using Ennemis;
 
 namespace Game
 {
@@ -62,7 +63,7 @@ namespace Game
 
                     foreach (GameObject ennemis in _bondDetecZone._detectedEnnemisList)
                     {
-                        if (ennemis.GetComponent<Int_EnnemisLifeSystem>().IsBleeding)
+                        if (ennemis.GetComponent<Int_EnnemisLifeSystem>().IsBleeding || ennemis.GetComponent<Scr_BossLifeSystem>()._isMarked == true)
                         {
                             _isBleeding = true;
                         }
