@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 1041732579718334413}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Ennemis
+  m_TagString: Ennemis/HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -498,13 +498,14 @@ MonoBehaviour:
   _Boss: {fileID: 4172128610304137077}
   _body: {fileID: 4172128610304137087}
   _logoMarked: {fileID: 3447901031858309130}
+  _lifeBar: {fileID: 8009614524561195256}
   _isTakingDamage: 0
   _isMarked: 0
   _isVunerable: 1
-  _life: 40
+  _life: 50
   _dyingDuration: 5
   knockbackSensibility: 0.5
-  _markedDuration: 2
+  _markedDuration: 5
 --- !u!61 &4458529362340993279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -574,6 +575,7 @@ GameObject:
   - component: {fileID: 4172128610304137079}
   - component: {fileID: 3786244484631536717}
   - component: {fileID: 5702461087049062836}
+  - component: {fileID: 155072424842025307}
   m_Layer: 0
   m_Name: Boss_Phase-3
   m_TagString: Ennemis
@@ -694,7 +696,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2}
+  m_Offset: {x: 0, y: -1.6921711}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -705,7 +707,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 2, y: 1.6156578}
   m_EdgeRadius: 0
 --- !u!114 &4675652143878241788
 MonoBehaviour:
@@ -744,6 +746,7 @@ MonoBehaviour:
   _willLightningRush: 0
   _isLightningRush: 0
   _collider: {fileID: 4172128610304137086}
+  _dashCollider: {fileID: 155072424842025307}
   _willShoot: 0
   _isShooting: 0
   _willRush: 0
@@ -801,6 +804,32 @@ MonoBehaviour:
   _animator: {fileID: 3786244484631536717}
   _bossDirection: {x: 0, y: 0}
   _canDir: 0
+--- !u!61 &155072424842025307
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172128610304137077}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.010259628, y: -0.5025668}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.6, y: 5.6}
+    newSize: {x: 4.9, y: 5.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.0093603, y: 1.846127}
+  m_EdgeRadius: 0
 --- !u!1 &4549289803488416518
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +840,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4272813761309440733}
   - component: {fileID: 8009614524561195256}
-  - component: {fileID: 4992880959278181745}
   m_Layer: 5
   m_Name: Boss Health Bar
   m_TagString: Untagged
@@ -890,17 +918,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4992880959278181745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4549289803488416518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84a61caf2a01f74a982eadbb32ce42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 8009614524561195256}
-  bossLifeSyst: {fileID: 4172128609867958612}

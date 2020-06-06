@@ -30,6 +30,7 @@ namespace Ennemis
         private Vector2 _lightningRushDirection = Vector2.zero;
         private float _rushRotation;
         public Collider2D _collider;
+        public Collider2D _dashCollider;
 
 
         //Execution
@@ -299,6 +300,7 @@ namespace Ennemis
                 _rushRotation = Mathf.Atan2(_lightningRushDirection.y, _lightningRushDirection.x) * Mathf.Rad2Deg;
                 _mySelf.rotation = Quaternion.Euler(0f, 0f, _rushRotation + 90);
                 _collider.enabled = false;
+                _dashCollider.enabled = true;
 
                 while (!touchLimit) // boucle durant la durée du dash
                 {
@@ -331,6 +333,7 @@ namespace Ennemis
                 _myAnimator._animator.SetBool("IsComboEclair", false);
                 _isLightningRush = false;
                 _collider.enabled = true;
+                _dashCollider.enabled = false;
                 yield return new WaitForSeconds(0.75f);
 
             } while (NumberOfIteration > 0);
