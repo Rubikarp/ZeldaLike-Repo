@@ -38,9 +38,10 @@ namespace Ennemis
             {
                 Destroy(gameObject);
             }
-            else
+            else if (collision.gameObject.CompareTag("Environment"))
             {
-                //Debug.Log(collision.gameObject.name);
+                Debug.Log(collision.gameObject.name);
+                Destroy(gameObject);
             }
         }
 
