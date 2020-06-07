@@ -72,7 +72,7 @@ namespace Ennemis
             }
             else if (!_haveDetected)
             {
-                Gyrophare.color = Color.blue;
+                Gyrophare.color = Color.black;
             }
         }
 

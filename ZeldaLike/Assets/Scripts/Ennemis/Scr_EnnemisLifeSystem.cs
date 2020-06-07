@@ -21,6 +21,7 @@ namespace Ennemis
         public GameObject Ennemis = null;
         public Rigidbody2D body = null;
         public GameObject _healObject;
+        public SpriteRenderer SpriteRenderer;
 
         [Header("Statistiques")]
         public int _life = 5;
@@ -103,6 +104,7 @@ namespace Ennemis
         {
             _isTakingDamage = true;
             _life -= damage;
+            SpriteRenderer.color = Color.red;
 
             while (0 < stunDuration) // boucle durant la durée du dash
             {
@@ -116,6 +118,7 @@ namespace Ennemis
 
             body.velocity = Vector2.zero;
             _isTakingDamage = false;
+            SpriteRenderer.color = Color.white;
         }
     }
 }
