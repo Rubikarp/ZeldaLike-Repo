@@ -14,7 +14,7 @@ namespace Management
 	{
 		[SerializeField] GameObject avatar;
 		[SerializeField] Scr_FormeHandler forme;
-		[SerializeField] Scr_PlayerLifeSystem playerLifeSyst;
+		[SerializeField] PlayerLife playerLifeSyst;
 
 
 		public static DataManager instance;
@@ -32,8 +32,8 @@ namespace Management
 		public void Save(int saveNumber, bool heavyFormUnlock, int lifePoint, int maxLifePoint)
 		{
 			heavyFormUnlock = forme._heavyFormeUnlock;
-			lifePoint = playerLifeSyst._life;
-			maxLifePoint = playerLifeSyst._maxlife;
+			lifePoint = playerLifeSyst.life;
+			maxLifePoint = playerLifeSyst.maxlife;
 			int sceneAct = SceneManager.GetActiveScene().buildIndex;
 			Vector3 plPos = avatar.transform.position;
 
@@ -63,8 +63,8 @@ namespace Management
 
 				forme._heavyFormeUnlock = data._heavyFormUnlock;
 
-				playerLifeSyst._life = data._lifePoint;
-				playerLifeSyst._maxlife = data._maxLifePoint;
+				playerLifeSyst.life = data._lifePoint;
+				playerLifeSyst.maxlife = data._maxLifePoint;
 
 				SceneManager.LoadScene(data._sceneAct);
 				

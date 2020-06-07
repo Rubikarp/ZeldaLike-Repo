@@ -11,7 +11,7 @@ namespace Game
         [Header("Component")]
          private InputManager _input = default;
         [SerializeField] private Scr_FormeHandler _forme = default;
-        [SerializeField] private Scr_PlayerLifeSystem _lifeSystem = default;
+        [SerializeField] private PlayerLife lifeSystem = default;
         [Space(5)]
         [SerializeField] private Actif_HeavyAttack heavyActif = default;
         [SerializeField] private Actif_KnifeThrowing humanActif = default;
@@ -47,7 +47,7 @@ namespace Game
         {
             if(Time.timeScale != 0)
             {
-                lifeBarUpdate(_lifeSystem._life);
+                lifeBarUpdate(lifeSystem.life);
             }
 
             RefreshInput();

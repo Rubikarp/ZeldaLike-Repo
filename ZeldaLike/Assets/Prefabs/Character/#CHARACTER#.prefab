@@ -343,14 +343,13 @@ MonoBehaviour:
   _input: {fileID: 426099458386974330}
   _forme: {fileID: 4788644426683925218}
   lowLife: {fileID: 1378720271340930560}
+  playerLife: {fileID: 11400000, guid: dfc7e5a6bb392cc4abf9806f81b00173, type: 2}
   _respawnPoint: {x: 0, y: 0}
   _playerAttack:
   - P_Character_Stun
   - P_Character_HeavyAttack
   - P_Character_BondAttack
   - P_Character_OndeDeChoc
-  _life: 6
-  _maxlife: 6
   _isTakingDamage: 0
   _isVunerable: 1
   knockbackSensibility: 2
@@ -564,7 +563,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 115188
+  m_InstanceId: 40480
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -2540,7 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forme: {fileID: 4788644426683925218}
-  _lifeSystem: {fileID: 426099458780276580}
+  lifeSystem: {fileID: 11400000, guid: dfc7e5a6bb392cc4abf9806f81b00173, type: 2}
   heavyActif: {fileID: 426099459425250176}
   humanActif: {fileID: 426099459518368250}
   agileActif: {fileID: 426099458629431354}

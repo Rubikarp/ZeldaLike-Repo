@@ -4,17 +4,12 @@ namespace Game
 {
     public class Scr_Items_BoostHP : MonoBehaviour
     {
-        public Scr_PlayerLifeSystem _playerLife;
+        public PlayerLife playerLife;
         private SoundManager sound; //Le son
 
         void Awake()
         {
             sound = SoundManager.Instance;
-        }
-
-        private void Start()
-        {
-            _playerLife = GameObject.FindGameObjectWithTag("Player/HurtBox").GetComponent<Scr_PlayerLifeSystem>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -23,10 +18,10 @@ namespace Game
             {
                 Destroy(this.gameObject);
 
-                if(_playerLife._maxlife < 9)
+                if(playerLife.maxlife < 9)
                 {
-                    _playerLife._maxlife = _playerLife._maxlife + 1;
-                    _playerLife._life = _playerLife._maxlife;
+                    playerLife.maxlife = playerLife.maxlife + 1;
+                    playerLife.life = playerLife.maxlife;
                     sound.PlaySound("Amélioration Vie");
                 }
             }

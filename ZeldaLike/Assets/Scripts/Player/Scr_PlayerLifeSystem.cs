@@ -16,13 +16,12 @@ namespace Game
         public Scr_FormeHandler _forme = null;
         public Volume lowLife = null;
         private SoundManager sound;
+        public PlayerLife playerLife;
 
         [Header("Statistiques")]
         public Vector2 _respawnPoint = Vector2.zero;
         public string[] _playerAttack;
 
-        public int _life = 6;
-        public int _maxlife = 6;
         public bool _isTakingDamage = false;
         public bool _isVunerable = true;
         public float knockbackSensibility = 1f;
@@ -102,7 +101,7 @@ namespace Game
         public IEnumerator TakingDamage(int damage, Rigidbody2D body, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
         {
             _isTakingDamage = true;
-            _life -= damage;
+            playerLife.life -= damage;
 
             if (_scrShake != null)
             {
@@ -125,7 +124,7 @@ namespace Game
 
         private void Living()
         {
-            if (_life <= 0 && !Dying)
+            if (playerLife.life <= 0 && !Dying)
             {
                 Dying = true;
                 _animator.TriggerDeath();
@@ -149,12 +148,12 @@ namespace Game
                 Invoke("WillDie", 0.8f);
             }
 
-            if (_life == 2)
+            if (playerLife.life == 2)
             {
                 lowLife.weight = 0.5f;
             }
             else
-            if (_life < 2)
+            if (playerLife.life < 2)
             {
                 lowLife.weight = 1f;
             }
@@ -172,7 +171,7 @@ namespace Game
 
         public void Respawn()
         {
-            _life = _maxlife;
+            playerLife.life = playerLife.maxlife;
             isDead = false;
             Dying = false;
 

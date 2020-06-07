@@ -12,15 +12,5 @@ namespace Game
         public AnimationCurve _topSpeedCurve        = AnimationCurve.Constant( 0, 1, 1);
         public AnimationCurve _deccelerationCurve   = AnimationCurve.EaseInOut( 0, 1, 0.4f, 0);
 
-        public void Attack()
-        {
-
-        }
-
-        public void Passif()
-        {
-
-        }
-
     }
 }
