@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using Game;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 
 namespace Management
 {
