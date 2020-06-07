@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5873401528406419290}
   - component: {fileID: 8983354800879794807}
   - component: {fileID: 3152499559502927960}
+  - component: {fileID: 4993643674226324610}
   m_Layer: 0
   m_Name: attack
   m_TagString: Attack
@@ -124,10 +125,32 @@ MonoBehaviour:
   _damage: 5
   _stunDuration: 0.2
   _knockbackPower: 40
+  _damage: 5
+  _stunDuration: 0.2
+  _knockbackPower: 40
   _shockWave: {fileID: 0}
   _PlMovement: {fileID: 0}
   _LifeTime: 0.3
   _heavyAttack: {fileID: 2031849455262277083}
+--- !u!95 &4993643674226324610
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571495605767002733}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: acf06677018ec4841b13e5364b6a337f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2031849455262277083
 GameObject:
   m_ObjectHideFlags: 0
