@@ -81,27 +81,29 @@ namespace Ennemis
                 if (_delay > 0)
                 {
                     _delay -= Time.deltaTime;
-                    b._canFlip = true;
 
                     if (Vector2.Distance(_mySelf.position, _player.transform.position) > _fightDistance && _canWalk == true)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, _moveSpeed * Time.deltaTime);
                         b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", true);
-                        sound.PlaySound("BOSS P1_Pas");
+                        b._canShowBackVertical = false;
+                        //sound.PlaySound("BOSS P1_Pas");
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && _canWalk == true)
                     {
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_moveSpeed * Time.deltaTime);
                         b.SpriteFlip(true);
                         b.animator.SetBool("IsWalking", true);
-                        sound.PlaySound("BOSS P1_Pas");
+                        b._canShowBackVertical = true;
+                        //sound.PlaySound("BOSS P1_Pas");
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && Vector2.Distance(_mySelf.position, _player.transform.position) > _retreatDistance)
                     {
                         _mySelf.position = _mySelf.position;
                         b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", false);
+                        b._canShowBackVertical = false;
                     }
                 }
                 else if (_delay <= 0)
@@ -115,7 +117,7 @@ namespace Ennemis
             //Choix et application des actions.
             if (_actionActive == false)
             {
-                _randomAction = Random.Range(1, 9);
+                _randomAction = Random.Range(1, 10);
 
                 if (_randomAction == 1)
                 {
@@ -150,13 +152,14 @@ namespace Ennemis
             }
 
                 //Déplacement de "Tir de couverture".
-                if (_couverture == true && _couvertureDuration > 0)
+            if (_couverture == true && _couvertureDuration > 0)
             {
                 _couvertureDuration -= Time.deltaTime;
 
                 _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_couvertureSpeed * Time.deltaTime);
                 b.SpriteFlip(true);
                 b.animator.SetBool("IsWalking", true);
+                b._canShowBackVertical = true;
             }
             else if (_couverture == true && _couvertureDuration <= 0)
             {
@@ -164,6 +167,7 @@ namespace Ennemis
                 _couverture = false;
                 _canGoDelay = true;
                 _canWalk = true;
+                b._canShowBackVertical = false;
             }
         }
 
@@ -171,6 +175,7 @@ namespace Ennemis
         private IEnumerator Renforts()
         {
             _canWalk = false;
+            b._canShowBackVertical = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isCallingHelp");
@@ -178,25 +183,27 @@ namespace Ennemis
             sound.PlaySound("Renforts");
             for (int i = 0; i < _renforts.Count; i++)
             {
-                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, ennemisContainer.transform);
+                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, _renfortsSpawns[i]);
             }
 
             yield return new WaitForSeconds(0.25f);
 
             for (int ii = 0; ii < _renforts.Count; ii++)
             {
-                Instantiate(_renforts[ii], _renfortsSpawns[ii], ennemisContainer.transform);
+                Instantiate(_renforts[ii], _renfortsSpawns[ii].position, Quaternion.identity, _renfortsSpawns[ii]);
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
             _canGoDelay = true;
             _canWalk = true;
+            b._canFlip = true;
         }
 
         //Effet de "Tir de couverture".
         private IEnumerator TirDeCouverture()
         {
             _canWalk = false;
+            b._canShowBackVertical = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isShooting");
@@ -214,6 +221,8 @@ namespace Ennemis
         private IEnumerator Grenade()
         {
             _canWalk = false;
+            b._canShowBackVertical = false;
+            b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isGrenading");
             _grenadeTarget = _player.transform.position;
@@ -223,12 +232,14 @@ namespace Ennemis
             sound.PlaySound("Création Bombe");
             _canGoDelay = true;
             _canWalk = true;
+            b._canFlip = true;
         }
 
         //Effet de "AttaqueCaC".
         private IEnumerator AttaqueCaC()
         {
             _canWalk = false;
+            b._canShowBackVertical = false;
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isAttacking");
@@ -251,6 +262,7 @@ namespace Ennemis
         private IEnumerator FouDeLaGachette()
         {
             _canWalk = false;
+            b._canShowBackVertical = false;
             b._canFlip = false;
             b._spritRend.flipX = false;
             b.animator.SetBool("IsWalking", false);
@@ -260,7 +272,7 @@ namespace Ennemis
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
                 Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-                sound.PlaySound("Tir Demultiplie");
+                sound.PlaySound("Tir Soldat");
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 

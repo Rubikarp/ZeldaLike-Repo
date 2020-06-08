@@ -15,10 +15,12 @@ namespace Ennemis
         public Vector3 _bossDirection;
         public bool _canFlip = true;
         public bool _canTurn;
+        public bool _canShowBackVertical;
 
         private void Start()
         {
             _canTurn = true;
+            _canShowBackVertical = false;
         }
 
         void Update()
@@ -40,7 +42,16 @@ namespace Ennemis
             if (_canTurn == true)
             {
                 animator.SetFloat("Orientation X", _bossDirection.x);
-                animator.SetFloat("Orientation Y", _bossDirection.y);
+
+                if (_canShowBackVertical == false)
+                {
+                    animator.SetFloat("Orientation Y", _bossDirection.y);
+
+                }
+                else if (_canShowBackVertical == true)
+                {
+                    animator.SetFloat("Orientation Y", -_bossDirection.y);
+                }
             }
             animator.SetFloat("Speed", _rgd2D.velocity.magnitude);
 

@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508a455f218603747b76b02d9cc16fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBetweenActions: 2
+  _delayBetweenActions: 1.5
   _mySelf: {fileID: 1088682750586191931}
-  _fightDistance: 15
+  _fightDistance: 7
   _moveSpeed: 5
   _bossDirection: {x: 0, y: 0, z: 0}
   _retreatDistance: 12
@@ -205,12 +205,13 @@ MonoBehaviour:
   _renforts:
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
   - {fileID: 1603008124410424614, guid: 606624d88e122c54da352e51ea921ec2, type: 3}
-  - {fileID: 2968003353328135410, guid: 53cac998f6c2b054a8e9690c9635f7ab, type: 3}
+  - {fileID: 5163854538428288734, guid: d18e3a67af75cdb4098c3f69e19fa9be, type: 3}
   _renfortsSpawns:
   - {fileID: 1088682750905992788}
   - {fileID: 1088682750659093316}
   - {fileID: 1088682750620355066}
-  ennemisContainer: {fileID: 0}
+  - {fileID: 3069554557068495382}
+  ennemisContainer: {fileID: 2327290030644540903}
   _bullet: {fileID: 1769438472544907946, guid: c30ad2b038fb5c34c982d48aaaf23c58, type: 3}
   _couvertureSpeed: 10
   _couvertureDurationOrigin: 0.75
@@ -272,7 +273,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -294,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossP1: {fileID: 1088682750586192325}
-  lifeSyst: {fileID: 0}
+  lifeSyst: {fileID: 898207896508099318}
   _spritRend: {fileID: 1088682750586191930}
   _rgd2D: {fileID: 5860665599838956294}
   animator: {fileID: 2211983162061513166}
@@ -469,7 +470,7 @@ GameObject:
   - component: {fileID: 140051584953114046}
   m_Layer: 0
   m_Name: HitBox
-  m_TagString: Ennemis
+  m_TagString: Ennemis/HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,6 +505,7 @@ MonoBehaviour:
   _Boss: {fileID: 1088682750586192324}
   _body: {fileID: 5860665599838956294}
   _logoMarked: {fileID: 2624735552620464589}
+  _lifeBar: {fileID: 889376560313224999}
   _isTakingDamage: 0
   _isMarked: 0
   _isVunerable: 1
@@ -547,7 +549,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8053894797105589005}
   - component: {fileID: 889376560313224999}
-  - component: {fileID: 4319486564199920212}
   m_Layer: 5
   m_Name: Boss Health Bar
   m_TagString: Untagged
@@ -626,20 +627,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4319486564199920212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613340892616254501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84a61caf2a01f74a982eadbb32ce42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 889376560313224999}
-  bossLifeSyst: {fileID: 898207896508099318}
 --- !u!1 &2327290030644540903
 GameObject:
   m_ObjectHideFlags: 0

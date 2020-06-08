@@ -87,7 +87,7 @@ namespace Ennemis
                     {
                         Instantiate(_puddle, transform.position - new Vector3(_movingDirection.normalized.x, _movingDirection.normalized.y, 0), transform.rotation);
                         _timer = 0.3f;
-                        sound.PlaySound("Traînée au sol");
+                        sound.PlaySound("Trainée au sol");
                         sound.PlaySound("Bubulles");
                     }
                 }

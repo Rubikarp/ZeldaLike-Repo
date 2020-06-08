@@ -185,7 +185,7 @@ namespace Ennemies
         private IEnumerator Renforts()
         {
             _anim.RenfortsTrigger();
-            sound.PlaySound("Mon Armée");
+            sound.PlaySound("Renforts");
             yield return new WaitForSeconds(_castDelayRenforts);
 
             for (int ii = 0; ii < _ennemiesRenforts.Count; ii++)
@@ -223,13 +223,14 @@ namespace Ennemies
         private IEnumerator LaserPattern()
         {
             _anim.LaserTrigger();
+            sound.PlaySound("Laser");
             yield return new WaitForSeconds(_laserCastTime);
             while (_rotation > -360)
             {
                 LaserBehavior(_laserPos.position, -_laserPos.up);
                 _rotation -= Time.deltaTime * _laserRotateSpeed;
                 _laserPos.rotation = Quaternion.Euler(0f, 0f, _rotation);
-                sound.PlaySound("Laser");
+                //sound.PlaySound("Laser");
                 yield return new WaitForEndOfFrame();
                 Debug.Log("Un fois");
             }
