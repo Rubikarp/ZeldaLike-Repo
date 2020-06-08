@@ -178,14 +178,14 @@ namespace Ennemis
             sound.PlaySound("Renforts");
             for (int i = 0; i < _renforts.Count; i++)
             {
-                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, ennemisContainer.transform);
+                Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, _renfortsSpawns[i]);
             }
 
             yield return new WaitForSeconds(0.25f);
 
             for (int ii = 0; ii < _renforts.Count; ii++)
             {
-                Instantiate(_renforts[ii], _renfortsSpawns[ii], ennemisContainer.transform);
+                Instantiate(_renforts[ii], _renfortsSpawns[ii].position, Quaternion.identity, _renfortsSpawns[ii]);
             }
 
             yield return new WaitForSeconds(0.25f);
@@ -260,7 +260,7 @@ namespace Ennemis
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
                 Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-                sound.PlaySound("Tir Demultiplie");
+                sound.PlaySound("Tir Soldat");
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 
