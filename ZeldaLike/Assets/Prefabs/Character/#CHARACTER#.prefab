@@ -326,7 +326,7 @@ MonoBehaviour:
   _input: {fileID: 426099458386974330}
   _forme: {fileID: 4788644426683925218}
   lowLife: {fileID: 1378720271340930560}
-  playerLife: {fileID: 11400000, guid: dfc7e5a6bb392cc4abf9806f81b00173, type: 2}
+  playerLife: {fileID: 0}
   _respawnPoint: {x: 0, y: 0}
   _playerAttack:
   - P_Character_Stun
@@ -546,7 +546,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 32956
+  m_InstanceId: 92470
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -1776,6 +1776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5187549411130815259}
   - component: {fileID: 931595606482564404}
+  - component: {fileID: 5905067069127469864}
   m_Layer: 8
   m_Name: JumpCollider
   m_TagString: Untagged
@@ -1823,6 +1824,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.793663, y: 2.512518}
   m_EdgeRadius: 0
+--- !u!114 &5905067069127469864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440971291545887423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837f0fe9fecf4694893592fc4c4167fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agileForm: {fileID: 426099458629431352}
 --- !u!1 &5598934971121120552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,7 +2501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forme: {fileID: 4788644426683925218}
-  lifeSystem: {fileID: 11400000, guid: dfc7e5a6bb392cc4abf9806f81b00173, type: 2}
+  lifeSystem: {fileID: 0}
   heavyActif: {fileID: 426099459425250176}
   humanActif: {fileID: 426099459518368250}
   agileActif: {fileID: 426099458629431354}
