@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426099458629431355}
-  - component: {fileID: 426099458629431357}
   - component: {fileID: 426099458629431354}
   m_Layer: 8
   m_Name: AgileForm
@@ -116,22 +115,6 @@ Transform:
   m_Father: {fileID: 426099458913968100}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &426099458629431357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426099458629431352}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b8f520a6f42eba4b8776cf0b9e6ba0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StunZonePrefab: {fileID: 1993359397713845183, guid: 918762e292f17704a89f002c93c1307c,
-    type: 3}
-  _attackContainer: {fileID: 426099458672461376}
-  sound: {fileID: 0}
 --- !u!114 &426099458629431354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +546,7 @@ MonoBehaviour:
   - {x: -0.3, y: -0.5, z: 0}
   m_ShapePathHash: -1324480115
   m_Mesh: {fileID: 0}
-  m_InstanceId: 40480
+  m_InstanceId: 32956
 --- !u!95 &4353306581679868754
 Animator:
   serializedVersion: 3
@@ -698,7 +681,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426099459425250177}
-  - component: {fileID: 426099459425250179}
   - component: {fileID: 426099459425250176}
   m_Layer: 8
   m_Name: HeavyForm
@@ -721,23 +703,6 @@ Transform:
   m_Father: {fileID: 426099458913968100}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &426099459425250179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426099459425250190}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0f39191e6793843a30c909f2af049b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boostedForm: {fileID: 11400000, guid: 1bcd263b63ecb3645a3ddc305b517b74, type: 2}
-  Movement: {fileID: 426099459853713051}
-  sound: {fileID: 0}
-  _boostPourcentage: 30
-  _boostDuration: 3
 --- !u!114 &426099459425250176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +766,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426099459518368251}
-  - component: {fileID: 426099459518368253}
   - component: {fileID: 426099459518368250}
   m_Layer: 8
   m_Name: HumaineForm
@@ -824,22 +788,6 @@ Transform:
   m_Father: {fileID: 426099458913968100}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &426099459518368253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426099459518368248}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21529341e4a12914eb13a1256734655c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _markPrefab: {fileID: 5795848866136646902, guid: 3cb8403910c464344b26ba011375e67e,
-    type: 3}
-  _markContainer: {fileID: 426099457826937178}
-  sound: {fileID: 0}
 --- !u!114 &426099459518368250
 MonoBehaviour:
   m_ObjectHideFlags: 0
