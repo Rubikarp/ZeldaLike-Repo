@@ -32,11 +32,15 @@ namespace Ennemis
         public float _dyingDuration = 0f;
         public float knockbackSensibility = 0.5f;
         public float _markedDuration = 2f;
+        private int _maxLife;
+        [SerializeField] private Vector3 _startingPos;
 
         private void Start()
         {
+            _maxLife = _life;
             _lifeBar.minValue = 0;
             _lifeBar.maxValue = _life;
+            _startingPos = _Boss.transform.position;
         }
 
         private void Update()
@@ -113,6 +117,12 @@ namespace Ennemis
 
             _body.velocity = Vector2.zero;
             _isTakingDamage = false;
+        }
+
+        public void ResetBoss()
+        {
+            _life = _maxLife;
+            _Boss.transform.position = _startingPos;
         }
 
     }
