@@ -7,27 +7,17 @@ namespace Game
 {
     public class CineControlDesactivate : MonoBehaviour
     {
-
         [SerializeField] private InputManager _input;
 
-
-        void Awake()
+        private void OnEnable()
         {
-            
-        }
-        
-        void Start()
-        {
-           _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
-
+            _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+            _input.DesactivateControl();
         }
 
-        void Update()
+        private void OnDisable()
         {
-            
-        }
-        
-        
-        
+            _input.ReActivateControl();
+        }        
     }
 }
