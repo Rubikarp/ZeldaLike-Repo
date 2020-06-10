@@ -22,13 +22,17 @@ namespace Game
         {
             if (_isActive == false)
             {
-                if(_thingToActivate!= null)
+                gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+
+                if (_thingToActivate!= null)
                 {
                     _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = false; 
                 }
             }
             else if (_isActive == true)
             {
+                gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+
                 if (_thingToActivate != null)
                 {
                     _thingToActivate.GetComponent<Scr_LD_ActiveState>()._isActive = true;

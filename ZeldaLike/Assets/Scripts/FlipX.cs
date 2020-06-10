@@ -5,6 +5,11 @@ public class FlipX : MonoBehaviour
     public SpriteRenderer Lesprite;
     private void OnEnable()
     {
-        Lesprite.flipX = !Lesprite.flipX;
+        Lesprite.flipX = true;
+    }
+
+    private void OnDisable()
+    {
+        Lesprite.flipX = false;
     }
 }
