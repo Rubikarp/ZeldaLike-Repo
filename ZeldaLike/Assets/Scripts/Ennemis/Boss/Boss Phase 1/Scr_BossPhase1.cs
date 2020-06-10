@@ -22,6 +22,7 @@ namespace Ennemis
         private SoundManager sound; //Le son
         private bool _canWalk;
         public GameObject _spawnFX;
+        private bool _spriteFliped;
 
         public AnimatorController_BossP1 b = null;
 
@@ -64,6 +65,7 @@ namespace Ennemis
             _delayBetweenShots = _delayBetweenShotsOrigin;
             _couverture = false;
             _canWalk = true;
+            _spriteFliped = false;
         }
         void Awake()
         {
@@ -84,33 +86,54 @@ namespace Ennemis
 
                     if (Vector2.Distance(_mySelf.position, _player.transform.position) > _fightDistance && _canWalk == true)
                     {
+                        b._canFlip = true;
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, _moveSpeed * Time.deltaTime);
-                        b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", true);
                         b._canShowBackVertical = false;
                         //sound.PlaySound("BOSS P1_Pas");
+                        if (_spriteFliped == true)
+                        {
+                            _spriteFliped = false;
+                            b.SpriteFlip(true);
+                        }
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _retreatDistance && Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && _canWalk == true)
                     {
+                        b._canFlip = false;
+                        if (_spriteFliped == false)
+                        {
+                            b.SpriteFlip(true);
+                            _spriteFliped = true;
+                        }
                         _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_moveSpeed * Time.deltaTime);
-                        b.SpriteFlip(true);
                         b.animator.SetBool("IsWalking", true);
                         b._canShowBackVertical = true;
                         //sound.PlaySound("BOSS P1_Pas");
                     }
                     else if (Vector2.Distance(_mySelf.position, _player.transform.position) < _fightDistance && Vector2.Distance(_mySelf.position, _player.transform.position) > _retreatDistance)
                     {
+                        b._canFlip = true;
                         _mySelf.position = _mySelf.position;
-                        b.SpriteFlip(false);
                         b.animator.SetBool("IsWalking", false);
                         b._canShowBackVertical = false;
+                        if (_spriteFliped == true)
+                        {
+                            _spriteFliped = false;
+                            b.SpriteFlip(true);
+                        }
                     }
                 }
                 else if (_delay <= 0)
                 {
+                    if (_spriteFliped == true)
+                    {
+                        b.SpriteFlip(true);
+                    }
                     _delay = _delayBetweenActions;
                     _canGoDelay = false;
                     _actionActive = false;
+                    b._canFlip = true;
+                    _spriteFliped = false;
                 }
             }
 
@@ -156,8 +179,13 @@ namespace Ennemis
             {
                 _couvertureDuration -= Time.deltaTime;
 
+                b._canFlip = false;
                 _mySelf.position = Vector2.MoveTowards(_mySelf.position, _player.transform.position, -_couvertureSpeed * Time.deltaTime);
-                b.SpriteFlip(true);
+                if (_spriteFliped == false)
+                {
+                    b.SpriteFlip(true);
+                    _spriteFliped = true;
+                }
                 b.animator.SetBool("IsWalking", true);
                 b._canShowBackVertical = true;
             }
@@ -168,6 +196,8 @@ namespace Ennemis
                 _canGoDelay = true;
                 _canWalk = true;
                 b._canShowBackVertical = false;
+                _spriteFliped = false;
+                b._canFlip = true;
             }
         }
 
@@ -272,7 +302,7 @@ namespace Ennemis
             {
                 _currentTarget = (_bulletFury[i] - _mySelf.position);
                 Instantiate(_bullet, _mySelf.position + _currentTarget.normalized * _shootingAllonge, _mySelf.rotation, _bulletContainer);
-                sound.PlaySound("Tir Soldat");
+                sound.PlaySound("Tir Demultiplie");
                 yield return new WaitForSeconds(_delayBetweenShots);
             }
 
