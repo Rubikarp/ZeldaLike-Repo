@@ -187,6 +187,7 @@ namespace Ennemies
             _anim.RenfortsTrigger();
             sound.PlaySound("Renforts");
             yield return new WaitForSeconds(_castDelayRenforts);
+            sound.PlaySound("Spawn_Ennemis");
 
             for (int ii = 0; ii < _ennemiesRenforts.Count; ii++)
             {

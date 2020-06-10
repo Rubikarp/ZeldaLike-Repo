@@ -92,6 +92,7 @@ namespace Ennemis
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             _myAnimator = this.GetComponent<Scr_BossP3_AnimatorManager>();
+            sound = SoundManager.Instance;
         }
 
         void Awake()
@@ -186,8 +187,8 @@ namespace Ennemis
             yield return new WaitForSeconds(0.5f);
             //balle basique
             GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_playerDirection.x, _playerDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
+            sound.PlaySound("Tir Soldat");
             bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_playerDirection.normalized);
-            //sound.PlaySound("Création Balle");
 
             _isShooting = false;
 
@@ -204,7 +205,7 @@ namespace Ennemis
                 //Les balles anticipée
                 bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
                 bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
-                //sound.PlaySound("Balle Anticipé");
+                sound.PlaySound("Balle Anticipé");
 
                 _isShooting = false;
 
@@ -231,7 +232,7 @@ namespace Ennemis
                 _willRush = true;
 
                 _myAnimator._animator.SetBool("isPersisting", true);
-                //sound.PlaySound("Load_Pos");
+                sound.PlaySound("Load_Pos");
                 yield return new WaitForSeconds(0.5f);
 
                 _willRush = false;
@@ -241,6 +242,7 @@ namespace Ennemis
                 _spotDistance = Vector2.Distance(_mySelf.position, targetPos);
                 _myAnimator._canDir = false;
                 _collider.enabled = false;
+                sound.PlaySound("Acharnement");
 
                 while (_spotDistance > 0.5f) // boucle durant la durée du dash
                 {
@@ -260,6 +262,7 @@ namespace Ennemis
                     yield return new WaitForEndOfFrame();
                 }
 
+                sound.StopSound("Acharnement");
                 _myAnimator._animator.SetBool("isPersisting", false);
                 _myAnimator._canDir = true;
                 _myBody.velocity = Vector2.zero;
@@ -288,7 +291,6 @@ namespace Ennemis
                 _willLightningRush = true;
 
                 _myAnimator._animator.SetBool("IsComboEclair", true);
-                //sound.PlaySound("Load_Pos");
                 yield return new WaitForSeconds(0.75f);
                 targetPos = _player.position;
 
@@ -354,11 +356,10 @@ namespace Ennemis
 
             _willTPonPlayer = false;
             _myAnimator._animator.SetTrigger("isAngleMort");
-            //sound.PlaySound("Load_Pos");
             _myBody.position = PlayerPos;
+            sound.PlaySound("TeleportationHarceleur");
             yield return new WaitForSeconds(0.25f);
             Instantiate(_angleMortAttack, this.transform.position, this.transform.rotation);
-            //sound.PlaySound("TeleportationHarceleur");
             yield return new WaitForSeconds(1f);
 
             //fin du pattern
@@ -374,7 +375,7 @@ namespace Ennemis
 
             //TP derrière le joueur
             _mySelf.position = _player.position - (new Vector3(_input._CharacterDirection.x, _input._CharacterDirection.y, 0) * 3) ;
-            //sound.PlaySound("TeleportationHarceleur");
+            sound.PlaySound("TeleportationHarceleur");
 
             yield return new WaitForSeconds(0.5f);
 
@@ -385,7 +386,7 @@ namespace Ennemis
             //Les balles anticipée
             GameObject bullet = Instantiate(_projectile, _mySelf.position + new Vector3(_preShootDirection.x, _preShootDirection.y).normalized * _shootingAllonge, _mySelf.rotation);
             bullet.GetComponent<Scr_BossP3_Bullet>().BulletSetDir(_preShootDirection.normalized);
-            //sound.PlaySound("Balle Anticipé");
+            sound.PlaySound("Balle Anticipé");
 
             yield return new WaitForSeconds(1f);
 
@@ -400,7 +401,7 @@ namespace Ennemis
             yield return new WaitForSeconds(1.25f);
 
             Instantiate(_DegageAttack, this.transform.position, this.transform.rotation);
-            //sound.PlaySound("ShockWave");
+            sound.PlaySound("ShockWave");
             yield return new WaitForSeconds(1f);
 
             //fin du pattern
