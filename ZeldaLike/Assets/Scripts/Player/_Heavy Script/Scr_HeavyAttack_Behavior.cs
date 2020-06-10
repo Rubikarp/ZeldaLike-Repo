@@ -7,9 +7,6 @@ namespace Game
 {
     public class Scr_HeavyAttack_Behavior : Scr_Damage
     {
-        [SerializeField] private int _damage = 3;
-        [SerializeField] private float _stunDuration = 0.3f;
-        [SerializeField] private float _knockbackPower = 20f;
         public GameObject _shockWave;
 
         [SerializeField] private Movement_2D_TopDown _PlMovement;

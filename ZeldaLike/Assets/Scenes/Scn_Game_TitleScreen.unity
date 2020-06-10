@@ -562,9 +562,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 92646675}
-    characterCount: 5
+    characterCount: 7
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -1157,6 +1157,162 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &191151515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191151516}
+  - component: {fileID: 191151518}
+  - component: {fileID: 191151517}
+  m_Layer: 5
+  m_Name: Text-Dongeon E1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &191151516
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191151515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2128526925}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &191151517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191151515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 6. Poursuite
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
+  m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4282037244
+  m_fontColor: {r: 0.98823535, g: 0.7019608, b: 0.227451, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 191151517}
+    characterCount: 12
+    spriteCount: 0
+    spaceCount: 1
+    wordCount: 2
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &191151518
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191151515}
+  m_CullTransparentMesh: 0
 --- !u!4 &224641637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8089533722298709368, guid: 180697fb0eac192459f1ae30a685920d,
@@ -2599,7 +2755,7 @@ GameObject:
   - component: {fileID: 464921192}
   - component: {fileID: 464921191}
   m_Layer: 5
-  m_Name: Button-Boss P2
+  m_Name: Button-05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2622,7 +2778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 517, y: 273}
+  m_AnchoredPosition: {x: 292, y: 423}
   m_SizeDelta: {x: 550, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464921191
@@ -2640,9 +2796,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1604103267}
-    m_SelectOnDown: {fileID: 1996472592}
-    m_SelectOnLeft: {fileID: 1424146967}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnDown: {fileID: 2128526922}
+    m_SelectOnLeft: {fileID: 1190058557}
+    m_SelectOnRight: {fileID: 1190058557}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2676,7 +2832,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scn_Game_Exterieur-Retour
+          m_StringArgument: Game_Dongeon-E2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &464921192
@@ -4242,7 +4398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 03/ Donjon E1
+  m_text: 5. Combat final
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
   m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
@@ -4312,7 +4468,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 645959130}
-    characterCount: 14
+    characterCount: 15
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
@@ -4420,6 +4576,7 @@ RectTransform:
   - {fileID: 1424146970}
   - {fileID: 1604103266}
   - {fileID: 464921190}
+  - {fileID: 2128526925}
   - {fileID: 1996472591}
   - {fileID: 1692038446}
   m_Father: {fileID: 1978369943}
@@ -6653,7 +6810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 05/ Poursuite
+  m_text: 4. Donjon E2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
   m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
@@ -6723,10 +6880,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1007012378}
-    characterCount: 13
+    characterCount: 12
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -7228,7 +7385,7 @@ GameObject:
   - component: {fileID: 1190058558}
   - component: {fileID: 1190058557}
   m_Layer: 5
-  m_Name: Button-Dongeon E1
+  m_Name: Button-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7250,8 +7407,8 @@ MonoBehaviour:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1385096039}
     m_SelectOnDown: {fileID: 1424146967}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 1604103267}
+    m_SelectOnLeft: {fileID: 464921191}
+    m_SelectOnRight: {fileID: 464921191}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -7709,7 +7866,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "01 / D\xE9but"
+  m_text: 1. Tutoriel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
   m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
@@ -7779,9 +7936,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1235900151}
-    characterCount: 14
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 2
+    spaceCount: 1
     wordCount: 2
     linkCount: 0
     lineCount: 1
@@ -8271,7 +8428,7 @@ GameObject:
   - component: {fileID: 1385096040}
   - component: {fileID: 1385096039}
   m_Layer: 5
-  m_Name: Button-Beginning
+  m_Name: Button-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8293,8 +8450,8 @@ MonoBehaviour:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1996472592}
     m_SelectOnDown: {fileID: 1190058557}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1604103267}
+    m_SelectOnRight: {fileID: 1604103267}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -8523,7 +8680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 04/ Fin du Donjon
+  m_text: "2. D\xE9but du jeu"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
   m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
@@ -8593,10 +8750,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1408637767}
-    characterCount: 14
+    characterCount: 15
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -8637,7 +8794,7 @@ GameObject:
   - component: {fileID: 1424146968}
   - component: {fileID: 1424146967}
   m_Layer: 5
-  m_Name: Button-Dongeon E2
+  m_Name: Button-03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8659,8 +8816,8 @@ MonoBehaviour:
     m_Mode: 4
     m_SelectOnUp: {fileID: 1190058557}
     m_SelectOnDown: {fileID: 1996472592}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 464921191}
+    m_SelectOnLeft: {fileID: 2128526922}
+    m_SelectOnRight: {fileID: 2128526922}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -8694,7 +8851,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game_Dongeon-E2
+          m_StringArgument: Game-Boss-P1&P2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1424146968
@@ -9309,7 +9466,7 @@ GameObject:
   - component: {fileID: 1604103268}
   - component: {fileID: 1604103267}
   m_Layer: 5
-  m_Name: Button-Boss P1
+  m_Name: Button-04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9332,7 +9489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 316, y: 428}
+  m_AnchoredPosition: {x: 91, y: 578}
   m_SizeDelta: {x: 550, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604103267
@@ -9349,10 +9506,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 1385096039}
+    m_SelectOnUp: {fileID: 1996472592}
     m_SelectOnDown: {fileID: 464921191}
-    m_SelectOnLeft: {fileID: 1190058557}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1385096039}
+    m_SelectOnRight: {fileID: 1385096039}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9386,7 +9543,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game-Boss-P1&P2
+          m_StringArgument: Scn_Game_Exterieur
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1604103268
@@ -9770,7 +9927,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 679741353}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -9865,9 +10022,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1692038447}
-    characterCount: 58
+    characterCount: 61
     spriteCount: 0
-    spaceCount: 9
+    spaceCount: 10
     wordCount: 10
     linkCount: 0
     lineCount: 6
@@ -10208,7 +10365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 02/ Donjon E0
+  m_text: 3. Donjon E1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a43120f4eb838c49b7628f3bbc5a9c8, type: 2}
   m_sharedMaterial: {fileID: 4842632998470864277, guid: 7a43120f4eb838c49b7628f3bbc5a9c8,
@@ -10278,7 +10435,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1846255191}
-    characterCount: 14
+    characterCount: 12
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
@@ -10920,7 +11077,7 @@ RectTransform:
   m_Children:
   - {fileID: 92646674}
   m_Father: {fileID: 679741353}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -10944,7 +11101,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1424146967}
     m_SelectOnDown: {fileID: 1385096039}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 2128526922}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11191,6 +11348,135 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1384910132}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2128526921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128526925}
+  - component: {fileID: 2128526924}
+  - component: {fileID: 2128526923}
+  - component: {fileID: 2128526922}
+  m_Layer: 5
+  m_Name: Button-06
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128526922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128526921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 464921191}
+    m_SelectOnDown: {fileID: 1996472592}
+    m_SelectOnLeft: {fileID: 1424146967}
+    m_SelectOnRight: {fileID: 1424146967}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.5, g: 0.5, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 0.5019608, g: 0.5019608, b: 0, a: 1}
+    m_DisabledColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.5
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2128526923}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 679741354}
+        m_MethodName: GoTO
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Scn_Game_Exterieur-Retour
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2128526923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128526921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: cc1ee6f9863048c459a383a46804c587, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 1
+  m_PixelsPerUnitMultiplier: 20
+--- !u!222 &2128526924
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128526921}
+  m_CullTransparentMesh: 0
+--- !u!224 &2128526925
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128526921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 191151516}
+  m_Father: {fileID: 679741353}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 517, y: 273}
+  m_SizeDelta: {x: 550, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8089533722116470557
 PrefabInstance:
   m_ObjectHideFlags: 0
