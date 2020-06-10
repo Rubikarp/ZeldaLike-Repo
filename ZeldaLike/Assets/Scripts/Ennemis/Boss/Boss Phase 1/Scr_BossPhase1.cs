@@ -209,8 +209,9 @@ namespace Ennemis
             b._canFlip = false;
             b.animator.SetBool("IsWalking", false);
             b.animator.SetTrigger("isCallingHelp");
-            yield return new WaitForSeconds(0.5f);
             sound.PlaySound("Renforts");
+            yield return new WaitForSeconds(0.5f);
+            sound.PlaySound("Spawn_Ennemis");
             for (int i = 0; i < _renforts.Count; i++)
             {
                 Instantiate(_spawnFX, _renfortsSpawns[i].position, Quaternion.identity, _renfortsSpawns[i]);
