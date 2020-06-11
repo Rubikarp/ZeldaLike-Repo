@@ -18,6 +18,8 @@ namespace Ennemis
         [Header("Data")]
         public GameObject Dummy = null;
         public Rigidbody2D body = null;
+        public float _soundDelay;
+        public bool _soundPlayed;
 
         private SoundManager sound; //Le son
 
@@ -36,15 +38,22 @@ namespace Ennemis
         {
             if (collision.gameObject.CompareTag("Knife"))
             {
-                GetMarked();
-                sound.PlaySound("Activation Dummy");
+                StartCoroutine(GetMarked());
             }
         }
 
-        public void GetMarked()
+        public IEnumerator GetMarked()
         {
             _isMarked = true;
             _logoMarked.SetActive(true);
+
+            if (_soundPlayed == false)
+            {
+                yield return new WaitForSeconds(_soundDelay);
+
+                sound.PlaySound("Activation Dummy");
+                _soundPlayed = true;
+            }
         }
 
         /*void Update ()
