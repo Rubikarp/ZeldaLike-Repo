@@ -11,6 +11,7 @@ namespace Ennemis
         [Header("Componnents")]
         public GameObject _Boss = null;
         public Rigidbody2D _body = null;
+        public SpriteRenderer sprite = null;
         public GameObject _logoMarked = null;
         public Slider _lifeBar = null;
         [Space(10)]
@@ -105,6 +106,8 @@ namespace Ennemis
             _isTakingDamage = true;
             _life -= damage;
 
+            sprite.color = Color.red;
+
             while (0 < stunDuration) // boucle durant la durée du dash
             {
                 stunDuration -= Time.deltaTime;
@@ -114,6 +117,8 @@ namespace Ennemis
                 // Retour à la prochaine frame
                 yield return new WaitForEndOfFrame();
             }
+
+            sprite.color = Color.white;
 
             _body.velocity = Vector2.zero;
             _isTakingDamage = false;
