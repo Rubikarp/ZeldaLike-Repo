@@ -18,6 +18,8 @@ namespace Game
             {
                 collision.gameObject.GetComponent<Scr_PlayerLifeSystem>().MaxHeal();
 
+                sound.PlaySound("Amélioration Vie");
+
                 Destroy(this.gameObject);
             }
         }
