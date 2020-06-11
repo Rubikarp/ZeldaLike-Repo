@@ -176,7 +176,6 @@ namespace Game
         private void WillDie()
         {
             isDead = true;
-
         }
 
         public void Respawn()
