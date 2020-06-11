@@ -18,6 +18,8 @@ namespace Game
             {
                 collision.gameObject.GetComponent<Scr_PlayerLifeSystem>().Heal();
 
+                sound.PlaySound("Coeur ramassé");
+
                 Destroy(this.gameObject);
             }
         }

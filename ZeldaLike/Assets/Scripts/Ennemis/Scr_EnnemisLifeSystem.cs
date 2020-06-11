@@ -31,6 +31,7 @@ namespace Ennemis
         public float knockbackSensibility = 1f;
         [Range(0, 100)] public float _healSpawnChance = 25f;
         private bool haveLoot = false;
+        private float _randomValue;
 
         private SoundManager sound;
 
@@ -41,14 +42,16 @@ namespace Ennemis
 
         private void Update()
         {
-            if (_life <= 0)
+            if (_life <= 0 && !haveLoot)
             {
+                _randomValue = Random.Range(0, 100);
                 _isDead = true;
+                Debug.Log(_randomValue);
+                haveLoot = true;
 
-                if(Random.Range(0, 100) < _healSpawnChance && !haveLoot)
+                if (_randomValue < _healSpawnChance)
                 {
                     Instantiate(_healObject, transform.position, transform.rotation);
-                    haveLoot = true;
                 }
 
                 Destroy(Ennemis, _dyingDuration);

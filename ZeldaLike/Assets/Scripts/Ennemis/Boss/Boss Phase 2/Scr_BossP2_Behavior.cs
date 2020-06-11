@@ -306,13 +306,14 @@ namespace Ennemies
             }
 
             _anim.AspirationTrigger(false);
+            sound.StopSound("Aspiration");
+            sound.PlaySound("Expulsion");
             yield return new WaitForSeconds(0.25f);
 
             while (repulseTime > 0)
             {
                 Collider2D[] playerToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _playerMask);
                 Collider2D[] enemyToRepulse = Physics2D.OverlapCircleAll(transform.position, _aspirationRange, _enemyMask);
-                sound.PlaySound("Expulsion");
 
 
                 for (int m = 0; m < playerToRepulse.Length; m++)
