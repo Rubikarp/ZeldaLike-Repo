@@ -337,10 +337,10 @@ namespace Ennemies
         private IEnumerator CoupMassif()
         {
             _anim.CoupMassifTrigger();
-            sound.PlaySound("Chargement Frappe");
-            yield return new WaitForSeconds(0.75f);
-            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 10, _coupMassifPos.rotation, _coupMassifPos);
             sound.PlaySound("Choc Massif");
+            yield return new WaitForSeconds(0.75f);
+            Instantiate(_coupMassifHitbox, _coupMassifPos.position + _bossDirection.normalized * 33, _coupMassifPos.rotation, _coupMassifPos);
+            sound.PlaySound("Chargement Frappe");
             yield return new WaitForSeconds(_massiveDelay);
 
             yield return new WaitForSeconds(_delayBetweenPatterns);

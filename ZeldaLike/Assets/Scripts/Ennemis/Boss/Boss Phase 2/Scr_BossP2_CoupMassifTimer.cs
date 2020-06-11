@@ -9,41 +9,37 @@ namespace Ennemies
         public float _hitDelay;
         public float _dmgLifeTime;
         public GameObject _hitbox;
-        private bool _isActive;
+        public GameObject _rectangleJaune;
+        public GameObject _rectangleBlanc1;
+        public GameObject _rectangleBlanc2;
+        public GameObject _joliSprite;
 
         // Start is called before the first frame update
         void Start()
         {
-            _isActive = false;
             GetComponentInParent<Scr_BossP2_CoupMAssifPos>()._attackSet = true;
+            StartCoroutine(BoomBoom());
         }
 
-        // Update is called once per frame
-        void Update()
+        private IEnumerator BoomBoom()
         {
-            if (_isActive == false)
-            {
-                if (_hitDelay > 0)
-                {
-                    _hitDelay -= Time.deltaTime;
-                }
-                else if (_hitDelay <= 0)
-                {
-                    _hitbox.SetActive(true);
-                    _isActive = true;
-                }
-            }
-            else if (_isActive == true)
-            {
-                if (_dmgLifeTime > 0)
-                {
-                    _dmgLifeTime -= Time.deltaTime;
-                }
-                else if (_dmgLifeTime <= 0)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            yield return new WaitForSeconds(_hitDelay);
+            _hitbox.SetActive(true);
+
+            _joliSprite.SetActive(false);
+            _rectangleJaune.SetActive(true);
+            yield return new WaitForSeconds(0.10f);
+            _rectangleJaune.SetActive(false);
+            _rectangleBlanc1.SetActive(true);
+            yield return new WaitForSeconds(0.10f);
+            _rectangleBlanc1.SetActive(false);
+            _rectangleJaune.SetActive(true);
+            yield return new WaitForSeconds(0.10f);
+            _hitbox.SetActive(false);
+            _rectangleJaune.SetActive(false);
+            _rectangleBlanc2.SetActive(true);
+            yield return new WaitForSeconds(0.10f);
+            Destroy(gameObject);
         }
     }
 }
