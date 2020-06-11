@@ -16,14 +16,9 @@ namespace Game
         {
             if (collision.gameObject.CompareTag("Player/HurtBox"))
             {
-                Destroy(this.gameObject);
+                collision.gameObject.GetComponent<Scr_PlayerLifeSystem>().MaxHeal();
 
-                if(playerLife.maxlife < 9)
-                {
-                    playerLife.maxlife = playerLife.maxlife + 1;
-                    playerLife.life = playerLife.maxlife;
-                    sound.PlaySound("Amélioration Vie");
-                }
+                Destroy(this.gameObject);
             }
         }
     }

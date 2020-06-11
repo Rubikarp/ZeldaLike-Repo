@@ -4,8 +4,6 @@ namespace Game
 {
     public class Scr_Items_Soin : MonoBehaviour
     {
-        public int _regenerationCapacity = 1;
-
         public PlayerLife playerLife;
         private SoundManager sound; //Le son
 
@@ -18,13 +16,9 @@ namespace Game
         {
             if (collision.gameObject.CompareTag("Player/HurtBox"))
             {
-                Destroy(this.gameObject);
+                collision.gameObject.GetComponent<Scr_PlayerLifeSystem>().Heal();
 
-                if (playerLife.life < playerLife.maxlife)
-                {
-                    playerLife.life += _regenerationCapacity;
-                    sound.PlaySound("Coeur ramassé");
-                }
+                Destroy(this.gameObject);
             }
         }
     }

@@ -17,6 +17,7 @@ namespace Game
         public Volume lowLife = null;
         private SoundManager sound;
         public PlayerLife playerLife;
+        public Scr_Player_HUD hud;
 
         [Header("Statistiques")]
         public Vector2 _respawnPoint = Vector2.zero;
@@ -103,6 +104,11 @@ namespace Game
             _isTakingDamage = true;
             playerLife.life -= damage;
 
+            if (Time.timeScale != 0)
+            {
+                hud.lifeBarUpdate(playerLife.life);
+            }
+
             if (_scrShake != null)
             {
                 _scrShake.trauma = 0.5f;
@@ -178,6 +184,35 @@ namespace Game
             _animator.Respawn();
             _input.ReActivateControl();
             body.position = _respawnPoint;
+        }
+
+        public void Heal()
+        {
+            if (playerLife.life < playerLife.maxlife)
+            {
+                playerLife.life ++;
+                sound.PlaySound("Coeur ramassé");
+            }
+
+            if (Time.timeScale != 0)
+            {
+                hud.lifeBarUpdate(playerLife.life);
+            }
+        }
+
+        public void MaxHeal()
+        {
+            if (playerLife.maxlife < 9)
+            {
+                playerLife.maxlife = playerLife.maxlife + 1;
+                playerLife.life = playerLife.maxlife;
+                sound.PlaySound("Amélioration Vie");
+            }
+
+            if (Time.timeScale != 0)
+            {
+                hud.lifeBarUpdate(playerLife.life);
+            }
         }
     }
 }

@@ -88,41 +88,41 @@ namespace Ennemies
                     {
                         case Pattern.Rien:
                             NextDirection();
-                            Debug.Log("Rien");
+                            //Debug.Log("Rien");
                             break;
 
                         case Pattern.Renforts:
                             _inPattern = true;
                             StartCoroutine(Renforts());
-                            Debug.Log("Renforts");
+                            //Debug.Log("Renforts");
                             NextDirection();
                             break;
 
                         case Pattern.MonArmee:
                             _inPattern = true;
                             StartCoroutine(MonArmee());
-                            Debug.Log("MonArmée");
+                            //Debug.Log("MonArmée");
                             NextDirection();
                             break;
 
                         case Pattern.Laser:
                             _inPattern = true;
                             StartCoroutine(LaserPattern());
-                            Debug.Log("Laser");
+                            //Debug.Log("Laser");
                             NextDirection();
                             break;
 
                         case Pattern.Aspiration:
                             _inPattern = true;
                             StartCoroutine(Aspiration(_aspirationTime, _repulseTime));
-                            Debug.Log("Aspiration");
+                            //Debug.Log("Aspiration");
                             NextDirection();
                             break;
 
                         case Pattern.CoupMassif:
                             _inPattern = true;
                             StartCoroutine(CoupMassif());
-                            Debug.Log("CoupMassif");
+                            //Debug.Log("CoupMassif");
                             NextDirection();
                             break;
                     }
@@ -274,8 +274,6 @@ namespace Ennemies
                 _laserGraph.SetPosition(0, origin);
                 _laserGraph.SetPosition(1, hitInfo.point);
 
-                Debug.Log(hitInfo.transform.name);
-                Debug.Log(hitInfo.transform.position);
             }
             else
             {

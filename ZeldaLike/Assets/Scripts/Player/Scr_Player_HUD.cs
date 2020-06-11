@@ -45,15 +45,10 @@ namespace Game
 
         private void Update()
         {
-            if(Time.timeScale != 0)
-            {
-                lifeBarUpdate(lifeSystem.life);
-            }
-
             RefreshInput();
         }
 
-        private void lifeBarUpdate(int health)
+        public void lifeBarUpdate(int health)
         {
             switch (health)
             {

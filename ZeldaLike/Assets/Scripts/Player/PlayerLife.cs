@@ -9,5 +9,11 @@ namespace Game
     {
         public int life = 6;
         public int maxlife = 6;
+
+        public void RebbotLife()
+        {
+            life = 6;
+            maxlife = 6;
+        }
     }
 }
