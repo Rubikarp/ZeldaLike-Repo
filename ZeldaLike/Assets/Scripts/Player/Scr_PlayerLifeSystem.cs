@@ -38,6 +38,10 @@ namespace Game
         private void Start()
         {
             _input = GameObject.FindGameObjectWithTag("GameController").GetComponent<InputManager>();
+            if (Time.timeScale != 0)
+            {
+                hud.lifeBarUpdate(playerLife.life);
+            }
         }
 
         private void Update()

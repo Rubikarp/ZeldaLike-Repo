@@ -28,6 +28,11 @@ namespace Game
         //Musique
         public void PlayMusic(string name)
         {
+            foreach (Music musique in musics)
+            {
+                musique.source.Stop();
+            }
+
             Music son = Array.Find(musics, sound => sound.name == name);
             son.source.Play();
         }
