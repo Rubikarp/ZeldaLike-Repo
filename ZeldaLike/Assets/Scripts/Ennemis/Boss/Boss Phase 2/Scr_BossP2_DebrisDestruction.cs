@@ -29,7 +29,7 @@ namespace Ennemies
             if (collision.gameObject.CompareTag("Environment"))
             {
                 Destroy(collision.gameObject);
-                sound.PlaySound("Destruction Debris");
+                //sound.PlaySound("Destruction débris");
             }
         }
     }
