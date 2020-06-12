@@ -22,6 +22,7 @@ namespace Ennemis
         public Rigidbody2D body = null;
         public GameObject _healObject;
         public SpriteRenderer SpriteRenderer;
+        public GameObject _hitFX;
 
         [Header("Statistiques")]
         public int _life = 5;
@@ -108,6 +109,7 @@ namespace Ennemis
             _isTakingDamage = true;
             _life -= damage;
             SpriteRenderer.color = Color.red;
+            Instantiate(_hitFX, transform.position, Quaternion.identity, transform);
 
             while (0 < stunDuration) // boucle durant la durée du dash
             {
