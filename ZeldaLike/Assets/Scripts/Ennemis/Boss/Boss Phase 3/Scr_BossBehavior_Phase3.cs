@@ -303,6 +303,7 @@ namespace Ennemis
                 _mySelf.rotation = Quaternion.Euler(0f, 0f, _rushRotation + 90);
                 _collider.enabled = false;
                 _dashCollider.enabled = true;
+                sound.PlaySound("ComboEclairBoss");
 
                 while (!touchLimit) // boucle durant la durée du dash
                 {
@@ -330,6 +331,7 @@ namespace Ennemis
                     yield return new WaitForEndOfFrame();
                 }
 
+                sound.StopSound("ComboEclairBoss");
                 _mySelf.rotation = Quaternion.Euler(0f, 0f, 0f);
                 _myBody.velocity = Vector2.zero;
                 _myAnimator._animator.SetBool("IsComboEclair", false);
