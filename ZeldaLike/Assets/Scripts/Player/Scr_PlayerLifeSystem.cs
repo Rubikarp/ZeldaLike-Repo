@@ -18,6 +18,7 @@ namespace Game
         private SoundManager sound;
         public PlayerLife playerLife;
         public Scr_Player_HUD hud;
+        public GameObject _hitFX;
 
         [Header("Statistiques")]
         public Vector2 _respawnPoint = Vector2.zero;
@@ -107,6 +108,7 @@ namespace Game
         {
             _isTakingDamage = true;
             playerLife.life -= damage;
+            Instantiate(_hitFX, transform.position, Quaternion.identity, transform);
 
             if (Time.timeScale != 0)
             {

@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 4688358957158330838}
   - component: {fileID: 4688358957158330836}
   - component: {fileID: 4688358957158330837}
+  - component: {fileID: 3606569259240399115}
   m_Layer: 0
   m_Name: ColliderCombat4
   m_TagString: Environment
@@ -174,6 +175,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 53.799927, y: 1.8624763}
   m_EdgeRadius: 0
+--- !u!114 &3606569259240399115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688358957158330839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f5ffb96133f854da515ac957828443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4688358957228467713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,15 +1535,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 455a408cb34358f46a8423bc2f95a8af, type: 3}
---- !u!1 &3242188168162406855 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7921538551037002539, guid: 455a408cb34358f46a8423bc2f95a8af,
-    type: 3}
-  m_PrefabInstance: {fileID: 4688358956862862060}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3242188168162406873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7921538551037002549, guid: 455a408cb34358f46a8423bc2f95a8af,
+    type: 3}
+  m_PrefabInstance: {fileID: 4688358956862862060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3242188168162406855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7921538551037002539, guid: 455a408cb34358f46a8423bc2f95a8af,
     type: 3}
   m_PrefabInstance: {fileID: 4688358956862862060}
   m_PrefabAsset: {fileID: 0}

@@ -168,6 +168,7 @@ namespace Game
             _animator.TriggerAttack();
             _canAttackTime = _canAttackTimer;
             _canAttack = false;
+            _input.DesactivateControl();
 
             Instantiate(_attackObj, _attackPos.position, _attackPos.rotation, _attackPos.transform);
             
@@ -178,6 +179,8 @@ namespace Game
 
                 yield return new WaitForEndOfFrame();
             }
+
+            _input.ReActivateControl();
         }
 
         private void OnDisable()

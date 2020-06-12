@@ -20,7 +20,7 @@ public class Scr_CollisionDetectionJump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Environment"))
+        if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Vide"))
         {
             _agileForm.GetComponent<Actif_AgileAttack>()._stopJump = true;
             Debug.Log("Enviro found");

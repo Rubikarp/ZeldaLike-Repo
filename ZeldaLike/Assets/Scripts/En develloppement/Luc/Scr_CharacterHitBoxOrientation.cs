@@ -36,7 +36,7 @@ namespace Game
             }
             else if (_formHandler.GetComponent<Scr_FormeHandler>()._switchForm == Scr_FormeHandler.Forme.Heavy)
             {
-                _mySelf.localScale = new Vector3(1.75f, 1f, 1);
+                _mySelf.localScale = new Vector3(1.25f, 0.75f, 1);
             }
             _playerDir = _input._CharacterDirection;
             _rotZ = Mathf.Atan2(_playerDir.y, _playerDir.x) * Mathf.Rad2Deg;
