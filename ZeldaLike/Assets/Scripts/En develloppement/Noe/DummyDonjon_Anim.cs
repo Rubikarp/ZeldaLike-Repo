@@ -7,6 +7,7 @@ namespace Ennemis
         Animator dummyAnim;
 
         private bool _isMarked;
+        private bool _headFallen;
 
         // Start is called before the first frame update
         void Start()
@@ -14,6 +15,8 @@ namespace Ennemis
             dummyAnim = GetComponent<Animator>();
 
             _isMarked = GetComponentInChildren<Scr_DummyLifeSystem>()._isMarked;
+
+            _headFallen = false;
         }
 
         // Update is called once per frame
@@ -21,9 +24,10 @@ namespace Ennemis
         {
             _isMarked = GetComponentInChildren<Scr_DummyLifeSystem>()._isMarked;
 
-            if (_isMarked == true)
+            if (_isMarked == true && _headFallen == false)
             {
-                dummyAnim.SetBool("Dummy", _isMarked);
+                dummyAnim.SetTrigger("HeadOff");
+                _headFallen = true;
             }
         }
     }
