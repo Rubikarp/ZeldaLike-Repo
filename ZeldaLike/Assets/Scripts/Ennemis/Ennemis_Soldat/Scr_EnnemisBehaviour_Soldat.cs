@@ -108,6 +108,7 @@ namespace Ennemis
             animator.animator.SetBool("isShooting", true);
             yield return new WaitForSeconds(0.2f);
 
+            sound.PlaySound("Tir Soldat");
             Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
 
             yield return new WaitForSeconds(_shootingRepos);

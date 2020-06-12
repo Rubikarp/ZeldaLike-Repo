@@ -113,6 +113,7 @@ namespace Ennemis
 
             yield return new WaitForSeconds(0.3f);
 
+            sound.PlaySound("Balle Anticipé");
             GameObject bullet = Instantiate(_projectile, _mySelf.position + _targetDirection.normalized * _shootingAllonge, _mySelf.rotation, _mySelf);
 
             bullet.GetComponent<Scr_ProjectileBehaviour_Ingénieur>().BulletSetDir(_targetDirection.normalized);

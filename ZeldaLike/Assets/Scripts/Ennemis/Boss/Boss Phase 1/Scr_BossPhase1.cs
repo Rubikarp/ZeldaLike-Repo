@@ -23,6 +23,7 @@ namespace Ennemis
         private bool _canWalk;
         public GameObject _spawnFX;
         private bool _spriteFliped;
+        private Rigidbody2D _myBody;
 
         public AnimatorController_BossP1 b = null;
 
@@ -57,6 +58,7 @@ namespace Ennemis
         // Start is called before the first frame update
         void Start()
         {
+            _myBody = GetComponent<Rigidbody2D>();
             _player = GameObject.FindGameObjectWithTag("Player");
             _actionActive = false;
             _delay = _delayBetweenActions;
@@ -311,6 +313,15 @@ namespace Ennemis
             b._canFlip = true;
             _canGoDelay = true;
             _canWalk = true;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Environment"))
+            {
+                _mySelf.position = _mySelf.position;
+                _couvertureDuration = 0;
+            }
         }
 
 
