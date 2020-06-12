@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4137893546403785017}
   - component: {fileID: 4137893546403785016}
-  - component: {fileID: 4137893546403785018}
   - component: {fileID: 4137893546403785019}
   m_Layer: 0
   m_Name: chemin1
@@ -69,9 +68,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 14949159
+  m_SortingLayer: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e8776e876e4a1804fbac77445405227c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -83,43 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4137893546403785018
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137893546403785023}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.8, y: 4.1}
-    newSize: {x: 2.8, y: 4.1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1, y: 2.05}
-      - {x: -1.4, y: 1.65}
-      - {x: -1.3761711, y: 0.3485279}
-      - {x: -1.0897675, y: -0.3865986}
-      - {x: -1.4729958, y: -0.5413475}
-      - {x: -1.3833122, y: -1.3827896}
-      - {x: -0.8201752, y: -2.0865803}
-      - {x: 0.41603088, y: -2.0499992}
-      - {x: 1.049717, y: -1.6167202}
-      - {x: 0.99141693, y: 1.0268564}
-      - {x: 1.410366, y: 1.0269651}
-      - {x: 1.366642, y: 2.06668}
 --- !u!114 &4137893546403785019
 MonoBehaviour:
   m_ObjectHideFlags: 0
