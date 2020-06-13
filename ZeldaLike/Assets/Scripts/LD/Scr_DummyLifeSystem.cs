@@ -38,31 +38,31 @@ namespace Ennemis
         {
             if (collision.gameObject.CompareTag("Knife"))
             {
-                StartCoroutine(GetMarked());
+                GetMarked();
             }
         }
 
-        public IEnumerator GetMarked()
+        public void GetMarked()
         {
             _isMarked = true;
             _logoMarked.SetActive(true);
-
-            if (_soundPlayed == false)
-            {
-                yield return new WaitForSeconds(_soundDelay);
-
-                sound.PlaySound("Activation Dummy");
-                _soundPlayed = true;
-            }
         }
 
-        /*void Update ()
+        void Update ()
         {
-            if (_isMarked == true)
+            if (_isMarked && !_soundPlayed)
             {
-                dummyAnimator.SetBool("Dummy", _isMarked);dummyAnimator.SetBool("Dummy", _isMarked);
+                if(_soundDelay > 0)
+                {
+                    _soundDelay -= Time.deltaTime;
+                }
+                else if(_soundDelay <= 0)
+                {
+                    sound.PlaySound("Activation Dummy");
+                    _soundPlayed = true;
+                }
             }
-        }*/
+        }
 
         public IEnumerator TakingDamage(int damage, Rigidbody2D body, Vector2 knockBackDirection, float knockbackSpeed, float stunDuration)
         {
