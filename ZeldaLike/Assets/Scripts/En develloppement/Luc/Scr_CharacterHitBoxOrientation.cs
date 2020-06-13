@@ -44,7 +44,6 @@ namespace Game
         void RotateCharacter()
         {
             LeanTween.rotateZ(_mySelf.gameObject, _rotZ, 0.4f);
-            Debug.Log("RotateCharacter");
         }
 
     }

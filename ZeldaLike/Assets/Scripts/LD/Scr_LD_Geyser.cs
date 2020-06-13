@@ -25,14 +25,12 @@ namespace Game
             sound = SoundManager.Instance;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             _startRepulse = false;
             _repulseDelay = _repulseDelayOrigin;
         }
 
-        // Update is called once per frame
         void Update()
         {
             // Sert de délai commun à l'explosion : lorsque le geyser est activé, son explosion affecte tous ceux qui sont dessus, même s'ils sont arrivés après l'activation.
