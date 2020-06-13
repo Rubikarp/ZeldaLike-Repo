@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Management;
 
 namespace Game
@@ -17,13 +15,12 @@ namespace Game
         {
             _input = InputManager.Instance;
         }
-        // Start is called before the first frame update
-        void Start()
-        {
 
+        private void Start()
+        {
+            InvokeRepeating("RotateCharacter", 0f, 0.5f);
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (_formHandler.GetComponent<Scr_FormeHandler>()._switchForm == Scr_FormeHandler.Forme.Humain)
@@ -39,9 +36,17 @@ namespace Game
                 _mySelf.localScale = new Vector3(1.25f, 0.75f, 1);
             }
             _playerDir = _input._CharacterDirection;
+            
             _rotZ = Mathf.Atan2(_playerDir.y, _playerDir.x) * Mathf.Rad2Deg;
-            _mySelf.rotation = Quaternion.Euler(0f, 0f, _rotZ);
+            //_mySelf.rotation = Quaternion.Euler(0f, 0f, _rotZ);
         }
+
+        void RotateCharacter()
+        {
+            LeanTween.rotateZ(_mySelf.gameObject, _rotZ, 0.4f);
+            Debug.Log("RotateCharacter");
+        }
+
     }
 }
 

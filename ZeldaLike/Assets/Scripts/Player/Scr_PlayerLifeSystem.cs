@@ -186,6 +186,11 @@ namespace Game
             isDead = false;
             Dying = false;
 
+            if (Time.timeScale != 0)
+            {
+                hud.lifeBarUpdate(playerLife.life);
+            }
+
             _animator.Respawn();
             _input.ReActivateControl();
             body.position = _respawnPoint;
