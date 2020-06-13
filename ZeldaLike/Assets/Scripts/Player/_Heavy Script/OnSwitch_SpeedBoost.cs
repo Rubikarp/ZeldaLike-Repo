@@ -18,23 +18,5 @@ namespace Game
         [Range(0, 200)]
         public float _boostPourcentage = 40;
         public float _boostDuration = 3;
-
-        private void OnEnable()
-        {
-            if (!Movement._isBoosted)
-            {
-                Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));
-            }
-        }
-
-        public void SpeedBoost()
-        {
-            sound.PlaySound("OnSwitchCharge");
-
-            if (!Movement._isBoosted)
-            {
-                Movement.StartCoroutine(Movement.SpeedBoostCoroutine(_boostPourcentage, _boostDuration, _boostedForm));
-            }
-        }
     }
 }

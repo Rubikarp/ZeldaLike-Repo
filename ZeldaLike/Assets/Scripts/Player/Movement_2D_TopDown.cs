@@ -93,26 +93,6 @@ namespace Game
                 }
             }
         }
-
-        public IEnumerator SpeedBoostCoroutine(float boostPourcentage, float boostDuration, Data_PlayerForme _boostedForm)
-        {
-            lifeSyst._isVunerable = false;
-
-            float basedSpeed = _boostedForm._maxSpeed;
-            float boostedSpeed = basedSpeed + ((basedSpeed / 100) * boostPourcentage);
-
-            _isBoosted = true;
-            _boostedForm._maxSpeed = boostedSpeed;
-
-            yield return new WaitForSeconds(boostDuration);
-
-            _boostedForm._maxSpeed = basedSpeed;
-            _isBoosted = false;
-
-            lifeSyst._isVunerable = true;
-
-            yield return null;
-        }
     
         void GroundSound()
         {

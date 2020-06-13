@@ -186,8 +186,9 @@ namespace Game
         private void OnDisable()
         {
             _HurtBox.SetActive(true);
-            lifeSystPlayer._isVunerable = true;
             _canAttack = true;
+            lifeSystPlayer._isTakingDamage = false;
+            lifeSystPlayer._isVunerable = true;
         }
 
     }

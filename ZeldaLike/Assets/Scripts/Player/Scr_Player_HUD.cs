@@ -43,11 +43,6 @@ namespace Game
             switchDuration = _forme._switchCooldown - 0.1f;
         }
 
-        private void Update()
-        {
-            RefreshInput();
-        }
-
         public void lifeBarUpdate(int health)
         {
             switch (health)
@@ -251,6 +246,7 @@ namespace Game
             _formeHeavy.LeanRotateZ(0, switchDuration);
         }
 
+        /*
         private void RefreshInput()
         {
             if (_forme._switchForm == Scr_FormeHandler.Forme.Humain)
@@ -289,5 +285,6 @@ namespace Game
                 _markButton.color = inactiveColor;
             }
         }
+        */
     }
 }

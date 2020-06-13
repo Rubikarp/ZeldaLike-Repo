@@ -78,7 +78,6 @@ namespace Game
                     if (_heavy == null)
                     { _heavy = GameObject.FindGameObjectWithTag("Player/Forme/Heavy").GetComponent<OnSwitch_SpeedBoost>(); }
 
-                    _heavy.SpeedBoost();
                     Destroy(gameObject, 0.2f);
 
                 }

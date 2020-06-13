@@ -13,6 +13,7 @@ namespace Game
         [SerializeField] private InputManager _input = null;
         [SerializeField] private AnimatorManager_Player _animator = null;
         [SerializeField] private SoundManager sound;
+        [SerializeField] private Scr_PlayerLifeSystem lifeSystPlayer = null;
 
         public GameObject _attackObj;
         public Transform _attackContainer;
@@ -74,6 +75,8 @@ namespace Game
         private void OnEnable()
         {
             _canAttack = true;
+            lifeSystPlayer._isTakingDamage = false;
+            lifeSystPlayer._isVunerable = true;
         }
     }
 }

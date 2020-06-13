@@ -13,6 +13,10 @@ namespace Graphique
         {
             _sprRender = this.GetComponent<SpriteRenderer>();
 
+            if(_pos == null)
+            {
+                this.GetComponent<Transform>();
+            }
             refreshSortingOrder(_pos.position.y);
         }
 

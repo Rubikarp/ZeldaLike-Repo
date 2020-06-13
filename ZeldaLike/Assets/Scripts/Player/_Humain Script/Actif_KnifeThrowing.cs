@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Management;
+using Game;
 
 public class Actif_KnifeThrowing : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     [SerializeField] private InputManager _input = null;
     [SerializeField] private AnimatorManager_Player _animator = null;
     [SerializeField] private SoundManager sound;
+    [SerializeField] private Scr_PlayerLifeSystem plLife;
 
     [Space(10)]
 
@@ -61,5 +63,7 @@ public class Actif_KnifeThrowing : MonoBehaviour
     private void OnDisable()
     {
         _canShoot = true;
+        plLife._isTakingDamage = false;
+        plLife._isVunerable = true;
     }
 }
