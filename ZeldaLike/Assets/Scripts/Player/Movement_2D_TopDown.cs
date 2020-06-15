@@ -56,7 +56,7 @@ namespace Game
                 }
 
                 //applique la vitesse
-                _body.velocity = _input._CharacterDirection * _activeSpeed;
+                _body.velocity = _input._CharacterDirection * _activeSpeed * _input._stickMagnitude;
 
 
                 if(horlogeDecompte > 0)
@@ -84,7 +84,7 @@ namespace Game
                 _activeSpeed = _forme._actualForm._maxSpeed * _forme._actualForm._deccelerationCurve.Evaluate(_decTimer);
 
                 //applique la vitesse
-                _body.velocity = _input._CharacterDirection * _activeSpeed;
+                _body.velocity = _input._CharacterDirection * _activeSpeed * _input._stickMagnitude;
 
                 //Reset decceleration timer
                 if (_accTimer != 0)

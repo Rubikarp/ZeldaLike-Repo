@@ -57,7 +57,7 @@ namespace Management
                 {
                     //Je prends les valeurs du stick
                     _stickDirection = new Vector2(Input.GetAxis("LStickAxisX"), Input.GetAxis("LStickAxisY"));
-                    _stickMagnitude = _stickDirection.magnitude;
+                    _stickMagnitude = _stickDirection.magnitude *0.6f;
 
                     //Je prends les buttons
                     _mark = Input.GetButton("Y/Triangle");
@@ -79,7 +79,7 @@ namespace Management
                 {
                     //Je prends les valeurs du stick
                     _stickDirection = new Vector2(Input.GetAxisRaw("Keyboard-AxisX"), Input.GetAxisRaw("Keyboard-AxisY"));
-                    _stickMagnitude = _stickDirection.magnitude;
+                    _stickMagnitude = _stickDirection.magnitude * 0.6f;
 
                     //Je prends les buttons
                     _mark = Input.GetButton("Keyboard-MarkButton");
@@ -115,10 +115,5 @@ namespace Management
             _canInput = true;
         }
 
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(Vector2.zero, _CharacterDirection * 5 , Color.red);
-
-        }
     }
 }

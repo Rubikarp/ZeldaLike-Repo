@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9b8127d565f3248b2f5b16b17bd20b, type: 3}
   m_Name: AgileForm
   m_EditorClassIdentifier: 
-  _maxSpeed: 16
+  _maxSpeed: 24
   _accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -51,7 +51,7 @@ MonoBehaviour:
       outWeight: 0.50619924
     - serializedVersion: 3
       time: 0.1
-      value: 2
+      value: 1.2
       inSlope: 0.008218454
       outSlope: 0.008218454
       tangentMode: 0
@@ -60,16 +60,7 @@ MonoBehaviour:
       outWeight: 1
     - serializedVersion: 3
       time: 0.2
-      value: 1
-      inSlope: 0.035748225
-      outSlope: 0.035748225
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.080593705
-      outWeight: 0.2802668
-    - serializedVersion: 3
-      time: 0.25
-      value: 0.75
+      value: 0.8
       inSlope: -0.01602602
       outSlope: -0.01602602
       tangentMode: 0
@@ -86,13 +77,13 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.40042725
       value: 1
-      inSlope: -0.037230186
-      outSlope: -0.037230186
+      inSlope: 0.06807164
+      outSlope: 0.06807164
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.1547044
+      inWeight: 0.18701197
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 1
